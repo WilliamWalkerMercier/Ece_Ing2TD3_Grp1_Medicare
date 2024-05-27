@@ -1,0 +1,236 @@
+body{
+    font-family: Bahnschrift, sans-serif;
+    overflow: hidden;
+}
+
+#intro{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: #e8f0e8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.Intro{
+    text-align: center;
+}
+
+.Intrologo{
+    width: 200px;
+    animation: fadeInOut 3s forwards;
+}
+
+@keyframes fadeInOut{
+    0% { opacity: 0; }
+    20% { opacity: 1; }
+    80% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #e8f0e8;
+    padding: 10px 20px;
+    border-bottom: 2px solid #ccc;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.logo img{
+    height: 70px;
+}
+
+nav ul{
+    list-style: none;
+    display: flex;
+}
+
+nav ul li{
+    margin-right: 20px;
+}
+
+nav ul li a{
+    text-decoration: none;
+    color: #000;
+    font-weight: bold;
+    padding: 10px 15px;
+    border-radius: 10px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+nav ul li a:hover{
+    background-color: #ccc;
+    color: #144b1f;
+    transform: scale(1.1);
+}
+
+nav ul ul {
+    display: none;
+}
+
+nav ul li:hover > ul {
+    display: block;
+}
+
+.SousMenu2 {
+    display: none;
+    position: absolute;
+    top: 105px;
+    padding: 30px;
+    background-color: #fff;
+    border-bottom: 5px solid #144b1f;
+}
+
+.SousMenu1:hover .dropdown-menu {
+    display: block;
+}
+
+.SousMenu2 li {
+    padding: 10px;
+}
+
+.SousMenu2 li a {
+    color: #333;
+}
+
+.SousMenu2 li a:hover {
+    color: #144b1f;
+}
+
+.CompteLogo img{
+    height: 40px;
+}
+
+main{
+    padding: 20px;
+    overflow-x: hidden;
+}
+
+section{
+
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.Bienvenus, .event-of-the-week{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+}
+
+.carousel{
+    width: 100%;
+    display: flex;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+}
+
+.contenu{
+    display: flex;
+    height: 400px;
+    flex-wrap:nowrap ;
+    justify-content: start;
+}
+
+.carte{
+    display: flex;
+    align-items: flex-end;
+    width: 80px;
+    background-size: cover;
+    cursor: pointer;
+    overflow: hidden;
+    margin: 0 10px;
+    border-radius: 3rem;
+    box-shadow: 0px 10px 30px -5px rgba(0,0,0,0.8);
+    transition: .6s cubic-bezier(.28,-0.03,0,.99);
+}
+
+.carte > .CD_row{
+    display: flex;
+    color: white;
+    flex-wrap:  nowrap;
+}
+
+.carte> .CD_row> .ImgMed{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    margin: 15px;
+    background: #223;
+    color: white;
+    border-radius: 50%;
+}
+
+.carte > .CD_row > .DescriptionMed{
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    flex-direction: column;
+    transform: translateY(30px);
+    transition: all .3s ease;
+    transition-delay: .3s;
+    width: 520px;
+    height: 80px;
+    opacity: 0;
+}
+
+.DescriptionMed p{
+    color: #223;
+    padding-bottom: 5px;
+}
+
+.DescriptionMed h4{
+    text-transform: uppercase;
+}
+
+input{
+    display: none;
+}
+
+input:checked+label{
+    width: 600px;
+    height: 500px;
+}
+
+input:checked+label .DescriptionMed{
+    transform: translateY(0) !important;
+    opacity: 1 !important;
+}
+
+.carte[for="c1"]{
+    background-image: url("MedKevinDubois.jpg");
+}
+
+.carte[for="c2"]{
+    background-image: url("MedJeanLouis.jpg");
+}
+
+.carte[for="c3"]{
+    background-image: url("MedVirginieKirman.jpg");
+}
+
+.carte[for="c4"]{
+    background-image: url("MedSophieLedos.jpg");
+}
+
+.carte[for="c5"]{
+    background-image: url("MedLucasLopez.jpg");
+}
+
+footer {
+    padding: 20px 0;
+    background-color: #e8f0e8;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    border-top: 2px solid #ccc;
+    box-sizing: border-box;
+}
