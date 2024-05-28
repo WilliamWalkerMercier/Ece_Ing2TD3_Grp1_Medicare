@@ -4,6 +4,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulaire d'inscription</title>
+
+    <script type="text/javascript">
+        /*
+        * Idée de vérification venue de ce site
+        * https://www.geeksforgeeks.org/create-an-online-payment-project-using-html-css-javascript/
+        * */
+        document.addEventListener('DOMContentLoaded', function () {
+            let vPhoneNumInput = document.querySelector('#telephone');
+            /*let vVitalCardInput = document.querySelector('#carteVitale');*/
+
+            vPhoneNumInput.addEventListener('keyup', () => {
+                let pNumber = vPhoneNumInput.value;
+                pNumber = pNumber.replace(/\D/g, ""); // Remove all non-digit characters
+
+                if (pNumber.startsWith('0')) {
+                    pNumber = '33' + pNumber.slice(1);
+                }
+
+                if (pNumber.length <= 2) {
+                    vPhoneNumInput.value = '+' + pNumber;
+                } else if (pNumber.length <= 3) {
+                    vPhoneNumInput.value = '+33 ' + pNumber.slice(2);
+                } else if (pNumber.length <= 4) {
+                    vPhoneNumInput.value = '+33 ' + pNumber.slice(2, 3) + ' ' + pNumber.slice(3);
+                } else if (pNumber.length <= 6) {
+                    vPhoneNumInput.value = '+33 ' + pNumber.slice(2, 3) + ' ' + pNumber.slice(3, 5) + ' ' + pNumber.slice(5);
+                } else if (pNumber.length <= 8) {
+                    vPhoneNumInput.value = '+33 ' + pNumber.slice(2, 3) + ' ' + pNumber.slice(3, 5) + ' ' + pNumber.slice(5, 7) + ' ' + pNumber.slice(7);
+                } else {
+                    vPhoneNumInput.value = '+33 ' + pNumber.slice(2, 3) + ' ' + pNumber.slice(3, 5) + ' ' + pNumber.slice(5, 7) + ' ' + pNumber.slice(7, 9) + ' ' + pNumber.slice(9);
+                }
+            });
+        });
+
+    </script>
+
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -76,22 +112,22 @@
             <div class="FormElement"><!--Chaque élement est dans un div FormElement-->
                 <label for="nom">Nom:</label>
                 <!--Pour la visibilité et l'accesibilité (voir w3schools html form)-->
-                <input type="text" id="nom" name="nom" placeholder="Jean Bon" required>
+                <input type="text" id="nom" name="nom" placeholder=" Bon" required>
                 <!-- Permet de demander la saisie du champs obligatoirement (comme la vérif PHP des TD-->
             </div>
             <div class="FormElement"><!--Chaque élement est dans un div FormElement-->
                 <label for="prenom">Prénom :</label>
                 <!--Pour la visibilité et l'accesibilité (voir w3schools html form)-->
-                <input type="text" id="prenom" name="prenom" placeholder="Jean Bon" required>
+                <input type="text" id="prenom" name="prenom" placeholder="Jean " required>
                 <!-- Permet de demander la saisie du champs obligatoirement (comme la vérif PHP des TD-->
             </div>
             <div class="FormElement">
                 <label for="adresse1">Adresse ligne 1 :</label>
-                <input type="text" id="adresse1" name="adresse1" placeholder="10 rue de la sante" required>
+                <input type="text" id="adresse1" name="adresse1" placeholder="10 rue " required>
             </div>
             <div class="FormElement">
                 <label for="adresse2">Adresse ligne 2 :</label>
-                <input type="text" id="adresse2" name="adresse2" placeholder="11 avenue de la mouette">
+                <input type="text" id="adresse2" name="adresse2" placeholder="de la Mouette">
             </div>
             <div class="FormElement">
                 <label for="ville">Ville :</label>
@@ -107,11 +143,11 @@
             </div>
             <div class="FormElement">
                 <label for="telephone">Numéro de téléphone :</label>
-                <input type="tel" id="telephone" name="telephone" placeholder="+33123456789" required >
+                <input type="tel" id="telephone" name="telephone" placeholder="+33123456789" required>
             </div>
             <div class="FormElement">
                 <label for="email">Courriel:</label>
-                <input type="email" id="email" name="email" placeholder="lemedecin@omnessante.fr" required >
+                <input type="email" id="email" name="email" placeholder="lemedecin@omnessante.fr" required>
             </div>
             <div class="FormElement">
                 <label for="carteVitale">Carte Vitale :</label>
