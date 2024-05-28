@@ -12,7 +12,7 @@
         // Prendre le dernier dimanche
         $aujourdhui->modify("last sunday");
         $aujourdhui->modify("+1 day");
-        $aujourdhui->modify("+{$decallage} week");
+        $aujourdhui->modify("+{$decallage} week");//prendre la semaine suivante ou précédente en fonction de la variable décallage
         
         // Calculer les dates des jours de la semaine
         $dates_semaine = [];
@@ -29,10 +29,10 @@
             $retourRequete = mysqli_query($db_handle, "SELECT * FROM Utilisateur U LEFT JOIN Medecin M ON U.Id_User = M.Id_Medecin WHERE U.Id_User = '$idMedecin'");
             $resultat = mysqli_fetch_assoc($retourRequete);
 
-            $jours = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"];
+            $jours       = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"];
             $heuresMatin = ["08:30", "09:00", "09:30", "10:00", "10:30", "11:00", "11:30"];
             $heuresAprem = ["13:00", "13:30", "14:00", "14:30", "15:00", "15:30", "16:00"];
-            $heuresJour = [$heuresMatin, $heuresAprem];
+            $heuresJour  = [$heuresMatin, $heuresAprem];
 
             $datesSemaine = datesSemaine($decallage);
 
@@ -48,14 +48,14 @@
                 echo("<td> " . $jours[$i] . " " . $datesSemaine[$i] . " &emsp;</td>");
             }
             echo("</tr>");
-            foreach ($heuresJour as $heures) {
+            foreach ($heuresJour as $heures) {//affichage du tableau contenant tous les boutons de réservation des créneaux
                 foreach ($heures as $heure) {
                     echo("<tr>");
                     foreach ($jours as $jour) {
                         $reservationDuMoment = mysqli_query($db_handle, "SELECT * FROM RDV WHERE Date_Heure ='" . $datesSemaine[$idJour] . " " . $heure . ":00' AND Id_Medecin='" . $idMedecin . "'");
-                        if (!($resultat["Disponibilite"][$idJour * 2 + $idMoment]) or mysqli_num_rows($reservationDuMoment) != 0) {
+                        if (!($resultat["Disponibilite"][$idJour * 2 + $idMoment]) or mysqli_num_rows($reservationDuMoment) != 0) {//on vérifie que le medecin travaille et qu'il n'ait pas de client à cette heure
                             echo("<td>indisponible</td>");
-                        } else {
+                        } else {//la value contient ce qu'on insèrera pour la date si le bouton est cliqué
                             echo("<td><button type='submit' name='date' value='" . $datesSemaine[$idJour] . " " . $heure . ":00'>$heure</button></td>");
                         }
                         $idJour = fmod($idJour + 1, 6);
@@ -64,7 +64,7 @@
                 }
                 $idMoment = fmod($idMoment + 1, 2);
             }
-            echo("</table><input type='hidden' name='decallage' value='$decallage'></form>");
+            echo("</table><input type='hidden' name='decallage' value='$decallage'></form>");//les input hidden sont là pour garder les variables malgré les actualisations
         } else {
             echo("Base de données non trouvée");
         }
@@ -73,13 +73,13 @@
 </head>
 <body>
     <?php
-    $medecin = 5;
+    $medecin = 4;
     $patient = 3;
 
     $db_handle = mysqli_connect('localhost', 'root', '');
     $db_found = mysqli_select_db($db_handle, 'medicare');
 
-    $decallage = 0; // Initialisation de la variable
+    $decallage = 0; // Initialisation de décallage, utilisée dans le calcul de la liste des dates de la semaine
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (isset($_POST['decallage'])) {
@@ -96,7 +96,7 @@
 
         if (isset($_POST['date'])) {
             $dateHeure = $_POST['date'];
-            $insertionReussie = mysqli_query($db_handle, "INSERT INTO RDV VALUES ('$patient', '$medecin', '0', '0', '$dateHeure')");
+            $insertionReussie = mysqli_query($db_handle, "INSERT INTO RDV VALUES ('$patient', '$medecin', '0', '0', '$dateHeure')");// pas besoin de vérifier si les créneaux sont libres: si un bouton s'affiche, c'est le cas
             if ($insertionReussie) {
                 echo "Vous avez réservé le créneau : " . $dateHeure;
             } else {
