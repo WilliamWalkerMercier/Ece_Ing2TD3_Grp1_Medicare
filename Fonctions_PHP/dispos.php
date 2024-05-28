@@ -30,7 +30,7 @@
         foreach($jours as $jour){
             echo("<div class='day'>".$jour."</div>");
             foreach($moments as $moment){
-                if($resultat["Disponibilite"][$nbMoment]){/*on parcourt les disponnibilités du médecin pour savoir quoi afficher*/
+                if(!($resultat["Disponibilite"][$nbMoment])){/*on parcourt les disponnibilités du médecin pour savoir quoi afficher*/
                     echo("<div class='slot unavailable'>Non disponible</div>");
                 }
                 else{
