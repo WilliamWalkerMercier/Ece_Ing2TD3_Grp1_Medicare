@@ -1,10 +1,82 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion requise</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            /*Teinte de gris differente pour faire constraste*/
+            display: flex;
+            justify-content: center;
+            /*Pour décaler au centre l'ensemble ou non
+            height: 100vh;*/
+        }
+
+        .Container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .Message {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .Message h2 {
+            color: #333333;
+            margin-bottom: 15px;
+        }
+
+        .Message p {
+            color: #666666;
+            margin-bottom: 20px;
+        }
+
+        .Buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px; /*Only usable with flexbox*/
+        }
+
+        .Button {
+            padding: 10px 20px;/*Top and Bottom then Left and right*/
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        #LogInButton {
+            background-color: #007bff;
+            color: #ffffff;
+        }
+
+        #SignUpButton {
+            background-color: #28a745;
+            color: #ffffff;
+        }
+
+        .Button:hover {
+            opacity: 0.9;
+        }
+    </style>
 </head>
 <body>
-
+<div class="Container"><!--Contient tout l'affichage-->
+    <div class="Message"><!--Contient le texte affiché-->
+        <h2>Aucun compte détecté</h2>
+        <p>Pour prendre un rdv, veuillez vous connecter ou vous inscrire</p>
+        <div class="Buttons"><!--Bloc des bouttons-->
+            <button class="Button" id="LogInButton">Se connecter</button><!--Boutton Se connecter-->
+            <button class="Button" id="SignUpButton">S'inscrire</button><!--Boutton S'identifier-->
+        </div>
+    </div>
+</div>
 </body>
 </html>
