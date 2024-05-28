@@ -27,7 +27,7 @@
                 echo("<tr>");
                 foreach($heures as $heure){
                     foreach($jours as $jour){
-                        echo("<td><input type='submit' value=''")
+                        echo("<td><input type='buton' value='$heure'</td>");
                     }
                 }
                 echo("</tr>");
