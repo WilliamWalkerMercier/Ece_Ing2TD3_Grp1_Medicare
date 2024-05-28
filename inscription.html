@@ -10,31 +10,77 @@
         * Idée de vérification venue de ce site
         * https://www.geeksforgeeks.org/create-an-online-payment-project-using-html-css-javascript/
         * */
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function () {//Vérifie que le document HTML a été entièrement chargé et
+            //analysé par le navigateur
+
+
+            //Stocke la référence que l'élement qui a cet id pour pouvoir le modifier après
             let vPhoneNumInput = document.querySelector('#telephone');
-            /*let vVitalCardInput = document.querySelector('#carteVitale');*/
+            let vVitalCardInput = document.querySelector('#carteVitale');
 
+            //Ecoute lorsque qu'une touche est pressé
             vPhoneNumInput.addEventListener('keyup', () => {
-                let pNumber = vPhoneNumInput.value;
-                pNumber = pNumber.replace(/\D/g, ""); // Remove all non-digit characters
+                let vPhoneNumber = vPhoneNumInput.value;
+                vPhoneNumber = vPhoneNumber.replace(/\D/g, ""); // Enleve tous les charactères qui ne sont pas des chiffres
 
-                if (pNumber.startsWith('0')) {
-                    pNumber = '33' + pNumber.slice(1);
+                if (vPhoneNumber.startsWith('0')) {//Si le numéro commence par 0 alors affiche le +33 de la France
+                    vPhoneNumber = '33' + vPhoneNumber.slice(1);
+                }
+                let vCreatingNumber = '+33 ';
+
+                //Construction du chiffre en temps réel
+                if (vPhoneNumber.length > 2) {
+                    vCreatingNumber += vPhoneNumber.slice(2, 3) + ' ';
+                }
+                if (vPhoneNumber.length > 3) {
+                    vCreatingNumber += vPhoneNumber.slice(3, 5) + ' ';
+                }
+                if (vPhoneNumber.length > 5) {
+                    vCreatingNumber += vPhoneNumber.slice(5, 7) + ' ';
+                }
+                if (vPhoneNumber.length > 7) {
+                    vCreatingNumber += vPhoneNumber.slice(7, 9) + ' ';
+                }
+                if (vPhoneNumber.length > 9) {
+                    vCreatingNumber += vPhoneNumber.slice(9);
+                }
+                //Permet d'enlever les espaces inutiles
+                vPhoneNumInput.value = vCreatingNumber.trim();
+            });
+            //Meme type de fonctionnement
+            vVitalCardInput.addEventListener('keyup', () => {
+                let vVitalCardNumber = vVitalCardInput.value;
+                vVitalCardNumber = vVitalCardNumber.replace(/\D/g, "");
+
+                // Empeche la saisie si le chiffre ne commence pas par 1 ou 2
+                if (!vVitalCardNumber.startsWith('1') && !vVitalCardNumber.startsWith('2')) {
+                    vVitalCardInput.value = "Nombre invalide ";
+                    return;
                 }
 
-                if (pNumber.length <= 2) {
-                    vPhoneNumInput.value = '+' + pNumber;
-                } else if (pNumber.length <= 3) {
-                    vPhoneNumInput.value = '+33 ' + pNumber.slice(2);
-                } else if (pNumber.length <= 4) {
-                    vPhoneNumInput.value = '+33 ' + pNumber.slice(2, 3) + ' ' + pNumber.slice(3);
-                } else if (pNumber.length <= 6) {
-                    vPhoneNumInput.value = '+33 ' + pNumber.slice(2, 3) + ' ' + pNumber.slice(3, 5) + ' ' + pNumber.slice(5);
-                } else if (pNumber.length <= 8) {
-                    vPhoneNumInput.value = '+33 ' + pNumber.slice(2, 3) + ' ' + pNumber.slice(3, 5) + ' ' + pNumber.slice(5, 7) + ' ' + pNumber.slice(7);
-                } else {
-                    vPhoneNumInput.value = '+33 ' + pNumber.slice(2, 3) + ' ' + pNumber.slice(3, 5) + ' ' + pNumber.slice(5, 7) + ' ' + pNumber.slice(7, 9) + ' ' + pNumber.slice(9);
+                let vCreatingNumberVC = '';
+                if (vVitalCardNumber.length > 0) {
+                    vCreatingNumberVC += vVitalCardNumber.slice(0, 1) + ' ';
                 }
+                if (vVitalCardNumber.length > 1) {
+                    vCreatingNumberVC += vVitalCardNumber.slice(1, 3) + ' ';
+                }
+                if (vVitalCardNumber.length > 3) {
+                    vCreatingNumberVC += vVitalCardNumber.slice(3, 5) + ' ';
+                }
+                if (vVitalCardNumber.length > 5) {
+                    vCreatingNumberVC += vVitalCardNumber.slice(5, 7) + ' ';
+                }
+                if (vVitalCardNumber.length > 7) {
+                    vCreatingNumberVC += vVitalCardNumber.slice(7, 10) + ' ';
+                }
+                if (vVitalCardNumber.length > 10) {
+                    vCreatingNumberVC += vVitalCardNumber.slice(10, 13) + ' ';
+                }
+                if (vVitalCardNumber.length > 13) {
+                    vCreatingNumberVC += vVitalCardNumber.slice(13, 15);
+                }
+                vVitalCardInput.value = vCreatingNumberVC.trim();
             });
         });
 
