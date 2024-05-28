@@ -45,5 +45,5 @@ CREATE TABLE RDV(
     Id_Lab int not null references Laboratoire(Id_Lab),
     Nom_Service varchar(100) references ServiceLab(Nom_Service),
     Date_Heure datetime,
-    primary key (Id_Client,Id_Medecin,Id_Lab,Nom_Service)
+    primary key (Id_Client,Id_Medecin,Id_Lab,Nom_Service,Date_Heure)
 );
