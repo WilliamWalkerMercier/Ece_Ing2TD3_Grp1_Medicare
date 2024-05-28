@@ -17,6 +17,7 @@
             //Stocke la référence que l'élement qui a cet id pour pouvoir le modifier après
             let vPhoneNumInput = document.querySelector('#telephone');
             let vVitalCardInput = document.querySelector('#carteVitale');
+            let vPostalCodeInput=document.querySelector('#codePostal');
 
             //Ecoute lorsque qu'une touche est pressé
             vPhoneNumInput.addEventListener('keyup', () => {
@@ -43,6 +44,9 @@
                 }
                 if (vPhoneNumber.length > 9) {
                     vCreatingNumber += vPhoneNumber.slice(9);
+                }
+                if (vCreatingNumber.length > 17) {
+                    vCreatingNumber = vCreatingNumber.slice(0, 17);
                 }
                 //Permet d'enlever les espaces inutiles
                 vPhoneNumInput.value = vCreatingNumber.trim();
@@ -81,6 +85,16 @@
                     vCreatingNumberVC += vVitalCardNumber.slice(13, 15);
                 }
                 vVitalCardInput.value = vCreatingNumberVC.trim();
+            });
+            vPostalCodeInput.addEventListener('keyup',() => {
+               let vPostalCodeNumber=vPostalCodeInput.value;
+               vPostalCodeNumber=vPostalCodeNumber.replace(/\D/g,"");
+
+                if (vPostalCodeNumber.length > 5) {
+                    vPostalCodeInput.value = vPostalCodeNumber.slice(0, 5); // Correctly reassign the truncated value
+                } else {
+                    vPostalCodeInput.value = vPostalCodeNumber; // Ensure only digits are assigned
+                }
             });
         });
 
