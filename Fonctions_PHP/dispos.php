@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="style.css"> <!-- Lien vers le fichier CSS -->
 
     <?php
-    function AfficherDetails($idMedecin){
+    function AfficherDetails($idMedecin){/*affiche les informations d'un médecin telles que leur nom, leur bureau, leurs créneaux de disponibilité (ne prend pas en compte les réservations déjà effectuées chez cez médecin)*/
         $db_handle = mysqli_connect('localhost', 'root', '' );
         $db_found = mysqli_select_db($db_handle, 'medicare');
 
@@ -30,7 +30,7 @@
         foreach($jours as $jour){
             echo("<div class='day'>".$jour."</div>");
             foreach($moments as $moment){
-                if($resultat["Disponibilite"][$nbMoment]){
+                if($resultat["Disponibilite"][$nbMoment]){/*on parcourt les disponnibilités du médecin pour savoir quoi afficher*/
                     echo("<div class='slot unavailable'>Non disponible</div>");
                 }
                 else{
@@ -41,6 +41,7 @@
 
         }
         echo("</div>");
+        mysqli_close($db_handle);
     }
 ?>
 </head>
