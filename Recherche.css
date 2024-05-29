@@ -1,12 +1,27 @@
 .recherche{
     display: flex;
-    position: relative;
-    padding: 80px;
+    flex-direction: column;
+    padding: 30px;
+    align-items: center;
     color: white;
     overflow: hidden;
     top: 70px;
     width:auto;
-    height: 400px;
+    position: relative;
+    height: 300px;
+}
+
+.recherche h1{
+    display: flex;
+    position: relative;
+    color: black;
+    overflow: hidden;
+    align-items: center;
+    width:auto;
+    font-size: 60px;
+    height: 80px;
+    margin-bottom: 20px;
+    text-shadow: 0px 0px 3px rgba(0,0,0,0.3);
 }
 
 .RechercheResultats{
@@ -20,12 +35,33 @@
 }
 
 .barre{
-    height: 30px;
+    margin-top: 20px;
+    height: 60px;
     display: flex;
     cursor: pointer;
     padding: 10px 20px;
     background: black;
     align-items: center;
     box-shadow: 0 10px 25px rgba(0,0,0,0.4);
-    border-radius: 35px;
+    border-radius: 50px;
+}
+
+.barre input{
+    flex:1;
+    width: 0;
+    transition: 0.8s;
+    font-weight: 500;
+    background: transparent;
+    outline: none;
+    color: #e8f0e8;
+    border: none;
+}
+
+.barre:hover input{
+    width: 500px;
+}
+
+.barre a .fa{
+    color: #144b1f;
+    font-size: 18px;
 }

@@ -95,6 +95,7 @@ nav ul li:hover > ul{
 footer{
     background: #31701F;
     display: flex;
+    position: relative;
     align-items: center;
     height: 200px;
     left: 0;

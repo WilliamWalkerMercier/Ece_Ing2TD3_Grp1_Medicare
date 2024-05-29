@@ -50,9 +50,23 @@ $result = $conn->query($sql);
         <title>Recherche</title>
         <link rel="stylesheet" href="HeaderFooter.css">
         <link rel="stylesheet" href="Recherche.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="icon" href="img/LogoMedicare.ico">
     </head>
 <body>
+    <section class="recherche">
+        <h1>Recherche</h1>
+        <div class="barre">
+            <div class="iconRecherche">
+                <form action="Recherche.php" method="get">
+                    <input type="text" name="query" placeholder="Entrez un nom, une spécialité ou un service" required>
+                    <a href="#" type="submit">
+                        <i class="search fa fa-search"></i>
+                    </a>
+                </form>
+            </div>
+        </div>
+    </section>
     <header>
         <div class="logo">
             <a href="Acceuil.html"><img src="img/LogoMedicare.png" alt="Medicare Logo"></a>
@@ -76,15 +90,6 @@ $result = $conn->query($sql);
             <a href="#"><img src="img/MonCompte.png" alt="Compte Logo"></a>
         </div>
     </header>
-    <section class="recherche">
-        <div>
-            <h1>Recherche</h1>
-            <form action="Recherche.php" method="get">
-                <input type="text" name="query" placeholder="Entrez un nom, une spécialité ou un service" required>
-                <button type="submit">Rechercher</button>
-            </form>
-        </div>
-    </section>
     <section class="RechercheResultats">
         <div>
             <?php if ($query): ?>
