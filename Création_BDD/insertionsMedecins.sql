@@ -137,3 +137,22 @@ INSERT INTO Medecin (Id_Medecin, Specialite, CV, Disponibilite, Bureau, Photo) V
 ((SELECT Id_User FROM Utilisateur WHERE Prenom='Dormeur' AND Nom='Schtroumpf'), NULL, 'CV du Schtroumpf Dormeur', '100100100100', 'Maison Champignon Gris', 'images/dormeur.jpg'),
 ((SELECT Id_User FROM Utilisateur WHERE Prenom='Peureux' AND Nom='Schtroumpf'), NULL, 'CV du Schtroumpf Peureux', '011011011011', 'Maison Champignon Rose', 'images/peureux.jpg');
 
+INSERT INTO Laboratoire VALUES ('1','Em-009','123456789','Labo1@lab.co','Laboratoire des trois champignons', '10 rue Sextius Michel'); 
+
+INSERT INTO ServiceLab (Nom_Service, Description_Service) VALUES 
+('Dépistage covid-19', 'Test de dépistage pour le virus Covid-19'),
+('Biologie préventive', 'Analyses pour prévenir les maladies'),
+('Biologie de la femme enceinte', 'Tests et analyses pour les femmes enceintes'),
+('Biologie de routine', 'Analyses médicales courantes'),
+('Cancérologie', 'Tests et analyses pour la détection du cancer'),
+('Gynécologie', 'Analyses et tests en gynécologie');
+
+INSERT INTO Dispenses (Id_Lab, Nom_Service) VALUES 
+(1, 'Dépistage covid-19'),
+(1, 'Biologie préventive'),
+(1, 'Biologie de la femme enceinte'),
+(1, 'Biologie de routine'),
+(1, 'Cancérologie'),
+(1, 'Gynécologie');
+
+
