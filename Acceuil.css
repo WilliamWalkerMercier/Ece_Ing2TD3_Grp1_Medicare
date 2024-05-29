@@ -300,11 +300,7 @@ nav2 ul{
     list-style: none;
     display: flex;
     align-items: flex-start;
-    justify-content: center;
-    position: relative;
     padding: 15px;
-    width: 900px;
-    border-top: 5px solid #e8f0e8;
 }
 
 nav2 ul li{
@@ -355,6 +351,14 @@ nav2 ul .SousMenu4 li a:hover{
     padding: 30px;
 }
 
+.menu-footer2{
+    display: flex;
+    justify-content: center;
+    width: 900px;
+    padding: 15px;
+    border-top: 5px solid #e8f0e8;
+}
+
 .copyright{
     position: relative;
     padding: 30px;
@@ -364,8 +368,7 @@ nav2 ul .SousMenu4 li a:hover{
     display: flex;
     justify-content: center;
     width: 900px;
-    padding-top: 15px;
-    padding-left: 10px;
+    padding: 15px;
     font-size: 10px;
     border-top: 5px solid #e8f0e8;
 }
