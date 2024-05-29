@@ -1,161 +1,216 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Page de Paiement</title>
-  <script type="text/javascript">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page de Paiement</title>
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function () {
+            let vCardNumberInput = document.querySelector('#CardNumber');
+            let vCardTypeInput = document.querySelectorAll('input[name="CardType"]');
+            let vSelectedCardType = '';
 
+            // Ecoute le changement du type de carte
+            vCardTypeInput.forEach(input => {
+                input.addEventListener('change', () => {
+                    vSelectedCardType = input.value;
+                    vCardNumberInput.value = ''; //Met à zéro le numéro de carte lorsqu'on change de carte
+                });
+            });
+            //Ecoute dès qu'il a une modification du champs (plus réactif que keyup des autres codes)
+            vCardNumberInput.addEventListener('input', () => {
+                let vCardNumber = vCardNumberInput.value.replace(/\D/g, ""); // Enleve tous les caractères qui ne sont pas des chiffres
 
+                //Tronque la valeur maximale du numéro de carte
+                let maxLength = vSelectedCardType === 'Amex' ? 15 : 16;
+                if (vCardNumber.length > maxLength) {
+                    vCardNumber = vCardNumber.slice(0, maxLength);
+                }
 
-  </script>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f4f4f4;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    .Container {
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      gap: 20px;
-    }
-    .Form {
-      background-color: #ffffff;
-      padding: 20px;
-      border-radius: 8px;
-      width: 300px;
-      text-align: left;
-    }
-    .Form h2 {
-      color: #333333;
-      margin-bottom: 15px;
-      text-align: center;
-    }
-    .FormElement {
-      margin-bottom: 15px;
-    }
-    .FormElement label {
-      margin-bottom: 5px;
-      color: #333333;
-      display: block;
-    }
-    .FormElement input {
-      width: calc(100% - 20px);
-      padding: 10px;
-      border: 1px solid #cccccc;
-      border-radius: 5px;
-      font-size: 16px;
-    }
-    #SignUpButton {
-      background-color: #28a745;
-      color: #ffffff;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 16px;
-      width: 100%;
-      text-align: center;
-    }
-    #SignUpButton:hover {
-      opacity: 0.9;
-    }
-    .CardContainer {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 20px;
-    }
-    .CardContainer img {
-      cursor: pointer;
-    }
-    .CardContainer label {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
+                // Formater le numéro de carte en groupes
+                vCardNumberInput.value = formatCardNumber(vCardNumber, vSelectedCardType);
 
-    .CardContainer input[type="radio"] {
-      display: none;
-    }
-    .CardContainer input[type="radio"]:checked + img {
-      padding: 15px;
-      border: 2px solid #28a745; /* Couleur de la bordure */
-      transform: scale(1.1); /* Agrandissement pour effet visuel */
-      transition: transform 0.2s; /* Animation pour effet visuel */
-    }
-  </style>
+            });
+
+            // Fonction pour formater le numéro de carte en groupe en fonction du type
+            function formatCardNumber(cardNumber, cardType) {
+                let vNumber = '';
+                let groupSize = cardType === 'Amex' ? [4, 6, 5] : [4, 4, 4, 4]; // Groupes pour Amex et autres
+                let index = 0;
+
+                //Sépare les chiffres selon les groupes vus précedemment
+                for (let size of groupSize) {
+                    if (index >= cardNumber.length) break;
+                    if (index > 0) vNumber += ' ';
+                    vNumber += cardNumber.slice(index, index + size);
+                    index += size;
+                }
+
+                return vNumber;
+            }
+
+        });
+
+    </script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .Container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 20px;
+        }
+
+        .Form {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            width: 300px;
+            text-align: left;
+        }
+
+        .Form h2 {
+            color: #333333;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .FormElement {
+            margin-bottom: 15px;
+        }
+
+        .FormElement label {
+            margin-bottom: 5px;
+            color: #333333;
+            display: block;
+        }
+
+        .FormElement input {
+            width: calc(100% - 20px);
+            padding: 10px;
+            border: 1px solid #cccccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        #SignUpButton {
+            background-color: #28a745;
+            color: #ffffff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            text-align: center;
+        }
+
+        #SignUpButton:hover {
+            opacity: 0.9;
+        }
+
+        .CardContainer {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .CardContainer img {
+            cursor: pointer;
+        }
+
+        .CardContainer label {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .CardContainer input[type="radio"] {
+            display: none;
+        }
+
+        .CardContainer input[type="radio"]:checked + img {
+            padding: 15px;
+            border: 2px solid #28a745; /* Couleur de la bordure */
+            transform: scale(1.1); /* Agrandissement pour effet visuel */
+            transition: transform 0.2s; /* Animation pour effet visuel */
+        }
+    </style>
 </head>
 <body>
 <!--Conteneur-->
 <div class="Container">
-  <div class="Form"><!--Bloc de gauche , chaque bloc est un formulaire-->
-    <h2>Informations du Client</h2>
-    <div class="FormElement"><!--Element du formulaire-->
-      <label for="name">Nom:</label>
-      <input type="text" id="name" name="name" placeholder="Votre nom" required>
+    <div class="Form"><!--Bloc de gauche , chaque bloc est un formulaire-->
+        <h2>Informations du Client</h2>
+        <div class="FormElement"><!--Element du formulaire-->
+            <label for="name">Nom:</label>
+            <input type="text" id="name" name="name" placeholder="Votre nom" required>
+        </div>
+        <div class="FormElement">
+            <label for="email">Courriel:</label>
+            <input type="email" id="email" name="email" placeholder="monemail@gmail.fr" required>
+        </div>
+        <div class="FormElement">
+            <label for="address">Adresse:</label>
+            <input type="text" id="address" name="address" placeholder="Votre adresse" required>
+        </div>
+        <div class="FormElement">
+            <label for="city">Ville:</label>
+            <input type="text" id="city" name="city" placeholder="Votre ville" required>
+        </div>
+        <div class="FormElement">
+            <label for="postal">Code Postal:</label>
+            <input type="text" id="postal" name="postal" placeholder="Votre code postal" required>
+        </div>
     </div>
-    <div class="FormElement">
-      <label for="email">Courriel:</label>
-      <input type="email" id="email" name="email" placeholder="monemail@gmail.fr" required>
-    </div>
-    <div class="FormElement">
-      <label for="address">Adresse:</label>
-      <input type="text" id="address" name="address" placeholder="Votre adresse" required>
-    </div>
-    <div class="FormElement">
-      <label for="city">Ville:</label>
-      <input type="text" id="city" name="city" placeholder="Votre ville" required>
-    </div>
-    <div class="FormElement">
-      <label for="postal">Code Postal:</label>
-      <input type="text" id="postal" name="postal" placeholder="Votre code postal" required>
-    </div>
-  </div>
 
-  <!-- Deuxième bloc formulaire de paiement-->
-  <div class="Form">
-    <h2>Paiement</h2>
-    <div class="FormElement">
-      <label>Type de Carte:</label>
-      <div class="CardContainer"><!-- Conteneur des cartes-->
-        <label><!-- Chaque carte est un élement d'une "radio"-->
-          <input type="radio" name="CardType" value="Visa" required>
-          <img src="Visa.png" alt="Visa">
-        </label>
-        <label>
-          <input type="radio" name="CardType" value="Amex" required>
-          <img src="Amex.png" alt="American Express">
-        </label>
-        <label>
-          <input type="radio" name="CardType" value="Mastercard" required>
-          <img src="Mastercard.png" alt="Mastercard">
-        </label>
-      </div>
+    <!-- Deuxième bloc formulaire de paiement-->
+    <div class="Form">
+        <h2>Paiement</h2>
+        <div class="FormElement">
+            <label>Type de Carte:</label>
+            <div class="CardContainer"><!-- Conteneur des cartes-->
+                <label><!-- Chaque carte est un élement d'une "radio"-->
+                    <input type="radio" name="CardType" value="Visa" required>
+                    <img src="Visa.png" alt="Visa">
+                </label>
+                <label>
+                    <input type="radio" name="CardType" value="Amex" required>
+                    <img src="Amex.png" alt="American Express">
+                </label>
+                <label>
+                    <input type="radio" name="CardType" value="Mastercard" required>
+                    <img src="Mastercard.png" alt="Mastercard">
+                </label>
+            </div>
+        </div>
+        <div class="FormElement">
+            <label for="CardName">Nom sur la Carte:</label>
+            <input type="text" id="CardName" name="CardName" placeholder="Nom affiché sur la carte" required>
+        </div>
+        <div class="FormElement">
+            <label for="CardNumber">Numéro de Carte:</label>
+            <input type="text" id="CardNumber" name="CardNumber" placeholder="Numéro de carte" required>
+        </div>
+        <div class="FormElement">
+            <label for="ExpirationDate">Date d'Expiration:</label>
+            <input type="month" id="ExpirationDate" name="ExpirationDate" required>
+        </div>
+        <div class="FormElement">
+            <label for="CVC">Code de Sécurité:</label>
+            <input type="number" id="CVC" name="CVC" placeholder="Code de sécurité" required>
+        </div>
+        <div class="FormElement">
+            <button type="submit" id="SignUpButton">Sign Up</button>
+        </div>
     </div>
-    <div class="FormElement">
-      <label for="CardName">Nom sur la Carte:</label>
-      <input type="text" id="CardName" name="CardName" placeholder="Nom affiché sur la carte" required>
-    </div>
-    <div class="FormElement">
-      <label for="CardNumber">Numéro de Carte:</label>
-      <input type="text" id="CardNumber" name="CardNumber" placeholder="Numéro de carte" required>
-    </div>
-    <div class="FormElement">
-      <label for="ExpirationDate">Date d'Expiration:</label>
-      <input type="date" id="ExpirationDate" name="ExpirationDate" required>
-    </div>
-    <div class="FormElement">
-      <label for="CVC">Code de Sécurité:</label>
-      <input type="number" id="CVC" name="CVC" placeholder="Code de sécurité" required>
-    </div>
-    <div class="FormElement">
-      <button type="submit" id="SignUpButton">Sign Up</button>
-    </div>
-  </div>
 </div>
 </body>
 </html>
