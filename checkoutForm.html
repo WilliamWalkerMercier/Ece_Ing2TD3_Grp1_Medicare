@@ -30,6 +30,14 @@
                 // Formater le numéro de carte en groupes
                 vCardNumberInput.value = formatCardNumber(vCardNumber, vSelectedCardType);
 
+                if (vCardNumber.length === maxLength) {
+                    if (CheckValidNumber(vCardNumber)) {
+                        alert("Numéro de carte valide");
+                    } else {
+                        alert("Numéro de carte invalide");
+                    }
+                }
+
             });
 
             // Fonction pour formater le numéro de carte en groupe en fonction du type
@@ -47,6 +55,36 @@
                 }
 
                 return vNumber;
+            }
+            // Fonction pour valider le numéro de carte avec l'algorithme de Luhn
+            /*
+            * Doubler chaque deuxième chiffre en partant de la droite.
+            * Si le double d'un chiffre est supérieur à 9, additionner les chiffres résultants (par exemple, 8 devient 16, et 1 + 6 = 7).
+            *Additionner tous les chiffres obtenus
+            *Ajouter le chiffre de contrôle (le dernier chiffre).
+            *Si la somme totale est un multiple de 10, le numéro de la carte est valide.
+            * Source: https://stackoverflow.com/questions/12310837/implementation-of-luhn-algorithm
+            * */
+            function CheckValidNumber(prNumber) {
+                let vSomme = 0;
+                let vDoitEtreDouble = false;
+
+                // Parcourir les chiffres du numéro de carte de droite à gauche
+                for (let i = prNumber.length - 1; i >= 0; i--) {
+                    let vNombre = parseInt(prNumber[i]);//Convertit le charactère en chiffre
+
+                    if (vDoitEtreDouble) {
+                        vNombre *= 2;
+                        if (vNombre > 9) {//
+                            vNombre -= 9;
+                        }
+                    }
+                    vSomme += vNombre;
+                    vDoitEtreDouble = !vDoitEtreDouble;
+                }
+
+                // Le numéro de carte est valide si la somme est un multiple de 10
+                return vSomme % 10 === 0;
             }
 
         });
