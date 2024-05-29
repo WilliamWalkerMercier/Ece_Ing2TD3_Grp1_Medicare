@@ -1,0 +1,94 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+}
+
+header {
+    text-align: center;
+    background-color: #007bff;
+    color: white;
+    padding: 20px;
+}
+
+
+/* Conteneur de la grille pour les éléments de docteurs */
+.DoctorContainer {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);/*Permet d'avoir uniquement 3 élements sur la page
+    *Source : https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-columns
+    */
+    gap: 20px;
+    padding: 20px;
+    justify-items: center;
+}
+
+/* Éléments individuels des docteurs */
+.DoctorElement {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+}
+
+.DoctorPicture {
+    border-radius: 8px;
+    width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+.DoctorInfo {
+    text-align: center;
+}
+
+.DoctorInfo p {
+    margin: 8px ;
+}
+
+.AvailabilityCalendar {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.AvailabilityCalendar .day {
+    font-weight: bold;
+    grid-column: 1 / 2;
+    display: flex;
+    align-items: center;
+}
+
+.AvailabilityCalendar .slot {
+    background-color: #f1f1f1;
+    padding: 5px;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.AvailabilityCalendar .slot.unavailable {
+    background-color: #e0e0e0;
+    color: #888;
+}
+
+.DoctorButtons {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: white;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
