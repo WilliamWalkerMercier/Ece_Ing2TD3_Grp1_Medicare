@@ -44,7 +44,7 @@
                 $idRDV++;
                 if($rdv["Id_Lab"]==0){
                     echo "<tr><td> Rendez-vous avec ".$rdv['Prenom']." ".$rdv['Nom'];
-                    if ($rdv['Specialite']!=NULL){
+                    if ($rdv['Specialite']!=NULL || $rdv['Specialite']!="Generaliste"){
                         echo " (".$rdv['Specialite'].") ";
                     }
                     else{
