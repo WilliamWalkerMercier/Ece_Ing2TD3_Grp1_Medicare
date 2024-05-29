@@ -64,6 +64,7 @@
 
             }
             echo "</table></form>";
+            return $listeCommandes;
         }
     ?>
 </head>
@@ -73,6 +74,10 @@
 
         $db_handle = mysqli_connect('localhost', 'root', '');
         $db_found = mysqli_select_db($db_handle, 'medicare');
+
+        // Affichage des informations de l'utilisateur avec l'ID spécifié
+        afficherUtilisateur($db_handle, $idUtilisateur);
+        $listeCommandes=afficherRDV($db_handle, $idUtilisateur);
 
         if(isset($_POST["modifier"])){
             $idUtilisateur = $_POST['idUtilisateur'];
@@ -141,11 +146,11 @@
                 echo "Aucun champ n'a été rempli.";
             }
         }
+        if(isset($_POST["annuler"])) {
+        mysqli_query($db_handle,$listeCommandes[$_POST["annuler"]]);
+        }
 
 
-        // Affichage des informations de l'utilisateur avec l'ID spécifié
-        afficherUtilisateur($db_handle, $idUtilisateur);
-        afficherRDV($db_handle, $idUtilisateur);
 
         mysqli_close($db_handle);
     ?>
