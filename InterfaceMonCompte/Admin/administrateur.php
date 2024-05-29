@@ -15,6 +15,7 @@ if ($conn->connect_error) {
 
 // Si le formulaire de mise à jour est soumis
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    /*
     if (isset($_POST['update_users'])) {
         $checked_users = isset($_POST['user_ids']) ? $_POST['user_ids'] : [];
         $all_users = isset($_POST['all_user_ids']) ? $_POST['all_user_ids'] : [];
@@ -42,7 +43,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $conn->query("DELETE FROM Medecin WHERE Id_Medecin = $user_id");
             }
         }
-    }
+    }*/
+
     // Si le formulaire de suppression est soumis
     if (isset($_POST['delete_doctor'])) {
         $doctor_id = $_POST['doctor_id'];
