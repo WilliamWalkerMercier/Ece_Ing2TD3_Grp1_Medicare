@@ -39,7 +39,7 @@
                 $nbMoment++;
             }
 
-        }
+            }
         echo("</div>");
         mysqli_close($db_handle);
     }

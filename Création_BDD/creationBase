@@ -47,3 +47,6 @@ CREATE TABLE RDV(
     Date_Heure datetime,
     primary key (Id_Client,Id_Medecin,Id_Lab,Nom_Service,Date_Heure)
 );
+
+ALTER TABLE Utilisateur ADD (Pays Varchar(50),Ville Varchar(100),Code_Postal int, Adresse1 Varchar(100), Adresse2 Varchar(100));
+ALTER TABLE Client ADD Solde INT;
