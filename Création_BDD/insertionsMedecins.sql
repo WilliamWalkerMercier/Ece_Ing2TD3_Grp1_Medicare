@@ -44,7 +44,7 @@ VALUES (LAST_INSERT_ID(), 'Dermatologie', 'CV de Thomas Roux', '110110100011', '
 -- Medecins specialises en Gastro- Hepato-Enterologie
 INSERT INTO Utilisateur(Nom, Prenom, Mail, Telephone, Mdp, Type)
 
- VALUES ('Lefevre', 'Jean', 'jean.lefevre@medecine.ece.fr', 0123456789, 'abcde12345abcde12345abcde1', 1);
+ VALUES ('Lermite', 'Bernard', 'Bernard.lermite@medecine.ece.fr', 0314159265, 'abcde12345abcde12345abcde1', 1);
 INSERT INTO Medecin(Id_Medecin, Specialite, CV, Disponibilite, Bureau)
  VALUES (LAST_INSERT_ID(), 'Gastro- Hepato-Enterologie', 'CV de Jean Lefevre', '110011001100', 'sc-200');
 
