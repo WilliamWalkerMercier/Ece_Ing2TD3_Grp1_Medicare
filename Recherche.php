@@ -52,6 +52,7 @@ $result = $conn->query($sql);
         <link rel="stylesheet" href="Recherche.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="icon" href="img/LogoMedicare.ico">
+        <link rel="stylesheet" href="carte.css">
     </head>
 <body>
     <section class="recherche">
@@ -94,23 +95,37 @@ $result = $conn->query($sql);
         <div>
             <?php if ($query): ?>
                 <h1>Résultats de la recherche pour '<?php echo htmlspecialchars($query); ?>':</h1>
-                <ul>
+                <div class="cartes-medecins">
                     <?php if ($result->num_rows > 0): ?>
                         <?php while ($row = $result->fetch_assoc()): ?>
-                            <li>
-                                <?php if ($row['Type'] == 'Medecin'): ?>
-                                    Médecin: <?php echo htmlspecialchars($row['Nom'] . " " . $row['Prenom']); ?> - Spécialité: <?php echo htmlspecialchars($row['Specialite']); ?> - Bureau: <?php echo htmlspecialchars($row['Bureau']); ?>
-                                <?php elseif ($row['Type'] == 'Service'): ?>
-                                    Service: <?php echo htmlspecialchars($row['Specialite']); ?> - Description: <?php echo htmlspecialchars($row['Bureau']); ?>
-                                <?php elseif ($row['Type'] == 'Laboratoire'): ?>
-                                    Laboratoire: <?php echo htmlspecialchars($row['Specialite']); ?> - <?php echo htmlspecialchars($row['Bureau']); ?>
-                                <?php endif; ?>
-                            </li>
+                            <?php if ($row['Type'] == 'Medecin'): ?>
+                                <section class="doctor-details">
+                                    <img src="img/MonCompte.png" alt="Photo du médecin" class="doctor-photo">
+                                    <div class="doctor-info">
+                                        <h2><?php echo htmlspecialchars($row['Nom'] . " " . $row['Prenom']); ?></h2>
+                                        <p><strong>Spécialité :</strong> <?php echo htmlspecialchars($row['Specialite']); ?></p>
+                                        <p><strong>Bureau :</strong> <?php echo htmlspecialchars($row['Bureau']); ?></p>
+                                        <h3>Disponibilités</h3>
+                                        <div class="availability-calendar">
+                                            <div class="day">Lundi</div><div class="slot">Matin</div><div class="slot">Après-midi</div>
+                                            <div class="day">Mardi</div><div class="slot">Non disponible</div><div class="slot">Après-midi</div>
+                                            <div class="day">Mercredi</div><div class="slot">Matin</div><div class="slot">Non disponible</div>
+                                            <div class="day">Jeudi</div><div class="slot">Matin</div><div class="slot">Non disponible</div>
+                                            <div class="day">Vendredi</div><div class="slot">Matin</div><div class="slot">Après-midi</div>
+                                        </div>
+                                        <div class="doctor-actions">
+                                            <button class="appointment-button">Prendre un RDV</button>
+                                            <button class="contact-button">Communiquer</button>
+                                            <button class="cv-button">Voir le CV</button>
+                                        </div>
+                                    </div>
+                                </section>
+                            <?php endif; ?>
                         <?php endwhile; ?>
                     <?php else: ?>
-                        <li>Aucun résultat trouvé pour '<?php echo htmlspecialchars($query); ?>'</li>
+                        <p>Aucun résultat trouvé pour '<?php echo htmlspecialchars($query); ?>'</p>
                     <?php endif; ?>
-                </ul>
+                </div>
             <?php else: ?>
                 <h1>Veuillez entrer une requête de recherche.</h1>
             <?php endif; ?>
