@@ -90,12 +90,12 @@ INSERT INTO Utilisateur (Nom, Prenom, Mail, Telephone, Mdp, Type, Pays, Ville, C
 
 -- Insertion des medecins
 INSERT INTO Medecin (Id_Medecin, Specialite, CV, Disponibilite, Bureau, Photo) VALUES 
-((SELECT Id_User FROM Utilisateur WHERE Prenom='Bricoleur' AND Nom='Schtroumpf'), NULL, 'CV du Schtroumpf Bricoleur', '101010101010', 'Maison Champignon Rouge', 'images/bricoleur.jpg'),
-((SELECT Id_User FROM Utilisateur WHERE Prenom='Gourmand' AND Nom='Schtroumpf'), NULL, 'CV du Schtroumpf Gourmand', '010101010101', 'Maison Champignon Bleu', 'images/gourmand.jpg'),
-((SELECT Id_User FROM Utilisateur WHERE Prenom='Jardinier' AND Nom='Schtroumpf'), NULL, 'CV du Schtroumpf Jardinier', '110011001100', 'Maison Champignon Vert', 'images/jardinier.jpg'),
-((SELECT Id_User FROM Utilisateur WHERE Prenom='Coquet' AND Nom='Schtroumpf'), NULL, 'CV du Schtroumpf Coquet', '001100110011', 'Maison Champignon Jaune', 'images/coquet.jpg'),
-((SELECT Id_User FROM Utilisateur WHERE Prenom='Costaud' AND Nom='Schtroumpf'), NULL, 'CV du Schtroumpf Costaud', '111000111000', 'Maison Champignon Noir', 'images/costaud.jpg'),
-((SELECT Id_User FROM Utilisateur WHERE Prenom='Farceur' AND Nom='Schtroumpf'), NULL, 'CV du Schtroumpf Farceur', '000111000111', 'Maison Champignon Blanc', 'images/farceur.jpg');
+((SELECT Id_User FROM Utilisateur WHERE Prenom='Bricoleur' AND Nom='Schtroumpf'), 'Generaliste', 'CV du Schtroumpf Bricoleur', '101010101010', 'Maison Champignon Rouge', 'images/bricoleur.jpg'),
+((SELECT Id_User FROM Utilisateur WHERE Prenom='Gourmand' AND Nom='Schtroumpf'), 'Generaliste', 'CV du Schtroumpf Gourmand', '010101010101', 'Maison Champignon Bleu', 'images/gourmand.jpg'),
+((SELECT Id_User FROM Utilisateur WHERE Prenom='Jardinier' AND Nom='Schtroumpf'), 'Generaliste', 'CV du Schtroumpf Jardinier', '110011001100', 'Maison Champignon Vert', 'images/jardinier.jpg'),
+((SELECT Id_User FROM Utilisateur WHERE Prenom='Coquet' AND Nom='Schtroumpf'), 'Generaliste', 'CV du Schtroumpf Coquet', '001100110011', 'Maison Champignon Jaune', 'images/coquet.jpg'),
+((SELECT Id_User FROM Utilisateur WHERE Prenom='Costaud' AND Nom='Schtroumpf'), 'Generaliste', 'CV du Schtroumpf Costaud', '111000111000', 'Maison Champignon Noir', 'images/costaud.jpg'),
+((SELECT Id_User FROM Utilisateur WHERE Prenom='Farceur' AND Nom='Schtroumpf'), 'Generaliste', 'CV du Schtroumpf Farceur', '000111000111', 'Maison Champignon Blanc', 'images/farceur.jpg');
 
 INSERT INTO Laboratoire VALUES ('1','Em-009','123456789','Labo1@lab.co','Laboratoire des trois champignons', '10 rue Sextius Michel'); 
 
