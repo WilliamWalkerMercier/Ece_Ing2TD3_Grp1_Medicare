@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulaire Ajouter un medecin</title>
+    <script type="text/javascript">
+        /*Source : https://stackoverflow.com/questions/12368910/html-display-image-after-selecting-filename*/
+        function previewImage(event) {
+            const file = event.target.files[0];
+            const preview = document.getElementById('preview');
+            const reader = new FileReader();
+
+            reader.onload = function () {
+                preview.src = reader.result;
+                preview.style.display = 'block';
+            };
+
+            if (file) {
+                reader.readAsDataURL(file);
+            } else {
+                preview.src = '';
+                preview.style.display = 'none';
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: auto;
+        }
+
+        .Container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .FormRow {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            gap: 10px;
+
+        }
+
+        .Form {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            background-color: #ffffff;
+            padding: 20px;
+            gap: 10px;
+            border-radius: 8px;
+            text-align: left;
+        }
+
+        .FormUpload {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            background-color: #ffffff;
+            padding: 20px;
+            gap: 10px;
+            border-radius: 8px;
+            text-align: left;
+        }
+
+        .Form h2 {
+            color: #333333;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .FormUploadRow {
+            display: flex;
+            flex-wrap: wrap; /* Allow wrapping to the next line */
+            gap: 10px;
+        }
+
+        .FormUploadElement {
+            flex: 1 1 calc(33.333% - 10px); /* Three elements per row */
+            box-sizing: border-box; /* Ensure padding and border are included in the width calculation */
+        }
+
+
+        .FormElement {
+            margin-bottom: 15px;
+        }
+
+        .FormElement label {
+            margin-bottom: 5px;
+            color: #333333;
+            display: block;
+        }
+
+        .FormElement input {
+            width: calc(100% - 20px);
+            padding: 10px;
+            border: 1px solid #cccccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        #AddDoctorButton {
+            background-color: #28a745;
+            color: #ffffff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            text-align: center;
+        }
+
+        #AddDoctorButton:hover {
+            opacity: 0.9;
+        }
+
+        table {
+            margin-left: auto;
+            margin-right: auto;
+            border-collapse: collapse;
+            width: 60%;
+            background-color: #ffffff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #preview {
+            display: none;
+            max-width: 100%;
+            max-height: 50px;
+        }
+
+
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: center;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        label {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<!-- Conteneur -->
+<div class="Container">
+    <!-- Première ligne de formulaires -->
+    <div class="FormRow">
+        <div class="Form"><!-- Bloc de gauche -->
+            <h2>Informations du Médecin</h2>
+            <div class="FormElement"><!-- Element du formulaire -->
+                <label for="ID">ID</label>
+                <input type="text" id="ID" name="ID" placeholder="ID" required>
+            </div>
+            <div class="FormElement">
+                <label for="Name">Nom:</label>
+                <input type="email" id="Name" name="Name" placeholder="Seringue" required>
+            </div>
+            <div class="FormElement">
+                <label for="Field">Spécialité</label>
+                <input type="text" id="Field" name="Field" placeholder="Cardiologie" required>
+            </div>
+            <div class="FormElement">
+                <label for="City">Ville:</label>
+                <input type="text" id="City" name="City" placeholder="Ville" required>
+            </div>
+            <div class="FormElement">
+                <label for="AccountName">Compte</label>
+                <input type="text" id="AccountName" name="AccountName" placeholder="Nom du compte du médecin" required>
+            </div>
+        </div>
+
+        <!-- Deuxième bloc formulaire de paiement -->
+        <div class="Form">
+            <h2>Paiement</h2>
+            <div class="FormElement">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Jour</th>
+                        <th>Matin</th>
+                        <th>Après-midi</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>Lundi</td>
+                        <td>
+                            <label for="lundi_matin"></label>
+                            <input type="checkbox" id="lundi_matin" name="lundi_matin">
+                        </td>
+                        <td>
+                            <label for="lundi_apresmidi"></label>
+                            <input type="checkbox" id="lundi_apresmidi" name="lundi_apresmidi">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Mardi</td>
+                        <td>
+                            <label for="mardi_matin"></label>
+                            <input type="checkbox" id="mardi_matin" name="mardi_matin">
+                        </td>
+                        <td>
+                            <label for="mardi_apresmidi"></label>
+                            <input type="checkbox" id="mardi_apresmidi" name="mardi_apresmidi">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Mercredi</td>
+                        <td>
+                            <label for="mercredi_matin"></label>
+                            <input type="checkbox" id="mercredi_matin" name="mercredi_matin">
+                        </td>
+                        <td>
+                            <label for="mercredi_apresmidi"></label>
+                            <input type="checkbox" id="mercredi_apresmidi" name="mercredi_apresmidi">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Jeudi</td>
+                        <td>
+                            <label for="jeudi_matin"></label>
+                            <input type="checkbox" id="jeudi_matin" name="jeudi_matin">
+                        </td>
+                        <td>
+                            <label for="jeudi_apresmidi"></label>
+                            <input type="checkbox" id="jeudi_apresmidi" name="jeudi_apresmidi">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Vendredi</td>
+                        <td>
+                            <label for="vendredi_matin"></label>
+                            <input type="checkbox" id="vendredi_matin" name="vendredi_matin">
+                        </td>
+                        <td>
+                            <label for="vendredi_apresmidi"></label>
+                            <input type="checkbox" id="vendredi_apresmidi" name="vendredi_apresmidi">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Samedi</td>
+                        <td>
+                            <label for="samedi_matin"></label>
+                            <input type="checkbox" id="samedi_matin" name="samedi_matin">
+                        </td>
+                        <td>
+                            <label for="samedi_apresmidi"></label>
+                            <input type="checkbox" id="samedi_apresmidi" name="samedi_apresmidi">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Dimanche</td>
+                        <td>
+                            <label for="dimanche_matin"></label>
+                            <input type="checkbox" id="dimanche_matin" name="dimanche_matin">
+                        </td>
+                        <td>
+                            <label for="dimanche_apresmidi"></label>
+                            <input type="checkbox" id="dimanche_apresmidi" name="dimanche_apresmidi">
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Troisième bloc formulaire -->
+    <div class="FormUpload">
+        <h2 class="centered-title">Informations supplémentaires</h2>
+        <div class="FormUploadRow">
+            <div class="FormUploadElement">
+                <label for="Picture1">Photo1:</label>
+                <input type="file" id="Picture1" name="Picture1">
+            </div>
+
+            <div class="FormUploadElement">
+                <label for="Picture2">Photo2:</label>
+                <input type="file" id="Picture2" name="Picture2">
+            </div>
+            <div class="FormUploadElement">
+                <label for="Picture3">Photo3:</label>
+                <input type="file" id="Picture3" name="Picture3">
+            </div>
+            <div class="FormUploadElement">
+                <label for="Video">Vidéo:</label>
+                <input type="file" id="Video" name="Video">
+            </div>
+            <div class="FormUploadElement">
+                <label for="myFile">Résumé:</label>
+                <input type="file" id="myFile" name="filename" accept="image/*" onchange="previewImage(event)">
+            </div>
+
+        </div>
+        <div class="FormUploadRow">
+            <div class="FormUploadElement">
+                <button type="submit" id="AddDoctorButton">Ajouter un médecin</button>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
