@@ -8,8 +8,9 @@
 
     <?php
         function afficherUtilisateur($db_handle, $idUtilisateur){
-            $infoClient = mysqli_fetch_assoc(mysqli_query($db_handle, "SELECT * FROM Utilisateur u INNER JOIN Client c ON u.Id_User = c.Id_Client WHERE u.Id_User =".$idUtilisateur));
-            echo 
+            $infoClient = mysqli_fetch_assoc(mysqli_query($db_handle, "SELECT * FROM Utilisateur u left JOIN Client c ON u.Id_User = c.Id_Client WHERE u.Id_User =".$idUtilisateur));
+            /*Pour tester avec des uti_lisateurs qui sont des médecins, mettre left join à la place de Innr join*/
+            echo /*tableau qui contient les informations et des boutons permettant de le modiier*/
             "<form method='post'> <table>
             <tr><td>Nom</td><td>".$infoClient["Nom"]."</td><td>Nouvelle valeur: </td><td><input type='text' name='nom'></td></tr>
             <tr><td>Prénom</td><td>".$infoClient["Prenom"]."</td><td>Nouvelle valeur: </td><td><input type='text' name='prenom'></td></tr>
@@ -30,10 +31,46 @@
             <input type='submit' name='modifier' value='Modifier les informations'>
             </form>";
         } 
+        function afficherRDV($db_handle, $idUtilisateur){            
+            $rdvs = mysqli_query($db_handle, 
+            "SELECT * FROM RDV LEFT JOIN Medecin ON RDV.Id_Medecin = Medecin.Id_Medecin 
+             LEFT JOIN Utilisateur ON Medecin.Id_Medecin = Utilisateur.Id_User 
+             LEFT JOIN Laboratoire ON RDV.Id_Lab=Laboratoire.Id_Lab
+             WHERE Id_Client =".$idUtilisateur);
+            $idRDV=-1;
+            $listeCommandes=[];
+            echo "<form method='post'><table>";
+            while($rdv = mysqli_fetch_assoc($rdvs)){
+                $idRDV++;
+                if($rdv["Id_Lab"]==0){
+                    echo "<tr><td> Rendez-vous avec ".$rdv['Prenom']." ".$rdv['Nom'];
+                    if ($rdv['Specialite']!=NULL){
+                        echo " (".$rdv['Specialite'].") ";
+                    }
+                    else{
+                        echo " (Généraliste) ";
+                    }
+                    echo "le ".$rdv['Date_Heure']." en ".$rdv["Bureau"].
+                    "</td><td><button type='submit' name='annuler' value='$idRDV'>Annuler </button>";
+                    $listeCommandes[$idRDV]="DELETE FROM RDV WHERE Id_Client='$idUtilisateur' AND Id_Medecin='".$rdv['Id_Medecin']."' AND Date_Heure='".$rdv['Date_Heure']."'";
+                }
+                else{
+                    /*ATTENTION: je n'ai pas teste cette commande*/
+                    echo "<tr><td> Rendez-vous au laboratoire Médical au ".$rdv["Adresse"].", dans la salle ".$rdv["Salle"].". et le service". $rdv["Nom_Service"]."</td>";
+                    echo "<td><button type='submit' name='annuler value='$idRDV'>Annuler </button>";
+                    $listeCommandes[$idRDV]="DELETE FROM RDV WHERE Id_Client='$idUtilisateur' AND Date_Heure='".$rdv['Date_Heure']."' AND Nom_Service='".$rdv["Nom_Service"]."' AND Id_Lab='".$rdv["Id_Lab"]."'";
+
+                }
+
+            }
+            echo "</table></form>";
+        }
     ?>
 </head>
 <body>
     <?php
+        $idUtilisateur = 3;
+
         $db_handle = mysqli_connect('localhost', 'root', '');
         $db_found = mysqli_select_db($db_handle, 'medicare');
 
@@ -105,9 +142,10 @@
             }
         }
 
+
         // Affichage des informations de l'utilisateur avec l'ID spécifié
-        $idUtilisateur = 1;
         afficherUtilisateur($db_handle, $idUtilisateur);
+        afficherRDV($db_handle, $idUtilisateur);
 
         mysqli_close($db_handle);
     ?>
