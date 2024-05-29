@@ -1,0 +1,31 @@
+.recherche{
+    display: flex;
+    position: relative;
+    padding: 80px;
+    color: white;
+    overflow: hidden;
+    top: 70px;
+    width:auto;
+    height: 400px;
+}
+
+.RechercheResultats{
+    display: flex;
+    position: relative;
+    padding: 80px;
+    overflow: hidden;
+    top: 70px;
+    width:auto;
+    height: 400px;
+}
+
+.barre{
+    height: 30px;
+    display: flex;
+    cursor: pointer;
+    padding: 10px 20px;
+    background: black;
+    align-items: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+    border-radius: 35px;
+}

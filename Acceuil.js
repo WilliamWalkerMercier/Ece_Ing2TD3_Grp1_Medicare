@@ -25,6 +25,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const fond6=document.querySelector('.fond6')
     const titre=document.querySelector('.titre')
     const titre2=document.querySelector('.titre2')
+    const titre3=document.querySelector('.titre3')
     document.addEventListener('scroll',function (){
         let position=window.scrollY
         titre.style.marginTop=position*1.1+'px'
@@ -34,6 +35,7 @@ document.addEventListener("DOMContentLoaded", function() {
         fond2.style.marginBottom=-position*1.2+'px'
         fond1.style.marginBottom=-position*1.3+'px'
         titre2.style.marginTop=-position*0.1+'px'
+        titre3.style.marginTop=-position*0.05+'px'
     })
 });
 

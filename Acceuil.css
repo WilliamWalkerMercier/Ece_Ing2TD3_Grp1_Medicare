@@ -1,17 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
 
-*{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
-}
-
-body{
-    background-color: #e8f0e8;
-    overflow-x: hidden;
-}
-
 #intro{
     position: fixed;
     width: 100%;
@@ -40,87 +28,6 @@ body{
     20% { opacity: 1; }
     80% { opacity: 1; }
     100% { opacity: 0; }
-}
-
-header{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: #e8f0e8;
-    padding: 0 5%;
-    left: 0;
-    right: 0;
-    top: 0;
-    position: absolute;
-}
-
-.logo img{
-    height: 70px;
-}
-
-nav ul{
-    list-style: none;
-    display: flex;
-}
-
-nav ul li{
-    margin-right: 20px;
-}
-
-nav ul li a{
-    text-decoration: none;
-    color: #000;
-    font-weight: bold;
-    padding: 10px 15px;
-    border-radius: 10px;
-    transition: background-color 0.3s, transform 0.3s;
-}
-
-nav ul li a.active{
-    background: #144b1f;
-}
-
-nav ul li a:hover{
-    background: #ccc;
-    color: #144b1f;
-}
-
-
-nav ul ul{
-    display: none;
-}
-
-nav ul li:hover > ul{
-    display: block;
-}
-
-.SousMenu2{
-    display: none;
-    position: absolute;
-    top: 60px;
-    padding: 0;
-    background-color: #e8f0e8;
-    border-bottom: 5px solid #144b1f;
-}
-
-.SousMenu1:hover .sous-menu{
-    display: block;
-}
-
-.SousMenu2 li{
-    padding: 10px;
-}
-
-.SousMenu2 li a{
-    color: #333;
-}
-
-.SousMenu2 li a:hover{
-    color: #144b1f;
-}
-
-.CompteLogo img{
-    height: 70px;
 }
 
 .ScrollingAcceuil{
@@ -166,15 +73,47 @@ nav ul li:hover > ul{
     text-shadow: 0px 0px 3px rgba(0,0,0,0.25);
 }
 
+.evenement .titre3{
+    font-size: 30px;
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    text-shadow: 0px 0px 3px rgba(0,0,0,0.25);
+}
+
 .evenement{
+    display: flex;
     position: relative;
     padding: 80px;
     color: white;
     background: #31701F;
+    overflow: hidden;
 }
 
 .evenement h2{
     font-size: 30px;
+}
+
+.EvenementContenu{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+.EvenementText{
+    flex: 1;
+    margin-left: 20px;
+}
+
+.EvenementImage{
+    flex: 0 0 auto;
+}
+
+.EvenementImage img{
+    margin-top: 120px;
+    width: 200px;
+    height: 200px;
 }
 
 .carousel{
@@ -282,149 +221,4 @@ input:checked+label .DescriptionMed{
 
 .carte[for="c5"]{
     background-image: url("img/MedLucasLopez.jpg");
-}
-
-footer{
-    background: #31701F;
-    display: flex;
-    align-items: center;
-    height: 200px;
-    left: 0;
-    right: 0;
-    top: auto;
-    flex-direction: column;
-    color: black;
-}
-
-nav2 ul{
-    list-style: none;
-    display: flex;
-    align-items: flex-start;
-    padding: 15px;
-}
-
-nav2 ul li{
-    margin-right: 20px;
-    position: relative;
-}
-
-nav2 ul li a{
-    text-decoration: none;
-    color: #000;
-    font-weight: bold;
-    padding: 10px 15px;
-    border-radius: 10px;
-    font-size: 20px;
-    transition: background-color 0.3s, transform 0.3s;
-}
-
-nav2 ul li a:hover{
-    background: #ccc;
-    color: #144b1f;
-}
-
-nav2 ul .SousMenu4{
-    display: block;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    padding: 10px;
-    list-style: none;
-    border: none;
-}
-
-nav2 ul .SousMenu4 li{
-    padding: 5px;
-    width: 250px;
-}
-
-nav2 ul .SousMenu4 li a{
-    font-size: 10px;
-}
-
-nav2 ul .SousMenu4 li a:hover{
-    color: #144b1f;
-}
-
-.menu-footer{
-    position: relative;
-    padding: 30px;
-}
-
-.menu-footer2{
-    display: flex;
-    justify-content: center;
-    width: 900px;
-    padding: 15px;
-    border-top: 5px solid #e8f0e8;
-}
-
-.copyright{
-    position: relative;
-    padding: 30px;
-}
-
-.copyright2{
-    display: flex;
-    justify-content: center;
-    width: 900px;
-    padding: 15px;
-    font-size: 10px;
-    border-top: 5px solid #e8f0e8;
-}
-
-.copyright3{
-    display: flex;
-    justify-content: center;
-    align-items: end;
-    width: 900px;
-    height: 120px;
-}
-
-.copyright p{
-    list-style: none;
-    display: flex;
-    position: relative;
-    font-size: 10px;
-    font-weight: bold;
-    justify-content: left;
-}
-
-.insta{
-    margin-right: 50px;
-}
-
-.x{
-    margin-left: 50px;
-}
-
-.insta img{
-    height: 40px;
-    width: 40px;
-}
-
-.x img{
-    height: 40px;
-    width: 40px;
-}
-
-.Map{
-    display: flex;
-    position: relative;
-    padding: 30px;
-    height: 520px;
-}
-
-.GoogleMap{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 900px;
-    padding-top: 15px;
-    border-top: 5px solid #e8f0e8;
-    margin-bottom: 200px;
-}
-
-.GoogleMap iframe{
-    border-radius: 10px;
 }

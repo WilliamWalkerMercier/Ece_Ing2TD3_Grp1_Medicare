@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Recherche</title>
+        <link rel="stylesheet" href="HeaderFooter.css">
+        <link rel="stylesheet" href="Recherche.css">
+        <link rel="icon" href="img/LogoMedicare.ico">
+    </head>
+    <body>
+        <header>
+            <div class="logo">
+                <a href="Acceuil.html"><img src="img/LogoMedicare.png" alt="Medicare Logo"></a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="Acceuil.html">Accueil</a></li>
+                    <li class="SousMenu1">
+                        <a href="#">Tout Parcourir</a>
+                        <ul class="SousMenu2">
+                            <li><a href="#">Médecin généraliste</a></li>
+                            <li><a href="#">Médecin spécialistes</a></li>
+                            <li><a href="#">Laboratoire de biologie médicale</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="Recherche.html" class="active">Recherche</a></li>
+                    <li><a href="#">Rendez-vous</a></li>
+                </ul>
+            </nav>
+            <div class="CompteLogo">
+                <a href="#"><img src="img/MonCompte.png" alt="Compte Logo"></a>
+            </div>
+        </header>
+        <section class="recherche">
+            <div class="barre">
+                <h1>Recherche</h1>
+                <form action="Recherche.php" method="get">
+                    <input type="text" name="query" placeholder="Entrez un nom, une spécialité ou un service" required>
+                    <button type="submit">Rechercher</button>
+                </form>
+            </div>
+        </section>
+        <footer class="menu-footer">
+            <div class="menu-footer2">
+                <nav2>
+                    <ul>
+                        <li><a href="Acceuil.html" class="active">Accueil</a></li>
+                        <li class="SousMenu3">
+                            <a href="#">Tout Parcourir</a>
+                            <ul class="SousMenu4">
+                                <li><a href="#">Médecin généraliste</a></li>
+                                <li><a href="#">Médecin spécialistes</a></li>
+                                <li><a href="#">Laboratoire de biologie médicale</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="Recherche.html">Recherche</a></li>
+                        <li><a href="#">Rendez-vous</a></li>
+                    </ul>
+                </nav2>
+            </div>
+        </footer>
+        <footer class="copyright">
+            <div class="copyright2">
+                <p>Medicare &copy; 2024 Tous droits réservés.</p>
+            </div>
+            <div class="copyright3">
+                <div class="insta">
+                    <a href="#"><img src="img/insta.png"></a>
+                </div>
+                <div class="x">
+                    <a href="#"><img src="img/twitter.png"></a>
+                </div>
+            </div>
+        </footer>
+    </body>
+</html>
