@@ -10,11 +10,6 @@ VALUES ('Lefevre', 'Marie', 'marie.lefevre@medecine.ece.fr', '0234567891', 'pass
 INSERT INTO Medecin (Id_Medecin, Specialite, CV, Disponibilite, Bureau)
 VALUES (LAST_INSERT_ID(), 'Addictologie', 'CV de Marie Lefevre', '101110011101', 'em-250');
 
--- Medecin 3
-INSERT INTO Utilisateur (Nom, Prenom, Mail, Telephone, Mdp, Type)
-VALUES ('Martin', 'Pierre', 'pierre.martin@medecine.ece.fr', '0345678912', 'password323456789012345', 1);
-INSERT INTO Medecin (Id_Medecin, Specialite, CV, Disponibilite, Bureau)
-VALUES (LAST_INSERT_ID(), 'Addictologie', 'CV de Pierre Martin', '110111100011', 'sc-300');
 
 -- Medecin 1
 INSERT INTO Utilisateur (Nom, Prenom, Mail, Telephone, Mdp, Type)
@@ -29,11 +24,6 @@ INSERT INTO Medecin (Id_Medecin, Specialite, CV, Disponibilite, Bureau)
 VALUES (LAST_INSERT_ID(), 'Andrologie', 'CV de Sophie Lemoine', '101110011101', 'em-251');
 
 -- Medecin 3
-INSERT INTO Utilisateur (Nom, Prenom, Mail, Telephone, Mdp, Type)
-VALUES ('Moreau', 'Lucas', 'lucas.moreau@medecine.ece.fr', '0345678912', 'password323456789012345', 1);
-INSERT INTO Medecin (Id_Medecin, Specialite, CV, Disponibilite, Bureau)
-VALUES (LAST_INSERT_ID(), 'Andrologie', 'CV de Lucas Moreau', '110111100011', 'sc-301');
-
 -- Medecin 1 en Cardiologie
 INSERT INTO Utilisateur (Nom, Prenom, Mail, Telephone, Mdp, Type)
 VALUES ('Girard', 'Nicolas', 'nicolas.girard@medecine.ece.fr', '0456789123', 'password423456789012345', 1);
@@ -51,13 +41,6 @@ INSERT INTO Utilisateur (Nom, Prenom, Mail, Telephone, Mdp, Type)
 VALUES ('Roux', 'Thomas', 'thomas.roux@medecine.ece.fr', '0678912345', 'password623456789012345', 1);
 INSERT INTO Medecin (Id_Medecin, Specialite, CV, Disponibilite, Bureau)
 VALUES (LAST_INSERT_ID(), 'Dermatologie', 'CV de Thomas Roux', '110110100011', 'em-302');
-
--- Medecin 2 en Dermatologie
-INSERT INTO Utilisateur (Nom, Prenom, Mail, Telephone, Mdp, Type)
-VALUES ('Morel', 'Emma', 'emma.morel@medecine.ece.fr', '0789123456', 'password723456789012345', 1);
-INSERT INTO Medecin (Id_Medecin, Specialite, CV, Disponibilite, Bureau)
-VALUES (LAST_INSERT_ID(), 'Dermatologie', 'CV de Emma Morel', '111011100011', 'sc-303');
-
 -- Medecins specialises en Gastro- Hepato-Enterologie
 INSERT INTO Utilisateur(Nom, Prenom, Mail, Telephone, Mdp, Type)
 
@@ -70,10 +53,6 @@ INSERT INTO Utilisateur(Nom, Prenom, Mail, Telephone, Mdp, Type)
 INSERT INTO Medecin(Id_Medecin, Specialite, CV, Disponibilite, Bureau)
  VALUES (LAST_INSERT_ID(), 'Gastro- Hepato-Enterologie', 'CV de Marie Martin', '101100110011', 'em-201');
 
-INSERT INTO Utilisateur(Nom, Prenom, Mail, Telephone, Mdp, Type) 
-VALUES ('Dubois', 'Pierre', 'pierre.dubois@medecine.ece.fr', 0345678912, 'cdefg34567cdefg34567cdefg3', 1);
-INSERT INTO Medecin(Id_Medecin, Specialite, CV, Disponibilite, Bureau)
- VALUES (LAST_INSERT_ID(), 'Gastro- Hepato-Enterologie', 'CV de Pierre Dubois', '011001100110', 'sc-202');
 
 -- Medecins specialises en Gynecologie
 INSERT INTO Utilisateur(Nom, Prenom, Mail, Telephone, Mdp, Type)
@@ -86,20 +65,12 @@ INSERT INTO Utilisateur(Nom, Prenom, Mail, Telephone, Mdp, Type)
 INSERT INTO Medecin(Id_Medecin, Specialite, CV, Disponibilite, Bureau) 
 VALUES (LAST_INSERT_ID(), 'Gynecologie', 'CV de Nicolas Roux', '110011001100', 'sc-204');
 
-INSERT INTO Utilisateur(Nom, Prenom, Mail, Telephone, Mdp, Type)
-VALUES ('Moreau', 'Claire', 'claire.moreau@medecine.ece.fr', 0678912345, 'fghij67890fghij67890fghij6', 1);
-INSERT INTO Medecin(Id_Medecin, Specialite, CV, Disponibilite, Bureau)
- VALUES (LAST_INSERT_ID(), 'Gynecologie', 'CV de Claire Moreau', '101100110011', 'em-205');
-
  -- Medecins specialises en I.S.T.
 INSERT INTO Utilisateur(Nom, Prenom, Mail, Telephone, Mdp, Type) VALUES ('Lefevre', 'Jean', 'jean.lefevre@medecine.ece.fr', 0123456789, 'abcde12345abcde12345abcde1', 1);
 INSERT INTO Medecin(Id_Medecin, Specialite, CV, Disponibilite, Bureau) VALUES (LAST_INSERT_ID(), 'I.S.T.', 'CV de Jean Lefevre', '110011001100', 'sc-200');
 
 INSERT INTO Utilisateur(Nom, Prenom, Mail, Telephone, Mdp, Type) VALUES ('Martin', 'Marie', 'marie.martin@medecine.ece.fr', 0234567891, 'bcdef23456bcdef23456bcdef2', 1);
 INSERT INTO Medecin(Id_Medecin, Specialite, CV, Disponibilite, Bureau) VALUES (LAST_INSERT_ID(), 'I.S.T.', 'CV de Marie Martin', '101100110011', 'em-201');
-
-INSERT INTO Utilisateur(Nom, Prenom, Mail, Telephone, Mdp, Type) VALUES ('Dubois', 'Pierre', 'pierre.dubois@medecine.ece.fr', 0345678912, 'cdefg34567cdefg34567cdefg3', 1);
-INSERT INTO Medecin(Id_Medecin, Specialite, CV, Disponibilite, Bureau) VALUES (LAST_INSERT_ID(), 'I.S.T.', 'CV de Pierre Dubois', '011001100110', 'sc-202');
 
 -- Medecins specialises en Osteopathie
 INSERT INTO Utilisateur(Nom, Prenom, Mail, Telephone, Mdp, Type) VALUES ('Leroy', 'Sophie', 'sophie.leroy@medecine.ece.fr', 0456789123, 'defgh45678defgh45678defgh4', 1);
@@ -108,9 +79,6 @@ INSERT INTO Medecin(Id_Medecin, Specialite, CV, Disponibilite, Bureau) VALUES (L
 INSERT INTO Utilisateur(Nom, Prenom, Mail, Telephone, Mdp, Type) VALUES ('Roux', 'Nicolas', 'nicolas.roux@medecine.ece.fr', 0567891234, 'efghi56789efghi56789efghi5', 1);
 INSERT INTO Medecin(Id_Medecin, Specialite, CV, Disponibilite, Bureau) VALUES (LAST_INSERT_ID(), 'Osteopathie', 'CV de Nicolas Roux', '110011001100', 'sc-204');
 
-INSERT INTO Utilisateur(Nom, Prenom, Mail, Telephone, Mdp, Type) VALUES ('Moreau', 'Claire', 'claire.moreau@medecine.ece.fr', 0678912345, 'fghij67890fghij67890fghij6', 1);
-INSERT INTO Medecin(Id_Medecin, Specialite, CV, Disponibilite, Bureau) VALUES (LAST_INSERT_ID(), 'Osteopathie', 'CV de Claire Moreau', '101100110011', 'em-205');
-
 -- Insertion des utilisateurs
 INSERT INTO Utilisateur (Nom, Prenom, Mail, Telephone, Mdp, Type, Pays, Ville, Code_Postal, Adresse1, Adresse2) VALUES 
 ('Schtroumpf', 'Bricoleur', 'bricoleur.schtroumpf@Gargamel.medecine.fr', '0678392451', 'Abc123def456ghi', 1, 'Pays des Schtroumpfs', 'Village des Schtroumpfs', 12345, 'Maison Champignon 1', 'Lieu-dit'),
@@ -118,11 +86,7 @@ INSERT INTO Utilisateur (Nom, Prenom, Mail, Telephone, Mdp, Type, Pays, Ville, C
 ('Schtroumpf', 'Jardinier', 'jardinier.schtroumpf@Gargamel.medecine.fr', '0678234591', 'Ghi789jkl012mno', 1, 'Pays des Schtroumpfs', 'Village des Schtroumpfs', 12345, 'Maison Champignon 3', 'Lieu-dit'),
 ('Schtroumpf', 'Coquet', 'coquet.schtroumpf@Gargamel.medecine.fr', '0678234952', 'Jkl012mno345pqr', 1, 'Pays des Schtroumpfs', 'Village des Schtroumpfs', 12345, 'Maison Champignon 4', 'Lieu-dit'),
 ('Schtroumpf', 'Costaud', 'costaud.schtroumpf@Gargamel.medecine.fr', '0678234953', 'Mno345pqr678stu', 1, 'Pays des Schtroumpfs', 'Village des Schtroumpfs', 12345, 'Maison Champignon 5', 'Lieu-dit'),
-('Schtroumpf', 'Farceur', 'farceur.schtroumpf@Gargamel.medecine.fr', '0678234954', 'Pqr678stu901vwx', 1, 'Pays des Schtroumpfs', 'Village des Schtroumpfs', 12345, 'Maison Champignon 6', 'Lieu-dit'),
-('Schtroumpf', 'Poete', 'poete.schtroumpf@Gargamel.medecine.fr', '0678234955', 'Stu901vwx234yzA', 1, 'Pays des Schtroumpfs', 'Village des Schtroumpfs', 12345, 'Maison Champignon 7', 'Lieu-dit'),
-('Schtroumpf', 'Paysan', 'paysan.schtroumpf@Gargamel.medecine.fr', '0678234956', 'Vwx234yzA567BCD', 1, 'Pays des Schtroumpfs', 'Village des Schtroumpfs', 12345, 'Maison Champignon 8', 'Lieu-dit'),
-('Schtroumpf', 'Dormeur', 'dormeur.schtroumpf@Gargamel.medecine.fr', '0678234957', 'YZABcdEfghijkLM', 1, 'Pays des Schtroumpfs', 'Village des Schtroumpfs', 12345, 'Maison Champignon 9', 'Lieu-dit'),
-('Schtroumpf', 'Peureux', 'peureux.schtroumpf@Gargamel.medecine.fr', '0678234958', 'MNoPQRStuvWXYZa', 1, 'Pays des Schtroumpfs', 'Village des Schtroumpfs', 12345, 'Maison Champignon 10', 'Lieu-dit');
+('Schtroumpf', 'Farceur', 'farceur.schtroumpf@Gargamel.medecine.fr', '0678234954', 'Pqr678stu901vwx', 1, 'Pays des Schtroumpfs', 'Village des Schtroumpfs', 12345, 'Maison Champignon 6', 'Lieu-dit');
 
 -- Insertion des medecins
 INSERT INTO Medecin (Id_Medecin, Specialite, CV, Disponibilite, Bureau, Photo) VALUES 
@@ -131,11 +95,7 @@ INSERT INTO Medecin (Id_Medecin, Specialite, CV, Disponibilite, Bureau, Photo) V
 ((SELECT Id_User FROM Utilisateur WHERE Prenom='Jardinier' AND Nom='Schtroumpf'), NULL, 'CV du Schtroumpf Jardinier', '110011001100', 'Maison Champignon Vert', 'images/jardinier.jpg'),
 ((SELECT Id_User FROM Utilisateur WHERE Prenom='Coquet' AND Nom='Schtroumpf'), NULL, 'CV du Schtroumpf Coquet', '001100110011', 'Maison Champignon Jaune', 'images/coquet.jpg'),
 ((SELECT Id_User FROM Utilisateur WHERE Prenom='Costaud' AND Nom='Schtroumpf'), NULL, 'CV du Schtroumpf Costaud', '111000111000', 'Maison Champignon Noir', 'images/costaud.jpg'),
-((SELECT Id_User FROM Utilisateur WHERE Prenom='Farceur' AND Nom='Schtroumpf'), NULL, 'CV du Schtroumpf Farceur', '000111000111', 'Maison Champignon Blanc', 'images/farceur.jpg'),
-((SELECT Id_User FROM Utilisateur WHERE Prenom='Poete' AND Nom='Schtroumpf'), NULL, 'CV du Schtroumpf Poete', '101101101101', 'Maison Champignon Orange', 'images/poete.jpg'),
-((SELECT Id_User FROM Utilisateur WHERE Prenom='Paysan' AND Nom='Schtroumpf'), NULL, 'CV du Schtroumpf Paysan', '010010010010', 'Maison Champignon Violet', 'images/paysan.jpg'),
-((SELECT Id_User FROM Utilisateur WHERE Prenom='Dormeur' AND Nom='Schtroumpf'), NULL, 'CV du Schtroumpf Dormeur', '100100100100', 'Maison Champignon Gris', 'images/dormeur.jpg'),
-((SELECT Id_User FROM Utilisateur WHERE Prenom='Peureux' AND Nom='Schtroumpf'), NULL, 'CV du Schtroumpf Peureux', '011011011011', 'Maison Champignon Rose', 'images/peureux.jpg');
+((SELECT Id_User FROM Utilisateur WHERE Prenom='Farceur' AND Nom='Schtroumpf'), NULL, 'CV du Schtroumpf Farceur', '000111000111', 'Maison Champignon Blanc', 'images/farceur.jpg');
 
 INSERT INTO Laboratoire VALUES ('1','Em-009','123456789','Labo1@lab.co','Laboratoire des trois champignons', '10 rue Sextius Michel'); 
 
