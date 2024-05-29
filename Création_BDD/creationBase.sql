@@ -51,3 +51,5 @@ CREATE TABLE RDV(
 ALTER TABLE Utilisateur ADD (Pays Varchar(50),Ville Varchar(100),Code_Postal int, Adresse1 Varchar(100), Adresse2 Varchar(100));
 ALTER TABLE Client ADD Solde INT;
 ALTER TABLE Utilisateur ADD Carte_Vitale INT;
+
+ALTER TABLE Medecin ADD (Photo2 Varchar(50),Photo3 Varchar(50));
