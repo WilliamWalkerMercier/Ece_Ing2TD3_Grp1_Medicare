@@ -86,15 +86,15 @@ nav ul li a:hover{
 }
 
 
-nav ul ul {
+nav ul ul{
     display: none;
 }
 
-nav ul li:hover > ul {
+nav ul li:hover > ul{
     display: block;
 }
 
-.SousMenu2 {
+.SousMenu2{
     display: none;
     position: absolute;
     top: 60px;
@@ -103,30 +103,29 @@ nav ul li:hover > ul {
     border-bottom: 5px solid #144b1f;
 }
 
-.SousMenu1:hover .sous-menu {
+.SousMenu1:hover .sous-menu{
     display: block;
 }
 
-.SousMenu2 li {
+.SousMenu2 li{
     padding: 10px;
 }
 
-.SousMenu2 li a {
+.SousMenu2 li a{
     color: #333;
 }
 
-.SousMenu2 li a:hover {
+.SousMenu2 li a:hover{
     color: #144b1f;
 }
 
 .CompteLogo img{
-    height: 40px;
+    height: 70px;
 }
 
 .ScrollingAcceuil{
     display: flex;
     height: 100dvh;
-    width: 190dvh;
     position: relative;
     padding: 0;
     overflow: hidden;
@@ -140,29 +139,31 @@ nav ul li:hover > ul {
 }
 
 .ScrollingAcceuil .titre{
+    color: #183E0C;
     position: absolute;
     transform: translate(-50%,-50%);
     top: 25%;
     left: 50%;
     font-size: 60px;
     text-shadow: 0px 0px 3px rgba(0,0,0,0.25);
-
-}
-
-section{
-    padding: 20px;
 }
 
 .Bienvenus{
+    display: flex;
     position: relative;
-    z-index: 100;
     padding: 80px;
     color: white;
     background: #31701F;
+    overflow: hidden;
 }
 
-.Bienvenus h2{
+.Bienvenus .titre2{
     font-size: 30px;
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    text-shadow: 0px 0px 3px rgba(0,0,0,0.25);
 }
 
 .evenement{
@@ -219,7 +220,7 @@ section{
     justify-content: center;
     width: 50px;
     margin: 15px;
-    background: #144b1f;
+    background: #24cb45;
     color: white;
     border-radius: 50%;
 }
@@ -238,7 +239,7 @@ section{
 }
 
 .DescriptionMed p{
-    color: #144b1f;
+    color: #3a4344;
     padding-top: 5px;
     font-family: 'Poppins', sans-serif;
 
@@ -255,6 +256,7 @@ input{
 
 input:checked+label{
     width: 600px;
+    height: 550px;
 }
 
 input:checked+label .DescriptionMed{
@@ -263,44 +265,45 @@ input:checked+label .DescriptionMed{
 }
 
 .carte[for="c1"]{
-    background-image: url("MedKevinDubois.jpg");
+    background-image: url("img/MedKevinDubois.jpg");
 }
 
 .carte[for="c2"]{
-    background-image: url("MedJeanLouis.jpg");
+    background-image: url("img/MedJeanLouis.jpg");
 }
 
 .carte[for="c3"]{
-    background-image: url("MedVirginieKirman.jpg");
+    background-image: url("img/MedVirginieKirman.jpg");
 }
 
 .carte[for="c4"]{
-    background-image: url("MedSophieLedos.jpg");
+    background-image: url("img/MedSophieLedos.jpg");
 }
 
 .carte[for="c5"]{
-    background-image: url("MedLucasLopez.jpg");
+    background-image: url("img/MedLucasLopez.jpg");
 }
 
 footer{
     background: #31701F;
-    position: absolute;
     display: flex;
     align-items: center;
-    justify-content: center;
-    height: 400px;
+    height: 200px;
     left: 0;
     right: 0;
     top: auto;
     flex-direction: column;
+    color: black;
 }
 
 nav2 ul{
     list-style: none;
     display: flex;
     align-items: flex-start;
+    justify-content: center;
     position: relative;
     padding: 15px;
+    width: 900px;
     border-top: 5px solid #e8f0e8;
 }
 
@@ -347,17 +350,78 @@ nav2 ul .SousMenu4 li a:hover{
     color: #144b1f;
 }
 
-.copyright{
-    margin-top: 150px;
-    color: #fff;
-    font-size: 14px;
-    padding: 15px;
-    text-align: center;
-    width: 700px;
-    border-top: 5px solid #e8f0e8 ;
+.menu-footer{
+    position: relative;
+    padding: 30px;
 }
 
-.copyright img{
-    height: 80px;
-    width: 80px;
+.copyright{
+    position: relative;
+    padding: 30px;
+}
+
+.copyright2{
+    display: flex;
+    justify-content: center;
+    width: 900px;
+    padding-top: 15px;
+    padding-left: 10px;
+    font-size: 10px;
+    border-top: 5px solid #e8f0e8;
+}
+
+.copyright3{
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    width: 900px;
+    height: 120px;
+}
+
+.copyright p{
+    list-style: none;
+    display: flex;
+    position: relative;
+    font-size: 10px;
+    font-weight: bold;
+    justify-content: left;
+}
+
+.insta{
+    margin-right: 50px;
+}
+
+.x{
+    margin-left: 50px;
+}
+
+.insta img{
+    height: 40px;
+    width: 40px;
+}
+
+.x img{
+    height: 40px;
+    width: 40px;
+}
+
+.Map{
+    display: flex;
+    position: relative;
+    padding: 30px;
+    height: 520px;
+}
+
+.GoogleMap{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 900px;
+    padding-top: 15px;
+    border-top: 5px solid #e8f0e8;
+    margin-bottom: 200px;
+}
+
+.GoogleMap iframe{
+    border-radius: 10px;
 }

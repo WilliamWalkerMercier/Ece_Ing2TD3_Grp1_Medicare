@@ -1,3 +1,4 @@
+
 document.addEventListener("DOMContentLoaded", function() {
     setTimeout(function() {
         document.getElementById("intro").style.display = "none";
@@ -20,10 +21,10 @@ document.addEventListener("DOMContentLoaded", function() {
     const fond1=document.querySelector('.fond1')
     const fond2=document.querySelector('.fond2')
     const fond3=document.querySelector('.fond3')
-    const fond4=document.querySelector('.fond4')
     const fond5=document.querySelector('.fond5')
     const fond6=document.querySelector('.fond6')
     const titre=document.querySelector('.titre')
+    const titre2=document.querySelector('.titre2')
     document.addEventListener('scroll',function (){
         let position=window.scrollY
         titre.style.marginTop=position*1.1+'px'
@@ -32,6 +33,7 @@ document.addEventListener("DOMContentLoaded", function() {
         fond3.style.marginBottom=-position+'px'
         fond2.style.marginBottom=-position*1.2+'px'
         fond1.style.marginBottom=-position*1.3+'px'
+        titre2.style.marginTop=-position*0.1+'px'
     })
 });
 
