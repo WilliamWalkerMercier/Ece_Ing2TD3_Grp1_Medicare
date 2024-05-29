@@ -6,9 +6,18 @@
     <title>Page de Paiement</title>
     <script type="text/javascript">
         document.addEventListener('DOMContentLoaded', function () {
+            let vCryptogramInput = document.querySelector('#CVC');
             let vCardNumberInput = document.querySelector('#CardNumber');
             let vCardTypeInput = document.querySelectorAll('input[name="CardType"]');
             let vSelectedCardType = '';
+
+            vCryptogramInput.addEventListener('input', () => {
+                let vCryptogramNumber = vCryptogramInput.value.replace(/\D/g, "");
+                if (vCryptogramNumber.length > 3) {
+                    vCryptogramNumber=vCryptogramNumber.slice(0, 3);
+                }
+                vCryptogramInput.value=vCryptogramNumber.trim();
+            });
 
             // Ecoute le changement du type de carte
             vCardTypeInput.forEach(input => {
@@ -56,6 +65,7 @@
 
                 return vNumber;
             }
+
             // Fonction pour valider le numéro de carte avec l'algorithme de Luhn
             /*
             * Doubler chaque deuxième chiffre en partant de la droite.
@@ -242,7 +252,7 @@
             <input type="month" id="ExpirationDate" name="ExpirationDate" required>
         </div>
         <div class="FormElement">
-            <label for="CVC">Code de Sécurité:</label>
+            <label for="CVC">CVC (au dos de la carte):</label>
             <input type="number" id="CVC" name="CVC" placeholder="Code de sécurité" required>
         </div>
         <div class="FormElement">
