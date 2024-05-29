@@ -127,7 +127,7 @@ VALUES
     ('R2D2', NULL, NULL, NULL, NULL, 0, 'Tatooine', 'Mos Eisley', 12345, 'Droid St0eet', NULL, NULL),
     ('C3PO', NULL, NULL, NULL, NULL, 0, 'Tatooine', 'Mos Eisley', 12345, 'Droid Avenue', NULL, NULL);
 
---Modifier les nombres au besoin
+-- Modifier les nombres au besoin
 INSERT INTO Client (Id_Client, Type_Carte, Num_Cb, Date_Expiration, Code_Securite, Solde)
 VALUES 
     (44, 'Visa', 1111233444, '2026-05-29', 123, 1000),
