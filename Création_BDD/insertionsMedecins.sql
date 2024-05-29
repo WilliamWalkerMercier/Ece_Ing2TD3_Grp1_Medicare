@@ -156,3 +156,24 @@ INSERT INTO Dispenses (Id_Lab, Nom_Service) VALUES
 (1, 'Gynécologie');
 
 
+-- Insertion des utilisateurs
+INSERT INTO Utilisateur (Nom, Prenom, Mail, Telephone, Mdp, Type, Pays, Ville, Code_Postal, Adresse1, Adresse2, Carte_Vitale)
+VALUES 
+    ('Vader', 'Anakin', 'anakin.vader@empire.com', 111222333, 'darkside123', 1, 'Tatooine', 'Mos Eisley', 12345, 'Rue des Siths', 'Appartement 66', 987654321),
+    ('Solo', 'Kylo', 'kylo.solo@firstorder.com', 444555666, 'darkness456', 1, 'Unknown', 'Unknown', 00000, 'Unknown', 'Unknown', 123456789),
+    ('Maul', 'Darth', 'darth.maul@sith.com', 777888999, 'doubleblade789', 1, 'Dathomir', 'Nightbrother Village', 54321, 'Dark Side Alley', 'Cave 13', 987654321),
+    ('Tano', 'Ahsoka', 'ahsoka.tano@jediorder.com', 888999000, 'fulcrum123', 1, 'Shili', 'Jedi Temple', 11122, 'Padawan Lane', 'Room 7', 456789012),
+    ('Fett', 'Boba', 'boba.fett@bountyhunters.com', 222333444, 'mandalorian456', 1, 'Kamino', 'Tipoca City', 33344, 'Clone Way', 'Block 27', 234567890),
+    ('R2D2', NULL, NULL, NULL, NULL, 2, 'Tatooine', 'Mos Eisley', 12345, 'Droid Street', NULL, NULL),
+    ('C3PO', NULL, NULL, NULL, NULL, 2, 'Tatooine', 'Mos Eisley', 12345, 'Droid Avenue', NULL, NULL);
+
+--Modifier les nombres au besoin
+INSERT INTO Client (Id_Client, Type_Carte, Num_Cb, Date_Expiration, Code_Securite, Solde)
+VALUES 
+    (44, 'Visa', 1111233444, '2026-05-29', 123, 1000),
+    (45, 'MasterCard', 44441111, '2025-11-15', 456, 1500),
+    (46, 'American Express', 57778888, '2024-07-23', 789, 500),
+    (47, 'Discover', 99998766, '2027-01-01', 321, 800),
+    (48, 'Visa', 33334566, '2028-03-17', 654, 2000);
+
+
