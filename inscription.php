@@ -2,8 +2,8 @@
 // Paramètres de connexion à la base de données
 $servername = "localhost";
 $username = "root";
-$dbname = "medicare";
 $password_mysql = "mysql";
+$dbname = "medicare";
 
 // Déclaration des variables 
 $prenom = isset($_POST["prenom"]) ? $_POST["prenom"] : ""; 
@@ -67,8 +67,11 @@ if ($conn->connect_error) {
 }
 
 // Préparer et exécuter la requête pour vérifier si l'utilisateur existe déjà
-$sql = "SELECT * FROM Utilisateur WHERE Mail='$email'";
-$result = $conn->query($sql);
+$sql = "SELECT * FROM Utilisateur WHERE Mail=?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("s", $email);
+$stmt->execute();
+$result = $stmt->get_result();
 
 if ($result->num_rows > 0) {
     echo "Un utilisateur avec cet email existe déjà.";
@@ -83,14 +86,19 @@ if ($result->num_rows > 0) {
         $telephone = '33' . substr($telephone, 1);
     }
 
+    // Assurer que carte_vitale est un entier
+    $carte_vitale = intval($carte_vitale);
+
     // Insérer l'utilisateur dans la table Utilisateur
     $sql = "INSERT INTO Utilisateur (Nom, Prenom, Mail, Telephone, Mdp, Type, Pays, Ville, Code_Postal, Adresse1, Adresse2, Carte_Vitale) 
-            VALUES ('$nom', '$prenom', '$email', $telephone, '$hashed_password', 2, '$pays', '$ville', '$code_postal', '$adresse1', '$adresse2', '$carte_vitale')";
-    
-    if ($conn->query($sql) === TRUE) {
+            VALUES (?, ?, ?, ?, ?, 2, ?, ?, ?, ?, ?, ?)";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("sssisssissi", $nom, $prenom, $email, $telephone, $hashed_password, $pays, $ville, $code_postal, $adresse1, $adresse2, $carte_vitale);
+
+    if ($stmt->execute()) {
         echo "Inscription réussie.";
     } else {
-        echo "Erreur: " . $sql . "<br>" . $conn->error;
+        echo "Erreur: " . $stmt->error;
     }
 }
 
