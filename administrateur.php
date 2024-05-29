@@ -50,7 +50,6 @@ $sql = "SELECT U.*, M.Specialite, M.CV, M.Disponibilite, M.Bureau, M.Photo
         FROM Utilisateur U 
         LEFT JOIN Medecin M ON U.Id_User = M.Id_Medecin";
 $result = $conn->query($sql);
-
 ?>
 
 <!DOCTYPE html>
@@ -59,7 +58,7 @@ $result = $conn->query($sql);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Détails des Utilisateurs - Medicare</title>
-
+    <link rel="stylesheet" href="ListeMedecinStyle.css"> <!-- Lien vers le fichier CSS -->
 </head>
 <body>
 <header>
@@ -68,37 +67,36 @@ $result = $conn->query($sql);
 
 <div class="DoctorContainer">
     <?php
-    if ($result->num_rows > 0) {//Vérifie que il y a bien des utilisateurs
-        while ($row = $result->fetch_assoc()) {//Parcourt chaque ligne de notre "tableau" avec les informations
-            $is_medecin = $row['Type'] == 1;//Définit si l'utilisateur est un medecin ou non
-            $title = $is_medecin ? "Dr. " : "";//Si il est medecin met un DR devant son nom
-            $photo = $row['Photo'] ? $row['Photo'] : 'default.jpg';//Recupère la photo de profil
-            $disponibilite = isset($row['Disponibilite']) && strlen($row['Disponibilite']) == 12 ? str_split($row['Disponibilite']) : array_fill(0, 12, '0');//Divise la chaine en un tableau de caractères
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            $is_medecin = $row['Type'] == 1;
+            $title = $is_medecin ? "Dr. " : "";
+            $photo = $row['Photo'] ?: 'default.jpg';
+            $disponibilite = isset($row['Disponibilite']) && strlen($row['Disponibilite']) == 12 ? str_split($row['Disponibilite']) : array_fill(0, 12, '0');
 
-            //Affiche les différents élements
             echo "<div class='DoctorElement'>";
-            echo "<img src='{$photo}' alt='Photo de {$row['Nom']} {$row['Prenom']}' class='DoctorPicture'>";
+            echo "<img src='$photo' alt='Photo de {$row['Nom']} {$row['Prenom']}' class='DoctorPicture'>";
             echo "<div class='DoctorInfo'>";
-            echo "<h2>{$title}{$row['Prenom']} {$row['Nom']}</h2>";
+            echo "<h2>$title{$row['Prenom']} {$row['Nom']}</h2>";
             echo "<p><strong>Bureau :</strong> {$row['Bureau']}</p>";
             echo "<p><strong>Téléphone :</strong> {$row['Telephone']}</p>";
             echo "<p><strong>Courriel :</strong> {$row['Mail']}</p>";
-            if ($is_medecin) {//Affichage uniquement si l'utilisateur est un médecin
+            if ($is_medecin) {
                 echo "<h3>Disponibilités</h3>";
                 echo "<div class='AvailabilityCalendar'>";
-                $days = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'];//Initialise une liste des jours
+                $days = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'];
                 foreach ($days as $i => $day) {
-                    $morning_index = $i * 2;//Lit dans la chaine de caractères le premier élement qui correspond à la disponibilité de la matinée
-                    $afternoon_index = $i * 2 + 1;//Lit dans la chaine de caractères le deuxième élement qui correspod à la disponibilité de la soirée
-                    echo "<div class='day'>{$day}</div>";
-                    echo "<div class='slot " . (isset($disponibilite[$morning_index]) && $disponibilite[$morning_index] == '1' ? "" : "unavailable") . "'>Matin</div>";//Ajoute une case available, sinon ajoute une case unavailable
+                    $morning_index = $i * 2;
+                    $afternoon_index = $i * 2 + 1;
+                    echo "<div class='day'>$day</div>";
+                    echo "<div class='slot " . (isset($disponibilite[$morning_index]) && $disponibilite[$morning_index] == '1' ? "" : "unavailable") . "'>Matin</div>";
                     echo "<div class='slot " . (isset($disponibilite[$afternoon_index]) && $disponibilite[$afternoon_index] == '1' ? "" : "unavailable") . "'>Après-midi</div>";
                 }
                 echo "</div>";
                 echo "<div class='DoctorButtons'>";
-                echo "<button class=\"RdvButton\">Prendre un RDV</button>";
-                echo "<button class=\"ContactButton\">Communiquer</button>";
-                echo "<button class=\"CvButton\">Voir le CV</button>";
+                echo "<button class=\"AddDoctorButton\">Ajouter un docteur</button>";
+                echo "<button class=\"ModifyDoctor\">Modifier le docteur</button>";
+                echo "<button class=\"EraseDoctor\">Supprimer le docteur</button>";
                 echo "</div>";
             }
             echo "</div>";
