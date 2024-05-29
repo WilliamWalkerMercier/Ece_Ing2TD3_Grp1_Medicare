@@ -92,3 +92,14 @@ button {
 button:hover {
     background-color: #0056b3;
 }
+.AddDoctorButton{
+    background-color: #1a8707;
+
+}
+.ModifyDoctor{
+    background-color: #877c07;
+
+}
+.EraseDoctor{
+    background-color: #f44336;
+}

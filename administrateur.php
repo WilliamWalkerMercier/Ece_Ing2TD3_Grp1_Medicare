@@ -43,6 +43,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             }
         }
     }
+    // Si le formulaire de suppression est soumis
+    if (isset($_POST['delete_doctor'])) {
+        $doctor_id = $_POST['doctor_id'];
+        // Supprimer le docteur de la table Medecin
+        $conn->query("DELETE FROM Medecin WHERE Id_Medecin = $doctor_id");
+        // Supprimer l'utilisateur de la table Utilisateur
+        $conn->query("DELETE FROM Utilisateur WHERE Id_User = $doctor_id");
+    }
 }
 
 // Obtenir tous les utilisateurs
@@ -96,7 +104,10 @@ $result = $conn->query($sql);
                 echo "<div class='DoctorButtons'>";
                 echo "<button class=\"AddDoctorButton\">Ajouter un docteur</button>";
                 echo "<button class=\"ModifyDoctor\">Modifier le docteur</button>";
-                echo "<button class=\"EraseDoctor\">Supprimer le docteur</button>";
+                echo "<form method='POST' class='DeleteDoctorForm'>";
+                echo "<input type='hidden' name='doctor_id' value='{$row['Id_User']}'>";
+                echo "<button type='submit' name='delete_doctor' class=\"EraseDoctor\">Supprimer le docteur</button>";
+                echo "</form>";
                 echo "</div>";
             }
             echo "</div>";
