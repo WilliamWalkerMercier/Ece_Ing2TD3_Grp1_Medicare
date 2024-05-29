@@ -159,13 +159,13 @@ INSERT INTO Dispenses (Id_Lab, Nom_Service) VALUES
 -- Insertion des utilisateurs
 INSERT INTO Utilisateur (Nom, Prenom, Mail, Telephone, Mdp, Type, Pays, Ville, Code_Postal, Adresse1, Adresse2, Carte_Vitale)
 VALUES 
-    ('Vader', 'Anakin', 'anakin.vader@empire.com', 111222333, 'darkside123', 1, 'Tatooine', 'Mos Eisley', 12345, 'Rue des Siths', 'Appartement 66', 987654321),
-    ('Solo', 'Kylo', 'kylo.solo@firstorder.com', 444555666, 'darkness456', 1, 'Unknown', 'Unknown', 00000, 'Unknown', 'Unknown', 123456789),
-    ('Maul', 'Darth', 'darth.maul@sith.com', 777888999, 'doubleblade789', 1, 'Dathomir', 'Nightbrother Village', 54321, 'Dark Side Alley', 'Cave 13', 987654321),
-    ('Tano', 'Ahsoka', 'ahsoka.tano@jediorder.com', 888999000, 'fulcrum123', 1, 'Shili', 'Jedi Temple', 11122, 'Padawan Lane', 'Room 7', 456789012),
-    ('Fett', 'Boba', 'boba.fett@bountyhunters.com', 222333444, 'mandalorian456', 1, 'Kamino', 'Tipoca City', 33344, 'Clone Way', 'Block 27', 234567890),
-    ('R2D2', NULL, NULL, NULL, NULL, 2, 'Tatooine', 'Mos Eisley', 12345, 'Droid Street', NULL, NULL),
-    ('C3PO', NULL, NULL, NULL, NULL, 2, 'Tatooine', 'Mos Eisley', 12345, 'Droid Avenue', NULL, NULL);
+    ('Vader', 'Anakin', 'anakin.vader@empire.com', 111222333, 'darkside123', 0, 'Tatooine', 'Mos Eisley', 12345, 'Rue des Siths', 'Appartement 66', 987654321),
+    ('Solo', 'Kylo', 'kylo.solo@firstorder.com', 444555666, 'darkness456', 0, 'Unknown', 'Unknown', 00000, 'Unknown', 'Unknown', 123456789),
+    ('Maul', 'Darth', 'darth.maul@sith.com', 777888999, 'doubleblade789', 0, 'Dathomir', 'Nightbrother Village', 54321, 'Dark Side Alley', 'Cave 13', 987654321),
+    ('Tano', 'Ahsoka', 'ahsoka.tano@jediorder.com', 888999000, 'fulcrum123', 0, 'Shili', 'Jedi Temple', 11122, 'Padawan Lane', 'Room 7', 456789012),
+    ('Fett', 'Boba', 'boba.fett@bountyhunters.com', 222333444, 'mandalorian456', 0, 'Kamino', 'Tipoca City', 33344, 'Clone Way', 'Block 27', 234567890),
+    ('R2D2', NULL, NULL, NULL, NULL, 0, 'Tatooine', 'Mos Eisley', 12345, 'Droid St0eet', NULL, NULL),
+    ('C3PO', NULL, NULL, NULL, NULL, 0, 'Tatooine', 'Mos Eisley', 12345, 'Droid Avenue', NULL, NULL);
 
 --Modifier les nombres au besoin
 INSERT INTO Client (Id_Client, Type_Carte, Num_Cb, Date_Expiration, Code_Securite, Solde)
