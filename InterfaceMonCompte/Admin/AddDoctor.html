@@ -175,7 +175,7 @@
     </style>
 </head>
 <body>
-<form action="" method="POST" enctype="multipart/form-data">
+<form action="AddDoctorBDD.php" method="POST" enctype="multipart/form-data">
 <!-- Conteneur -->
 <div class="Container">
     <!-- Première ligne de formulaires -->
@@ -198,15 +198,11 @@
                 <label for="City">Ville:</label>
                 <input type="text" id="City" name="City" placeholder="Ville" required>
             </div>
-            <div class="FormElement">
-                <label for="AccountName">Compte</label>
-                <input type="text" id="AccountName" name="AccountName" placeholder="Nom du compte du médecin" required>
-            </div>
         </div>
 
         <!-- Deuxième bloc formulaire de paiement -->
         <div class="Form">
-            <h2>Paiement</h2>
+            <h2>Disponibilités</h2>
             <div class="FormElement">
                 <table>
                     <thead>
@@ -221,77 +217,77 @@
                         <td>Lundi</td>
                         <td>
                             <label for="MondayMorning"></label>
-                            <input type="checkbox" id="MondayMorning" name="MondayMorning">
+                            <input type="checkbox" id="MondayMorning" name="availability[0]">
                         </td>
                         <td>
                             <label for="MondayAfternoon"></label>
-                            <input type="checkbox" id="MondayAfternoon" name="MondayAfternoon">
+                            <input type="checkbox" id="MondayAfternoon" name="availability[1]">
                         </td>
                     </tr>
                     <tr>
                         <td>Mardi</td>
                         <td>
                             <label for="TuesdayMorning"></label>
-                            <input type="checkbox" id="TuesdayMorning" name="TuesdayMorning">
+                            <input type="checkbox" id="TuesdayMorning" name="availability[2]">
                         </td>
                         <td>
                             <label for="TuesdayAfternoon"></label>
-                            <input type="checkbox" id="TuesdayAfternoon" name="TuesdayAfternoon">
+                            <input type="checkbox" id="TuesdayAfternoon" name="availability[3]">
                         </td>
                     </tr>
                     <tr>
                         <td>Mercredi</td>
                         <td>
                             <label for="WednesdayMorning"></label>
-                            <input type="checkbox" id="WednesdayMorning" name="WednesdayMorning">
+                            <input type="checkbox" id="WednesdayMorning" name="availability[4]">
                         </td>
                         <td>
                             <label for="WednesdayAfternoon"></label>
-                            <input type="checkbox" id="WednesdayAfternoon" name="WednesdayAfternoon">
+                            <input type="checkbox" id="WednesdayAfternoon" name="availability[5]">
                         </td>
                     </tr>
                     <tr>
                         <td>Jeudi</td>
                         <td>
                             <label for="ThursdayMorning"></label>
-                            <input type="checkbox" id="ThursdayMorning" name="ThursdayMorning">
+                            <input type="checkbox" id="ThursdayMorning" name="availability[6]">
                         </td>
                         <td>
                             <label for="ThursdayAfternoon"></label>
-                            <input type="checkbox" id="ThursdayAfternoon" name="ThursdayAfternoon">
+                            <input type="checkbox" id="ThursdayAfternoon" name="availability[7]">
                         </td>
                     </tr>
                     <tr>
                         <td>Vendredi</td>
                         <td>
                             <label for="FridayMorning"></label>
-                            <input type="checkbox" id="FridayMorning" name="FridayMorning">
+                            <input type="checkbox" id="FridayMorning" name="availability[8]">
                         </td>
                         <td>
                             <label for="FridayAfternoon"></label>
-                            <input type="checkbox" id="FridayAfternoon" name="FridayAfternoon">
+                            <input type="checkbox" id="FridayAfternoon" name="availability[9]">
                         </td>
                     </tr>
                     <tr>
                         <td>Samedi</td>
                         <td>
                             <label for="SaturdayMorning"></label>
-                            <input type="checkbox" id="SaturdayMorning" name="SaturdayMorning">
+                            <input type="checkbox" id="SaturdayMorning" name="availability[10]">
                         </td>
                         <td>
                             <label for="SaturdayAfternoon"></label>
-                            <input type="checkbox" id="SaturdayAfternoon" name="SaturdayAfternoon">
+                            <input type="checkbox" id="SaturdayAfternoon" name="availability[11]">
                         </td>
                     </tr>
                     <tr>
                         <td>Dimanche</td>
                         <td>
                             <label for="SundayMorning"></label>
-                            <input type="checkbox" id="SundayMorning" name="SundayMorning">
+                            <input type="checkbox" id="SundayMorning" name="availability[12]">
                         </td>
                         <td>
                             <label for="SundayAfternoon"></label>
-                            <input type="checkbox" id="SundayAfternoon" name="SundayAfternoon">
+                            <input type="checkbox" id="SundayAfternoon" name="availability[13]">
                         </td>
                     </tr>
                     </tbody>

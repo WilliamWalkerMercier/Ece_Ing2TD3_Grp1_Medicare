@@ -66,7 +66,7 @@ $result = $conn->query($sql);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Détails des Utilisateurs - Medicare</title>
-    <link rel="stylesheet" href="ListeMedecinStyle.css"> <!-- Lien vers le fichier CSS -->
+    <link rel="stylesheet" href="../../ListeMedecinStyle.css"> <!-- Lien vers le fichier CSS -->
 </head>
 <body>
 <header>
@@ -102,7 +102,9 @@ $result = $conn->query($sql);
                 }
                 echo "</div>";
                 echo "<div class='DoctorButtons'>";
-                echo "<button class=\"AddDoctorButton\">Ajouter un docteur</button>";
+                echo "<form action='AddDoctor.html' method='GET' style='display:inline;'>";
+                echo "<button type='submit' class='AddDoctorButton'>Ajouter un docteur</button>";
+                echo "</form>";
                 echo "<button class=\"ModifyDoctor\">Modifier le docteur</button>";
                 echo "<form method='POST' class='DeleteDoctorForm'>";
                 echo "<input type='hidden' name='doctor_id' value='{$row['Id_User']}'>";
