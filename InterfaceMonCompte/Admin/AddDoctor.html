@@ -6,14 +6,41 @@
     <title>Formulaire Ajouter un medecin</title>
     <script type="text/javascript">
         /*Source : https://stackoverflow.com/questions/12368910/html-display-image-after-selecting-filename*/
-        function previewImage(event) {
+
+        //Fonction permettant d'avoir une preview de l'image chargé
+        function previewImage(event, previewId) {
+            const file = event.target.files[0];//Extrait le premier fichier qui est attaché à l'évenement event
+            const preview = document.getElementById(previewId);//Récupère l'ID de prévisualisation pour savoir où afficher
+            const reader = new FileReader();//Permet de lire le fichier
+
+            reader.onload = function () {//Lorsque la lecture du fichier est finie
+                preview.src = reader.result;//Met à jour l'évenement source de l'event
+                preview.style.display = 'block';//Modifie le style pour le rendre visible
+            };
+
+            if (file) {//Vérifie si un fichier à été sélectionné
+                reader.readAsDataURL(file);//Lit le contenu du fichier et declenche l'evenement onload
+            } else {
+                preview.src = '';
+                preview.style.display = 'none';
+            }
+        }
+
+        //Fonction pour la preview des vidéos
+        function previewMedia(event, previewId, isVideo = false) {
             const file = event.target.files[0];
-            const preview = document.getElementById('preview');
+            const preview = document.getElementById(previewId);
             const reader = new FileReader();
 
             reader.onload = function () {
-                preview.src = reader.result;
-                preview.style.display = 'block';
+                if (isVideo) {
+                    preview.src = reader.result;
+                    preview.style.display = 'block';
+                    preview.controls = true; // Affiche les controles vidéos
+                } else {
+                    preview.src = reader.result;
+                    preview.style.display = 'block';
+                }
             };
 
             if (file) {
@@ -21,6 +48,9 @@
             } else {
                 preview.src = '';
                 preview.style.display = 'none';
+                if (isVideo) {
+                    preview.controls = false;
+                }
             }
         }
     </script>
@@ -62,32 +92,11 @@
             text-align: left;
         }
 
-        .FormUpload {
-            display: flex;
-            flex-direction: column;
-            flex: 1;
-            background-color: #ffffff;
-            padding: 20px;
-            gap: 10px;
-            border-radius: 8px;
-            text-align: left;
-        }
 
         .Form h2 {
             color: #333333;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             text-align: center;
-        }
-
-        .FormUploadRow {
-            display: flex;
-            flex-wrap: wrap; /* Allow wrapping to the next line */
-            gap: 10px;
-        }
-
-        .FormUploadElement {
-            flex: 1 1 calc(33.333% - 10px); /* Three elements per row */
-            box-sizing: border-box; /* Ensure padding and border are included in the width calculation */
         }
 
 
@@ -109,6 +118,32 @@
             font-size: 16px;
         }
 
+        label {
+            cursor: pointer;
+        }
+
+        table {
+            margin-left: auto;
+            margin-right: auto;
+            border-collapse: collapse;
+            width: 95%;
+            background-color: #ffffff;
+        }
+
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: center;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #ffcccb;
+        }
+
+        tr:nth-child(even) {
+            background-color: #add8e6;
+        }
+
         #AddDoctorButton {
             background-color: #28a745;
             color: #ffffff;
@@ -121,42 +156,21 @@
             text-align: center;
         }
 
+
         #AddDoctorButton:hover {
             opacity: 0.9;
         }
 
-        table {
-            margin-left: auto;
-            margin-right: auto;
-            border-collapse: collapse;
-            width: 60%;
-            background-color: #ffffff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        #preview {
+        .PreviewImg {
             display: none;
             max-width: 100%;
             max-height: 50px;
         }
 
-
-        th, td {
-            border: 1px solid #dddddd;
-            text-align: center;
-            padding: 8px;
-        }
-
-        th {
-            background-color: #f2f2f2;
-        }
-
-        tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
-
-        label {
-            cursor: pointer;
+        .PreviewVideo {
+            display: none;
+            max-width: 100%;
+            max-height: 200px;
         }
     </style>
 </head>
@@ -205,78 +219,78 @@
                     <tr>
                         <td>Lundi</td>
                         <td>
-                            <label for="lundi_matin"></label>
-                            <input type="checkbox" id="lundi_matin" name="lundi_matin">
+                            <label for="MondayMorning"></label>
+                            <input type="checkbox" id="MondayMorning" name="MondayMorning">
                         </td>
                         <td>
-                            <label for="lundi_apresmidi"></label>
-                            <input type="checkbox" id="lundi_apresmidi" name="lundi_apresmidi">
+                            <label for="MondayAfternoon"></label>
+                            <input type="checkbox" id="MondayAfternoon" name="MondayAfternoon">
                         </td>
                     </tr>
                     <tr>
                         <td>Mardi</td>
                         <td>
-                            <label for="mardi_matin"></label>
-                            <input type="checkbox" id="mardi_matin" name="mardi_matin">
+                            <label for="TuesdayMorning"></label>
+                            <input type="checkbox" id="TuesdayMorning" name="TuesdayMorning">
                         </td>
                         <td>
-                            <label for="mardi_apresmidi"></label>
-                            <input type="checkbox" id="mardi_apresmidi" name="mardi_apresmidi">
+                            <label for="TuesdayAfternoon"></label>
+                            <input type="checkbox" id="TuesdayAfternoon" name="TuesdayAfternoon">
                         </td>
                     </tr>
                     <tr>
                         <td>Mercredi</td>
                         <td>
-                            <label for="mercredi_matin"></label>
-                            <input type="checkbox" id="mercredi_matin" name="mercredi_matin">
+                            <label for="WednesdayMorning"></label>
+                            <input type="checkbox" id="WednesdayMorning" name="WednesdayMorning">
                         </td>
                         <td>
-                            <label for="mercredi_apresmidi"></label>
-                            <input type="checkbox" id="mercredi_apresmidi" name="mercredi_apresmidi">
+                            <label for="WednesdayAfternoon"></label>
+                            <input type="checkbox" id="WednesdayAfternoon" name="WednesdayAfternoon">
                         </td>
                     </tr>
                     <tr>
                         <td>Jeudi</td>
                         <td>
-                            <label for="jeudi_matin"></label>
-                            <input type="checkbox" id="jeudi_matin" name="jeudi_matin">
+                            <label for="ThursdayMorning"></label>
+                            <input type="checkbox" id="ThursdayMorning" name="ThursdayMorning">
                         </td>
                         <td>
-                            <label for="jeudi_apresmidi"></label>
-                            <input type="checkbox" id="jeudi_apresmidi" name="jeudi_apresmidi">
+                            <label for="ThursdayAfternoon"></label>
+                            <input type="checkbox" id="ThursdayAfternoon" name="ThursdayAfternoon">
                         </td>
                     </tr>
                     <tr>
                         <td>Vendredi</td>
                         <td>
-                            <label for="vendredi_matin"></label>
-                            <input type="checkbox" id="vendredi_matin" name="vendredi_matin">
+                            <label for="FridayMorning"></label>
+                            <input type="checkbox" id="FridayMorning" name="FridayMorning">
                         </td>
                         <td>
-                            <label for="vendredi_apresmidi"></label>
-                            <input type="checkbox" id="vendredi_apresmidi" name="vendredi_apresmidi">
+                            <label for="FridayAfternoon"></label>
+                            <input type="checkbox" id="FridayAfternoon" name="FridayAfternoon">
                         </td>
                     </tr>
                     <tr>
                         <td>Samedi</td>
                         <td>
-                            <label for="samedi_matin"></label>
-                            <input type="checkbox" id="samedi_matin" name="samedi_matin">
+                            <label for="SaturdayMorning"></label>
+                            <input type="checkbox" id="SaturdayMorning" name="SaturdayMorning">
                         </td>
                         <td>
-                            <label for="samedi_apresmidi"></label>
-                            <input type="checkbox" id="samedi_apresmidi" name="samedi_apresmidi">
+                            <label for="SaturdayAfternoon"></label>
+                            <input type="checkbox" id="SaturdayAfternoon" name="SaturdayAfternoon">
                         </td>
                     </tr>
                     <tr>
                         <td>Dimanche</td>
                         <td>
-                            <label for="dimanche_matin"></label>
-                            <input type="checkbox" id="dimanche_matin" name="dimanche_matin">
+                            <label for="SundayMorning"></label>
+                            <input type="checkbox" id="SundayMorning" name="SundayMorning">
                         </td>
                         <td>
-                            <label for="dimanche_apresmidi"></label>
-                            <input type="checkbox" id="dimanche_apresmidi" name="dimanche_apresmidi">
+                            <label for="SundayAfternoon"></label>
+                            <input type="checkbox" id="SundayAfternoon" name="SundayAfternoon">
                         </td>
                     </tr>
                     </tbody>
@@ -285,36 +299,38 @@
         </div>
     </div>
 
-    <!-- Troisième bloc formulaire -->
-    <div class="FormUpload">
-        <h2 class="centered-title">Informations supplémentaires</h2>
-        <div class="FormUploadRow">
-            <div class="FormUploadElement">
+    <div class="FormRow">
+        <div class="Form"><!-- Bloc du dessous -->
+            <h2>Informations supplémentaires </h2>
+            <div class="FormElement"><!-- Element du formulaire -->
                 <label for="Picture1">Photo1:</label>
-                <input type="file" id="Picture1" name="Picture1">
+                <input type="file" id="Picture1" name="Picture1" onchange="previewImage(event, 'preview1')">
+                <!--Affiche la preview lorsqu'il y a un evenement -->
+                <img class="PreviewImg" id="preview1" src="" alt="Image Preview">
             </div>
-
-            <div class="FormUploadElement">
+            <div class="FormElement">
                 <label for="Picture2">Photo2:</label>
-                <input type="file" id="Picture2" name="Picture2">
+                <input type="file" id="Picture2" name="Picture2" onchange="previewImage(event, 'preview2')">
+                <img class="PreviewImg" id="preview2" src="" alt="Image Preview">
             </div>
-            <div class="FormUploadElement">
-                <label for="Picture3">Photo3:</label>
-                <input type="file" id="Picture3" name="Picture3">
+            <div class="FormElement">
+                <label for="Picture1">Photo3:</label>
+                <input type="file" id="Picture3" name="Picture1" onchange="previewImage(event, 'preview3')">
+                <img class="PreviewImg" id="preview3" src="" alt="Image Preview">
             </div>
-            <div class="FormUploadElement">
+            <div class="FormElement">
                 <label for="Video">Vidéo:</label>
-                <input type="file" id="Video" name="Video">
+                <input type="file" id="Video" name="Video" accept="video/*" onchange="previewMedia(event, 'preview4')">
+                <video class="PreviewVideo" id="preview4" src="" controls>
+                    Votre navigateur ne supporte pas la vue video.
+                </video>
             </div>
-            <div class="FormUploadElement">
-                <label for="myFile">Résumé:</label>
-                <input type="file" id="myFile" name="filename" accept="image/*" onchange="previewImage(event)">
+            <div class="FormElement">
+                <label for="CV">CV</label>
+                <input type="file" id="CV" accept=".xml,application/xml">
             </div>
-
-        </div>
-        <div class="FormUploadRow">
-            <div class="FormUploadElement">
-                <button type="submit" id="AddDoctorButton">Ajouter un médecin</button>
+            <div class="FormElement">
+                <button type="submit" id="AddDoctorButton">Ajouter un medecin</button>
             </div>
         </div>
     </div>
