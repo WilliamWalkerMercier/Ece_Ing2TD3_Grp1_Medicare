@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 
 // Obtenir tous les utilisateurs
-$sql = "SELECT U.*, M.Specialite, M.CV, M.Disponibilite, M.Bureau, M.Photo 
+$sql = "SELECT U.*, M.Specialite, M.CV, M.Disponibilite, M.Bureau, M.Photo,M.Photo2,M.Photo3,M.video
         FROM Utilisateur U 
         LEFT JOIN Medecin M ON U.Id_User = M.Id_Medecin";
 $result = $conn->query($sql);
@@ -54,6 +54,7 @@ $result = $conn->query($sql);
             $photo = $row['Photo'] ?: 'default.jpg';
             $disponibilite = isset($row['Disponibilite']) && strlen($row['Disponibilite']) == 12 ? str_split($row['Disponibilite']) : array_fill(0, 12, '0');
 
+
             echo "<div class='DoctorElement'>";
             echo "<img src='$photo' alt='Photo de {$row['Nom']} {$row['Prenom']}' class='DoctorPicture'>";
             echo "<div class='DoctorInfo'>";
@@ -62,7 +63,11 @@ $result = $conn->query($sql);
             echo "<p><strong>Bureau :</strong> {$row['Bureau']}</p>";
             echo "<p><strong>Téléphone :</strong> {$row['Telephone']}</p>";
             echo "<p><strong>Courriel :</strong> {$row['Mail']}</p>";
+
             if ($is_medecin) {
+                if (!empty($row['video'])) {
+                    echo "<p><strong><a href='{$row['video']}' target='_blank'>Vidéo</a></strong></p>";
+                }
                 echo "<h3>Disponibilités</h3>";
                 echo "<div class='AvailabilityCalendar'>";
                 $days = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'];
@@ -74,6 +79,10 @@ $result = $conn->query($sql);
                     echo "<div class='slot " . (isset($disponibilite[$afternoon_index]) && $disponibilite[$afternoon_index] == '1' ? "" : "unavailable") . "'>Après-midi</div>";
                 }
                 echo "</div>";
+
+
+
+
                 echo "<div class='DoctorButtons'>";
                 echo "<form action='AddDoctor.html' method='GET' style='display:inline;'>";
                 echo "<button type='submit' class='AddDoctorButton'>Ajouter un docteur</button>";
