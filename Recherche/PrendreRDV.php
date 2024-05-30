@@ -84,7 +84,8 @@
         }
     }
 
-    $medecin = 4;
+    if (isset($_GET['id_Medecin'])) {
+        $idMedecin = ($_GET['id_Medecin']);
     $patient = 3;
     $db_handle = mysqli_connect('localhost', 'root', '');
     $db_found = mysqli_select_db($db_handle, 'medicare');
@@ -156,4 +157,4 @@
     </div>
 </footer>
 </body>
-</html>
+</html> 
