@@ -1,38 +1,41 @@
-.cartes-medecins{
+.cartes{
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
     justify-content: space-around;
 }
 
-.doctor-details{
+.doctor-details,
+.service-details,
+.laboratoire-details{
     display: flex;
     justify-content: center;
     align-items: flex-start;
     padding: 20px;
     margin: 20px;
-    background-color: white;
+    background: #ffffff2e;
     border-radius: 8px;
+    border: 2px solid white;
     width: auto;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
-.doctor-photo{
+.doctor-photo, .service-photo, .laboratoire-photo{
     border-radius: 8px;
     width: 200px;
     height: 200px;
     margin-right: 20px;
 }
 
-.doctor-info{
+.doctor-info, .service-info, .laboratoire-info{
     max-width: 600px;
 }
 
-.doctor-info h2{
+.doctor-info h2, .service-info h2, .laboratoire-info h2{
     margin-top: 0;
 }
 
-.doctor-info p{
+.doctor-info p, .service-info p, .laboratoire-info p{
     margin: 8px 0;
 }
 
@@ -51,7 +54,7 @@
 }
 
 .availability-calendar .slot{
-    background-color: #f1f1f1;
+    background-color: #858484;
     padding: 5px;
     border-radius: 4px;
     text-align: center;
@@ -62,22 +65,23 @@
     color: #888;
 }
 
-.doctor-actions{
+.doctor-actions, .Service-actions, .laboratoire-actions{
     margin-top: 20px;
     display: flex;
     gap: 10px;
+    justify-content: center;
 }
 
 button{
     padding: 10px 15px;
     border: none;
     border-radius: 4px;
-    background-color: #007bff;
+    background-color: #195d27;
     color: white;
     font-size: 1em;
     cursor: pointer;
 }
 
 button:hover{
-    background-color: #0056b3;
+    background-color: green;
 }
