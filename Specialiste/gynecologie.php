@@ -16,25 +16,26 @@ if ($conn->connect_error) {
 // Spécialité à rechercher
 $specialite = "Gynecologie";
 
-// Requête SQL pour récupérer les informations des médecins spécialisés en Gynécologie
-$sql = "SELECT * FROM medecin WHERE Specialite = ?";
+// Requête SQL pour récupérer les informations des médecins spécialisés en gynécologie
+$sql = "SELECT medecin.*, utilisateur.Mail, utilisateur.Telephone FROM medecin 
+        JOIN utilisateur ON medecin.Id_Medecin = utilisateur.Id_User
+        WHERE Specialite = ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("s", $specialite);
 $stmt->execute();
 $result = $stmt->get_result();
 
 if ($result->num_rows > 0) {
-    // Affichage des informations de chaque médecin spécialisé en Gynécologie
+    // Affichage des informations de chaque médecin spécialisé en gynécologie
     echo "<h1>Médecins spécialisés en Gynécologie</h1>";
     while ($row = $result->fetch_assoc()) {
         echo "<h2>Médecin: " . $row["Id_Medecin"] . "</h2>";
         echo "CV: " . $row["CV"] . "<br>";
         echo "Disponibilité: " . $row["Disponibilite"] . "<br>";
         echo "Bureau: " . $row["Bureau"] . "<br>";
-        echo "Photo: " . $row["Photo"] . "<br>";
-        echo "Photo2: " . $row["Photo2"] . "<br>";
-        echo "Photo3: " . $row["Photo3"] . "<br>";
-        echo "Video: " . $row["Video"] . "<br>";
+        echo "Photo: <img src='" . $row["Photo"] . "' alt='Photo de " . $row["Id_Medecin"] . "'><br>";
+        echo "Email: " . $row["Mail"] . "<br>";
+        echo "Téléphone: " . $row["Telephone"] . "<br>";
     }
 } else {
     echo "Aucun médecin spécialisé en Gynécologie trouvé.";
