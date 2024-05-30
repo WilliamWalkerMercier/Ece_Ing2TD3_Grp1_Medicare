@@ -114,7 +114,7 @@ $result = $conn->query($sql);
                 echo "</form>";
 
                 //Envoie l'id de l'user à modifié
-                echo "<form action='ModifyDoctor.php' method='GET' style='display:inline;'>";
+                echo "<form action='ModifyDoctor.php' method='GET''>";
                 echo "<input type='hidden' name='doctor_id' value='{$row['Id_User']}'>";
                 echo "<button type='submit' class='ModifyDoctorButton'>Modifier le docteur</button>";
                 echo "</form>";
