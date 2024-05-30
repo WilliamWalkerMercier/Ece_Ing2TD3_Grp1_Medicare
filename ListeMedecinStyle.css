@@ -101,11 +101,11 @@ button:hover {
     display: none;
 
 }
-.ModifyDoctor{
+.ModifyDoctorButton{
     background-color: #877c07;
 
 }
-.EraseDoctor{
+.EraseDoctorButton{
     background-color: #f44336;
 }
 
