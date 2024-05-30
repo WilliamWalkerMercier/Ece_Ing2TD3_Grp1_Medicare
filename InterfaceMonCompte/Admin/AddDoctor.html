@@ -7,26 +7,26 @@
     <script type="text/javascript">
         /*Source : https://stackoverflow.com/questions/12368910/html-display-image-after-selecting-filename*/
 
-        //Fonction permettant d'avoir une preview de l'image chargé
+        // Fonction permettant d'avoir une preview de l'image chargée
         function previewImage(event, previewId) {
-            const file = event.target.files[0];//Extrait le premier fichier qui est attaché à l'évenement event
-            const preview = document.getElementById(previewId);//Récupère l'ID de prévisualisation pour savoir où afficher
-            const reader = new FileReader();//Permet de lire le fichier
+            const file = event.target.files[0]; // Extrait le premier fichier qui est attaché à l'événement event
+            const preview = document.getElementById(previewId); // Récupère l'ID de prévisualisation pour savoir où afficher
+            const reader = new FileReader(); // Permet de lire le fichier
 
-            reader.onload = function () {//Lorsque la lecture du fichier est finie
-                preview.src = reader.result;//Met à jour l'évenement source de l'event
-                preview.style.display = 'block';//Modifie le style pour le rendre visible
+            reader.onload = function () { // Lorsque la lecture du fichier est finie
+                preview.src = reader.result; // Met à jour l'événement source de l'event
+                preview.style.display = 'block'; // Modifie le style pour le rendre visible
             };
 
-            if (file) {//Vérifie si un fichier à été sélectionné
-                reader.readAsDataURL(file);//Lit le contenu du fichier et declenche l'evenement onload
+            if (file) { // Vérifie si un fichier a été sélectionné
+                reader.readAsDataURL(file); // Lit le contenu du fichier et déclenche l'événement onload
             } else {
                 preview.src = '';
                 preview.style.display = 'none';
             }
         }
 
-        //Fonction pour la preview des vidéos
+        // Fonction pour la preview des vidéos
         function previewYouTubeVideo(event, previewId) {
             const url = event.target.value;
             const preview = document.getElementById(previewId);
@@ -67,7 +67,6 @@
             justify-content: space-between;
             width: 100%;
             gap: 10px;
-
         }
 
         .Form {
@@ -81,13 +80,11 @@
             text-align: left;
         }
 
-
         .Form h2 {
             color: #333333;
             margin-bottom: 10px;
             text-align: center;
         }
-
 
         .FormElement {
             margin-bottom: 15px;
@@ -145,7 +142,6 @@
             text-align: center;
         }
 
-
         #AddDoctorButton:hover {
             opacity: 0.9;
         }
@@ -165,148 +161,148 @@
 </head>
 <body>
 <form action="AddDoctorBDD.php" method="POST" enctype="multipart/form-data">
-<!-- Conteneur -->
-<div class="Container">
-    <!-- Première ligne de formulaires -->
-    <div class="FormRow">
-        <div class="Form"><!-- Bloc de gauche -->
-            <h2>Informations du Médecin</h2>
-            <div class="FormElement"><!-- Element du formulaire -->
-                <label for="ID">ID</label>
-                <input type="text" id="ID" name="ID" placeholder="ID" required>
+    <!-- Conteneur -->
+    <div class="Container">
+        <!-- Première ligne de formulaires -->
+        <div class="FormRow">
+            <div class="Form"><!-- Bloc de gauche -->
+                <h2>Informations du Médecin</h2>
+                <div class="FormElement"><!-- Element du formulaire -->
+                    <label for="ID">ID</label>
+                    <input type="text" id="ID" name="ID" placeholder="ID" required>
+                </div>
+                <div class="FormElement">
+                    <label for="Name">Nom:</label>
+                    <input type="text" id="Name" name="Name" placeholder="Seringue" required>
+                </div>
+                <div class="FormElement">
+                    <label for="Field">Spécialité</label>
+                    <input type="text" id="Field" name="Field" placeholder="Cardiologie" required>
+                </div>
+                <div class="FormElement">
+                    <label for="City">Ville:</label>
+                    <input type="text" id="City" name="City" placeholder="Ville" required>
+                </div>
             </div>
-            <div class="FormElement">
-                <label for="Name">Nom:</label>
-                <input type="text" id="Name" name="Name" placeholder="Seringue" required>
-            </div>
-            <div class="FormElement">
-                <label for="Field">Spécialité</label>
-                <input type="text" id="Field" name="Field" placeholder="Cardiologie" required>
-            </div>
-            <div class="FormElement">
-                <label for="City">Ville:</label>
-                <input type="text" id="City" name="City" placeholder="Ville" required>
+
+            <!-- Deuxième bloc formulaire de paiement -->
+            <div class="Form">
+                <h2>Disponibilités</h2>
+                <div class="FormElement">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Jour</th>
+                            <th>Matin</th>
+                            <th>Après-midi</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>Lundi</td>
+                            <td>
+                                <label for="MondayMorning"></label>
+                                <input type="checkbox" id="MondayMorning" name="availability[0]" value="on">
+                            </td>
+                            <td>
+                                <label for="MondayAfternoon"></label>
+                                <input type="checkbox" id="MondayAfternoon" name="availability[1]" value="on">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Mardi</td>
+                            <td>
+                                <label for="TuesdayMorning"></label>
+                                <input type="checkbox" id="TuesdayMorning" name="availability[2]" value="on">
+                            </td>
+                            <td>
+                                <label for="TuesdayAfternoon"></label>
+                                <input type="checkbox" id="TuesdayAfternoon" name="availability[3]" value="on">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Mercredi</td>
+                            <td>
+                                <label for="WednesdayMorning"></label>
+                                <input type="checkbox" id="WednesdayMorning" name="availability[4]" value="on">
+                            </td>
+                            <td>
+                                <label for="WednesdayAfternoon"></label>
+                                <input type="checkbox" id="WednesdayAfternoon" name="availability[5]" value="on">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Jeudi</td>
+                            <td>
+                                <label for="ThursdayMorning"></label>
+                                <input type="checkbox" id="ThursdayMorning" name="availability[6]" value="on">
+                            </td>
+                            <td>
+                                <label for="ThursdayAfternoon"></label>
+                                <input type="checkbox" id="ThursdayAfternoon" name="availability[7]" value="on">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Vendredi</td>
+                            <td>
+                                <label for="FridayMorning"></label>
+                                <input type="checkbox" id="FridayMorning" name="availability[8]" value="on">
+                            </td>
+                            <td>
+                                <label for="FridayAfternoon"></label>
+                                <input type="checkbox" id="FridayAfternoon" name="availability[9]" value="on">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Samedi</td>
+                            <td>
+                                <label for="SaturdayMorning"></label>
+                                <input type="checkbox" id="SaturdayMorning" name="availability[10]" value="on">
+                            </td>
+                            <td>
+                                <label for="SaturdayAfternoon"></label>
+                                <input type="checkbox" id="SaturdayAfternoon" name="availability[11]" value="on">
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
 
-        <!-- Deuxième bloc formulaire de paiement -->
-        <div class="Form">
-            <h2>Disponibilités</h2>
-            <div class="FormElement">
-                <table>
-                    <thead>
-                    <tr>
-                        <th>Jour</th>
-                        <th>Matin</th>
-                        <th>Après-midi</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>Lundi</td>
-                        <td>
-                            <label for="MondayMorning"></label>
-                            <input type="checkbox" id="MondayMorning" name="availability[0]" value="on">
-                        </td>
-                        <td>
-                            <label for="MondayAfternoon"></label>
-                            <input type="checkbox" id="MondayAfternoon" name="availability[1]" value="on">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Mardi</td>
-                        <td>
-                            <label for="TuesdayMorning"></label>
-                            <input type="checkbox" id="TuesdayMorning" name="availability[2]" value="on">
-                        </td>
-                        <td>
-                            <label for="TuesdayAfternoon"></label>
-                            <input type="checkbox" id="TuesdayAfternoon" name="availability[3]" value="on">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Mercredi</td>
-                        <td>
-                            <label for="WednesdayMorning"></label>
-                            <input type="checkbox" id="WednesdayMorning" name="availability[4]" value="on">
-                        </td>
-                        <td>
-                            <label for="WednesdayAfternoon"></label>
-                            <input type="checkbox" id="WednesdayAfternoon" name="availability[5]" value="on">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Jeudi</td>
-                        <td>
-                            <label for="ThursdayMorning"></label>
-                            <input type="checkbox" id="ThursdayMorning" name="availability[6]" value="on">
-                        </td>
-                        <td>
-                            <label for="ThursdayAfternoon"></label>
-                            <input type="checkbox" id="ThursdayAfternoon" name="availability[7]" value="on">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Vendredi</td>
-                        <td>
-                            <label for="FridayMorning"></label>
-                            <input type="checkbox" id="FridayMorning" name="availability[8]" value="on">
-                        </td>
-                        <td>
-                            <label for="FridayAfternoon"></label>
-                            <input type="checkbox" id="FridayAfternoon" name="availability[9]" value="on">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Samedi</td>
-                        <td>
-                            <label for="SaturdayMorning"></label>
-                            <input type="checkbox" id="SaturdayMorning" name="availability[10]" value="on">
-                        </td>
-                        <td>
-                            <label for="SaturdayAfternoon"></label>
-                            <input type="checkbox" id="SaturdayAfternoon" name="availability[11]" value="on">
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-
-    <div class="FormRow">
-        <div class="Form"><!-- Bloc du dessous -->
-            <h2>Informations supplémentaires </h2>
-            <div class="FormElement"><!-- Element du formulaire -->
-                <label for="Picture1">Photo1:</label>
-                <input type="file" id="Picture1" name="Picture1" onchange="previewImage(event, 'preview1')">
-                <!--Affiche la preview lorsqu'il y a un evenement -->
-                <img class="PreviewImg" id="preview1" src="" alt="Image Preview">
-            </div>
-            <div class="FormElement">
-                <label for="Picture2">Photo2:</label>
-                <input type="file" id="Picture2" name="Picture2" onchange="previewImage(event, 'preview2')">
-                <img class="PreviewImg" id="preview2" src="" alt="Image Preview">
-            </div>
-            <div class="FormElement">
-                <label for="Picture3">Photo3:</label>
-                <input type="file" id="Picture3" name="Picture3" onchange="previewImage(event, 'preview3')">
-                <img class="PreviewImg" id="preview3" src="" alt="Image Preview">
-            </div>
-            <div class="FormElement">
-                <label for="Video">Vidéo YouTube:</label>
-                <input type="url" id="Video" name="Video" placeholder="https://www.youtube.com/watch?v=example" required oninput="previewYouTubeVideo(event, 'youtubePreview')">
-            </div>
-            <div class="FormElement">
-                <iframe class="PreviewVideo" id="youtubePreview" src=""  allowfullscreen style="display:none; width: 560px; height: 315px;"></iframe>
-            </div>
-            </div>
-            <div class="FormElement">
-                <label for="CV">CV</label>
-                <input type="file" id="CV" name="CV" accept=".xml,application/xml">
-            </div>
-            <div class="FormElement">
-                <button type="submit" id="AddDoctorButton">Ajouter un medecin</button>
+        <div class="FormRow">
+            <div class="Form"><!-- Bloc du dessous -->
+                <h2>Informations supplémentaires</h2>
+                <div class="FormElement"><!-- Element du formulaire -->
+                    <label for="Picture1">Photo1:</label>
+                    <input type="file" id="Picture1" name="Picture1" onchange="previewImage(event, 'preview1')">
+                    <!--Affiche la preview lorsqu'il y a un evenement -->
+                    <img class="PreviewImg" id="preview1" src="" alt="Image Preview">
+                </div>
+                <div class="FormElement">
+                    <label for="Picture2">Photo2:</label>
+                    <input type="file" id="Picture2" name="Picture2" onchange="previewImage(event, 'preview2')">
+                    <img class="PreviewImg" id="preview2" src="" alt="Image Preview">
+                </div>
+                <div class="FormElement">
+                    <label for="Picture3">Photo3:</label>
+                    <input type="file" id="Picture3" name="Picture3" onchange="previewImage(event, 'preview3')">
+                    <img class="PreviewImg" id="preview3" src="" alt="Image Preview">
+                </div>
+                <div class="FormElement">
+                    <label for="Video">Vidéo YouTube:</label>
+                    <input type="url" id="Video" name="Video" placeholder="https://www.youtube.com/watch?v=example" required oninput="previewYouTubeVideo(event, 'youtubePreview')">
+                </div>
+                <div class="FormElement">
+                    <iframe class="PreviewVideo" id="youtubePreview" src=""  allowfullscreen style="display:none; width: 560px; height: 315px;"></iframe>
+                </div>
+                <div class="FormElement">
+                    <label for="CV">CV</label>
+                    <input type="file" id="CV" name="CV" accept=".xml,application/xml">
+                </div>
+                <div class="FormElement">
+                    <button type="submit" id="AddDoctorButton">Ajouter un medecin</button>
+                </div>
             </div>
         </div>
     </div>
