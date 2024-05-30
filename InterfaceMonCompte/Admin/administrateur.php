@@ -50,8 +50,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $doctor_id = $_POST['doctor_id'];
         // Supprimer le docteur de la table Medecin
         $conn->query("DELETE FROM Medecin WHERE Id_Medecin = $doctor_id");
-        // Supprimer l'utilisateur de la table Utilisateur
-        $conn->query("DELETE FROM Utilisateur WHERE Id_User = $doctor_id");
+
+        $conn->query("UPDATE Utilisateur SET Type = 2 WHERE Id_User = $doctor_id");
     }
 }
 
@@ -88,13 +88,14 @@ $result = $conn->query($sql);
             echo "<img src='$photo' alt='Photo de {$row['Nom']} {$row['Prenom']}' class='DoctorPicture'>";
             echo "<div class='DoctorInfo'>";
             echo "<h2>$title{$row['Prenom']} {$row['Nom']}</h2>";
+            echo "<p><strong>ID:</strong> {$row['Id_User']}</p>";
             echo "<p><strong>Bureau :</strong> {$row['Bureau']}</p>";
             echo "<p><strong>Téléphone :</strong> {$row['Telephone']}</p>";
             echo "<p><strong>Courriel :</strong> {$row['Mail']}</p>";
             if ($is_medecin) {
                 echo "<h3>Disponibilités</h3>";
                 echo "<div class='AvailabilityCalendar'>";
-                $days = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'];
+                $days = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'];
                 foreach ($days as $i => $day) {
                     $morning_index = $i * 2;
                     $afternoon_index = $i * 2 + 1;

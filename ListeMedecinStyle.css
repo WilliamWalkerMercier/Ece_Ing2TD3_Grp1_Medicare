@@ -62,15 +62,16 @@ header {
 }
 
 .AvailabilityCalendar .slot {
-    background-color: #f1f1f1;
+    color: #ffffff;
+    background-color: #008000 ;
     padding: 5px;
     border-radius: 4px;
     text-align: center;
 }
 
 .AvailabilityCalendar .slot.unavailable {
-    background-color: #e0e0e0;
-    color: #888;
+    background-color: #FF0000 ;
+    color: #ffffff;
 }
 
 .DoctorButtons {
@@ -90,10 +91,14 @@ button {
 }
 
 button:hover {
-    background-color: #0056b3;
+    opacity: 0.8;
 }
 .AddDoctorButton{
     background-color: #1a8707;
+
+}
+.AddDoctorButton .href{
+    display: none;
 
 }
 .ModifyDoctor{

@@ -64,8 +64,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $conn->query("UPDATE Utilisateur SET Type = 1 WHERE Id_User = $id");
 
-
-    echo 'alert()';
     if ($conn->query($sql2) === TRUE) {
         echo "Nouveau médecin créé avec succès.<br>";
     } else {
