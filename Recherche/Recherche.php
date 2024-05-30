@@ -117,9 +117,10 @@ $result = $conn->query($sql);
                                     </div>
                                     <div class="doctor-actions">
                                         <form action="PrendreRDV.php" method="get">
+                                            <input type="hidden" name="id_Medecin" value="<?php echo $row['Id_Medecin'] ?>">
                                             <button type="submit" class="appointment-button">Prendre un RDV</button>
                                         </form>
-                                        <button class="contact-button">Communiquer</button>
+                                        <button class="contact-button">Communiquer</button> 
                                         <button class="cv-button">Voir le CV</button>
                                     </div>
                                 </div>
