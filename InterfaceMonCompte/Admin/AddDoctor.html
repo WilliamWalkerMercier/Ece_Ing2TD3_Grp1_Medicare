@@ -27,30 +27,19 @@
         }
 
         //Fonction pour la preview des vidéos
-        function previewMedia(event, previewId, isVideo = false) {
-            const file = event.target.files[0];
+        function previewYouTubeVideo(event, previewId) {
+            const url = event.target.value;
             const preview = document.getElementById(previewId);
-            const reader = new FileReader();
+            const youtubePattern = /^https:\/\/www\.youtube\.com\/watch\?v=([\w-]+)$/;
+            const match = url.match(youtubePattern);
 
-            reader.onload = function () {
-                if (isVideo) {
-                    preview.src = reader.result;
-                    preview.style.display = 'block';
-                    preview.controls = true; // Affiche les controles vidéos
-                } else {
-                    preview.src = reader.result;
-                    preview.style.display = 'block';
-                }
-            };
-
-            if (file) {
-                reader.readAsDataURL(file);
+            if (match && match[1]) {
+                const videoId = match[1];
+                preview.src = `https://www.youtube.com/embed/${videoId}`;
+                preview.style.display = 'block';
             } else {
                 preview.src = '';
                 preview.style.display = 'none';
-                if (isVideo) {
-                    preview.controls = false;
-                }
             }
         }
     </script>
@@ -305,22 +294,22 @@
                 <img class="PreviewImg" id="preview3" src="" alt="Image Preview">
             </div>
             <div class="FormElement">
-                <label for="Video">Vidéo:</label>
-                <input type="file" id="Video" name="Video" accept="video/*" onchange="previewMedia(event, 'preview4')">
-                <video class="PreviewVideo" id="preview4" src="" controls>
-                    Votre navigateur ne supporte pas la vue video.
-                </video>
+                <label for="Video">Vidéo YouTube:</label>
+                <input type="url" id="Video" name="Video" placeholder="https://www.youtube.com/watch?v=example" required oninput="previewYouTubeVideo(event, 'youtubePreview')">
+            </div>
+            <div class="FormElement">
+                <iframe class="PreviewVideo" id="youtubePreview" src=""  allowfullscreen style="display:none; width: 560px; height: 315px;"></iframe>
+            </div>
             </div>
             <div class="FormElement">
                 <label for="CV">CV</label>
-                <input type="file" id="CV" accept=".xml,application/xml">
+                <input type="file" id="CV" name="CV" accept=".xml,application/xml">
             </div>
             <div class="FormElement">
                 <button type="submit" id="AddDoctorButton">Ajouter un medecin</button>
             </div>
         </div>
     </div>
-</div>
 </form>
 </body>
 </html>

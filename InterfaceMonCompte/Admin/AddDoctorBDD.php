@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         mkdir($upload_dir, 0777, true);
     }
 
-    $files = ['Picture1', 'Picture2', 'Picture3', 'Video', 'CV'];
+    $files = ['Picture1', 'Picture2', 'Picture3', 'CV'];
     $file_paths = [];
 
     foreach ($files as $file) {
@@ -56,11 +56,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $photo1 = isset($file_paths['Picture1']) ? $file_paths['Picture1'] : '';
     $photo2 = isset($file_paths['Picture2']) ? $file_paths['Picture2'] : '';
     $photo3 = isset($file_paths['Picture3']) ? $file_paths['Picture3'] : '';
-    $video = isset($file_paths['Video']) ? $file_paths['Video'] : '';
     $cv = isset($file_paths['CV']) ? $file_paths['CV'] : '';
 
+    // Traitement du lien YouTube
+    $YoutubeLink = isset($_POST['Video']) ? $_POST['Video'] : '';
+    if (filter_var($YoutubeLink, FILTER_VALIDATE_URL) && preg_match('/^https:\/\/www\.youtube\.com\/watch\?v=[\w-]+$/', $YoutubeLink)) {
+        echo "Lien YouTube valide : $YoutubeLink<br>";
+    } else {
+        echo "Lien YouTube invalide.<br>";
+    }
+
 // Ajouter le médecin à la table Medecin
-    $sql2 = "INSERT INTO Medecin (Id_Medecin,Specialite, CV, Disponibilite, Bureau, Photo, Photo2, Photo3) VALUES ('$id','$field', '$cv', '$disponibilite', '$city', '$photo1', '$photo2', '$photo3')";
+    $sql2 = "INSERT INTO Medecin (Id_Medecin,Specialite, CV, Disponibilite, Bureau, Photo, Photo2, Photo3,VIDEO) VALUES ('$id','$field', '$cv', '$disponibilite', '$city', '$photo1', '$photo2', '$photo3','$YoutubeLink')";
 
     $conn->query("UPDATE Utilisateur SET Type = 1 WHERE Id_User = $id");
 
