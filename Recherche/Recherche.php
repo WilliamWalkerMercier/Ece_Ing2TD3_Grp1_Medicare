@@ -132,6 +132,7 @@ $result = $conn->query($sql);
                                     <h2><?php echo htmlspecialchars($row['Nom']); ?></h2>
                                     <p><strong>Description :</strong> <?php echo htmlspecialchars($row['Specialite']); ?></p>
                                     <div class="laboratoire-actions">
+                                        <input type="hidden" name="Nom_Service" value="<?php echo $row['Nom'] ?>">                                        
                                         <button class="Service-button">Prendre un RDV</button>
                                     </div>
                                 </div>
