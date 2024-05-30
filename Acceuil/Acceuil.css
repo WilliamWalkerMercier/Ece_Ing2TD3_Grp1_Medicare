@@ -12,6 +12,7 @@
     right: 0;
     top: 0;
     z-index: 1000;
+    overflow: hidden;
 }
 
 .Intro{
@@ -22,6 +23,7 @@
     width: 200px;
     animation: fadeInOut 3s forwards;
 }
+
 
 @keyframes fadeInOut{
     0% { opacity: 0; }
@@ -204,21 +206,21 @@ input:checked+label .DescriptionMed{
 }
 
 .carte[for="c1"]{
-    background-image: url("img/MedKevinDubois.jpg");
+    background-image: url("imageAcceuil/MedKevinDubois.jpg");
 }
 
 .carte[for="c2"]{
-    background-image: url("img/MedJeanLouis.jpg");
+    background-image: url("imageAcceuil/MedJeanLouis.jpg");
 }
 
 .carte[for="c3"]{
-    background-image: url("img/MedVirginieKirman.jpg");
+    background-image: url("imageAcceuil/MedVirginieKirman.jpg");
 }
 
 .carte[for="c4"]{
-    background-image: url("img/MedSophieLedos.jpg");
+    background-image: url("imageAcceuil/MedSophieLedos.jpg");
 }
 
 .carte[for="c5"]{
-    background-image: url("img/MedLucasLopez.jpg");
+    background-image: url("imageAcceuil/MedLucasLopez.jpg");
 }

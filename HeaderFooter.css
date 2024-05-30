@@ -65,7 +65,7 @@ nav ul li:hover > ul{
 .SousMenu2{
     display: none;
     position: absolute;
-    top: 60px;
+    top: 59px;
     padding: 0;
     background-color: #e8f0e8;
     border-bottom: 5px solid #144b1f;
@@ -95,12 +95,13 @@ nav ul li:hover > ul{
 footer{
     background: #31701F;
     display: flex;
-    position: relative;
     align-items: center;
-    height: 200px;
+    justify-content: center;
+    height: auto;
     left: 0;
     right: 0;
     top: auto;
+    padding: 30px 0;
     flex-direction: column;
     color: black;
 }
@@ -137,18 +138,19 @@ nav2 ul .SousMenu4{
     position: absolute;
     top: 100%;
     left: 0;
-    padding: 10px;
+    padding: 0;
     list-style: none;
     border: none;
 }
 
 nav2 ul .SousMenu4 li{
-    padding: 5px;
+    padding: 4px;
     width: 250px;
+    bottom: 2px;
 }
 
 nav2 ul .SousMenu4 li a{
-    font-size: 10px;
+    font-size: 9px;
 }
 
 nav2 ul .SousMenu4 li a:hover{
@@ -171,6 +173,8 @@ nav2 ul .SousMenu4 li a:hover{
 .copyright{
     position: relative;
     padding: 30px;
+    top: 10px;
+
 }
 
 .copyright2{
@@ -226,12 +230,12 @@ nav2 ul .SousMenu4 li a:hover{
 
 .GoogleMap{
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 900px;
     padding-top: 15px;
     border-top: 5px solid #e8f0e8;
-    margin-bottom: 200px;
 }
 
 .GoogleMap iframe{

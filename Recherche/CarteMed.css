@@ -1,4 +1,11 @@
-.doctor-details {
+.cartes-medecins{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-around;
+}
+
+.doctor-details{
     display: flex;
     justify-content: center;
     align-items: flex-start;
@@ -6,61 +13,62 @@
     margin: 20px;
     background-color: white;
     border-radius: 8px;
+    width: auto;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
-.doctor-photo {
+.doctor-photo{
     border-radius: 8px;
     width: 200px;
-    height: auto;
+    height: 200px;
     margin-right: 20px;
 }
 
-.doctor-info {
+.doctor-info{
     max-width: 600px;
 }
 
-.doctor-info h2 {
+.doctor-info h2{
     margin-top: 0;
 }
 
-.doctor-info p {
+.doctor-info p{
     margin: 8px 0;
 }
 
-.availability-calendar {
+.availability-calendar{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 10px;
     margin-top: 10px;
 }
 
-.availability-calendar .day {
+.availability-calendar .day{
     font-weight: bold;
     grid-column: 1 / 2;
     display: flex;
     align-items: center;
 }
 
-.availability-calendar .slot {
+.availability-calendar .slot{
     background-color: #f1f1f1;
     padding: 5px;
     border-radius: 4px;
     text-align: center;
 }
 
-.availability-calendar .slot.unavailable {
+.availability-calendar .slot.unavailable{
     background-color: #e0e0e0;
     color: #888;
 }
 
-.doctor-actions {
+.doctor-actions{
     margin-top: 20px;
     display: flex;
     gap: 10px;
 }
 
-button {
+button{
     padding: 10px 15px;
     border: none;
     border-radius: 4px;
@@ -70,6 +78,6 @@ button {
     cursor: pointer;
 }
 
-button:hover {
+button:hover{
     background-color: #0056b3;
 }

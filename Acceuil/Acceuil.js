@@ -2,7 +2,6 @@
 document.addEventListener("DOMContentLoaded", function() {
     setTimeout(function() {
         document.getElementById("intro").style.display = "none";
-        document.getElementById("main").style.display = "block";
         document.body.style.overflow = "auto";
     }, 3000);
 

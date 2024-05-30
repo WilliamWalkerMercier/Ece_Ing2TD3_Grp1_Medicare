@@ -24,16 +24,16 @@ $query = strtolower($query);
 
 // Requête SQL pour rechercher dans les tables Utilisateur, Medecin, ServiceLab et Laboratoire
 $sql = "
-    SELECT 'Medecin' AS Type, u.Nom, u.Prenom, m.Specialite, m.Bureau 
+    SELECT 'Medecin' AS Type, u.Nom, u.Prenom, u.Telephone, u.Mail, m.Specialite, m.Bureau, m.Photo
     FROM Utilisateur u 
     JOIN Medecin m ON u.Id_User = m.Id_Medecin 
     WHERE LOWER(u.Nom) LIKE '%$query%' OR LOWER(u.Prenom) LIKE '%$query%' OR LOWER(m.Specialite) LIKE '%$query%'
     UNION
-    SELECT 'Service' AS Type, NULL AS Nom, NULL AS Prenom, s.Nom_Service AS Specialite, s.Description_Service AS Bureau 
+    SELECT 'Service' AS Type, s.Nom_Service AS Nom, NULL AS Prenom, NULL AS Telephone, NULL AS Mail, s.Description_Service AS Specialite, NULL AS Bureau, NULL AS Photo 
     FROM ServiceLab s
     WHERE LOWER(s.Nom_Service) LIKE '%$query%'
     UNION
-    SELECT 'Laboratoire' AS Type, NULL AS Nom, NULL AS Prenom, l.Nom AS Specialite, CONCAT('Salle: ', l.Salle, ', Téléphone: ', l.Telephone, ', Email: ', l.Email, ', Adresse: ', l.Adresse) AS Bureau 
+    SELECT 'Laboratoire' AS Type, l.Nom AS Nom, NULL AS Prenom, NULL AS Telephone, NULL AS Mail, CONCAT('Salle: ', l.Salle, ', Téléphone: ', l.Telephone, ', Email: ', l.Email, ', Adresse: ', l.Adresse) AS Specialite, NULL AS Bureau, NULL AS Photo 
     FROM Laboratoire l
     WHERE LOWER(l.Nom) LIKE '%$query%' OR LOWER(l.Adresse) LIKE '%$query%'
 ";
@@ -48,11 +48,11 @@ $result = $conn->query($sql);
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Recherche</title>
-        <link rel="stylesheet" href="HeaderFooter.css">
+        <link rel="stylesheet" href="../HeaderFooter.css">
         <link rel="stylesheet" href="Recherche.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="icon" href="img/LogoMedicare.ico">
-        <link rel="stylesheet" href="carte.css">
+        <link rel="icon" href="../Acceuil/imageAcceuil/LogoMedicare.ico">
+        <link rel="stylesheet" href="CarteMed.css">
     </head>
 <body>
     <section class="recherche">
@@ -70,14 +70,14 @@ $result = $conn->query($sql);
     </section>
     <header>
         <div class="logo">
-            <a href="Acceuil.html"><img src="img/LogoMedicare.png" alt="Medicare Logo"></a>
+            <a href="../Acceuil/Acceuil.html"><img src="../Acceuil/imageAcceuil/LogoMedicare.png" alt="Medicare Logo"></a>
         </div>
         <nav>
             <ul>
-                <li><a href="Acceuil.html">Accueil</a></li>
+                <li><a href="../Acceuil/Acceuil.html">Accueil</a></li>
                 <li class="SousMenu1">
                     <a href="#">Tout Parcourir</a>
-                    <ul class="SousMenu2">
+                    <ul class="SousMenu5">
                         <li><a href="#">Médecin généraliste</a></li>
                         <li><a href="#">Médecin spécialistes</a></li>
                         <li><a href="#">Laboratoire de biologie médicale</a></li>
@@ -88,7 +88,7 @@ $result = $conn->query($sql);
             </ul>
         </nav>
         <div class="CompteLogo">
-            <a href="#"><img src="img/MonCompte.png" alt="Compte Logo"></a>
+            <a href="#"><img src="../Acceuil/imageAcceuil/MonCompte.png" alt="Compte Logo"></a>
         </div>
     </header>
     <section class="RechercheResultats">
@@ -100,11 +100,13 @@ $result = $conn->query($sql);
                         <?php while ($row = $result->fetch_assoc()): ?>
                             <?php if ($row['Type'] == 'Medecin'): ?>
                                 <section class="doctor-details">
-                                    <img src="img/MonCompte.png" alt="Photo du médecin" class="doctor-photo">
+                                    <img src="<?php echo htmlspecialchars($row['Photo']); ?>" alt="Photo du médecin" class="doctor-photo">
                                     <div class="doctor-info">
                                         <h2><?php echo htmlspecialchars($row['Nom'] . " " . $row['Prenom']); ?></h2>
                                         <p><strong>Spécialité :</strong> <?php echo htmlspecialchars($row['Specialite']); ?></p>
                                         <p><strong>Bureau :</strong> <?php echo htmlspecialchars($row['Bureau']); ?></p>
+                                        <p><strong>Téléphone :</strong> <?php echo htmlspecialchars($row['Telephone']); ?></p>
+                                        <p><strong>Email :</strong> <?php echo htmlspecialchars($row['Mail']); ?></p>
                                         <h3>Disponibilités</h3>
                                         <div class="availability-calendar">
                                             <div class="day">Lundi</div><div class="slot">Matin</div><div class="slot">Après-midi</div>
@@ -131,35 +133,37 @@ $result = $conn->query($sql);
             <?php endif; ?>
         </div>
     </section>
-    <footer class="menu-footer">
-        <div class="menu-footer2">
-            <nav2>
-                <ul>
-                    <li><a href="Acceuil.html" class="active">Accueil</a></li>
-                    <li class="SousMenu3">
-                        <a href="#">Tout Parcourir</a>
-                        <ul class="SousMenu4">
-                            <li><a href="#">Médecin généraliste</a></li>
-                            <li><a href="#">Médecin spécialistes</a></li>
-                            <li><a href="#">Laboratoire de biologie médicale</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="Recherche.html">Recherche</a></li>
-                    <li><a href="#">Rendez-vous</a></li>
-                </ul>
-            </nav2>
-        </div>
-    </footer>
-    <footer class="copyright">
-        <div class="copyright2">
-            <p>Medicare &copy; 2024 Tous droits réservés.</p>
-        </div>
-        <div class="copyright3">
-            <div class="insta">
-                <a href="#"><img src="img/insta.png"></a>
+    <footer>
+        <div class="menu-footer">
+            <div class="menu-footer2">
+                <nav2>
+                    <ul>
+                        <li><a href="../Acceuil/Acceuil.html" class="active">Accueil</a></li>
+                        <li class="SousMenu3">
+                            <a href="#">Tout Parcourir</a>
+                            <ul class="SousMenu4">
+                                <li><a href="#">Médecin généraliste</a></li>
+                                <li><a href="#">Médecin spécialistes</a></li>
+                                <li><a href="#">Laboratoire de biologie médicale</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="Recherche.html">Recherche</a></li>
+                        <li><a href="#">Rendez-vous</a></li>
+                    </ul>
+                </nav2>
             </div>
-            <div class="x">
-                <a href="#"><img src="img/twitter.png"></a>
+        </div>
+        <div class="copyright">
+            <div class="copyright2">
+                <p>Medicare &copy; 2024 Tous droits réservés.</p>
+            </div>
+            <div class="copyright3">
+                <div class="insta">
+                    <a href="#"><img src="../Acceuil/imageAcceuil/insta.png"></a>
+                </div>
+                <div class="x">
+                    <a href="#"><img src="../Acceuil/imageAcceuil/twitter.png"></a>
+                </div>
             </div>
         </div>
     </footer>
