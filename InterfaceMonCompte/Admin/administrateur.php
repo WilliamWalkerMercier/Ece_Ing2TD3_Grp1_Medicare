@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 
 // Obtenir tous les utilisateurs
-$sql = "SELECT U.*, M.Specialite, M.CV, M.Disponibilite, M.Bureau, M.Photo,M.Photo2,M.Photo3,M.video
+$sql = "SELECT U.*, M.Specialite, M.CV, M.Disponibilite, M.Bureau, M.Photo, M.Photo2, M.Photo3, M.video
         FROM Utilisateur U 
         LEFT JOIN Medecin M ON U.Id_User = M.Id_Medecin";
 $result = $conn->query($sql);
@@ -39,6 +39,15 @@ $result = $conn->query($sql);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Détails des Utilisateurs - Medicare</title>
     <link rel="stylesheet" href="../../ListeMedecinStyle.css"> <!-- Lien vers le fichier CSS -->
+    <script>
+        function changePhoto(event) {
+            const photos = event.target.dataset.photos.split(',');
+            let currentPhotoIndex = parseInt(event.target.dataset.currentIndex, 10);
+            currentPhotoIndex = (currentPhotoIndex + 1) % photos.length;
+            event.target.src = photos[currentPhotoIndex];
+            event.target.dataset.currentIndex = currentPhotoIndex;
+        }
+    </script>
 </head>
 <body>
 <header>
@@ -52,11 +61,14 @@ $result = $conn->query($sql);
             $is_medecin = $row['Type'] == 1;
             $title = $is_medecin ? "Dr. " : "";
             $photo = $row['Photo'] ?: 'default.jpg';
+            $photo2 = $row['Photo2'] ?: '';
+            $photo3 = $row['Photo3'] ?: '';
+            $photos = array_filter([$photo, $photo2, $photo3]); // Remove empty values
+            $photos_js = implode(',', array_map(function($p) { return htmlspecialchars($p); }, $photos));
             $disponibilite = isset($row['Disponibilite']) && strlen($row['Disponibilite']) == 12 ? str_split($row['Disponibilite']) : array_fill(0, 12, '0');
 
-
             echo "<div class='DoctorElement'>";
-            echo "<img src='$photo' alt='Photo de {$row['Nom']} {$row['Prenom']}' class='DoctorPicture'>";
+            echo "<img src='$photo' alt='Photo de {$row['Nom']} {$row['Prenom']}' class='DoctorPicture' data-photos='$photos_js' data-current-index='0' onclick='changePhoto(event)'>";
             echo "<div class='DoctorInfo'>";
             echo "<h2>$title{$row['Prenom']} {$row['Nom']}</h2>";
             echo "<p><strong>ID:</strong> {$row['Id_User']}</p>";
@@ -79,9 +91,6 @@ $result = $conn->query($sql);
                     echo "<div class='slot " . (isset($disponibilite[$afternoon_index]) && $disponibilite[$afternoon_index] == '1' ? "" : "unavailable") . "'>Après-midi</div>";
                 }
                 echo "</div>";
-
-
-
 
                 echo "<div class='DoctorButtons'>";
                 echo "<form action='AddDoctor.html' method='GET' style='display:inline;'>";
