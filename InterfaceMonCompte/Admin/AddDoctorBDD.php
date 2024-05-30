@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $city = $conn->real_escape_string($_POST['City']);
 
 // Disponibilité
-    $disponibilite = str_repeat('0', 14);
+    $disponibilite = str_repeat('0', 12);
     if (isset($_POST['availability']) && is_array($_POST['availability'])) {
         foreach ($_POST['availability'] as $index => $value) {
             if ($value == 'on') {
