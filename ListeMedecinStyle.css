@@ -108,3 +108,7 @@ button:hover {
 .EraseDoctor{
     background-color: #f44336;
 }
+
+img:hover{
+    cursor: pointer;
+}
