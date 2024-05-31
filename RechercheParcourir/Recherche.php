@@ -24,16 +24,16 @@ $query = strtolower($query);
 
 // Requête SQL pour rechercher dans les tables Utilisateur, Medecin, ServiceLab et Laboratoire
 $sql = "
-    SELECT 'Medecin' AS Type, u.Id_User AS Id, u.Nom, u.Prenom, u.Telephone, u.Mail, m.Specialite, m.Bureau, m.Photo 
+    SELECT 'Medecin' AS Type, u.Id_User AS Id, u.Nom, u.Prenom, u.Telephone, u.Mail, m.Specialite, m.Bureau AS Description, m.Photo, NULL AS Salle, NULL AS Adresse
     FROM Utilisateur u 
     JOIN Medecin m ON u.Id_User = m.Id_Medecin 
     WHERE LOWER(u.Nom) LIKE '%$query%' OR LOWER(u.Prenom) LIKE '%$query%' OR LOWER(m.Specialite) LIKE '%$query%'
     UNION
-    SELECT 'Service' AS Type, s.Nom_Service AS Id, NULL AS Nom, NULL AS Prenom, NULL AS Telephone, NULL AS Mail, s.Nom_Service AS Specialite, s.Description_Service AS Bureau, s.Photo 
+    SELECT 'Service' AS Type, s.Nom_Service AS Id, s.Nom_Service AS Nom, NULL AS Prenom, NULL AS Telephone, NULL AS Mail, s.Nom_Service AS Specialite, s.Description_Service AS Description, s.Photo, NULL AS Salle, NULL AS Adresse
     FROM ServiceLab s
     WHERE LOWER(s.Nom_Service) LIKE '%$query%'
     UNION
-    SELECT 'Laboratoire' AS Type, l.Id_Lab AS Id, NULL AS Nom, NULL AS Prenom, l.Telephone AS Telephone, l.Email AS Mail, l.Nom AS Specialite, CONCAT('Salle: ', l.Salle, ', Téléphone: ', l.Telephone, ', Email: ', l.Email, ', Adresse: ', l.Adresse) AS Bureau, l.Photo 
+    SELECT 'Laboratoire' AS Type, l.Id_Lab AS Id, l.Nom, NULL AS Prenom, l.Telephone AS Telephone, l.Email AS Mail, l.Nom AS Specialite, NULL AS Description, l.Photo, l.Salle, l.Adresse
     FROM Laboratoire l
     WHERE LOWER(l.Nom) LIKE '%$query%' OR LOWER(l.Adresse) LIKE '%$query%'
 ";
@@ -76,11 +76,11 @@ $result = $conn->query($sql);
         <ul>
             <li><a href="../Acceuil/Acceuil.html">Accueil</a></li>
             <li class="SousMenu1">
-                <a href="#">Tout Parcourir</a>
+                <a href="ToutParcourir.html">Tout Parcourir</a>
                 <ul class="SousMenu5">
-                    <li><a href="#">Médecin généraliste</a></li>
-                    <li><a href="#">Médecin spécialistes</a></li>
-                    <li><a href="#">Laboratoire de biologie médicale</a></li>
+                    <li><a href="Generaliste.php">Médecin généraliste</a></li>
+                    <li><a href="Specialiste.php">Médecin spécialistes</a></li>
+                    <li><a href="Laboratoire.php">Laboratoire de biologie médicale</a></li>
                 </ul>
             </li>
             <li><a href="Recherche.html" class="active">Recherche</a></li>
@@ -100,23 +100,37 @@ $result = $conn->query($sql);
                     <?php while ($row = $result->fetch_assoc()): ?>
                         <?php if ($row['Type'] == 'Medecin'): ?>
                             <section class="doctor-details">
-                                <img src="<?php echo htmlspecialchars($row['Photo']); ?>" alt="Photo du médecin" class="doctor-photo">
+                                <img src="<?php echo htmlspecialchars($row['Photo']); ?>" alt="Photo du médecin"
+                                     class="doctor-photo">
                                 <div class="doctor-info">
                                     <h2><?php echo htmlspecialchars($row['Nom'] . " " . $row['Prenom']); ?></h2>
                                     <p><strong>Spécialité :</strong> <?php echo htmlspecialchars($row['Specialite']); ?></p>
-                                    <p><strong>Bureau :</strong> <?php echo htmlspecialchars($row['Bureau']); ?></p>
+                                    <?php if (isset($row['Bureau'])): ?>
+                                        <p><strong>Bureau :</strong> <?php echo htmlspecialchars($row['Bureau']); ?></p>
+                                    <?php endif; ?>
                                     <p><strong>Téléphone :</strong> <?php echo htmlspecialchars($row['Telephone']); ?></p>
                                     <p><strong>Email :</strong> <?php echo htmlspecialchars($row['Mail']); ?></p>
                                     <h3>Disponibilités</h3>
                                     <div class="availability-calendar">
-                                        <div class="day">Lundi</div><div class="slot">Matin</div><div class="slot">Après-midi</div>
-                                        <div class="day">Mardi</div><div class="slot">Non disponible</div><div class="slot">Après-midi</div>
-                                        <div class="day">Mercredi</div><div class="slot">Matin</div><div class="slot">Non disponible</div>
-                                        <div class="day">Jeudi</div><div class="slot">Matin</div><div class="slot">Non disponible</div>
-                                        <div class="day">Vendredi</div><div class="slot">Matin</div><div class="slot">Après-midi</div>
+                                        <div class="day">Lundi</div>
+                                        <div class="slot">Matin</div>
+                                        <div class="slot">Après-midi</div>
+                                        <div class="day">Mardi</div>
+                                        <div class="slot">Non disponible</div>
+                                        <div class="slot">Après-midi</div>
+                                        <div class="day">Mercredi</div>
+                                        <div class="slot">Matin</div>
+                                        <div class="slot">Non disponible</div>
+                                        <div class="day">Jeudi</div>
+                                        <div class="slot">Matin</div>
+                                        <div class="slot">Non disponible</div>
+                                        <div class="day">Vendredi</div>
+                                        <div class="slot">Matin</div>
+                                        <div class="slot">Après-midi</div>
                                     </div>
                                     <div class="doctor-actions">
                                         <form action="PrendreRDV.php" method="get">
+                                            <input type="hidden" name="id_Medecin" value="<?php echo $row['Id'] ?>">
                                             <button type="submit" class="appointment-button">Prendre un RDV</button>
                                         </form>
                                         <button class="contact-button">Communiquer</button>
@@ -126,24 +140,33 @@ $result = $conn->query($sql);
                             </section>
                         <?php elseif ($row['Type'] == 'Service'): ?>
                             <section class="service-details">
-                                <img src="<?php echo htmlspecialchars($row['Photo']); ?>" alt="Photo des services" class="service-photo">
+                                <img src="<?php echo htmlspecialchars($row['Photo']); ?>" alt="Photo des services"
+                                     class="service-photo">
                                 <div class="service-info">
                                     <h2><?php echo htmlspecialchars($row['Nom']); ?></h2>
-                                    <p><strong>Description :</strong> <?php echo htmlspecialchars($row['Specialite']); ?></p>
+                                    <p><strong>Description :</strong> <?php echo htmlspecialchars($row['Description']); ?></p>
                                     <div class="laboratoire-actions">
-                                        <button class="Service-button">Prendre un RDV</button>
+                                        <form action="PrendreRDVservice.php" method="get">
+                                            <input type="hidden" name="Nom_Service" value="<?php echo $row['Nom'] ?>">
+                                            <button type="submit" class="appointment-button">Prendre un RDV</button>
+                                        </form>
                                     </div>
                                 </div>
                             </section>
                         <?php elseif ($row['Type'] == 'Laboratoire'): ?>
                             <section class="laboratoire-details">
-                                <img src="<?php echo htmlspecialchars($row['Photo']); ?>" alt="Photo du médecin" class="laboratoire-photo">
+                                <img src="<?php echo htmlspecialchars($row['Photo']); ?>" alt="Photo du médecin"
+                                     class="laboratoire-photo">
                                 <div class="laboratoire-info">
-                                    <h2><?php echo htmlspecialchars($row['Nom']); ?></h2>
-                                    <p><strong>Salle :</strong> <?php echo htmlspecialchars($row['Salle']); ?></p>
-                                    <p><strong>Adresse :</strong> <?php echo htmlspecialchars($row['Adresse']); ?></p>
-                                    <p><strong>Telephone :</strong> <?php echo htmlspecialchars($row['Telephone']); ?></p>
-                                    <p><strong>Email :</strong> <?php echo htmlspecialchars($row['Email']); ?></p>
+                                    <h2><?php echo htmlspecialchars($row['Specialite']); ?></h2>
+                                    <?php if (!empty($row['Salle'])): ?>
+                                        <p><strong>Salle :</strong> <?php echo htmlspecialchars($row['Salle']); ?></p>
+                                    <?php endif; ?>
+                                    <?php if (!empty($row['Adresse'])): ?>
+                                        <p><strong>Adresse :</strong> <?php echo htmlspecialchars($row['Adresse']); ?></p>
+                                    <?php endif; ?>
+                                    <p><strong>Téléphone :</strong> <?php echo htmlspecialchars($row['Telephone']); ?></p>
+                                    <p><strong>Email :</strong> <?php echo htmlspecialchars($row['Mail']); ?></p>
                                     <div class="laboratoire-actions">
                                         <button class="laboratoire-button">Nos Services</button>
                                     </div>
@@ -167,11 +190,11 @@ $result = $conn->query($sql);
                 <ul>
                     <li><a href="../Acceuil/Acceuil.html" class="active">Accueil</a></li>
                     <li class="SousMenu3">
-                        <a href="#">Tout Parcourir</a>
+                        <a href="ToutParcourir.html">Tout Parcourir</a>
                         <ul class="SousMenu4">
-                            <li><a href="#">Médecin généraliste</a></li>
-                            <li><a href="#">Médecin spécialistes</a></li>
-                            <li><a href="#">Laboratoire de biologie médicale</a></li>
+                            <li><a href="Generaliste.php">Médecin généraliste</a></li>
+                            <li><a href="Specialiste.php">Médecin spécialistes</a></li>
+                            <li><a href="Laboratoire.php">Laboratoire de biologie médicale</a></li>
                         </ul>
                     </li>
                     <li><a href="Recherche.html">Recherche</a></li>

@@ -1,0 +1,92 @@
+.SousMenu5{
+    display: none;
+    position: absolute;
+    top: 56px;
+    padding: 0;
+    background-color: #e8f0e8;
+    border-bottom: 5px solid #144b1f;
+}
+
+.SousMenu5 li{
+    padding: 10px;
+}
+
+.SousMenu5 li a{
+    color: #333;
+}
+
+.SousMenu5 li a:hover{
+    color: #144b1f;
+}
+
+
+.ToutParcourir{
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    align-items: center;
+    color: white;
+    overflow: hidden;
+    top: 70px;
+    width:auto;
+    position: relative;
+    height: 300px;
+}
+
+.ToutParcourir h1{
+    display: flex;
+    position: relative;
+    color: black;
+    overflow: hidden;
+    align-items: center;
+    width:auto;
+    font-size: 60px;
+    height: 80px;
+    margin-bottom: 20px;
+    text-shadow: 0px 0px 3px rgba(0,0,0,0.3);
+}
+
+.nav2{
+    padding: 20px;
+}
+
+.ToutParcourirResultats{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding: 80px;
+    overflow: hidden;
+    top: 70px;
+    width:auto;
+    height:auto;
+}
+
+.ToutParcourirResultats h1{
+    display: flex;
+    position: relative;
+    color: black;
+    overflow: hidden;
+    align-items: center;
+    justify-content: center;
+    width:auto;
+    font-size: 30px;
+    bottom: 40px;
+    text-shadow: 0px 0px 3px rgba(0,0,0,0.3);
+}
+
+.bouton{
+    background: #144b1f;
+}
+
+foooter{
+    background: #31701F;
+    display: flex;
+    align-items: center;
+    position: fixed;
+    height: auto;
+    left: 0;
+    right: 0;
+    top: auto;
+    flex-direction: column;
+    color: black;
+}

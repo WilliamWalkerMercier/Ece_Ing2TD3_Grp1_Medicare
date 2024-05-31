@@ -1,0 +1,192 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+.SousMenu5{
+    display: none;
+    position: absolute;
+    top: 56px;
+    padding: 0;
+    background-color: #e8f0e8;
+    border-bottom: 5px solid #144b1f;
+}
+
+.SousMenu5 li{
+    padding: 10px;
+}
+
+.SousMenu5 li a{
+    color: #333;
+}
+
+.SousMenu5 li a:hover{
+    color: #144b1f;
+}
+
+
+.Specialiste{
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    align-items: center;
+    color: white;
+    overflow: hidden;
+    top: 70px;
+    width:auto;
+    position: relative;
+    height: 200px;
+    font-family: 'Poppins',sans-serif;
+}
+
+.Specialiste h1{
+    display: flex;
+    position: relative;
+    color: black;
+    overflow: hidden;
+    align-items: center;
+    width:auto;
+    font-size: 60px;
+    height: 80px;
+    margin-bottom: 20px;
+    text-shadow: 0px 0px 3px rgba(0,0,0,0.3);
+}
+
+.SpecialisteResultatsResultats{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding: 80px;
+    overflow: hidden;
+    top: 70px;
+    width:auto;
+    height:auto;
+}
+
+.SpecialisteResultats h1{
+    display: flex;
+    position: relative;
+    color: black;
+    overflow: hidden;
+    align-items: center;
+    justify-content: center;
+    width:auto;
+    font-size: 30px;
+    bottom: 40px;
+    text-shadow: 0px 0px 3px rgba(0,0,0,0.3);
+}
+
+.Bar{
+    position: absolute;
+    top: auto;
+    left: 0;
+    width: 80px;
+    padding: 6px 12px;
+    box-shadow: 0px 0px 10px rgba(0,0,0,.2);
+    height: auto;
+    border-bottom-right-radius: 10px;
+    border-top-right-radius: 10px;
+    background: transparent;
+    border-right: 3px solid rgba(255,255,255, .3);
+}
+
+.Bar.active2{
+    width: 270px;
+}
+
+.Bar .LogoMenu{
+    display: flex;
+    width: 100%;
+    height: 70px;
+    align-items: center;
+}
+
+.Bar .LogoMenu .specialite{
+    font-size: 25px;
+    color: black;
+    pointer-events: none;
+    opacity: 0;
+    transition: .2s;
+    text-shadow: 0px 0px 3px rgba(0,0,0,0.3);
+}
+
+.Bar.active2 .LogoMenu .specialite{
+    transition-delay: .1s;
+    opacity: 1;
+}
+
+.Bar .LogoMenu .toggle-btn{
+    position: absolute;
+    cursor: pointer;
+    height: 30px;
+    width: 30px;
+    left: 50%;
+    color: black;
+    transform: translateX(-50%);
+    text-align: center;
+    line-height: 30px;
+    transition: .5s;
+}
+
+.Bar.active2 .LogoMenu .toggle-btn{
+    left: 90%;
+}
+
+.Bar .MenuBar{
+    margin-top: 15px;
+}
+
+.Bar .lien{
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .3s;
+    text-shadow: 0px 0px 3px rgba(0,0,0,0.3);
+}
+
+.Bar.active2 .lien{
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.MenuBar .MenuBarElement{
+    margin: 5px 0;
+    height: 40px;
+    width: 100%;
+    line-height: 40px;
+    list-style: none;
+}
+
+.MenuBar .MenuBarElement.active2 a, .MenuBar .MenuBarElement a:hover{
+    background: rgba(255,255,255,.3);
+}
+
+.MenuBar .MenuBarElement a{
+    display: flex;
+    font-size: 16px;
+    color: black;
+    transition: .5s;
+    text-decoration: none;
+    white-space: nowrap;
+    align-items: center;
+    border-radius: 5px;
+}
+
+.MenuBar .MenuBarElement a i{
+    min-width: 40px;
+    line-height: 40px;
+    text-align: center;
+}
+
+.bouton{
+    background: #144b1f;
+}
+
+foooter{
+    background: #31701F;
+    display: flex;
+    align-items: center;
+    position: fixed;
+    height: auto;
+    left: 0;
+    right: 0;
+    top: auto;
+    flex-direction: column;
+    color: black;
+}

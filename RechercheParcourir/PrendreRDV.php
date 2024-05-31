@@ -6,6 +6,7 @@
     <title>Réservation de créneau - Medicare</title>
     <link rel="stylesheet" href="../HeaderFooter.css">
     <link rel="stylesheet" href="PrendreRDV.css">
+    <link rel="icon" href="../Acceuil/imageAcceuil/LogoMedicare.ico">
 </head>
 <body>
 <header>
@@ -16,11 +17,11 @@
         <ul>
             <li><a href="../Acceuil/Acceuil.html">Accueil</a></li>
             <li class="SousMenu1">
-                <a href="#">Tout Parcourir</a>
+                <a href="ToutParcourir.html">Tout Parcourir</a>
                 <ul class="SousMenu5">
-                    <li><a href="#">Médecin généraliste</a></li>
-                    <li><a href="#">Médecin spécialistes</a></li>
-                    <li><a href="#">Laboratoire de biologie médicale</a></li>
+                    <li><a href="Generaliste.php">Médecin généraliste</a></li>
+                    <li><a href="Specialiste.php">Médecin spécialistes</a></li>
+                    <li><a href="Laboratoire.php">Laboratoire de biologie médicale</a></li>
                 </ul>
             </li>
             <li><a href="Recherche.php">Recherche</a></li>
@@ -84,7 +85,9 @@
         }
     }
 
-    $medecin = 4;
+    if (isset($_GET['id_Medecin'])) {
+        $medecin = ($_GET['id_Medecin']);
+    }
     $patient = 3;
     $db_handle = mysqli_connect('localhost', 'root', '');
     $db_found = mysqli_select_db($db_handle, 'medicare');
@@ -128,11 +131,11 @@
                 <ul>
                     <li><a href="../Acceuil/Acceuil.html" class="active">Accueil</a></li>
                     <li class="SousMenu3">
-                        <a href="#">Tout Parcourir</a>
+                        <a href="ToutParcourir.html">Tout Parcourir</a>
                         <ul class="SousMenu4">
-                            <li><a href="#">Médecin généraliste</a></li>
-                            <li><a href="#">Médecin spécialistes</a></li>
-                            <li><a href="#">Laboratoire de biologie médicale</a></li>
+                            <li><a href="Generaliste.php">Médecin généraliste</a></li>
+                            <li><a href="Specialiste.php">Médecin spécialistes</a></li>
+                            <li><a href="Laboratoire.php">Laboratoire de biologie médicale</a></li>
                         </ul>
                     </li>
                     <li><a href="Recherche.php">Recherche</a></li>
