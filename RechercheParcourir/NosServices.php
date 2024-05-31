@@ -1,31 +1,22 @@
 <?php
-// Configurer la connexion à la base de données
+
 $servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "medicare";
 
-// Créer la connexion
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-// Vérifier la connexion
+// Vérification de la connexion
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Obtenir la requête de recherche
-$query = isset($_GET['query']) ? $_GET['query'] : '';
-
-// Échapper la requête pour éviter les injections SQL
-$query = $conn->real_escape_string($query);
-
-// Passer la requête en minuscule
-$query = strtolower($query);
-
-
-$sql = "SELECT * FROM laboratoire";
+// Requête SQL pour récupérer toutes les informations de la table servicelab
+$sql = "SELECT * FROM servicelab";
 $result = $conn->query($sql);
 
+$conn->close();
 ?>
 
 <!DOCTYPE html>
@@ -35,14 +26,37 @@ $result = $conn->query($sql);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Laboratoire</title>
     <link rel="stylesheet" href="../HeaderFooter.css">
-    <link rel="stylesheet" href="Specialiste.css">
+    <link rel="stylesheet" href="ToutParcourir.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="icon" href="../Acceuil/imageAcceuil/LogoMedicare.ico">
     <link rel="stylesheet" href="CarteMed.css">
 </head>
 <body>
-<section class="Specialiste">
-    <h1>Laboratoire de Biologie Médical</h1>
+<section class="ToutParcourirResultats">
+    <div>
+        <div class="cartes">
+            <?php if ($result->num_rows > 0): ?>
+                <?php while ($row = $result->fetch_assoc()): ?>
+                    <section class="doctor-details">
+                        <img src="<?php echo htmlspecialchars($row['Photo']); ?>" alt="Photo du laboratoire"
+                             class="laboratoire-photo">
+                        <div class="service-info">
+                            <h2><?php echo htmlspecialchars($row['Nom_Service']); ?></h2>
+                            <p><strong>Description :</strong> <?php echo htmlspecialchars($row['Description_Service']); ?></p>
+                            <div class="laboratoire-actions">
+                                <form action="PrendreRDVservice.php" method="get">
+                                    <input type="hidden" name="Nom_Service" value="<?php echo $row['Nom_Service'] ?>">
+                                    <button type="submit" class="appointment-button">Prendre un RDV</button>
+                                </form>
+                            </div>
+                        </div>
+                    </section>
+                <?php endwhile; ?>
+            <?php else: ?>
+                <p>Aucun médecin généraliste trouvé.</p>
+            <?php endif; ?>
+        </div>
+    </div>
 </section>
 <header>
     <div class="logo">
@@ -53,7 +67,7 @@ $result = $conn->query($sql);
             <li><a href="../Acceuil/Acceuil.html">Accueil</a></li>
             <li class="SousMenu1">
                 <a href="ToutParcourir.html" class="active">Tout Parcourir</a>
-                <ul class="SousMenu2">
+                <ul class="SousMenu5">
                     <li><a href="Generaliste.php">Médecin généraliste</a></li>
                     <li><a href="Specialiste.php">Médecin spécialistes</a></li>
                     <li><a href="Laboratoire.php">Laboratoire de biologie médicale</a></li>
@@ -67,34 +81,6 @@ $result = $conn->query($sql);
         <a href="#"><img src="../Acceuil/imageAcceuil/MonCompte.png" alt="Compte Logo"></a>
     </div>
 </header>
-<section>
-    <div>
-        <div class="cartes">
-            <?php if ($result->num_rows > 0): ?>
-                <?php while ($row = $result->fetch_assoc()): ?>
-                    <section class="doctor-details">
-                        <img src="<?php echo htmlspecialchars($row['Photo']); ?>" alt="Photo du laboratoire"
-                             class="laboratoire-photo">
-                        <div class="laboratoire-info">
-                            <h2><?php echo htmlspecialchars($row['Nom']); ?></h2>
-                            <p><strong>Salle :</strong> <?php echo htmlspecialchars($row['Salle']); ?></p>
-                            <p><strong>Adresse :</strong> <?php echo htmlspecialchars($row['Adresse']); ?></p>
-                            <p><strong>Telephone :</strong> <?php echo htmlspecialchars($row['Telephone']); ?></p>
-                            <p><strong>Email :</strong> <?php echo htmlspecialchars($row['Email']); ?></p>
-                            <div class="laboratoire-actions">
-                                <form action="NosServices.php" method="get">
-                                    <button class="laboratoire-button">Nos Services</button>
-                                </form>
-                            </div>
-                        </div>
-                    </section>
-                <?php endwhile; ?>
-            <?php else: ?>
-                <p>Aucun médecin généraliste trouvé.</p>
-            <?php endif; ?>
-        </div>
-    </div>
-</section>
 <footer>
     <div class="menu-footer">
         <div class="menu-footer2">
@@ -131,9 +117,4 @@ $result = $conn->query($sql);
 </footer>
 </body>
 </html>
-
-<?php
-// Fermer la connexion
-$conn->close();
-?>
 

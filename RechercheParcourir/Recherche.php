@@ -155,8 +155,7 @@ $result = $conn->query($sql);
                             </section>
                         <?php elseif ($row['Type'] == 'Laboratoire'): ?>
                             <section class="laboratoire-details">
-                                <img src="<?php echo htmlspecialchars($row['Photo']); ?>" alt="Photo du médecin"
-                                     class="laboratoire-photo">
+                                <img src="<?php echo htmlspecialchars($row['Photo']); ?>" alt="Photo du médecin" class="laboratoire-photo">
                                 <div class="laboratoire-info">
                                     <h2><?php echo htmlspecialchars($row['Specialite']); ?></h2>
                                     <?php if (!empty($row['Salle'])): ?>
@@ -168,7 +167,9 @@ $result = $conn->query($sql);
                                     <p><strong>Téléphone :</strong> <?php echo htmlspecialchars($row['Telephone']); ?></p>
                                     <p><strong>Email :</strong> <?php echo htmlspecialchars($row['Mail']); ?></p>
                                     <div class="laboratoire-actions">
-                                        <button class="laboratoire-button">Nos Services</button>
+                                        <form action="NosServices.php" method="get">
+                                            <button class="laboratoire-button">Nos Services</button>
+                                        </form>
                                     </div>
                                 </div>
                             </section>

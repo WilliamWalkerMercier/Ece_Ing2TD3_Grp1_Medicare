@@ -32,7 +32,7 @@
     top: 70px;
     width:auto;
     position: relative;
-    height: 200px;
+    height: 300px;
     font-family: 'Poppins',sans-serif;
 }
 
@@ -42,18 +42,18 @@
     color: black;
     overflow: hidden;
     align-items: center;
+    justify-content: center;
     width:auto;
     font-size: 60px;
-    height: 80px;
-    margin-bottom: 20px;
+    height: 200px;
     text-shadow: 0px 0px 3px rgba(0,0,0,0.3);
 }
 
-.SpecialisteResultatsResultats{
+.SpecialisteResultats{
     display: flex;
     flex-direction: column;
     position: relative;
-    padding: 80px;
+    padding: 20px;
     overflow: hidden;
     top: 70px;
     width:auto;
@@ -148,13 +148,13 @@
 .MenuBar .MenuBarElement{
     margin: 5px 0;
     height: 40px;
-    width: 100%;
+    width: 102%;
     line-height: 40px;
     list-style: none;
 }
 
 .MenuBar .MenuBarElement.active2 a, .MenuBar .MenuBarElement a:hover{
-    background: rgba(255,255,255,.3);
+    background: rgba(89, 88, 88, .3);
 }
 
 .MenuBar .MenuBarElement a{

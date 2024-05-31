@@ -49,7 +49,6 @@ if (!$result) {
     <title>Specialiste</title>
     <link rel="stylesheet" href="../HeaderFooter.css">
     <link rel="stylesheet" href="Specialiste.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="icon" href="../Acceuil/imageAcceuil/LogoMedicare.ico">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="CarteMed.css">
@@ -67,9 +66,9 @@ if (!$result) {
             <li><a href="../Acceuil/Acceuil.html">Accueil</a></li>
             <li class="SousMenu1">
                 <a href="ToutParcourir.html" class="active">Tout Parcourir</a>
-                <ul class="SousMenu5">
+                <ul class="SousMenu2">
                     <li><a href="Generaliste.php">Médecin généraliste</a></li>
-                    <li><a href="Specialiste.html">Médecin spécialistes</a></li>
+                    <li><a href="Specialiste.php">Médecin spécialistes</a></li>
                     <li><a href="Laboratoire.php">Laboratoire de biologie médicale</a></li>
                 </ul>
             </li>
@@ -88,50 +87,50 @@ if (!$result) {
             <i class='bx bx-menu toggle-btn'></i>
         </div>
         <ul class="MenuBar">
-            <li class="MenuBarElement active2">
-                <a href="#">
+            <li class="MenuBarElement">
+                <a href="addictologie.php">
                     <i class='bx bx-injection'></i>
-                    <span class="lien" style="--i:2">Addictologie</span>
+                    <span class="lien">Addictologie</span>
                 </a>
             </li>
             <li class="MenuBarElement">
-                <a href="#">
+                <a href="andrologie.php">
                     <i class='bx bx-male'></i>
-                    <span class="lien" style="--i:2">Andrologie</span>
+                    <span class="lien">Andrologie</span>
                 </a>
             </li>
             <li class="MenuBarElement">
-                <a href="#">
+                <a href="cardiologie.php">
                     <i class='bx bx-heart'></i>
                     <span class="lien">Cardiologie</span>
                 </a>
             </li>
             <li class="MenuBarElement">
-                <a href="#">
+                <a href="dermatologie.php">
                     <i class='bx bx-band-aid'></i>
                     <span class="lien">Dermatologie</span>
                 </a>
             </li>
             <li class="MenuBarElement">
-                <a href="#">
+                <a href="gastro.php">
                     <i class='bx bx-baguette'></i>
                     <span class="lien">Gastro-Héato-Entérologie</span>
                 </a>
             </li>
             <li class="MenuBarElement">
-                <a href="#">
+                <a href="gynecologie.php">
                     <i class='bx bx-female'></i>
                     <span class="lien">Gynécologie</span>
                 </a>
             </li>
             <li class="MenuBarElement">
-                <a href="#">
+                <a href="ist.php">
                     <i class='bx bxs-virus'></i>
                     <span class="lien">I.S.T</span>
                 </a>
             </li>
             <li class="MenuBarElement">
-                <a href="#">
+                <a href="osteopathie.php">
                     <i class='bx bx-bone'></i>
                     <span class="lien">Ostéopathie</span>
                 </a>
@@ -198,7 +197,7 @@ if (!$result) {
                         <a href="ToutParcourir.html">Tout Parcourir</a>
                         <ul class="SousMenu4">
                             <li><a href="Generaliste.php">Médecin généraliste</a></li>
-                            <li><a href="Specialiste.html">Médecin spécialistes</a></li>
+                            <li><a href="Specialiste.php">Médecin spécialistes</a></li>
                             <li><a href="Laboratoire.php">Laboratoire de biologie médicale</a></li>
                         </ul>
                     </li>

@@ -42,15 +42,40 @@ $result = $stmt->get_result();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Generaliste</title>
     <link rel="stylesheet" href="../HeaderFooter.css">
-    <link rel="stylesheet" href="ToutParcourir.css">
+    <link rel="stylesheet" href="Specialiste.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="icon" href="../Acceuil/imageAcceuil/LogoMedicare.ico">
     <link rel="stylesheet" href="CarteMed.css">
 </head>
 <body>
-<section class="ToutParcourirResultats">
+<section class="Specialiste">
+    <h1>Médecins Généralistes</h1>
+</section>
+<header>
+    <div class="logo">
+        <a href="../Acceuil/Acceuil.html"><img src="../Acceuil/imageAcceuil/LogoMedicare.png" alt="Medicare Logo"></a>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="../Acceuil/Acceuil.html">Accueil</a></li>
+            <li class="SousMenu1">
+                <a href="ToutParcourir.html" class="active">Tout Parcourir</a>
+                <ul class="SousMenu2">
+                    <li><a href="Generaliste.php">Médecin généraliste</a></li>
+                    <li><a href="Specialiste.php">Médecin spécialistes</a></li>
+                    <li><a href="Laboratoire.php">Laboratoire de biologie médicale</a></li>
+                </ul>
+            </li>
+            <li><a href="Recherche.html">Recherche</a></li>
+            <li><a href="#">Rendez-vous</a></li>
+        </ul>
+    </nav>
+    <div class="CompteLogo">
+        <a href="#"><img src="../Acceuil/imageAcceuil/MonCompte.png" alt="Compte Logo"></a>
+    </div>
+</header>
+<section>
     <div>
-        <h1>Médecins généralistes</h1>
         <div class="cartes">
             <?php if ($result->num_rows > 0): ?>
                 <?php while ($row = $result->fetch_assoc()): ?>
@@ -98,29 +123,6 @@ $result = $stmt->get_result();
         </div>
     </div>
 </section>
-<header>
-    <div class="logo">
-        <a href="../Acceuil/Acceuil.html"><img src="../Acceuil/imageAcceuil/LogoMedicare.png" alt="Medicare Logo"></a>
-    </div>
-    <nav>
-        <ul>
-            <li><a href="../Acceuil/Acceuil.html">Accueil</a></li>
-            <li class="SousMenu1">
-                <a href="ToutParcourir.html" class="active">Tout Parcourir</a>
-                <ul class="SousMenu5">
-                    <li><a href="Generaliste.php">Médecin généraliste</a></li>
-                    <li><a href="Specialiste.php">Médecin spécialistes</a></li>
-                    <li><a href="Laboratoire.php">Laboratoire de biologie médicale</a></li>
-                </ul>
-            </li>
-            <li><a href="Recherche.html">Recherche</a></li>
-            <li><a href="#">Rendez-vous</a></li>
-        </ul>
-    </nav>
-    <div class="CompteLogo">
-        <a href="#"><img src="../Acceuil/imageAcceuil/MonCompte.png" alt="Compte Logo"></a>
-    </div>
-</header>
 <footer>
     <div class="menu-footer">
         <div class="menu-footer2">
