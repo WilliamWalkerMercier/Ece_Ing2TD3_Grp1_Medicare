@@ -96,7 +96,8 @@ if ($result->num_rows > 0) {
     $stmt->bind_param("sssisssissi", $nom, $prenom, $email, $telephone, $hashed_password, $pays, $ville, $code_postal, $adresse1, $adresse2, $carte_vitale);
 
     if ($stmt->execute()) {
-        echo "Inscription réussie.";
+		header("Location: connection.html");
+
     } else {
         echo "Erreur: " . $stmt->error;
     }

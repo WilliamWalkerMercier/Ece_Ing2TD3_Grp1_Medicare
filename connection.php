@@ -1,51 +1,66 @@
 <?php
-// Paramètres de connexion à la base de données
+session_start();
+
+// Configuration de la connexion à la base de données
 $servername = "localhost";
 $username = "root";
-$password_mysql = "mysql";
+$password = "mysql";
 $dbname = "medicare";
 
-// Déclaration des variables
-$email = isset($_POST["email"]) ? $_POST["email"] : "";
-$password = isset($_POST["password"]) ? $_POST["password"] : "";
-
-// Connexion à la base de données
-$conn = new mysqli($servername, $username, $password_mysql, $dbname);
+// Créer la connexion
+$conn = new mysqli($servername, $username, $password, $dbname);
 
 // Vérifier la connexion
 if ($conn->connect_error) {
-    die("Échec de la connexion: " . $conn->connect_error);
+    die("Connection failed: " . $conn->connect_error);
 }
 
-// Préparer et exécuter la requête pour vérifier si l'utilisateur existe déjà
-$sql = "SELECT * FROM Utilisateur WHERE Mail = ?";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("s", $email);
-$stmt->execute();
-$result = $stmt->get_result();
+// Obtenir les données du formulaire
+$email = $_POST['email'];
+$pwd = $_POST['password'];
 
-if ($result->num_rows > 0) {
+// Échapper les données pour éviter les injections SQL
+$email = $conn->real_escape_string($email);
+
+// Requête SQL pour récupérer le mot de passe haché et les informations de l'utilisateur
+$sql = "SELECT Id_User, Type, Mdp FROM utilisateur WHERE Mail = '$email'";
+$result = $conn->query($sql);
+
+if ($result->num_rows == 1) {
+    $user = $result->fetch_assoc();
     // Vérifier le mot de passe
-    $row = $result->fetch_assoc();
-    if (password_verify($password, $row["Mdp"])) {
-        // Connexion réussie
-        session_start();
-        $_SESSION['user_id'] = $row['Id_User'];
-        $_SESSION['user_name'] = $row['Nom'];
-        // Redirection vers une page sécurisée
-        header("Location: accueil.php");
-        exit();
+    if (password_verify($pwd, $user['Mdp'])) {
+        // Si les informations sont correctes, enregistrer les informations de l'utilisateur dans la session
+        $_SESSION['user_id'] = $user['Id_User'];
+        $_SESSION['user_type'] = $user['Type'];
+        $_SESSION['logged_in'] = true;
+
+        // Redirection vers la page appropriée en fonction du type d'utilisateur
+        switch ($user['Type']) {
+            case 0:
+                header("Location: AdminMenu.html");
+                break;
+            case 1:
+                header("Location: DoctorMenu.html");
+                break;
+            case 2:
+                header("Location: Client.html");
+                break;
+            default:
+                // Par sécurité, rediriger vers une page par défaut ou afficher un message d'erreur
+                header("Location: Acceuil.html");
+                break;
+        }
     } else {
-        // Mot de passe incorrect
+        // Si le mot de passe est incorrect, rediriger vers la page de connexion avec un message d'erreur
+        $_SESSION['login_error'] = "Invalid email or password";
         header("Location: PasConnecte.html");
-        exit();
     }
 } else {
-    // L'utilisateur n'existe pas
+    // Si l'email est incorrect, rediriger vers la page de connexion avec un message d'erreur
+    $_SESSION['login_error'] = "Invalid email or password";
     header("Location: PasConnecte.html");
-    exit();
 }
 
-// Fermer la connexion
 $conn->close();
 ?>
