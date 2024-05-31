@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Medecin>
+    <Nom>Durand</Nom>
+    <Prenom>Paul</Prenom>
+    <Specialite>Andrologie</Specialite>
+    <CV>
+        <Formations>
+            <Formation>
+                <Etablissement>Université de Médecine de Marseille</Etablissement>
+                <Diplome>Doctorat en Médecine</Diplome>
+                <Annee>2006</Annee>
+            </Formation>
+            <Formation>
+                <Etablissement>Centre de Formation Médicale de Nice</Etablissement>
+                <Diplome>Spécialisation en Andrologie</Diplome>
+                <Annee>2008</Annee>
+            </Formation>
+        </Formations>
+        <Experiences>
+            <Experience>
+                <Poste>Médecin Andrologue</Poste>
+                <Lieu>Clinique de Marseille</Lieu>
+                <Duree>2008-2013</Duree>
+                <Description>Consultations et traitements des troubles andrologiques</Description>
+            </Experience>
+            <Experience>
+                <Poste>Médecin Andrologue</Poste>
+                <Lieu>Hôpital de Nice</Lieu>
+                <Duree>2013-Présent</Duree>
+                <Description>Suivi et traitement des patients en andrologie</Description>
+            </Experience>
+        </Experiences>
+        <Publications>
+            <Publication>
+                <Titre>Les avancées en andrologie</Titre>
+                <Journal>Journal d'Andrologie</Journal>
+                <Annee>2015</Annee>
+            </Publication>
+            <Publication>
+                <Titre>Traitement des dysfonctions andrologiques</Titre>
+                <Journal>Revue de Médecine</Journal>
+                <Annee>2018</Annee>
+            </Publication>
+        </Publications>
+        <Distinctions>
+            <Distinction>
+                <Titre>Prix de l'Excellence Andrologique</Titre>
+                <Annee>2021</Annee>
+                <Description>Pour ses contributions exceptionnelles en andrologie</Description>
+            </Distinction>
+        </Distinctions>
+        <Competences>
+            <Competence>Traitement des troubles andrologiques</Competence>
+            <Competence>Consultations spécialisées</Competence>
+            <Competence>Recherche en andrologie</Competence>
+        </Competences>
+        <Langues>
+            <Langue>
+                <Nom>Français</Nom>
+                <Niveau>Courant</Niveau>
+            </Langue>
+            <Langue>
+                <Nom>Espagnol</Nom>
+                <Niveau>Intermédiaire</Niveau>
+            </Langue>
+        </Langues>
+    </CV>
+</Medecin>

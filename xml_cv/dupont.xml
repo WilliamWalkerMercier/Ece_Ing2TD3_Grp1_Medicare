@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Medecin>
+    <Nom>Dupont</Nom>
+    <Prenom>Jean</Prenom>
+    <Specialite>Addictologie</Specialite>
+    <CV>
+        <Formations>
+            <Formation>
+                <Etablissement>Université de Médecine de Paris</Etablissement>
+                <Diplome>Doctorat en Médecine</Diplome>
+                <Annee>2005</Annee>
+            </Formation>
+            <Formation>
+                <Etablissement>Centre de Formation Médicale de Lyon</Etablissement>
+                <Diplome>Spécialisation en Addictologie</Diplome>
+                <Annee>2007</Annee>
+            </Formation>
+        </Formations>
+        <Experiences>
+            <Experience>
+                <Poste>Médecin Addictologue</Poste>
+                <Lieu>Centre Médical de Paris</Lieu>
+                <Duree>2007-2012</Duree>
+                <Description>Traitement et suivi des patients souffrant d'addictions</Description>
+            </Experience>
+            <Experience>
+                <Poste>Médecin Addictologue</Poste>
+                <Lieu>Hôpital Saint-Antoine</Lieu>
+                <Duree>2012-Présent</Duree>
+                <Description>Gestion des consultations spécialisées en addictologie</Description>
+            </Experience>
+        </Experiences>
+        <Publications>
+            <Publication>
+                <Titre>Les nouvelles approches en addictologie</Titre>
+                <Journal>Journal de Médecine</Journal>
+                <Annee>2015</Annee>
+            </Publication>
+            <Publication>
+                <Titre>Prévention des rechutes chez les patients dépendants</Titre>
+                <Journal>Revue Addictologie</Journal>
+                <Annee>2018</Annee>
+            </Publication>
+        </Publications>
+        <Distinctions>
+            <Distinction>
+                <Titre>Prix de l'Innovation Médicale</Titre>
+                <Annee>2020</Annee>
+                <Description>Pour ses travaux sur les thérapies de groupe</Description>
+            </Distinction>
+        </Distinctions>
+        <Competences>
+            <Competence>Traitement des addictions</Competence>
+            <Competence>Thérapies cognitivo-comportementales</Competence>
+            <Competence>Gestion de groupes de parole</Competence>
+        </Competences>
+        <Langues>
+            <Langue>
+                <Nom>Français</Nom>
+                <Niveau>Courant</Niveau>
+            </Langue>
+            <Langue>
+                <Nom>Anglais</Nom>
+                <Niveau>Intermédiaire</Niveau>
+            </Langue>
+        </Langues>
+    </CV>
+</Medecin>

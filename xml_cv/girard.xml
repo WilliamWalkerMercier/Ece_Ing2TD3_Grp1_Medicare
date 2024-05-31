@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Medecin>
+    <Nom>Girard</Nom>
+    <Prenom>Nicolas</Prenom>
+    <Specialite>Cardiologie</Specialite>
+    <CV>
+        <Formations>
+            <Formation>
+                <Etablissement>Université de Médecine de Lyon</Etablissement>
+                <Diplome>Doctorat en Médecine</Diplome>
+                <Annee>2005</Annee>
+            </Formation>
+            <Formation>
+                <Etablissement>Centre de Formation Médicale de Paris</Etablissement>
+                <Diplome>Spécialisation en Cardiologie</Diplome>
+                <Annee>2008</Annee>
+            </Formation>
+        </Formations>
+        <Experiences>
+            <Experience>
+                <Poste>Cardiologue</Poste>
+                <Lieu>Hôpital Bichat, Paris</Lieu>
+                <Duree>2008-2015</Duree>
+                <Description>Consultations spécialisées en cardiologie, interprétation des examens cardiologiques, suivi des patients</Description>
+            </Experience>
+            <Experience>
+                <Poste>Cardiologue Interventionnel</Poste>
+                <Lieu>Clinique Sainte-Cécile, Lyon</Lieu>
+                <Duree>2015-Présent</Duree>
+                <Description>Réalisation d'angioplasties coronariennes, pose de stents, gestion des urgences cardiaques</Description>
+            </Experience>
+        </Experiences>
+        <Publications>
+            <Publication>
+                <Titre>Recent Advances in Interventional Cardiology</Titre>
+                <Journal>Journal of Interventional Cardiology</Journal>
+                <Annee>2012</Annee>
+            </Publication>
+            <Publication>
+                <Titre>Management of Acute Myocardial Infarction</Titre>
+                <Journal>European Heart Journal</Journal>
+                <Annee>2017</Annee>
+            </Publication>
+        </Publications>
+        <Distinctions>
+            <Distinction>
+                <Titre>Prix de la Meilleure Présentation en Cardiologie</Titre>
+                <Annee>2018</Annee>
+                <Description>Récompense pour la présentation des résultats d'une étude clinique lors d'un congrès international</Description>
+            </Distinction>
+        </Distinctions>
+        <Competences>
+            <Competence>Consultation cardiologique</Competence>
+            <Competence>Procédures interventionnelles coronariennes</Competence>
+            <Competence>Gestion des urgences cardiaques</Competence>
+        </Competences>
+        <Langues>
+            <Langue>
+                <Nom>Français</Nom>
+                <Niveau>Courant</Niveau>
+            </Langue>
+            <Langue>
+                <Nom>Anglais</Nom>
+                <Niveau>Avancé</Niveau>
+            </Langue>
+        </Langues>
+    </CV>
+</Medecin>

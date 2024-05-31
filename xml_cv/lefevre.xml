@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Medecin>
+    <Nom>Lefevre</Nom>
+    <Prenom>Marie</Prenom>
+    <Specialite>Addictologie</Specialite>
+    <CV>
+        <Formations>
+            <Formation>
+                <Etablissement>Université de Médecine de Bordeaux</Etablissement>
+                <Diplome>Doctorat en Médecine</Diplome>
+                <Annee>2008</Annee>
+            </Formation>
+            <Formation>
+                <Etablissement>Centre de Formation Médicale de Toulouse</Etablissement>
+                <Diplome>Spécialisation en Addictologie</Diplome>
+                <Annee>2010</Annee>
+            </Formation>
+        </Formations>
+        <Experiences>
+            <Experience>
+                <Poste>Médecin Addictologue</Poste>
+                <Lieu>Hôpital de Bordeaux</Lieu>
+                <Duree>2010-2015</Duree>
+                <Description>Consultations et suivi des patients en sevrage</Description>
+            </Experience>
+            <Experience>
+                <Poste>Médecin Addictologue</Poste>
+                <Lieu>Centre Médical de Toulouse</Lieu>
+                <Duree>2015-Présent</Duree>
+                <Description>Prise en charge des patients souffrant de diverses addictions</Description>
+            </Experience>
+        </Experiences>
+        <Publications>
+            <Publication>
+                <Titre>La prise en charge des addictions</Titre>
+                <Journal>Revue Médicale</Journal>
+                <Annee>2014</Annee>
+            </Publication>
+            <Publication>
+                <Titre>Innovations en addictologie</Titre>
+                <Journal>Journal de la Santé</Journal>
+                <Annee>2017</Annee>
+            </Publication>
+        </Publications>
+        <Distinctions>
+            <Distinction>
+                <Titre>Prix de Recherche en Addictologie</Titre>
+                <Annee>2019</Annee>
+                <Description>Pour ses recherches sur les nouvelles thérapies en addictologie</Description>
+            </Distinction>
+        </Distinctions>
+        <Competences>
+            <Competence>Traitement des dépendances</Competence>
+            <Competence>Approches thérapeutiques variées</Competence>
+            <Competence>Gestion des patients en sevrage</Competence>
+        </Competences>
+        <Langues>
+            <Langue>
+                <Nom>Français</Nom>
+                <Niveau>Courant</Niveau>
+            </Langue>
+            <Langue>
+                <Nom>Anglais</Nom>
+                <Niveau>Avancé</Niveau>
+            </Langue>
+        </Langues>
+    </CV>
+</Medecin>
