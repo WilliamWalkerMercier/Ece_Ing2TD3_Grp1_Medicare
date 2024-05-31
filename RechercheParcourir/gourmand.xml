@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Medecin>
+    <Nom>Schtroumpf</Nom>
+    <Prenom>Gourmand</Prenom>
+    <Specialite>Généraliste</Specialite>
+    <CV>
+        <Formations>
+            <Formation>
+                <Etablissement>Université de Médecine de Strasbourg</Etablissement>
+                <Diplome>Doctorat en Médecine</Diplome>
+                <Annee>2012</Annee>
+            </Formation>
+            <Formation>
+                <Etablissement>Centre de Formation Médicale de Lille</Etablissement>
+                <Diplome>Spécialisation en Médecine Générale</Diplome>
+                <Annee>2014</Annee>
+            </Formation>
+        </Formations>
+        <Experiences>
+            <Experience>
+                <Poste>Médecin Généraliste</Poste>
+                <Lieu>Cabinet Médical de Villers</Lieu>
+                <Duree>2014-2018</Duree>
+                <Description>Consultations de médecine générale, suivi des patients, diagnostics et traitements</Description>
+            </Experience>
+            <Experience>
+                <Poste>Médecin Généraliste</Poste>
+                <Lieu>Centre Médical de Schtroumpfville</Lieu>
+                <Duree>2018-Présent</Duree>
+                <Description>Soins primaires, gestion des urgences mineures, et coordination avec des spécialistes</Description>
+            </Experience>
+        </Experiences>
+        <Publications>
+            <Publication>
+                <Titre>La prévention des maladies chroniques en médecine générale</Titre>
+                <Journal>Revue de Médecine Générale</Journal>
+                <Annee>2016</Annee>
+            </Publication>
+            <Publication>
+                <Titre>Gestion des maladies infectieuses en milieu rural</Titre>
+                <Journal>Journal de la Médecine Rurale</Journal>
+                <Annee>2019</Annee>
+            </Publication>
+        </Publications>
+        <Distinctions>
+            <Distinction>
+                <Titre>Prix d'Excellence Médicale</Titre>
+                <Annee>2021</Annee>
+                <Description>Pour ses contributions exceptionnelles à la médecine générale en milieu rural</Description>
+            </Distinction>
+        </Distinctions>
+        <Competences>
+            <Competence>Diagnostic et traitement des maladies courantes</Competence>
+            <Competence>Soins préventifs</Competence>
+            <Competence>Gestion des urgences mineures</Competence>
+        </Competences>
+        <Langues>
+            <Langue>
+                <Nom>Français</Nom>
+                <Niveau>Courant</Niveau>
+            </Langue>
+            <Langue>
+                <Nom>Anglais</Nom>
+                <Niveau>Intermédiaire</Niveau>
+            </Langue>
+        </Langues>
+    </CV>
+</Medecin>

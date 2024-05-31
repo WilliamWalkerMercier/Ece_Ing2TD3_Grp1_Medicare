@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Medecin>
+    <Nom>Kouy</Nom>
+    <Prenom>Jonathan</Prenom>
+    <Specialite>Orthopédie</Specialite>
+    <CV>
+        <Formations>
+            <Formation>
+                <Etablissement>Université de Médecine de Marseille</Etablissement>
+                <Diplome>Doctorat en Médecine</Diplome>
+                <Annee>2010</Annee>
+            </Formation>
+            <Formation>
+                <Etablissement>Centre Hospitalier Universitaire de Lyon</Etablissement>
+                <Diplome>Spécialisation en Orthopédie</Diplome>
+                <Annee>2013</Annee>
+            </Formation>
+        </Formations>
+        <Experiences>
+            <Experience>
+                <Poste>Orthopédiste</Poste>
+                <Lieu>Hôpital de la Timone, Marseille</Lieu>
+                <Duree>2013-2017</Duree>
+                <Description>Consultations spécialisées en orthopédie, interventions chirurgicales, suivi post-opératoire</Description>
+            </Experience>
+            <Experience>
+                <Poste>Orthopédiste Chef de Service</Poste>
+                <Lieu>Centre Hospitalier Universitaire de Lyon</Lieu>
+                <Duree>2017-Présent</Duree>
+                <Description>Direction d'une équipe médicale, planification des interventions, recherche clinique</Description>
+            </Experience>
+        </Experiences>
+        <Publications>
+            <Publication>
+                <Titre>Advances in Orthopedic Surgery Techniques</Titre>
+                <Journal>Journal of Orthopedic Research</Journal>
+                <Annee>2015</Annee>
+            </Publication>
+            <Publication>
+                <Titre>Management of Sports Injuries in Orthopedics</Titre>
+                <Journal>Sports Medicine and Arthroscopy Review</Journal>
+                <Annee>2019</Annee>
+            </Publication>
+        </Publications>
+        <Distinctions>
+            <Distinction>
+                <Titre>Prix du Meilleur Jeune Orthopédiste</Titre>
+                <Annee>2018</Annee>
+                <Description>Récompense pour les contributions remarquables à la recherche et à la pratique orthopédique</Description>
+            </Distinction>
+        </Distinctions>
+        <Competences>
+            <Competence>Chirurgie orthopédique</Competence>
+            <Competence>Consultation spécialisée en orthopédie</Competence>
+            <Competence>Recherche clinique</Competence>
+        </Competences>
+        <Langues>
+            <Langue>
+                <Nom>Français</Nom>
+                <Niveau>Courant</Niveau>
+            </Langue>
+            <Langue>
+                <Nom>Anglais</Nom>
+                <Niveau>Avancé</Niveau>
+            </Langue>
+        </Langues>
+    </CV>
+</Medecin>

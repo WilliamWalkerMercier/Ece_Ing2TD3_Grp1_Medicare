@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Medecin>
+    <Nom>Lemoine</Nom>
+    <Prenom>Sophie</Prenom>
+    <Specialite>Andrologie</Specialite>
+    <CV>
+        <Formations>
+            <Formation>
+                <Etablissement>Université de Médecine de Lyon</Etablissement>
+                <Diplome>Doctorat en Médecine</Diplome>
+                <Annee>2007</Annee>
+            </Formation>
+            <Formation>
+                <Etablissement>Centre de Formation Médicale de Grenoble</Etablissement>
+                <Diplome>Spécialisation en Andrologie</Diplome>
+                <Annee>2009</Annee>
+            </Formation>
+        </Formations>
+        <Experiences>
+            <Experience>
+                <Poste>Médecin Andrologue</Poste>
+                <Lieu>Hôpital de Lyon</Lieu>
+                <Duree>2009-2014</Duree>
+                <Description>Consultations et traitements des troubles andrologiques</Description>
+            </Experience>
+            <Experience>
+                <Poste>Médecin Andrologue</Poste>
+                <Lieu>Centre Médical de Grenoble</Lieu>
+                <Duree>2014-Présent</Duree>
+                <Description>Suivi et traitement des patients en andrologie</Description>
+            </Experience>
+        </Experiences>
+        <Publications>
+            <Publication>
+                <Titre>Approches modernes en andrologie</Titre>
+                <Journal>Journal d'Andrologie</Journal>
+                <Annee>2013</Annee>
+            </Publication>
+            <Publication>
+                <Titre>Recherche sur les traitements de l'infertilité masculine</Titre>
+                <Journal>Revue de Médecine</Journal>
+                <Annee>2016</Annee>
+            </Publication>
+        </Publications>
+        <Distinctions>
+            <Distinction>
+                <Titre>Prix de l'Excellence Médicale</Titre>
+                <Annee>2020</Annee>
+                <Description>Pour ses travaux innovants en andrologie</Description>
+            </Distinction>
+        </Distinctions>
+        <Competences>
+            <Competence>Diagnostic et traitement des troubles andrologiques</Competence>
+            <Competence>Consultations spécialisées</Competence>
+            <Competence>Recherche en andrologie</Competence>
+        </Competences>
+        <Langues>
+            <Langue>
+                <Nom>Français</Nom>
+                <Niveau>Courant</Niveau>
+            </Langue>
+            <Langue>
+                <Nom>Anglais</Nom>
+                <Niveau>Avancé</Niveau>
+            </Langue>
+        </Langues>
+    </CV>
+</Medecin>

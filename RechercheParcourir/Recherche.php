@@ -148,7 +148,10 @@ function AfficherDetails($idMedecin)
                                             <button type="submit" class="appointment-button">Prendre un RDV</button>
                                         </form>
                                         <button class="contact-button">Communiquer</button>
-                                        <button class="cv-button">Voir le CV</button>
+                                        <form action="AfficheCv.php" method="get">
+                                            <input type="hidden" name="medecin_id" value="<?php echo $row['Id']; ?>">
+                                            <button type="submit" class="appointment-button">Voir le CV</button>
+                                        </form>
                                     </div>
                                 </div>
                             </section>
