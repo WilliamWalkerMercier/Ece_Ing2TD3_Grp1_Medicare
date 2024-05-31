@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 
 // Obtenir tous les utilisateurs et toutes les informations liées aux utilisateurs
-$sql = "SELECT U.*, M.Specialite, M.CV, M.Disponibilite, M.Bureau, M.Photo, M.Photo2, M.Photo3, M.video
+$sql = "SELECT U.*, M.Specialite, M.CV, M.Disponibilite, M.Bureau, M.Photo, M.Photo2, M.Photo3, M.Video
         FROM Utilisateur U 
         LEFT JOIN Medecin M ON U.Id_User = M.Id_Medecin";
 $result = $conn->query($sql);
@@ -48,7 +48,7 @@ $result = $conn->query($sql);
             let currentPhotoIndex = parseInt(event.target.dataset.currentIndex, 10);//Recupère l'index de la photo affichée
             currentPhotoIndex = (currentPhotoIndex + 1) % photos.length;//Remet à 0 l'index si il dépasse le nombre d'image
             event.target.src = photos[currentPhotoIndex];//Change la source de la balise tag
-            event.target.dataset.currentIndex = currentPhotoIndex;//Remet à jour l'indice de la photo
+            event.target.dataset.currentIndex = currentPhotoIndex.toString();//Remet à jour l'indice de la photo
         }
     </script>
 </head>
@@ -75,7 +75,7 @@ $result = $conn->query($sql);
              * https://www.w3schools.com/php/func_string_htmlspecialchars.asp
              */
             $vPhotos = array_filter([$vPhoto, $vPhoto2, $vPhoto3]); // Contient uniquement les valeurs non nulles
-            $vPhotosJavascript = implode(',', array_map(function($p) { return htmlspecialchars($p); }, $vPhotos));//Parcourt toute la liste et convertit les charactères spéciaux en html car
+            $vPhotosJavascript = implode(',', array_map(function ($p) {return htmlspecialchars($p);}, $vPhotos));//Parcourt toute la liste et convertit les charactères spéciaux en html car
             $vDisponibilite = isset($row['Disponibilite']) && strlen($row['Disponibilite']) == 12 ? str_split($row['Disponibilite']) : array_fill(0, 12, '0');//Vérifie que la chaine de disponibilité fait bien 12 caractères et l'initialise à 0
 
             echo "<div class='DoctorElement'>";
@@ -83,7 +83,7 @@ $result = $conn->query($sql);
              * https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dataset
              * https://www.w3schools.com/tags/att_data-.asp
              * */
-            echo "<img src='$vPhoto' alt='Photo de {$row['Nom']} {$row['Prenom']}' class='DoctorPicture' data-photos='$vPhotosJavascript' data-currentindex='0' onclick='changePhoto(event)'>";
+            echo "<img src='$vPhoto' alt='Photo de {$row['Nom']} {$row['Prenom']}' class='DoctorPicture' data-photos='$vPhotosJavascript' data-current-index='0' onclick='changePhoto(event)'>";
             echo "<div class='DoctorInfo'>";
             echo "<h2>$vTitle{$row['Prenom']} {$row['Nom']}</h2>";
             echo "<p><strong>ID:</strong> {$row['Id_User']}</p>";
