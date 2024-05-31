@@ -1,44 +1,28 @@
 <?php
-// Configurer la connexion à la base de données
+// Connexion à la base de données
 $servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "medicare";
 
-// Création de la connexion
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-// Vérification de la connexion
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Spécialité à exclure
-$specialite = "Generaliste";
+$specialite = "I.S.T.";
 
-// Requête SQL pour récupérer les informations des médecins qui ne sont pas généralistes
-$sql = "SELECT medecin.*, utilisateur.Nom, utilisateur.Prenom, utilisateur.Mail, utilisateur.Telephone 
-        FROM medecin 
+$sql = "SELECT medecin.*, utilisateur.Nom, utilisateur.Prenom, utilisateur.Mail, utilisateur.Telephone FROM medecin 
         JOIN utilisateur ON medecin.Id_Medecin = utilisateur.Id_User
-        WHERE medecin.Specialite != ?";
-
-// Préparation de la requête
+        WHERE Specialite = ?";
 $stmt = $conn->prepare($sql);
-if (!$stmt) {
-    die("Erreur lors de la préparation de la requête : " . $conn->error);
-}
-
-// Lier les paramètres
 $stmt->bind_param("s", $specialite);
-
-// Exécution de la requête
 $stmt->execute();
-
-// Récupération des résultats
 $result = $stmt->get_result();
-if (!$result) {
-    die("Erreur lors de la récupération des résultats : " . $stmt->error);
-}
+
+$stmt->close();
+$conn->close();
 
 function AfficherDetails($idMedecin)
 {
@@ -70,6 +54,7 @@ function AfficherDetails($idMedecin)
         }
     }
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -77,16 +62,17 @@ function AfficherDetails($idMedecin)
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Specialiste</title>
+    <title>Laboratoire</title>
     <link rel="stylesheet" href="../HeaderFooter.css">
-    <link rel="stylesheet" href="Specialiste.css">
+    <link rel="stylesheet" href="ToutParcourir.css">
     <link rel="icon" href="../Acceuil/imageAcceuil/LogoMedicare.ico">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="CarteMed.css">
+    <link rel="stylesheet" href="Specialiste.css">
 </head>
 <body>
 <section class="Specialiste">
-    <h1>Médecins Spécialistes</h1>
+    <h1>I.S.T</h1>
 </section>
 <header>
     <div class="logo">
@@ -154,7 +140,7 @@ function AfficherDetails($idMedecin)
                     <span class="lien">Gynécologie</span>
                 </a>
             </li>
-            <li class="MenuBarElement">
+            <li class="MenuBarElement active2">
                 <a href="IST.php">
                     <i class='bx bxs-virus'></i>
                     <span class="lien">I.S.T</span>
@@ -241,9 +227,3 @@ function AfficherDetails($idMedecin)
 <script src="Specialiste.js"></script>
 </body>
 </html>
-
-<?php
-// Fermer la connexion
-$stmt->close();
-$conn->close();
-?>

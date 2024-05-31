@@ -33,6 +33,38 @@ $stmt->bind_param('s', $specialite);
 // Exécuter la requête
 $stmt->execute();
 $result = $stmt->get_result();
+
+function AfficherDetails($idMedecin)
+{
+    $db_handle = mysqli_connect('localhost', 'root', '');
+    $db_found = mysqli_select_db($db_handle, 'medicare');
+
+    $retourRequete = mysqli_query($db_handle, "SELECT * FROM Utilisateur U LEFT JOIN Medecin M ON U.Id_User = M.Id_Medecin WHERE U.Id_User = '$idMedecin'");
+    $resultat = mysqli_fetch_assoc($retourRequete);
+
+    if (!$resultat) {
+        echo "Aucune disponibilité trouvée pour ce médecin.";
+        return;
+    }
+
+    $moments = array("Matin", "Après-midi");
+    $jours = array("Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi");
+    $nbMoment = 0;
+
+    foreach ($jours as $jour) {
+        echo("<div class='day'>" . $jour . "</div>");
+        foreach ($moments as $moment) {
+            if (!isset($resultat["Disponibilite"][$nbMoment]) || !$resultat["Disponibilite"][$nbMoment]) {
+                /* on vérifie si la clé est définie et si la valeur est vraie avant d'afficher */
+                echo("<div class='slot unavailable'>Non disponible</div>");
+            } else {
+                echo("<div class='slot'>" . $moment . "</div>");
+            }
+            $nbMoment++;
+        }
+    }
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -90,21 +122,7 @@ $result = $stmt->get_result();
                             <p><strong>Email :</strong> <?php echo htmlspecialchars($row['Mail']); ?></p>
                             <h3>Disponibilités</h3>
                             <div class="availability-calendar">
-                                <div class="day">Lundi</div>
-                                <div class="slot">Matin</div>
-                                <div class="slot">Après-midi</div>
-                                <div class="day">Mardi</div>
-                                <div class="slot">Non disponible</div>
-                                <div class="slot">Après-midi</div>
-                                <div class="day">Mercredi</div>
-                                <div class="slot">Matin</div>
-                                <div class="slot">Non disponible</div>
-                                <div class="day">Jeudi</div>
-                                <div class="slot">Matin</div>
-                                <div class="slot">Non disponible</div>
-                                <div class="day">Vendredi</div>
-                                <div class="slot">Matin</div>
-                                <div class="slot">Après-midi</div>
+                                <?php AfficherDetails($row['Id_Medecin']); ?>
                             </div>
                             <div class="doctor-actions">
                                 <form action="PrendreRDV.php" method="get">

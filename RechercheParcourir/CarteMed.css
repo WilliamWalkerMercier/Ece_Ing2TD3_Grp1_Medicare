@@ -2,7 +2,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
-    justify-content: space-around;
+        justify-content: space-around;
 }
 
 .doctor-details,
@@ -68,7 +68,7 @@
 .doctor-actions, .Service-actions, .laboratoire-actions{
     margin-top: 20px;
     display: flex;
-    gap: 10px;
+    gap: 20px;
     justify-content: center;
 }
 

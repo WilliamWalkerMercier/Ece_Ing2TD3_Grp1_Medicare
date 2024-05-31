@@ -24,22 +24,48 @@ $query = strtolower($query);
 
 // Requête SQL pour rechercher dans les tables Utilisateur, Medecin, ServiceLab et Laboratoire
 $sql = "
-    SELECT 'Medecin' AS Type, u.Id_User AS Id, u.Nom, u.Prenom, u.Telephone, u.Mail, m.Specialite, m.Bureau AS Description, m.Photo, NULL AS Salle, NULL AS Adresse
+    SELECT 'Medecin' AS Type, u.Id_User AS Id, u.Nom, u.Prenom, u.Telephone, u.Mail, m.Specialite, m.Bureau, m.Photo, NULL AS Salle, NULL AS Adresse, m.Disponibilite AS Disponibilite 
     FROM Utilisateur u 
     JOIN Medecin m ON u.Id_User = m.Id_Medecin 
     WHERE LOWER(u.Nom) LIKE '%$query%' OR LOWER(u.Prenom) LIKE '%$query%' OR LOWER(m.Specialite) LIKE '%$query%'
     UNION
-    SELECT 'Service' AS Type, s.Nom_Service AS Id, s.Nom_Service AS Nom, NULL AS Prenom, NULL AS Telephone, NULL AS Mail, s.Nom_Service AS Specialite, s.Description_Service AS Description, s.Photo, NULL AS Salle, NULL AS Adresse
+    SELECT 'Service' AS Type, s.Nom_Service AS Id, NULL AS Nom, NULL AS Prenom, NULL AS Telephone, NULL AS Mail, s.Nom_Service AS Specialite, s.Description_Service AS Bureau, s.Photo, NULL AS Salle, NULL AS Adresse, NULL AS Disponibilite 
     FROM ServiceLab s
     WHERE LOWER(s.Nom_Service) LIKE '%$query%'
     UNION
-    SELECT 'Laboratoire' AS Type, l.Id_Lab AS Id, l.Nom, NULL AS Prenom, l.Telephone AS Telephone, l.Email AS Mail, l.Nom AS Specialite, NULL AS Description, l.Photo, l.Salle, l.Adresse
+    SELECT 'Laboratoire' AS Type, l.Id_Lab AS Id, l.Nom, NULL AS Prenom, l.Telephone AS Telephone, l.Email AS Mail, l.Nom AS Specialite, NULL AS Bureau, l.Photo, l.Salle, l.Adresse, NULL AS Disponibilite 
     FROM Laboratoire l
     WHERE LOWER(l.Nom) LIKE '%$query%' OR LOWER(l.Adresse) LIKE '%$query%'
 ";
 
 // Exécuter la requête
 $result = $conn->query($sql);
+
+function AfficherDetails($idMedecin)
+{
+    $db_handle = mysqli_connect('localhost', 'root', '');
+    $db_found = mysqli_select_db($db_handle, 'medicare');
+
+    $retourRequete = mysqli_query($db_handle, "SELECT * FROM Utilisateur U LEFT JOIN Medecin M ON U.Id_User = M.Id_Medecin WHERE U.Id_User = '$idMedecin'");
+    $resultat = mysqli_fetch_assoc($retourRequete);
+
+    $moments = array("Matin", "Après-midi");
+    $jours = array("Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi");
+    $nbMoment = 0;
+
+    foreach ($jours as $jour) {
+        echo("<div class='day'>" . $jour . "</div>");
+        foreach ($moments as $moment) {
+            if (!($resultat["Disponibilite"][$nbMoment])) {/*on parcourt les disponibilités du médecin pour savoir quoi afficher*/
+                echo("<div class='slot unavailable'>Non disponible</div>");
+            } else {
+                echo("<div class='slot'>" . $moment . "</div>");
+            }
+            $nbMoment++;
+        }
+
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -104,29 +130,17 @@ $result = $conn->query($sql);
                                      class="doctor-photo">
                                 <div class="doctor-info">
                                     <h2><?php echo htmlspecialchars($row['Nom'] . " " . $row['Prenom']); ?></h2>
-                                    <p><strong>Spécialité :</strong> <?php echo htmlspecialchars($row['Specialite']); ?></p>
+                                    <p><strong>Spécialité :</strong> <?php echo htmlspecialchars($row['Specialite']); ?>
+                                    </p>
                                     <?php if (isset($row['Bureau'])): ?>
                                         <p><strong>Bureau :</strong> <?php echo htmlspecialchars($row['Bureau']); ?></p>
                                     <?php endif; ?>
-                                    <p><strong>Téléphone :</strong> <?php echo htmlspecialchars($row['Telephone']); ?></p>
+                                    <p><strong>Téléphone :</strong> <?php echo htmlspecialchars($row['Telephone']); ?>
+                                    </p>
                                     <p><strong>Email :</strong> <?php echo htmlspecialchars($row['Mail']); ?></p>
                                     <h3>Disponibilités</h3>
                                     <div class="availability-calendar">
-                                        <div class="day">Lundi</div>
-                                        <div class="slot">Matin</div>
-                                        <div class="slot">Après-midi</div>
-                                        <div class="day">Mardi</div>
-                                        <div class="slot">Non disponible</div>
-                                        <div class="slot">Après-midi</div>
-                                        <div class="day">Mercredi</div>
-                                        <div class="slot">Matin</div>
-                                        <div class="slot">Non disponible</div>
-                                        <div class="day">Jeudi</div>
-                                        <div class="slot">Matin</div>
-                                        <div class="slot">Non disponible</div>
-                                        <div class="day">Vendredi</div>
-                                        <div class="slot">Matin</div>
-                                        <div class="slot">Après-midi</div>
+                                        <?php AfficherDetails($row['Id']); ?>
                                     </div>
                                     <div class="doctor-actions">
                                         <form action="PrendreRDV.php" method="get">
@@ -144,7 +158,8 @@ $result = $conn->query($sql);
                                      class="service-photo">
                                 <div class="service-info">
                                     <h2><?php echo htmlspecialchars($row['Nom']); ?></h2>
-                                    <p><strong>Description :</strong> <?php echo htmlspecialchars($row['Description']); ?></p>
+                                    <p><strong>Description
+                                            :</strong> <?php echo htmlspecialchars($row['Bureau']); ?></p>
                                     <div class="laboratoire-actions">
                                         <form action="PrendreRDVservice.php" method="get">
                                             <input type="hidden" name="Nom_Service" value="<?php echo $row['Nom'] ?>">
@@ -155,17 +170,21 @@ $result = $conn->query($sql);
                             </section>
                         <?php elseif ($row['Type'] == 'Laboratoire'): ?>
                             <section class="laboratoire-details">
-                                <img src="<?php echo htmlspecialchars($row['Photo']); ?>" alt="Photo du médecin" class="laboratoire-photo">
+                                <img src="<?php echo htmlspecialchars($row['Photo']); ?>" alt="Photo du médecin"
+                                     class="laboratoire-photo">
                                 <div class="laboratoire-info">
-                                    <h2><?php echo htmlspecialchars($row['Specialite']); ?></h2>
                                     <?php if (!empty($row['Salle'])): ?>
                                         <p><strong>Salle :</strong> <?php echo htmlspecialchars($row['Salle']); ?></p>
                                     <?php endif; ?>
                                     <?php if (!empty($row['Adresse'])): ?>
                                         <p><strong>Adresse :</strong> <?php echo htmlspecialchars($row['Adresse']); ?></p>
                                     <?php endif; ?>
-                                    <p><strong>Téléphone :</strong> <?php echo htmlspecialchars($row['Telephone']); ?></p>
-                                    <p><strong>Email :</strong> <?php echo htmlspecialchars($row['Mail']); ?></p>
+                                    <?php if (!empty($row['Telephone'])): ?>
+                                        <p><strong>Téléphone :</strong> <?php echo htmlspecialchars($row['Telephone']); ?></p>
+                                    <?php endif; ?>
+                                    <?php if (!empty($row['Mail'])): ?>
+                                        <p><strong>Email :</strong> <?php echo htmlspecialchars($row['Mail']); ?></p>
+                                    <?php endif; ?>
                                     <div class="laboratoire-actions">
                                         <form action="NosServices.php" method="get">
                                             <button class="laboratoire-button">Nos Services</button>
