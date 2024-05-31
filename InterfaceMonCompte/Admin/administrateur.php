@@ -31,7 +31,18 @@ $sql = "SELECT U.*, M.Specialite, M.CV, M.Disponibilite, M.Bureau, M.Photo, M.Ph
         FROM Utilisateur U 
         LEFT JOIN Medecin M ON U.Id_User = M.Id_Medecin";
 $result = $conn->query($sql);
+
+
+/*
+    Chemin d'accès pour les photos à changer pour mettre tout au même endroit (à voir plus tard)
+
+
+
+*/
 ?>
+
+
+/* */
 
 <!DOCTYPE html>
 <html lang="fr">
