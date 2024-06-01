@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $field = $conn->real_escape_string($_POST['Field']);
     $city = $conn->real_escape_string($_POST['City']);
 
-// Disponibilité
+    // Disponibilité
     $disponibilite = str_repeat('0', 12);
     if (isset($_POST['availability']) && is_array($_POST['availability'])) {
         foreach ($_POST['availability'] as $index => $value) {
@@ -30,23 +30,32 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     }
 
-// Téléchargement des fichiers
+    // Téléchargement des fichiers
     $upload_dir = "images/";
-    $upload_dir2 = "../../RechercheParcourir/";
+    $upload_dir2 = "../../RechercheParcourir/images/";
+    $upload_dirCV = "../../RechercheParcourir/";
     if (!is_dir($upload_dir)) {
        mkdir($upload_dir, 0777, true);
     }
+    if (!is_dir($upload_dir2)) {
+        mkdir($upload_dir2, 0777, true);
+    }
 
     $files = ['Picture1', 'Picture2', 'Picture3'];
-    $vXML=['CV'];
+    $vXML = ['CV'];
     $file_paths = [];
 
     foreach ($files as $file) {
         if (isset($_FILES[$file]) && $_FILES[$file]['error'] == 0) {
             $file_name = basename($_FILES[$file]['name']);
             $target_file = $upload_dir . $file_name;
+            $second_target_file = $upload_dir2 . $file_name; // Chemin pour le deuxième répertoire
+
+            // Déplacer le fichier vers le premier répertoire
             if (move_uploaded_file($_FILES[$file]['tmp_name'], $target_file)) {
-                $file_paths[$file] = $target_file;
+                // Copier le fichier vers le deuxième répertoire
+                copy($target_file, $second_target_file);
+                $file_paths[$file] = $target_file; // Stocker le chemin du premier répertoire
             } else {
                 echo "Échec du téléchargement de $file_name.<br>";
             }
@@ -54,12 +63,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             echo "Aucun fichier $file téléchargé ou une erreur est survenue.<br>";
         }
     }
+
     foreach ($vXML as $prFile) {
         if (isset($_FILES[$prFile]) && $_FILES[$prFile]['error'] == 0) {
             $file_name = basename($_FILES[$prFile]['name']);
-            $target_file = $upload_dir2 . $file_name;
+            $target_file = $upload_dirCV . $file_name;
             if (move_uploaded_file($_FILES[$prFile]['tmp_name'], $target_file)) {
-                $file_paths[$prFile] = $target_file;
+                $file_paths[$prFile] = $file_name;
             } else {
                 echo "Échec du téléchargement de $file_name.<br>";
             }
@@ -67,22 +77,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             echo "Aucun fichier $file téléchargé ou une erreur est survenue.<br>";
         }
     }
+    $YoutubeLink = isset($_POST['Video']) ? $_POST['Video'] : '';
 
     $photo1 = isset($file_paths['Picture1']) ? $file_paths['Picture1'] : '';
     $photo2 = isset($file_paths['Picture2']) ? $file_paths['Picture2'] : '';
     $photo3 = isset($file_paths['Picture3']) ? $file_paths['Picture3'] : '';
     $cv = isset($file_paths['CV']) ? $file_paths['CV'] : '';
 
-    // Traitement du lien YouTube
-    $YoutubeLink = isset($_POST['Video']) ? $_POST['Video'] : '';
-    if (filter_var($YoutubeLink, FILTER_VALIDATE_URL) && preg_match('/^https:\/\/www\.youtube\.com\/watch\?v=[\w-]+$/', $YoutubeLink)) {
-        echo "Lien YouTube valide : $YoutubeLink<br>";
-    } else {
-        echo "Lien YouTube invalide.<br>";
-    }
-
-// Ajouter le médecin à la table Medecin
-    $sql2 = "INSERT INTO Medecin (Id_Medecin,Specialite, CV, Disponibilite, Bureau, Photo, Photo2, Photo3,VIDEO) VALUES ('$id','$field', '$cv', '$disponibilite', '$city', '$photo1', '$photo2', '$photo3','$YoutubeLink')";
+    // Ajouter le médecin à la table Medecin
+    $sql2 = "INSERT INTO Medecin (Id_Medecin, Specialite, CV, Disponibilite, Bureau, Photo, Photo2, Photo3, VIDEO) VALUES ('$id', '$field', '$cv', '$disponibilite', '$city', '$photo1', '$photo2', '$photo3', '$YoutubeLink')";
 
     $conn->query("UPDATE Utilisateur SET Type = 1 WHERE Id_User = $id");
 
@@ -92,7 +95,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         echo "Erreur : " . $sql2 . "<br>" . $conn->error;
     }
 
-// Rediriger vers la page des utilisateurs après l'ajout
+    // Rediriger vers la page des utilisateurs après l'ajout
     header("Location: administrateur.php"); // Utilisez le chemin relatif correct
     exit();
 }

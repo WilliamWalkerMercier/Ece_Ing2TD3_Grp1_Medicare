@@ -1,5 +1,4 @@
 <?php
-session_start();
 include '../MonCompte/VerifConnection.php';
 checkUserLoggedIn(); // Vérifie si l'utilisateur est connecté
 checkPermission(2);

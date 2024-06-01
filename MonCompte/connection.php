@@ -41,7 +41,7 @@ if ($result->num_rows == 1) {
                 header("Location: Admin/AdminMenu.php");
                 break;
             case 1:
-                header("Location: Doctor/DoctorMenu.html");
+                header("Location: Medecin/DoctorMenu.php");
                 break;
             case 2:
                 header("Location: Client/ClientMenu.php");

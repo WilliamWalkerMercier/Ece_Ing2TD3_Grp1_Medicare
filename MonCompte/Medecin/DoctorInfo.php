@@ -1,4 +1,6 @@
 <?php
+
+session_start();
 // Configurer la connexion à la base de données
 $servername = "localhost";
 $username = "root";
@@ -211,19 +213,37 @@ $conn->close();
         <h2>Informations supplémentaires</h2>
         <div class="FormElement">
             <label for="Picture1">Photo1:</label>
-            <img class="PreviewImg" id="preview1" src="" alt="Image Preview">
+            <?php
+            $vCheminOrigine=$doctor['Photo'];
+            $vCheminDur='../images';
+            $vNomFichier=basename($vCheminOrigine);
+            $vCheminFinal=$vCheminDur.$vNomFichier
+            ?>
+            <img class="PreviewImg" id="preview1" src="<?php echo $vCheminFinal ?>" alt="Image Preview">
         </div>
         <div class="FormElement">
             <label for="Picture2">Photo2:</label>
-            <img class="PreviewImg" id="preview2" src="" alt="Image Preview">
+            <?php
+            $vCheminOrigine=$doctor['Photo'];
+            $vCheminDur='../images';
+            $vNomFichier=basename($vCheminOrigine);
+            $vCheminFinal=$vCheminDur.$vNomFichier
+            ?>
+            <img class="PreviewImg" id="preview2" src="<?php echo $vCheminFinal ?>" alt="Image Preview">
         </div>
         <div class="FormElement">
+            <?php
+            $vCheminOrigine=$doctor['Photo'];
+            $vCheminDur='../images';
+            $vNomFichier=basename($vCheminOrigine);
+            $vCheminFinal=$vCheminDur.$vNomFichier
+            ?>
             <label for="Picture3">Photo3:</label>
-            <img class="PreviewImg" id="preview3" src="" alt="Image Preview">
+            <img class="PreviewImg" id="preview3" src="<?php echo $vCheminFinal ?>" alt="Image Preview">
         </div>
         <div class="FormElement">
             <label for="Video">Vidéo YouTube:</label>
-            <iframe class="PreviewVideo" id="youtubePreview" src="" allowfullscreen></iframe>
+            <iframe class="PreviewVideo" id="youtubePreview" src="<?php echo $doctor['Video']; ?>" allowfullscreen></iframe>
         </div>
         <div class="FormElement">
             <label for="CV">CV</label>
