@@ -7,7 +7,7 @@ if ($_SESSION['user_type'] == 0) {
         exit;
     }
 if ($_SESSION['user_type'] == 1) {
-    header("Location: Medecin/DoctorMenu.html");
+    header("Location: Medecin/DoctorMenu.php");
     exit;
 }
 if ($_SESSION['user_type'] == 2) {

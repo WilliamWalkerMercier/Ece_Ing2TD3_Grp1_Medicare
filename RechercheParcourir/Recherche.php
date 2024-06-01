@@ -32,7 +32,7 @@ $sql = "
     JOIN Medecin m ON u.Id_User = m.Id_Medecin 
     WHERE LOWER(u.Nom) LIKE '%$query%' OR LOWER(u.Prenom) LIKE '%$query%' OR LOWER(m.Specialite) LIKE '%$query%'
     UNION
-    SELECT 'Service' AS Type, s.Nom_Service AS Id, NULL AS Nom, NULL AS Prenom, NULL AS Telephone, NULL AS Mail, s.Nom_Service AS Specialite, s.Description_Service AS Bureau, s.Photo, NULL AS Salle, NULL AS Adresse, NULL AS Disponibilite 
+    SELECT 'Service' AS Type, s.Nom_Service AS Id, NULL AS Nom, NULL AS Prenom, NULL AS Telephone, NULL AS Mail, s.Nom_Service AS Specialite, s.Description_Service AS Bureau, s.Photo, NULL AS Salle, NULL AS Adresse, NULL AS Disponibilite
     FROM ServiceLab s
     WHERE LOWER(s.Nom_Service) LIKE '%$query%'
     UNION
@@ -69,6 +69,7 @@ function AfficherDetails($idMedecin)
 
     }
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -120,108 +121,180 @@ function AfficherDetails($idMedecin)
         <a href="#"><img src="../Acceuil/imageAccueil/MonCompte.png" alt="Compte Logo"></a>
     </div>
 </header>
-<section class="RechercheResultats">
-    <div>
-        <?php if ($query): ?>
-            <h1>Résultats de la recherche pour '<?php echo htmlspecialchars($query); ?>':</h1>
-            <div class="cartes">
-                <?php if ($result->num_rows > 0): ?>
-                    <?php while ($row = $result->fetch_assoc()): ?>
-                        <?php if ($row['Type'] == 'Medecin'): ?>
-                            <section class="doctor-details">
-                                <img src="<?php echo htmlspecialchars($row['Photo']); ?>" alt="Photo du médecin"
-                                     class="doctor-photo">
-                                <div class="doctor-info">
-                                    <h2><?php echo htmlspecialchars($row['Nom'] . " " . $row['Prenom']); ?></h2>
-                                    <p><strong>Spécialité :</strong> <?php echo htmlspecialchars($row['Specialite']); ?>
-                                    </p>
-                                    <?php if (isset($row['Bureau'])): ?>
-                                        <p><strong>Bureau :</strong> <?php echo htmlspecialchars($row['Bureau']); ?></p>
-                                    <?php endif; ?>
-                                    <p><strong>Téléphone :</strong> <?php echo htmlspecialchars($row['Telephone']); ?>
-                                    </p>
-                                    <p><strong>Email :</strong> <?php echo htmlspecialchars($row['Mail']); ?></p>
-                                    <h3>Disponibilités</h3>
-                                    <div class="availability-calendar">
-                                        <?php AfficherDetails($row['Id']); ?>
-                                    </div>
-                                    <div class="doctor-actions">
-                                        <?php
-                                        if (isset($_SESSION['LogedIn']) && $_SESSION['LogedIn'] === true) {
-                                            // Le formulaire est affiché seulement si $_SESSION['Log'] est vrai
-                                            ?>
-                                            <form action="PrendreRDV.php" method="get">
-                                                <input type="hidden" name="id_Medecin" value="<?php echo $row['Id'] ?>">
-                                                <button type="submit" class="appointment-button">Prendre un RDV</button>
-                                            </form>
-                                            <?php
-                                        } else {?>
-                                            <form action="../RDV/RendezVous.php" method="get">
-                                                <input type="hidden" name="id_Medecin" value="<?php echo $row['Id'] ?>">
-                                                <button type="submit" class="appointment-button">Prendre un RDV</button>
-                                            </form>
-                                            <?php
-                                        }
-                                        ?>
-                                        <button class="contact-button">Communiquer</button>
-                                        <form action="AfficheCv.php" method="get">
-                                            <input type="hidden" name="medecin_id" value="<?php echo $row['Id']; ?>">
-                                            <button type="submit" class="appointment-button">Voir le CV</button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </section>
-                        <?php elseif ($row['Type'] == 'Service'): ?>
-                            <section class="service-details">
-                                <img src="<?php echo htmlspecialchars($row['Photo']); ?>" alt="Photo des services"
-                                     class="service-photo">
-                                <div class="service-info">
-                                    <h2><?php echo htmlspecialchars($row['Nom']); ?></h2>
-                                    <p><strong>Description
-                                            :</strong> <?php echo htmlspecialchars($row['Bureau']); ?></p>
-                                    <div class="laboratoire-actions">
-                                        <form action="PrendreRDVservice.php" method="get">
-                                            <input type="hidden" name="Nom_Service" value="<?php echo $row['Nom'] ?>">
-                                            <button type="submit" class="appointment-button">Prendre un RDV</button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </section>
-                        <?php elseif ($row['Type'] == 'Laboratoire'): ?>
-                            <section class="laboratoire-details">
-                                <img src="<?php echo htmlspecialchars($row['Photo']); ?>" alt="Photo du médecin"
-                                     class="laboratoire-photo">
-                                <div class="laboratoire-info">
-                                    <?php if (!empty($row['Salle'])): ?>
-                                        <p><strong>Salle :</strong> <?php echo htmlspecialchars($row['Salle']); ?></p>
-                                    <?php endif; ?>
-                                    <?php if (!empty($row['Adresse'])): ?>
-                                        <p><strong>Adresse :</strong> <?php echo htmlspecialchars($row['Adresse']); ?></p>
-                                    <?php endif; ?>
-                                    <?php if (!empty($row['Telephone'])): ?>
-                                        <p><strong>Téléphone :</strong> <?php echo htmlspecialchars($row['Telephone']); ?></p>
-                                    <?php endif; ?>
-                                    <?php if (!empty($row['Mail'])): ?>
+<main>
+    <section class="RechercheResultats">
+        <div>
+            <?php if ($query): ?>
+                <h1>Résultats de la recherche pour '<?php echo htmlspecialchars($query); ?>':</h1>
+                <div class="cartes">
+                    <?php if ($result->num_rows > 0): ?>
+                        <?php while ($row = $result->fetch_assoc()): ?>
+                            <?php if ($row['Type'] == 'Medecin'): ?>
+                                <section class="doctor-details">
+                                    <img src="<?php echo htmlspecialchars($row['Photo']); ?>" alt="Photo du médecin"
+                                         class="doctor-photo">
+                                    <div class="doctor-info">
+                                        <h2><?php echo htmlspecialchars($row['Nom'] . " " . $row['Prenom']); ?></h2>
+                                        <p><strong>Spécialité
+                                                :</strong> <?php echo htmlspecialchars($row['Specialite']); ?>
+                                        </p>
+                                        <?php if (isset($row['Bureau'])): ?>
+                                            <p><strong>Bureau :</strong> <?php echo htmlspecialchars($row['Bureau']); ?>
+                                            </p>
+                                        <?php endif; ?>
+                                        <p><strong>Téléphone
+                                                :</strong> <?php echo htmlspecialchars($row['Telephone']); ?>
+                                        </p>
                                         <p><strong>Email :</strong> <?php echo htmlspecialchars($row['Mail']); ?></p>
-                                    <?php endif; ?>
-                                    <div class="laboratoire-actions">
-                                        <form action="NosServices.php" method="get">
-                                            <button class="laboratoire-button">Nos Services</button>
-                                        </form>
+                                        <h3>Disponibilités</h3>
+                                        <div class="availability-calendar">
+                                            <?php AfficherDetails($row['Id']); ?>
+                                        </div>
+                                        <div class="doctor-actions">
+                                            <?php
+                                            if (isset($_SESSION['LogedIn']) && $_SESSION['LogedIn'] === true) {
+                                                // Le formulaire est affiché seulement si $_SESSION['Log'] est vrai
+                                                ?>
+                                                <form action="PrendreRDV.php" method="get">
+                                                    <input type="hidden" name="id_Medecin"
+                                                           value="<?php echo $row['Id'] ?>">
+                                                    <button type="submit" class="appointment-button">Prendre un RDV
+                                                    </button>
+                                                </form>
+                                                <?php
+                                            } else { ?>
+                                                <form action="../RDV/RendezVous.php" method="get">
+                                                    <input type="hidden" name="id_Medecin"
+                                                           value="<?php echo $row['Id'] ?>">
+                                                    <button type="submit" class="appointment-button">Prendre un RDV
+                                                    </button>
+                                                </form>
+                                                <?php
+                                            }
+                                            ?>
+                                            <a href="Communication.php">
+                                            <button class="contact-button">Communiquer</button>
+                                            </a>
+                                            <form action="AfficheCv.php" method="get">
+                                                <input type="hidden" name="medecin_id"
+                                                       value="<?php echo $row['Id']; ?>">
+                                                <button type="submit" class="appointment-button">Voir le CV</button>
+                                            </form>
+                                        </div>
                                     </div>
-                                </div>
-                            </section>
-                        <?php endif; ?>
-                    <?php endwhile; ?>
-                <?php else: ?>
-                    <p>Aucun résultat trouvé pour '<?php echo htmlspecialchars($query); ?>'</p>
-                <?php endif; ?>
-            </div>
-        <?php else: ?>
-            <h1>Veuillez entrer une requête de recherche.</h1>
-        <?php endif; ?>
-    </div>
-</section>
+                                </section>
+                            <?php elseif ($row['Type'] == 'Service'): ?>
+                                <section class="service-details">
+                                    <img src="<?php echo htmlspecialchars($row['Photo']); ?>" alt="Photo des services"
+                                         class="service-photo">
+                                    <div class="service-info">
+                                        <h2><?php
+                                            $vNomService = $row['Specialite'];
+                                            echo htmlspecialchars($row['Specialite']); ?></h2>
+                                        <p><strong>Description
+                                                :</strong> <?php echo htmlspecialchars($row['Bureau']); ?></p>
+                                        <div class="Service-actions">
+                                            <?php
+
+                                            // Configurer la connexion à la base de données
+                                            $servername = "localhost";
+                                            $username = "root";
+                                            $password = "";
+                                            $dbname = "medicare";
+
+                                            // Créer la connexion
+                                            $conn2 = new mysqli($servername, $username, $password, $dbname);
+
+                                            // Vérifier la connexion
+                                            if ($conn2->connect_error) {
+                                                die("Connection failed: " . $conn2->connect_error);
+                                            }
+
+
+                                            // Utilisation de requêtes préparées pour éviter les injections SQL
+                                            $stmt2 = $conn2->prepare("SELECT Payant FROM servicelab WHERE Nom_Service = ?");
+                                            $stmt2->bind_param("s", $vNomService); // 's' spécifie que la variable est une chaîne (string)
+                                            $stmt2->execute();
+                                            $result2 = $stmt2->get_result();
+
+                                            if ($result2->num_rows > 0) {
+                                                $row = $result2->fetch_assoc();
+                                                $payant = $row['Payant'];
+
+                                                if ($payant == 1) {
+                                                    ?>
+                                                    <p><strong>Payant
+                                                            :</strong> 6 €</p>
+                                                    <form action="checkoutForm.html" method="get">
+                                                        <input type="hidden" name="Nom_Service"
+                                                               value="<?php
+                                                               $_SESSION['NomServiceBesoin'] =$vNomService;
+                                                               echo $vNomService ?>">
+                                                        <button type="submit" class="appointment-button">Payer le
+                                                            service
+                                                        </button>
+                                                    </form>
+                                                    <?php
+
+                                                } else {
+                                                    ?>
+                                                    <p><strong>Payant
+                                                            :</strong>Non</p>
+                                                    <form action="PrendreRDVservice.php" method="get">
+                                                    <input type="hidden" name="Nom_Service"
+                                                           value="<?php echo $vNomService ?>">
+                                                    <button type="submit" class="appointment-button">Prendre un RDV
+                                                    </button>
+                                                    </form><?php
+                                                }
+                                            }
+                                            $stmt2->close();
+                                            $conn2->close(); ?>
+                                        </div>
+                                    </div>
+                                </section>
+                            <?php elseif
+                            ($row['Type'] == 'Laboratoire'): ?>
+                                <section class="laboratoire-details">
+                                    <img src="<?php echo htmlspecialchars($row['Photo']); ?>" alt="Photo du médecin"
+                                         class="laboratoire-photo">
+                                    <div class="laboratoire-info">
+                                        <h2><?php echo htmlspecialchars($row['Nom']); ?></h2>
+                                        <?php if (!empty($row['Salle'])): ?>
+                                            <p><strong>Salle :</strong> <?php echo htmlspecialchars($row['Salle']); ?>
+                                            </p>
+                                        <?php endif; ?>
+                                        <?php if (!empty($row['Adresse'])): ?>
+                                            <p><strong>Adresse
+                                                    :</strong> <?php echo htmlspecialchars($row['Adresse']); ?></p>
+                                        <?php endif; ?>
+                                        <?php if (!empty($row['Telephone'])): ?>
+                                            <p><strong>Téléphone
+                                                    :</strong> <?php echo htmlspecialchars($row['Telephone']); ?></p>
+                                        <?php endif; ?>
+                                        <?php if (!empty($row['Mail'])): ?>
+                                            <p><strong>Email :</strong> <?php echo htmlspecialchars($row['Mail']); ?>
+                                            </p>
+                                        <?php endif; ?>
+                                        <div class="laboratoire-actions">
+                                            <form action="NosServices.php" method="get">
+                                                <button class="laboratoire-button">Nos Services</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </section>
+                            <?php endif; ?>
+                        <?php endwhile; ?>
+                    <?php else: ?>
+                        <p>Aucun résultat trouvé pour '<?php echo htmlspecialchars($query); ?>'</p>
+                    <?php endif; ?>
+                </div>
+            <?php else: ?>
+                <h1>Veuillez entrer une requête de recherche.</h1>
+            <?php endif; ?>
+        </div>
+    </section>
+</main>
 <footer>
     <div class="menu-footer">
         <div class="menu-footer2">

@@ -63,9 +63,9 @@ $row = $result->fetch_assoc();
             color: black;
             overflow: hidden;
             top: 70px;
-            width:auto;
+            width: auto;
             position: relative;
-            height:auto;
+            height: auto;
         }
 
         .UserInfo {
@@ -108,10 +108,6 @@ $row = $result->fetch_assoc();
             color: #ffffff;
         }
 
-        #RDVInfo {
-            background-color: #fda400;
-            color: #ffffff;
-        }
 
         #Deconnection {
             background-color: #7f007f;
@@ -134,9 +130,9 @@ $row = $result->fetch_assoc();
             <li class="SousMenu1">
                 <a href="../../RechercheParcourir/ToutParcourir.php">Tout Parcourir</a>
                 <ul class="SousMenu5">
-                    <li><a href="../../Generaliste.php">Médecin généraliste</a></li>
-                    <li><a href="Specialiste.php">Médecin spécialistes</a></li>
-                    <li><a href="Laboratoire.php">Laboratoire de biologie médicale</a></li>
+                    <li><a href="../../RechercheParcourir/Generaliste.php">Médecin généraliste</a></li>
+                    <li><a href="../../RechercheParcourir/Specialiste.php">Médecin spécialistes</a></li>
+                    <li><a href="../../RechercheParcourir/Laboratoire.php">Laboratoire de biologie médicale</a></li>
                 </ul>
             </li>
             <li><a href="RechercheHTML.php" class="active">Recherche</a></li>
@@ -162,7 +158,7 @@ $row = $result->fetch_assoc();
             <button class="button" id="LaboInfo">Info Laboratoire</button><!-- Bouton Info Laboratoire -->
         </a>
         <a href="../deconnexion.php">
-        <button class="button" id="Deconnection">Se déconnecter</button><!-- Bouton Gérer les utilisateurs -->
+            <button class="button" id="Deconnection">Se déconnecter</button><!-- Bouton Gérer les utilisateurs -->
         </a>
     </div>
 </div>

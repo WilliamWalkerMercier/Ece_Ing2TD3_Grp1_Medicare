@@ -89,8 +89,9 @@ $row = $result->fetch_assoc();
             color: #ffffff;
         }
 
-        #RDVList {
-            background-color: #fda400;
+
+        #Deconnection {
+            background-color: #7f007f;
             color: #ffffff;
         }
         .button:hover {
@@ -113,7 +114,9 @@ $row = $result->fetch_assoc();
         <button class="button" id="Info">Voir mes infos</button>
         </a>
         <button class="button" id="ChatRoom">Chatbox</button>
-        <button class="button" id="RDVList">Gestion des rendez-vous</button>
+        <a href="../deconnexion.php">
+            <button class="button" id="Deconnection">Se déconnecter</button><!-- Bouton Gérer les utilisateurs -->
+        </a>
     </div>
 </div>
 </body>

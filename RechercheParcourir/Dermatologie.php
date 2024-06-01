@@ -92,11 +92,11 @@ function AfficherDetails($idMedecin)
                 </ul>
             </li>
             <li><a href="RechercheHTML.php">Recherche</a></li>
-            <li><a href="#">Rendez-vous</a></li>
+            <li><a href="../RDV/RendezVous.php">Rendez-vous</a></li>
         </ul>
     </nav>
     <div class="CompteLogo">
-        <a href="#"><img src="../Acceuil/imageAccueil/MonCompte.png" alt="Compte Logo"></a>
+        <a href="../MonCompte/RedirectConnection.php"><img src="../Acceuil/imageAccueil/MonCompte.png" alt="Compte Logo"></a>
     </div>
 </header>
 <section class="SpecialisteResultats">
@@ -106,6 +106,12 @@ function AfficherDetails($idMedecin)
             <i class='bx bx-menu toggle-btn'></i>
         </div>
         <ul class="MenuBar">
+            <li class="MenuBarElement">
+                <a href="Specialiste.php">
+                    <i class='bx bx-grid-small'></i>
+                    <span class="lien">Tous</span>
+                </a>
+            </li>
             <li class="MenuBarElement">
                 <a href="Addictologie.php">
                     <i class='bx bx-injection'></i>
@@ -194,7 +200,10 @@ function AfficherDetails($idMedecin)
                                 }
                                 ?>
                                 <button class="contact-button">Communiquer</button>
-                                <button class="cv-button">Voir le CV</button>
+                                <form action="AfficheCv.php" method="get">
+                                    <input type="hidden" name="medecin_id" value="<?php echo $row['Id_Medecin']; ?>">
+                                    <button type="submit" class="appointment-button">Voir le CV</button>
+                                </form>
                             </div>
                         </div>
                     </section>
@@ -220,7 +229,7 @@ function AfficherDetails($idMedecin)
                         </ul>
                     </li>
                     <li><a href="RechercheHTML.php">Recherche</a></li>
-                    <li><a href="#">Rendez-vous</a></li>
+                    <li><a href="../RDV/RendezVous.php">Rendez-vous</a></li>
                 </ul>
             </nav2>
         </div>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Medecin>
+    <Nom>Walker--Mercier</Nom>
+    <Prenom>William</Prenom>
+    <Specialite>Fortnite</Specialite>
+    <CV>
+        <Formations>
+            <Formation>
+                <Etablissement>Lycée Saint Pierre</Etablissement>
+                <Diplome>Baccalauréat Mention très bien</Diplome>
+                <Annee>2005</Annee>
+            </Formation>
+            <Formation>
+                <Etablissement>Ece Paris</Etablissement>
+                <Diplome>Diplome d'ingénieur</Diplome>
+                <Annee>2008</Annee>
+            </Formation>
+        </Formations>
+        <Experiences>
+            <Experience>
+                <Poste>Stagiaire supermarché</Poste>
+                <Lieu>Auchan, Paris</Lieu>
+                <Duree>2008-2015</Duree>
+                <Description>Escroquer des petites vieilles</Description>
+            </Experience>
+            <Experience>
+                <Poste>Aide ECE</Poste>
+                <Lieu>Ece Paris</Lieu>
+                <Duree>2015-Présent</Duree>
+                <Description>Fait les projects de Ranya</Description>
+            </Experience>
+        </Experiences>
+        <Publications>
+            <Publication>
+                <Titre>William, un vrai dieu vivant ?</Titre>
+                <Journal>Journal De la vérité</Journal>
+                <Annee>2012</Annee>
+            </Publication>
+            <Publication>
+                <Titre>Pourquoi william est le plus beau</Titre>
+                <Journal></Journal>
+                <Annee>2017</Annee>
+            </Publication>
+        </Publications>
+        <Distinctions>
+            <Distinction>
+                <Titre>Meilleur eleve en conseil de discipline</Titre>
+                <Annee>2018</Annee>
+                <Description>Récompense pour avoir aider quelqu'un</Description>
+            </Distinction>
+        </Distinctions>
+        <Competences>
+            <Competence>90 fortnite</Competence>
+            <Competence>Ece cup</Competence>
+            <Competence>La pougnette</Competence>
+        </Competences>
+        <Langues>
+            <Langue>
+                <Nom>Français</Nom>
+                <Niveau>Courant</Niveau>
+            </Langue>
+            <Langue>
+                <Nom>Anglais</Nom>
+                <Niveau>Avancé</Niveau>
+            </Langue>
+        </Langues>
+    </CV>
+</Medecin>

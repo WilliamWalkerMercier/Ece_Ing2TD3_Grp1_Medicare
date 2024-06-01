@@ -1,0 +1,17 @@
+{
+  "name": "ece_ing2td3_grp1_medicare",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/WilliamWalkerMercier/Ece_Ing2TD3_Grp1_Medicare.git"
+  },
+  "private": true,
+  "dependencies": {
+    "twilio": "^5.1.0"
+  }
+}

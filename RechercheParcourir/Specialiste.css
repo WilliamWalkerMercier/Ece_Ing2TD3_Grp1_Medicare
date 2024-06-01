@@ -178,15 +178,3 @@
     background: #144b1f;
 }
 
-foooter{
-    background: #31701F;
-    display: flex;
-    align-items: center;
-    position: fixed;
-    height: auto;
-    left: 0;
-    right: 0;
-    top: auto;
-    flex-direction: column;
-    color: black;
-}

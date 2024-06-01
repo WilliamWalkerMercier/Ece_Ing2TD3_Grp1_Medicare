@@ -91,11 +91,11 @@ function AfficherDetails($idMedecin)
                 </ul>
             </li>
             <li><a href="RechercheHTML.php">Recherche</a></li>
-            <li><a href="#">Rendez-vous</a></li>
+            <li><a href="../RDV/RendezVous.php">Rendez-vous</a></li>
         </ul>
     </nav>
     <div class="CompteLogo">
-        <a href="#"><img src="../Acceuil/imageAccueil/MonCompte.png" alt="Compte Logo"></a>
+        <a href="../MonCompte/RedirectConnection.php"><img src="../Acceuil/imageAccueil/MonCompte.png" alt="Compte Logo"></a>
     </div>
 </header>
 <section class="SpecialisteResultats">
@@ -105,6 +105,12 @@ function AfficherDetails($idMedecin)
             <i class='bx bx-menu toggle-btn'></i>
         </div>
         <ul class="MenuBar">
+            <li class="MenuBarElement">
+                <a href="Specialiste.php">
+                    <i class='bx bx-grid-small'></i>
+                    <span class="lien">Tous</span>
+                </a>
+            </li>
             <li class="MenuBarElement">
                 <a href="Addictologie.php">
                     <i class='bx bx-injection'></i>
@@ -175,12 +181,28 @@ function AfficherDetails($idMedecin)
                                 <?php AfficherDetails($row['Id_Medecin']); ?>
                             </div>
                             <div class="doctor-actions">
-                                <form action="PrendreRDV.php" method="get">
-                                    <input type="hidden" name="id_Medecin" value="<?php echo $row['Id_Medecin'] ?>">
-                                    <button type="submit" class="appointment-button">Prendre un RDV</button>
-                                </form>
+                                <?php
+                                if (isset($_SESSION['LogedIn']) && $_SESSION['LogedIn'] === true) {
+                                    // Le formulaire est affiché seulement si $_SESSION['Log'] est vrai
+                                    ?>
+                                    <form action="PrendreRDV.php" method="get">
+                                        <input type="hidden" name="id_Medecin" value="<?php echo $row['Id_Medecin'] ?>">
+                                        <button type="submit" class="appointment-button">Prendre un RDV</button>
+                                    </form>
+                                    <?php
+                                } else {?>
+                                    <form action="../RDV/RendezVous.php" method="get">
+                                        <input type="hidden" name="id_Medecin" value="<?php echo $row['Id_Medecin'] ?>">
+                                        <button type="submit" class="appointment-button">Prendre un RDV</button>
+                                    </form>
+                                    <?php
+                                }
+                                ?>
                                 <button class="contact-button">Communiquer</button>
-                                <button class="cv-button">Voir le CV</button>
+                                <form action="AfficheCv.php" method="get">
+                                    <input type="hidden" name="medecin_id" value="<?php echo $row['Id']; ?>">
+                                    <button type="submit" class="appointment-button">Voir le CV</button>
+                                </form>
                             </div>
                         </div>
                     </section>
@@ -206,7 +228,7 @@ function AfficherDetails($idMedecin)
                         </ul>
                     </li>
                     <li><a href="RechercheHTML.php">Recherche</a></li>
-                    <li><a href="#">Rendez-vous</a></li>
+                    <li><a href="../RDV/RendezVous.php">Rendez-vous</a></li>
                 </ul>
             </nav2>
         </div>

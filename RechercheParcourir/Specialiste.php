@@ -105,106 +105,130 @@ function AfficherDetails($idMedecin)
                 </ul>
             </li>
             <li><a href="RechercheHTML.php">Recherche</a></li>
-            <li><a href="#">Rendez-vous</a></li>
+            <li><a href="../RDV/RendezVous.php">Rendez-vous</a></li>
         </ul>
     </nav>
     <div class="CompteLogo">
-        <a href="#"><img src="../Acceuil/imageAccueil/MonCompte.png" alt="Compte Logo"></a>
+        <a href="../MonCompte/RedirectConnection.php"><img src="../Acceuil/imageAccueil/MonCompte.png" alt="Compte Logo"></a>
     </div>
 </header>
-<section class="SpecialisteResultats">
-    <nav3 class="Bar">
-        <div class="LogoMenu">
-            <h2 class="specialite">Spécialité</h2>
-            <i class='bx bx-menu toggle-btn'></i>
-        </div>
-        <ul class="MenuBar">
-            <li class="MenuBarElement">
-                <a href="Addictologie.php">
-                    <i class='bx bx-injection'></i>
-                    <span class="lien">Addictologie</span>
-                </a>
-            </li>
-            <li class="MenuBarElement">
-                <a href="Andrologie.php">
-                    <i class='bx bx-male'></i>
-                    <span class="lien">Andrologie</span>
-                </a>
-            </li>
-            <li class="MenuBarElement">
-                <a href="Cardiologie.php">
-                    <i class='bx bx-heart'></i>
-                    <span class="lien">Cardiologie</span>
-                </a>
-            </li>
-            <li class="MenuBarElement">
-                <a href="Dermatologie.php">
-                    <i class='bx bx-band-aid'></i>
-                    <span class="lien">Dermatologie</span>
-                </a>
-            </li>
-            <li class="MenuBarElement">
-                <a href="Gastro.php">
-                    <i class='bx bx-baguette'></i>
-                    <span class="lien">Gastro-Héato-Entérologie</span>
-                </a>
-            </li>
-            <li class="MenuBarElement">
-                <a href="Gynecologie.php">
-                    <i class='bx bx-female'></i>
-                    <span class="lien">Gynécologie</span>
-                </a>
-            </li>
-            <li class="MenuBarElement">
-                <a href="IST.php">
-                    <i class='bx bxs-virus'></i>
-                    <span class="lien">I.S.T</span>
-                </a>
-            </li>
-            <li class="MenuBarElement">
-                <a href="Osteopathie.php">
-                    <i class='bx bx-bone'></i>
-                    <span class="lien">Ostéopathie</span>
-                </a>
-            </li>
-        </ul>
-    </nav3>
-    <div>
-        <?php if ($result->num_rows > 0): ?>
-            <div class="cartes">
-                <?php while ($row = $result->fetch_assoc()): ?>
-                    <section class="doctor-details">
-                        <img src="<?php echo htmlspecialchars($row['Photo']); ?>" alt="Photo du médecin"
-                             class="doctor-photo">
-                        <div class="doctor-info">
-                            <h2><?php echo htmlspecialchars($row['Nom'] . " " . $row['Prenom']); ?></h2>
-                            <p><strong>Spécialité :</strong> <?php echo htmlspecialchars($row['Specialite']); ?></p>
-                            <?php if (isset($row['Bureau'])): ?>
-                                <p><strong>Bureau :</strong> <?php echo htmlspecialchars($row['Bureau']); ?></p>
-                            <?php endif; ?>
-                            <p><strong>Téléphone :</strong> <?php echo htmlspecialchars($row['Telephone']); ?></p>
-                            <p><strong>Email :</strong> <?php echo htmlspecialchars($row['Mail']); ?></p>
-                            <h3>Disponibilités</h3>
-                            <div class="availability-calendar">
-                                <?php AfficherDetails($row['Id_Medecin']); ?>
-                            </div>
-                            <div class="doctor-actions">
-                                <form action="PrendreRDV.php" method="get">
-                                    <input type="hidden" name="id_Medecin" value="<?php echo $row['Id_Medecin'] ?>">
-                                    <button type="submit" class="appointment-button">Prendre un RDV</button>
-                                </form>
-                                <button class="contact-button">Communiquer</button>
-                                <button class="cv-button">Voir le CV</button>
-                            </div>
-                        </div>
-                    </section>
-                <?php endwhile; ?>
+<main>
+    <section class="SpecialisteResultats">
+        <nav3 class="Bar">
+            <div class="LogoMenu">
+                <h2 class="specialite">Spécialité</h2>
+                <i class='bx bx-menu toggle-btn'></i>
             </div>
-        <?php else: ?>
-            <p>Aucun médecin spécialiste trouvé.</p>
-        <?php endif; ?>
-    </div>
-</section>
+            <ul class="MenuBar">
+                <li class="MenuBarElement active2">
+                    <a href="Specialiste.php">
+                        <i class='bx bx-grid-small'></i>
+                        <span class="lien">Tous</span>
+                    </a>
+                </li>
+                <li class="MenuBarElement">
+                    <a href="Addictologie.php">
+                        <i class='bx bx-injection'></i>
+                        <span class="lien">Addictologie</span>
+                    </a>
+                </li>
+                <li class="MenuBarElement">
+                    <a href="Andrologie.php">
+                        <i class='bx bx-male'></i>
+                        <span class="lien">Andrologie</span>
+                    </a>
+                </li>
+                <li class="MenuBarElement">
+                    <a href="Cardiologie.php">
+                        <i class='bx bx-heart'></i>
+                        <span class="lien">Cardiologie</span>
+                    </a>
+                </li>
+                <li class="MenuBarElement">
+                    <a href="Dermatologie.php">
+                        <i class='bx bx-band-aid'></i>
+                        <span class="lien">Dermatologie</span>
+                    </a>
+                </li>
+                <li class="MenuBarElement">
+                    <a href="Gastro.php">
+                        <i class='bx bx-baguette'></i>
+                        <span class="lien">Gastro-Héato-Entérologie</span>
+                    </a>
+                </li>
+                <li class="MenuBarElement">
+                    <a href="Gynecologie.php">
+                        <i class='bx bx-female'></i>
+                        <span class="lien">Gynécologie</span>
+                    </a>
+                </li>
+                <li class="MenuBarElement">
+                    <a href="IST.php">
+                        <i class='bx bxs-virus'></i>
+                        <span class="lien">I.S.T</span>
+                    </a>
+                </li>
+                <li class="MenuBarElement">
+                    <a href="Osteopathie.php">
+                        <i class='bx bx-bone'></i>
+                        <span class="lien">Ostéopathie</span>
+                    </a>
+                </li>
+            </ul>
+        </nav3>
+        <div>
+            <?php if ($result->num_rows > 0): ?>
+                <div class="cartes">
+                    <?php while ($row = $result->fetch_assoc()): ?>
+                        <section class="doctor-details">
+                            <img src="<?php echo htmlspecialchars($row['Photo']); ?>" alt="Photo du médecin"
+                                 class="doctor-photo">
+                            <div class="doctor-info">
+                                <h2><?php echo htmlspecialchars($row['Nom'] . " " . $row['Prenom']); ?></h2>
+                                <p><strong>Spécialité :</strong> <?php echo htmlspecialchars($row['Specialite']); ?></p>
+                                <?php if (isset($row['Bureau'])): ?>
+                                    <p><strong>Bureau :</strong> <?php echo htmlspecialchars($row['Bureau']); ?></p>
+                                <?php endif; ?>
+                                <p><strong>Téléphone :</strong> <?php echo htmlspecialchars($row['Telephone']); ?></p>
+                                <p><strong>Email :</strong> <?php echo htmlspecialchars($row['Mail']); ?></p>
+                                <h3>Disponibilités</h3>
+                                <div class="availability-calendar">
+                                    <?php AfficherDetails($row['Id_Medecin']); ?>
+                                </div>
+                                <div class="doctor-actions">
+                                    <?php
+                                    if (isset($_SESSION['LogedIn']) && $_SESSION['LogedIn'] === true) {
+                                        // Le formulaire est affiché seulement si $_SESSION['Log'] est vrai
+                                        ?>
+                                        <form action="PrendreRDV.php" method="get">
+                                            <input type="hidden" name="id_Medecin" value="<?php echo $row['Id_Medecin'] ?>">
+                                            <button type="submit" class="appointment-button">Prendre un RDV</button>
+                                        </form>
+                                        <?php
+                                    } else {?>
+                                        <form action="../RDV/RendezVous.php" method="get">
+                                            <input type="hidden" name="id_Medecin" value="<?php echo $row['Id_Medecin'] ?>">
+                                            <button type="submit" class="appointment-button">Prendre un RDV</button>
+                                        </form>
+                                        <?php
+                                    }
+                                    ?>
+                                    <button class="contact-button">Communiquer</button>
+                                    <form action="AfficheCv.php" method="get">
+                                        <input type="hidden" name="medecin_id" value="<?php echo $row['Id_Medecin']; ?>">
+                                        <button type="submit" class="appointment-button">Voir le CV</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </section>
+                    <?php endwhile; ?>
+                </div>
+            <?php else: ?>
+                <p>Aucun médecin spécialiste trouvé.</p>
+            <?php endif; ?>
+        </div>
+    </section>
+</main>
 <footer>
     <div class="menu-footer">
         <div class="menu-footer2">
@@ -220,7 +244,7 @@ function AfficherDetails($idMedecin)
                         </ul>
                     </li>
                     <li><a href="RechercheHTML.php">Recherche</a></li>
-                    <li><a href="#">Rendez-vous</a></li>
+                    <li><a href="../RDV/RendezVous.php">Rendez-vous</a></li>
                 </ul>
             </nav2>
         </div>

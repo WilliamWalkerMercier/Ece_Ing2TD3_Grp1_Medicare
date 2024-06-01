@@ -1,16 +1,24 @@
-*{
+/* HeaderFooter.css */
+* {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
 }
 
-body{
+body {
     background-color: #e8f0e8;
     overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
-header{
+main {
+    flex: 1;
+}
+
+header {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -20,22 +28,24 @@ header{
     right: 0;
     top: 0;
     position: absolute;
+    width: 100%;
+    z-index: 100;
 }
 
-.logo img{
+.logo img {
     height: 70px;
 }
 
-nav ul{
+nav ul {
     list-style: none;
     display: flex;
 }
 
-nav ul li{
+nav ul li {
     margin-right: 20px;
 }
 
-nav ul li a{
+nav ul li a {
     text-decoration: none;
     color: #000;
     font-weight: bold;
@@ -44,25 +54,24 @@ nav ul li a{
     transition: background-color 0.3s, transform 0.3s;
 }
 
-nav ul li a.active{
+nav ul li a.active {
     background: #144b1f;
 }
 
-nav ul li a:hover{
+nav ul li a:hover {
     background: #ccc;
     color: #144b1f;
 }
 
-
-nav ul ul{
+nav ul ul {
     display: none;
 }
 
-nav ul li:hover > ul{
+nav ul li:hover > ul {
     display: block;
 }
 
-.SousMenu2{
+.SousMenu2 {
     display: none;
     position: absolute;
     top: 59px;
@@ -71,54 +80,51 @@ nav ul li:hover > ul{
     border-bottom: 5px solid #144b1f;
 }
 
-.SousMenu1:hover .sous-menu{
+.SousMenu1:hover .sous-menu {
     display: block;
 }
 
-.SousMenu2 li{
+.SousMenu2 li {
     padding: 10px;
 }
 
-.SousMenu2 li a{
+.SousMenu2 li a {
     color: #333;
 }
 
-.SousMenu2 li a:hover{
+.SousMenu2 li a:hover {
     color: #144b1f;
 }
 
-.CompteLogo img{
+.CompteLogo img {
     height: 70px;
 }
 
-
-footer{
+footer {
     background: #31701F;
     display: flex;
+    flex-wrap: nowrap;
     align-items: center;
     justify-content: center;
     height: auto;
-    left: 0;
-    right: 0;
-    top: auto;
     padding: 30px 0;
     flex-direction: column;
     color: black;
 }
 
-nav2 ul{
+nav2 ul {
     list-style: none;
     display: flex;
     align-items: flex-start;
     padding: 15px;
 }
 
-nav2 ul li{
+nav2 ul li {
     margin-right: 20px;
     position: relative;
 }
 
-nav2 ul li a{
+nav2 ul li a {
     text-decoration: none;
     color: #000;
     font-weight: bold;
@@ -128,12 +134,12 @@ nav2 ul li a{
     transition: background-color 0.3s, transform 0.3s;
 }
 
-nav2 ul li a:hover{
+nav2 ul li a:hover {
     background: #ccc;
     color: #144b1f;
 }
 
-nav2 ul .SousMenu4{
+nav2 ul .SousMenu4 {
     display: block;
     position: absolute;
     top: 100%;
@@ -143,26 +149,26 @@ nav2 ul .SousMenu4{
     border: none;
 }
 
-nav2 ul .SousMenu4 li{
+nav2 ul .SousMenu4 li {
     padding: 4px;
     width: 250px;
     bottom: 2px;
 }
 
-nav2 ul .SousMenu4 li a{
+nav2 ul .SousMenu4 li a {
     font-size: 9px;
 }
 
-nav2 ul .SousMenu4 li a:hover{
+nav2 ul .SousMenu4 li a:hover {
     color: #144b1f;
 }
 
-.menu-footer{
+.menu-footer {
     position: relative;
     padding: 30px;
 }
 
-.menu-footer2{
+.menu-footer2 {
     display: flex;
     justify-content: center;
     width: 900px;
@@ -170,14 +176,13 @@ nav2 ul .SousMenu4 li a:hover{
     border-top: 5px solid #e8f0e8;
 }
 
-.copyright{
+.copyright {
     position: relative;
     padding: 30px;
     top: 10px;
-
 }
 
-.copyright2{
+.copyright2 {
     display: flex;
     justify-content: center;
     width: 900px;
@@ -186,15 +191,15 @@ nav2 ul .SousMenu4 li a:hover{
     border-top: 5px solid #e8f0e8;
 }
 
-.copyright3{
+.copyright3 {
     display: flex;
     justify-content: center;
-    align-items: end;
+    align-items: center;
     width: 900px;
-    height: 120px;
+    height: 55px;
 }
 
-.copyright p{
+.copyright p {
     list-style: none;
     display: flex;
     position: relative;
@@ -203,32 +208,32 @@ nav2 ul .SousMenu4 li a:hover{
     justify-content: left;
 }
 
-.insta{
+.insta {
     margin-right: 50px;
 }
 
-.x{
+.x {
     margin-left: 50px;
 }
 
-.insta img{
+.insta img {
     height: 40px;
     width: 40px;
 }
 
-.x img{
+.x img {
     height: 40px;
     width: 40px;
 }
 
-.Map{
+.Map {
     display: flex;
     position: relative;
     padding: 30px;
     height: 520px;
 }
 
-.GoogleMap{
+.GoogleMap {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -238,6 +243,6 @@ nav2 ul .SousMenu4 li a:hover{
     border-top: 5px solid #e8f0e8;
 }
 
-.GoogleMap iframe{
+.GoogleMap iframe {
     border-radius: 10px;
 }

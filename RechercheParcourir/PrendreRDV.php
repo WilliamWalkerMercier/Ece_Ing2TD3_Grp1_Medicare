@@ -32,11 +32,11 @@ checkPermission(2);
                 </ul>
             </li>
             <li><a href="Recherche.php">Recherche</a></li>
-            <li><a href="#">Rendez-vous</a></li>
+            <li><a href="../RDV/RendezVous.php">Rendez-vous</a></li>
         </ul>
     </nav>
     <div class="CompteLogo">
-        <a href="#"><img src="../Acceuil/imageAccueil/MonCompte.png" alt="Compte Logo"></a>
+        <a href="../MonCompte/RedirectConnection.php"><img src="../Acceuil/imageAccueil/MonCompte.png" alt="Compte Logo"></a>
     </div>
 </header>
 <section class="rdv">
@@ -58,39 +58,51 @@ checkPermission(2);
     function tableauRdv($idMedecin, $patient, $decalage, $db_handle) {
         if ($db_handle) {
             $retourRequete = mysqli_query($db_handle, "SELECT * FROM Utilisateur U LEFT JOIN Medecin M ON U.Id_User = M.Id_Medecin WHERE U.Id_User = '$idMedecin'");
-            $resultat = mysqli_fetch_assoc($retourRequete);
-            $jours = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"];
-            $heuresMatin = ["08:30", "09:00", "09:30", "10:00", "10:30", "11:00", "11:30"];
-            $heuresAprem = ["13:00", "13:30", "14:00", "14:30", "15:00", "15:30", "16:00"];
-            $heuresJour = [$heuresMatin, $heuresAprem];
-            $datesSemaine = datesSemaine($decalage);
-            echo("Disponibilités de " . $resultat['Prenom'] . " " . $resultat['Nom'] . "<br>");
-            echo("<form method='post'><table>");
-            echo("<tr>");
-            foreach ($jours as $jour) {
-                echo("<td>" . $jour . " " . $datesSemaine[array_search($jour, $jours)] . "</td>");
-            }
-            echo("</tr>");
-            foreach ($heuresJour as $heures) {
-                foreach ($heures as $heure) {
-                    echo("<tr>");
-                    foreach ($jours as $jour) {
-                        $date = $datesSemaine[array_search($jour, $jours)];
-                        $reservationDuMoment = mysqli_query($db_handle, "SELECT * FROM RDV WHERE Date_Heure ='" . $date . " " . $heure . ":00' AND Id_Medecin='" . $idMedecin . "'");
-                        if (mysqli_num_rows($reservationDuMoment) != 0) {
-                            echo("<td>indisponible</td>");
-                        } else {
-                            echo("<td><button type='submit' name='date' value='" . $date . " " . $heure . ":00'>$heure</button></td>");
-                        }
-                    }
-                    echo("</tr>");
+            if ($resultat = mysqli_fetch_assoc($retourRequete)) {
+                $Dispo = $resultat['Disponibilite'];
+                $jours = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"];
+                $heuresMatin = ["08:30", "09:00", "09:30", "10:00", "10:30", "11:00", "11:30"];
+                $heuresAprem = ["13:00", "13:30", "14:00", "14:30", "15:00", "15:30", "16:00"];
+                $heuresJour = [$heuresMatin, $heuresAprem];
+                $datesSemaine = datesSemaine($decalage);
+
+                echo("Disponibilités de " . $resultat['Prenom'] . " " . $resultat['Nom'] . "<br>");
+                echo("<form method='post'><table>");
+                echo("<tr>");
+                foreach ($jours as $index => $jour) {
+                    echo("<td>" . $jour . " " . $datesSemaine[$index] . "</td>");
                 }
+                echo("</tr>");
+
+                foreach ($heuresJour as $indexHeure => $heures) {
+                    foreach ($heures as $heure) {
+                        echo("<tr>");
+                        foreach ($jours as $indexJour => $jour) {
+                            $date = $datesSemaine[$indexJour];
+                            // Calcule l'index correct pour chaque demi-journée
+                            $heureIndex = $indexJour * 2 + ($indexHeure > 0 ? 1 : 0); // Matin = 0, Après-midi = 1
+                            $isAvailable = $Dispo[$heureIndex] == '1';
+
+                            $reservationDuMoment = mysqli_query($db_handle, "SELECT * FROM RDV WHERE Date_Heure ='" . $date . " " . $heure . ":00' AND Id_Medecin='" . $idMedecin . "'");
+
+                            if (mysqli_num_rows($reservationDuMoment) == 0 && $isAvailable) {
+                                echo("<td><button type='submit' name='date' value='" . $date . " " . $heure . ":00'>$heure</button></td>");
+                            } else {
+                                echo("<td>Indisponible</td>");
+                            }
+                        }
+                        echo("</tr>");
+                    }
+                }
+                echo("</table><input type='hidden' name='decalage' value='$decalage'></form>");
+            } else {
+                echo "Aucune information trouvée pour l'ID médecin $idMedecin.";
             }
-            echo("</table><input type='hidden' name='decalage' value='$decalage'></form>");
         } else {
             echo("Base de données non trouvée");
         }
     }
+
 
     if (isset($_GET['id_Medecin'])) {
         $medecin = ($_GET['id_Medecin']);
@@ -146,7 +158,7 @@ checkPermission(2);
                         </ul>
                     </li>
                     <li><a href="Recherche.php">Recherche</a></li>
-                    <li><a href="#">Rendez-vous</a></li>
+                    <li><a href="../RDV/RendezVous.php">Rendez-vous</a></li>
                 </ul>
             </nav2>
         </div>

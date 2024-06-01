@@ -10,7 +10,7 @@ if (isset($_SESSION['user_type'])) {
         header("Location: AfficherRDVmedecins.php");
         exit;
     } elseif ($_SESSION['user_type'] == 2) {
-        header("Location: infoUtilisateur.php");
+        header("Location: RendezVousUtilisateur.php");
         exit;
     } else {
         // Optionnel : Redirigez vers une page d'erreur ou une page par défaut si le type d'utilisateur n'est pas reconnu

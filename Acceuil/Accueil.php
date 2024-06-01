@@ -4,7 +4,6 @@ session_start();
 if (!isset($_SESSION['LogedIn'])) {
     $_SESSION['LogedIn'] = false;  // Initialise 'isLogged' à false si non défini
 }
-//$_SESSION['LogedIn']= false;
 ?>
 
 
@@ -56,102 +55,104 @@ if (!isset($_SESSION['LogedIn'])) {
         <a href="../MonCompte/RedirectConnection.php"><img src="imageAccueil/MonCompte.png" alt="Compte Logo"></a>
     </div>
 </header>
-<section class="Bienvenus">
-    <div>
-        <h2 class="titre2">Bienvenue sur Medicare !</h2><br>
-        <p>Nous sommes ravis de vous accueillir au sein de notre communauté. Chez Medicare, nous nous engageons à
-            fournir des services de santé de qualité et à répondre à tous vos besoins médicaux. Que vous ayez besoin de
-            consulter un spécialiste, de gérer vos prescriptions ou de trouver des informations sur les soins de santé,
-            nous sommes là pour vous aider à chaque étape.
-            Notre mission est de rendre les soins de santé accessibles et faciles à comprendre pour tous. N'hésitez pas
-            à explorer notre site et à découvrir les nombreuses ressources que nous offrons pour vous et votre famille.
-            Merci de nous faire confiance pour votre santé et votre bien-être.
-            L'équipe Medicare</p>
-    </div>
-</section>
-<section class="evenement">
-    <div class="EvenementContenu">
-        <div class="EvenementImage">
-            <img src="imageAccueil/evenement1.png" class="Evenement1">
+<main>
+    <section class="Bienvenus">
+        <div>
+            <h2 class="titre2">Bienvenue sur Medicare !</h2><br>
+            <p>Nous sommes ravis de vous accueillir au sein de notre communauté. Chez Medicare, nous nous engageons à
+                fournir des services de santé de qualité et à répondre à tous vos besoins médicaux. Que vous ayez besoin de
+                consulter un spécialiste, de gérer vos prescriptions ou de trouver des informations sur les soins de santé,
+                nous sommes là pour vous aider à chaque étape.
+                Notre mission est de rendre les soins de santé accessibles et faciles à comprendre pour tous. N'hésitez pas
+                à explorer notre site et à découvrir les nombreuses ressources que nous offrons pour vous et votre famille.
+                Merci de nous faire confiance pour votre santé et votre bien-être.
+                L'équipe Medicare</p>
         </div>
-        <div class="EvenementText">
-            <h2 class="titre3">Evenement de la semaine</h2><br>
-            <p> l'introduction et l'adoption généralisée de thérapies ciblées et d'immunothérapies:</p>
-            <br>
-            <p>Ces avancées ont révolutionné le traitement du cancer en ciblant spécifiquement les cellules cancéreuses
-                tout en minimisant les dommages aux cellules saines.</p>
-            <br>
-            <p>Les thérapies ciblées fonctionnent en bloquant les mécanismes spécifiques de croissance et de propagation
-                des cellules cancéreuses, souvent en ciblant des protéines spécifiques présentes à la surface des
-                cellules tumorales. Cette approche personnalisée permet des traitements plus efficaces avec moins
-                d'effets secondaires.</p>
-            <br>
-            <p>D'autre part, l'immunothérapie stimule le système immunitaire du patient pour qu'il reconnaisse et
-                attaque les cellules cancéreuses. Des traitements comme les inhibiteurs de points de contrôle
-                immunitaire ont démontré des résultats spectaculaires dans certains types de cancer, offrant de
-                nouvelles options là où les traitements traditionnels étaient limités.</p>
-            <br>
-            <p>Ces développements ont apporté de l'espoir à de nombreux patients atteints de cancer, transformant la
-                manière dont la maladie est traitée et ouvrant la voie à une approche plus précise et personnalisée de
-                la lutte contre le cancer.</p>
+    </section>
+    <section class="evenement">
+        <div class="EvenementContenu">
+            <div class="EvenementImage">
+                <img src="imageAccueil/evenement1.png" class="Evenement1">
+            </div>
+            <div class="EvenementText">
+                <h2 class="titre3">Evenement de la semaine</h2><br>
+                <p> l'introduction et l'adoption généralisée de thérapies ciblées et d'immunothérapies:</p>
+                <br>
+                <p>Ces avancées ont révolutionné le traitement du cancer en ciblant spécifiquement les cellules cancéreuses
+                    tout en minimisant les dommages aux cellules saines.</p>
+                <br>
+                <p>Les thérapies ciblées fonctionnent en bloquant les mécanismes spécifiques de croissance et de propagation
+                    des cellules cancéreuses, souvent en ciblant des protéines spécifiques présentes à la surface des
+                    cellules tumorales. Cette approche personnalisée permet des traitements plus efficaces avec moins
+                    d'effets secondaires.</p>
+                <br>
+                <p>D'autre part, l'immunothérapie stimule le système immunitaire du patient pour qu'il reconnaisse et
+                    attaque les cellules cancéreuses. Des traitements comme les inhibiteurs de points de contrôle
+                    immunitaire ont démontré des résultats spectaculaires dans certains types de cancer, offrant de
+                    nouvelles options là où les traitements traditionnels étaient limités.</p>
+                <br>
+                <p>Ces développements ont apporté de l'espoir à de nombreux patients atteints de cancer, transformant la
+                    manière dont la maladie est traitée et ouvrant la voie à une approche plus précise et personnalisée de
+                    la lutte contre le cancer.</p>
+            </div>
         </div>
-    </div>
-</section>
-<section class="carousel">
-    <h2>Nos Médecins</h2><br>
-    <div class="contenu">
-        <input type="radio" name="case" id="c1">
-        <label for="c1" class="carte">
-            <div class="CD_row">
-                <div class="ImgMed">1</div>
-                <div class="DescriptionMed">
-                    <h4>Kevin Dubois</h4>
-                    <p>Médecin généraliste, spécialiste de santé polyvalent.</p>
+    </section>
+    <section class="carousel">
+        <h2>Nos Médecins</h2><br>
+        <div class="contenu">
+            <input type="radio" name="case" id="c1">
+            <label for="c1" class="carte">
+                <div class="CD_row">
+                    <div class="ImgMed">1</div>
+                    <div class="DescriptionMed">
+                        <h4>Kevin Dubois</h4>
+                        <p>Médecin généraliste, spécialiste de santé polyvalent.</p>
+                    </div>
                 </div>
-            </div>
-        </label>
-        <input type="radio" name="case" id="c2">
-        <label for="c2" class="carte">
-            <div class="CD_row">
-                <div class="ImgMed">2</div>
-                <div class="DescriptionMed">
-                    <h4>Jean Louis</h4>
-                    <p>Médecin Cardiologue, spécialisé dans les maladies cardiaques</p>
+            </label>
+            <input type="radio" name="case" id="c2">
+            <label for="c2" class="carte">
+                <div class="CD_row">
+                    <div class="ImgMed">2</div>
+                    <div class="DescriptionMed">
+                        <h4>Jean Louis</h4>
+                        <p>Médecin Cardiologue, spécialisé dans les maladies cardiaques</p>
+                    </div>
                 </div>
-            </div>
-        </label>
-        <input type="radio" name="case" id="c3">
-        <label for="c3" class="carte">
-            <div class="CD_row">
-                <div class="ImgMed">3</div>
-                <div class="DescriptionMed">
-                    <h4>Virginie Kirman</h4>
-                    <p>Médecin Gynécologue, spécialisé dans la santé reproductive</p>
+            </label>
+            <input type="radio" name="case" id="c3">
+            <label for="c3" class="carte">
+                <div class="CD_row">
+                    <div class="ImgMed">3</div>
+                    <div class="DescriptionMed">
+                        <h4>Virginie Kirman</h4>
+                        <p>Médecin Gynécologue, spécialisé dans la santé reproductive</p>
+                    </div>
                 </div>
-            </div>
-        </label>
-        <input type="radio" name="case" id="c4">
-        <label for="c4" class="carte">
-            <div class="CD_row">
-                <div class="ImgMed">4</div>
-                <div class="DescriptionMed">
-                    <h4>Sophie Dupont</h4>
-                    <p>Médecin Dermathologue, spécialisé dans les maladies de la peau</p>
+            </label>
+            <input type="radio" name="case" id="c4">
+            <label for="c4" class="carte">
+                <div class="CD_row">
+                    <div class="ImgMed">4</div>
+                    <div class="DescriptionMed">
+                        <h4>Sophie Dupont</h4>
+                        <p>Médecin Dermathologue, spécialisé dans les maladies de la peau</p>
+                    </div>
                 </div>
-            </div>
-        </label>
-        <input type="radio" name="case" id="c5">
-        <label for="c5" class="carte">
-            <div class="CD_row">
-                <div class="ImgMed">5</div>
-                <div class="DescriptionMed">
-                    <h4>Lucas Lopez</h4>
-                    <p>Médecin généraliste, spécialiste de santé polyvalent.</p>
+            </label>
+            <input type="radio" name="case" id="c5">
+            <label for="c5" class="carte">
+                <div class="CD_row">
+                    <div class="ImgMed">5</div>
+                    <div class="DescriptionMed">
+                        <h4>Lucas Lopez</h4>
+                        <p>Médecin généraliste, spécialiste de santé polyvalent.</p>
+                    </div>
                 </div>
-            </div>
-        </label>
-    </div>
-</section>
+            </label>
+        </div>
+    </section>
+</main>
 <footer>
     <div class="menu-footer">
         <div class="menu-footer2">

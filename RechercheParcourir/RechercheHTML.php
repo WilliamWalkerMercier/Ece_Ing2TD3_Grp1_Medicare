@@ -14,19 +14,21 @@ session_start();
     <link rel="icon" href="../Acceuil/imageAccueil/LogoMedicare.ico">
 </head>
 <body>
-<section class="recherche">
-    <h1>Recherche</h1>
-    <div class="barre">
-        <div class="iconRecherche">
-            <form action="Recherche.php" method="get">
-                <input type="text" name="query" placeholder="Entrez un nom, une spécialité ou un service" required>
-                <a href="#" type="submit">
-                    <i class="search fa fa-search"></i>
-                </a>
-            </form>
+<main>
+    <section class="recherche">
+        <h1>Recherche</h1>
+        <div class="barre">
+            <div class="iconRecherche">
+                <form action="Recherche.php" method="get">
+                    <input type="text" name="query" placeholder="Entrez un nom, une spécialité ou un service" required>
+                    <a href="#" type="submit">
+                        <i class="search fa fa-search"></i>
+                    </a>
+                </form>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
+</main>
 <header>
     <div class="logo">
         <a href="../Acceuil/Accueil.php"><img src="../Acceuil/imageAccueil/LogoMedicare.png" alt="Medicare Logo"></a>
@@ -50,7 +52,7 @@ session_start();
         <a href="#"><img src="../Acceuil/imageAccueil/MonCompte.png" alt="Compte Logo"></a>
     </div>
 </header>
-<foooter>
+<footer>
     <div class="menu-footer">
         <div class="menu-footer2">
             <nav2>
@@ -83,6 +85,6 @@ session_start();
             </div>
         </div>
     </div>
-</foooter>
+</footer>
 </body>
 </html>

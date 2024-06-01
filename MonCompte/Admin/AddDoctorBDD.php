@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $upload_dir = "images/";
     $upload_dir2 = "../../RechercheParcourir/";
     if (!is_dir($upload_dir)) {
-        mkdir($upload_dir, 0777, true);
+       mkdir($upload_dir, 0777, true);
     }
 
     $files = ['Picture1', 'Picture2', 'Picture3'];
