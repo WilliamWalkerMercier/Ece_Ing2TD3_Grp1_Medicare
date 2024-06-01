@@ -1,49 +1,59 @@
+<?php
+session_start();
+// Vérifie si 'isLogged' a été défini dans la session
+if (!isset($_SESSION['LogedIn'])) {
+    $_SESSION['LogedIn'] = false;  // Initialise 'isLogged' à false si non défini
+}
+//$_SESSION['LogedIn']= false;
+?>
+
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Accueil</title>
-    <link rel="stylesheet" href="Acceuil.css">
+    <link rel="stylesheet" href="Accueil.css">
     <link rel="stylesheet" href="../HeaderFooter.css">
-    <link rel="icon" href="imageAcceuil/LogoMedicare.ico">
+    <link rel="icon" href="imageAccueil/LogoMedicare.ico">
 </head>
 <body>
 <div id="intro">
     <div class="Intro">
-        <img src="imageAcceuil/LogoMedicare.png" alt="Medicare Logo" class="Intrologo">
+        <img src="imageAccueil/LogoMedicare.png" alt="Medicare Logo" class="Intrologo">
     </div>
 </div>
 <section class="ScrollingAcceuil">
-    <img src="imageAcceuil/fond1.png" class="fond1">
-    <img src="imageAcceuil/fond2.png" class="fond2">
-    <img src="imageAcceuil/fond3.png" class="fond3">
+    <img src="imageAccueil/fond1.png" class="fond1">
+    <img src="imageAccueil/fond2.png" class="fond2">
+    <img src="imageAccueil/fond3.png" class="fond3">
     <h1 class="titre">Medicare</h1>
-    <img src="imageAcceuil/fond4.png" class="fond4">
-    <img src="imageAcceuil/fond5.png" class="fond5">
-    <img src="imageAcceuil/fond6.png" class="fond6">
+    <img src="imageAccueil/fond4.png" class="fond4">
+    <img src="imageAccueil/fond5.png" class="fond5">
+    <img src="imageAccueil/fond6.png" class="fond6">
 </section>
 <header>
     <div class="logo">
-        <a href="Acceuil.html"><img src="imageAcceuil/LogoMedicare.png" alt="Medicare Logo"></a>
+        <a href="Accueil.php"><img src="imageAccueil/LogoMedicare.png" alt="Medicare Logo"></a>
     </div>
     <nav>
         <ul>
-            <li><a href="Acceuil.html" class="active">Accueil</a></li>
+            <li><a href="Accueil.php" class="active">Accueil</a></li>
             <li class="SousMenu1">
-                <a href="../RechercheParcourir/ToutParcourir.html">Tout Parcourir</a>
+                <a href="../RechercheParcourir/ToutParcourir.php">Tout Parcourir</a>
                 <ul class="SousMenu2">
                     <li><a href="../RechercheParcourir/Generaliste.php">Médecin généraliste</a></li>
                     <li><a href="../RechercheParcourir/Specialiste.php">Médecin spécialistes</a></li>
                     <li><a href="../RechercheParcourir/Laboratoire.php">Laboratoire de biologie médicale</a></li>
                 </ul>
             </li>
-            <li><a href="../RechercheParcourir/Recherche.html">Recherche</a></li>
-            <li><a href="#">Rendez-vous</a></li>
+            <li><a href="../RechercheParcourir/RechercheHTML.php">Recherche</a></li>
+            <li><a href="../RDV/RendezVous.php">Rendez-vous</a></li>
         </ul>
     </nav>
     <div class="CompteLogo">
-        <a href="#"><img src="imageAcceuil/MonCompte.png" alt="Compte Logo"></a>
+        <a href="../MonCompte/RedirectConnection.php"><img src="imageAccueil/MonCompte.png" alt="Compte Logo"></a>
     </div>
 </header>
 <section class="Bienvenus">
@@ -62,7 +72,7 @@
 <section class="evenement">
     <div class="EvenementContenu">
         <div class="EvenementImage">
-            <img src="imageAcceuil/evenement1.png" class="Evenement1">
+            <img src="imageAccueil/evenement1.png" class="Evenement1">
         </div>
         <div class="EvenementText">
             <h2 class="titre3">Evenement de la semaine</h2><br>
@@ -147,9 +157,9 @@
         <div class="menu-footer2">
             <nav2>
                 <ul>
-                    <li><a href="Acceuil.html">Accueil</a></li>
+                    <li><a href="Accueil.php">Accueil</a></li>
                     <li class="SousMenu3">
-                        <a href="../RechercheParcourir/ToutParcourir.html">Tout Parcourir</a>
+                        <a href="../RechercheParcourir/ToutParcourir.php">Tout Parcourir</a>
                         <ul class="SousMenu4">
                             <li><a href="../RechercheParcourir/Generaliste.php">Médecin généraliste</a></li>
                             <li><a href="../RechercheParcourir/Specialiste.php">Médecin spécialistes</a></li>
@@ -157,8 +167,8 @@
                             </li>
                         </ul>
                     </li>
-                    <li><a href="../RechercheParcourir/Recherche.html">Recherche</a></li>
-                    <li><a href="#">Rendez-vous</a></li>
+                    <li><a href="../RechercheParcourir/RechercheHTML.php">Recherche</a></li>
+                    <li><a href="../RDV/RendezVous.php">Rendez-vous</a></li>
                 </ul>
             </nav2>
         </div>
@@ -169,10 +179,10 @@
         </div>
         <div class="copyright3">
             <div class="insta">
-                <a href="#"><img src="imageAcceuil/insta.png"></a>
+                <a href="#"><img src="imageAccueil/insta.png"></a>
             </div>
             <div class="x">
-                <a href="#"><img src="imageAcceuil/twitter.png"></a>
+                <a href="#"><img src="imageAccueil/twitter.png"></a>
             </div>
         </div>
     </div>
@@ -189,6 +199,6 @@
         </div>
     </div>
 </footer>
-<script src="Acceuil.js"></script>
+<script src="Accueil.js"></script>
 </body>
 </html>

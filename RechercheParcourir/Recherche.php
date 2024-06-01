@@ -1,4 +1,7 @@
 <?php
+
+session_start();
+
 // Configurer la connexion à la base de données
 $servername = "localhost";
 $username = "root";
@@ -77,7 +80,7 @@ function AfficherDetails($idMedecin)
     <link rel="stylesheet" href="../HeaderFooter.css">
     <link rel="stylesheet" href="Recherche.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="icon" href="../Acceuil/imageAcceuil/LogoMedicare.ico">
+    <link rel="icon" href="../Acceuil/imageAccueil/LogoMedicare.ico">
     <link rel="stylesheet" href="CarteMed.css">
 </head>
 <body>
@@ -96,25 +99,25 @@ function AfficherDetails($idMedecin)
 </section>
 <header>
     <div class="logo">
-        <a href="../Acceuil/Acceuil.html"><img src="../Acceuil/imageAcceuil/LogoMedicare.png" alt="Medicare Logo"></a>
+        <a href="../Acceuil/Accueil.php"><img src="../Acceuil/imageAccueil/LogoMedicare.png" alt="Medicare Logo"></a>
     </div>
     <nav>
         <ul>
-            <li><a href="../Acceuil/Acceuil.html">Accueil</a></li>
+            <li><a href="../Acceuil/Accueil.php">Accueil</a></li>
             <li class="SousMenu1">
-                <a href="ToutParcourir.html">Tout Parcourir</a>
+                <a href="ToutParcourir.php">Tout Parcourir</a>
                 <ul class="SousMenu5">
                     <li><a href="Generaliste.php">Médecin généraliste</a></li>
                     <li><a href="Specialiste.php">Médecin spécialistes</a></li>
                     <li><a href="Laboratoire.php">Laboratoire de biologie médicale</a></li>
                 </ul>
             </li>
-            <li><a href="Recherche.html" class="active">Recherche</a></li>
+            <li><a href="RechercheHTML.php" class="active">Recherche</a></li>
             <li><a href="#">Rendez-vous</a></li>
         </ul>
     </nav>
     <div class="CompteLogo">
-        <a href="#"><img src="../Acceuil/imageAcceuil/MonCompte.png" alt="Compte Logo"></a>
+        <a href="#"><img src="../Acceuil/imageAccueil/MonCompte.png" alt="Compte Logo"></a>
     </div>
 </header>
 <section class="RechercheResultats">
@@ -143,10 +146,23 @@ function AfficherDetails($idMedecin)
                                         <?php AfficherDetails($row['Id']); ?>
                                     </div>
                                     <div class="doctor-actions">
-                                        <form action="PrendreRDV.php" method="get">
-                                            <input type="hidden" name="id_Medecin" value="<?php echo $row['Id'] ?>">
-                                            <button type="submit" class="appointment-button">Prendre un RDV</button>
-                                        </form>
+                                        <?php
+                                        if (isset($_SESSION['LogedIn']) && $_SESSION['LogedIn'] === true) {
+                                            // Le formulaire est affiché seulement si $_SESSION['Log'] est vrai
+                                            ?>
+                                            <form action="PrendreRDV.php" method="get">
+                                                <input type="hidden" name="id_Medecin" value="<?php echo $row['Id'] ?>">
+                                                <button type="submit" class="appointment-button">Prendre un RDV</button>
+                                            </form>
+                                            <?php
+                                        } else {?>
+                                            <form action="../RDV/RendezVous.php" method="get">
+                                                <input type="hidden" name="id_Medecin" value="<?php echo $row['Id'] ?>">
+                                                <button type="submit" class="appointment-button">Prendre un RDV</button>
+                                            </form>
+                                            <?php
+                                        }
+                                        ?>
                                         <button class="contact-button">Communiquer</button>
                                         <form action="AfficheCv.php" method="get">
                                             <input type="hidden" name="medecin_id" value="<?php echo $row['Id']; ?>">
@@ -211,16 +227,16 @@ function AfficherDetails($idMedecin)
         <div class="menu-footer2">
             <nav2>
                 <ul>
-                    <li><a href="../Acceuil/Acceuil.html" class="active">Accueil</a></li>
+                    <li><a href="../Acceuil/Acceuil.php" class="active">Accueil</a></li>
                     <li class="SousMenu3">
-                        <a href="ToutParcourir.html">Tout Parcourir</a>
+                        <a href="ToutParcourir.php">Tout Parcourir</a>
                         <ul class="SousMenu4">
                             <li><a href="Generaliste.php">Médecin généraliste</a></li>
                             <li><a href="Specialiste.php">Médecin spécialistes</a></li>
                             <li><a href="Laboratoire.php">Laboratoire de biologie médicale</a></li>
                         </ul>
                     </li>
-                    <li><a href="Recherche.html">Recherche</a></li>
+                    <li><a href="RechercheHTML.php">Recherche</a></li>
                     <li><a href="#">Rendez-vous</a></li>
                 </ul>
             </nav2>
@@ -232,10 +248,10 @@ function AfficherDetails($idMedecin)
         </div>
         <div class="copyright3">
             <div class="insta">
-                <a href="#"><img src="../Acceuil/imageAcceuil/insta.png"></a>
+                <a href="#"><img src="../Acceuil/imageAccueil/insta.png"></a>
             </div>
             <div class="x">
-                <a href="#"><img src="../Acceuil/imageAcceuil/twitter.png"></a>
+                <a href="#"><img src="../Acceuil/imageAccueil/twitter.png"></a>
             </div>
         </div>
     </div>

@@ -206,21 +206,21 @@ input:checked+label .DescriptionMed{
 }
 
 .carte[for="c1"]{
-    background-image: url("imageAcceuil/MedKevinDubois.jpg");
+    background-image: url("imageAccueil/MedKevinDubois.jpg");
 }
 
 .carte[for="c2"]{
-    background-image: url("imageAcceuil/MedJeanLouis.jpg");
+    background-image: url("imageAccueil/MedJeanLouis.jpg");
 }
 
 .carte[for="c3"]{
-    background-image: url("imageAcceuil/MedVirginieKirman.jpg");
+    background-image: url("imageAccueil/MedVirginieKirman.jpg");
 }
 
 .carte[for="c4"]{
-    background-image: url("imageAcceuil/MedSophieLedos.jpg");
+    background-image: url("imageAccueil/MedSophieLedos.jpg");
 }
 
 .carte[for="c5"]{
-    background-image: url("imageAcceuil/MedLucasLopez.jpg");
+    background-image: url("imageAccueil/MedLucasLopez.jpg");
 }

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion requise</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .Container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .Message {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .Message h2 {
+            color: #333333;
+            margin-bottom: 15px;
+        }
+
+        .Message p {
+            color: #666666;
+            margin-bottom: 20px;
+        }
+
+        .Buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .Button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        #LogInButton {
+            background-color: #007bff;
+            color: #ffffff;
+        }
+
+        #SignUpButton {
+            background-color: #28a745;
+            color: #ffffff;
+        }
+
+        .Button:hover {
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+<div class="Container">
+    <div class="Message">
+        <h2>Aucun compte détecté</h2>
+        <p>Pour prendre un rdv, veuillez vous connecter ou vous inscrire</p>
+        <div class="Buttons">
+            <button class="Button" id="LogInButton" onclick="window.location.href='connection.html'">Se connecter</button>
+            <button class="Button" id="SignUpButton" onclick="window.location.href='inscription.html'">S'inscrire</button>
+        </div>
+    </div>
+</div>
+</body>
+</html>

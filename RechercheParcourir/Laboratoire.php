@@ -1,4 +1,5 @@
 <?php
+session_start();
 // Configurer la connexion à la base de données
 $servername = "localhost";
 $username = "root";
@@ -37,7 +38,7 @@ $result = $conn->query($sql);
     <link rel="stylesheet" href="../HeaderFooter.css">
     <link rel="stylesheet" href="Specialiste.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="icon" href="../Acceuil/imageAcceuil/LogoMedicare.ico">
+    <link rel="icon" href="../Acceuil/imageAccueil/LogoMedicare.ico">
     <link rel="stylesheet" href="CarteMed.css">
 </head>
 <body>
@@ -46,25 +47,25 @@ $result = $conn->query($sql);
 </section>
 <header>
     <div class="logo">
-        <a href="../Acceuil/Acceuil.html"><img src="../Acceuil/imageAcceuil/LogoMedicare.png" alt="Medicare Logo"></a>
+        <a href="../Acceuil/Accueil.php"><img src="../Acceuil/imageAccueil/LogoMedicare.png" alt="Medicare Logo"></a>
     </div>
     <nav>
         <ul>
-            <li><a href="../Acceuil/Acceuil.html">Accueil</a></li>
+            <li><a href="../Acceuil/Accueil.php">Accueil</a></li>
             <li class="SousMenu1">
-                <a href="ToutParcourir.html" class="active">Tout Parcourir</a>
+                <a href="ToutParcourir.php" class="active">Tout Parcourir</a>
                 <ul class="SousMenu2">
                     <li><a href="Generaliste.php">Médecin généraliste</a></li>
                     <li><a href="Specialiste.php">Médecin spécialistes</a></li>
                     <li><a href="Laboratoire.php">Laboratoire de biologie médicale</a></li>
                 </ul>
             </li>
-            <li><a href="Recherche.html">Recherche</a></li>
+            <li><a href="RechercheHTML.php">Recherche</a></li>
             <li><a href="#">Rendez-vous</a></li>
         </ul>
     </nav>
     <div class="CompteLogo">
-        <a href="#"><img src="../Acceuil/imageAcceuil/MonCompte.png" alt="Compte Logo"></a>
+        <a href="#"><img src="../Acceuil/imageAccueil/MonCompte.png" alt="Compte Logo"></a>
     </div>
 </header>
 <section>
@@ -100,16 +101,16 @@ $result = $conn->query($sql);
         <div class="menu-footer2">
             <nav2>
                 <ul>
-                    <li><a href="../Acceuil/Acceuil.html" class="active">Accueil</a></li>
+                    <li><a href="../Acceuil/Accueil.php" class="active">Accueil</a></li>
                     <li class="SousMenu3">
-                        <a href="ToutParcourir.html">Tout Parcourir</a>
+                        <a href="ToutParcourir.php">Tout Parcourir</a>
                         <ul class="SousMenu4">
                             <li><a href="Generaliste.php">Médecin généraliste</a></li>
                             <li><a href="Specialiste.php">Médecin spécialistes</a></li>
                             <li><a href="Laboratoire.php">Laboratoire de biologie médicale</a></li>
                         </ul>
                     </li>
-                    <li><a href="Recherche.html">Recherche</a></li>
+                    <li><a href="RechercheHTML.php">Recherche</a></li>
                     <li><a href="#">Rendez-vous</a></li>
                 </ul>
             </nav2>
@@ -121,10 +122,10 @@ $result = $conn->query($sql);
         </div>
         <div class="copyright3">
             <div class="insta">
-                <a href="#"><img src="../Acceuil/imageAcceuil/insta.png"></a>
+                <a href="#"><img src="../Acceuil/imageAccueil/insta.png"></a>
             </div>
             <div class="x">
-                <a href="#"><img src="../Acceuil/imageAcceuil/twitter.png"></a>
+                <a href="#"><img src="../Acceuil/imageAccueil/twitter.png"></a>
             </div>
         </div>
     </div>

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulaire d'inscription</title>
+
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function () {
+            let vPhoneNumInput = document.querySelector('#telephone');
+            let vVitalCardInput = document.querySelector('#carteVitale');
+            let vPostalCodeInput = document.querySelector('#codePostal');
+            let form = document.querySelector('form');
+
+            vPhoneNumInput.addEventListener('keyup', () => {
+                let vPhoneNumber = vPhoneNumInput.value;
+                vPhoneNumber = vPhoneNumber.replace(/\D/g, ""); // Enlever tous les caractères qui ne sont pas des chiffres
+                vPhoneNumInput.value = vPhoneNumber;
+            });
+
+            vVitalCardInput.addEventListener('keyup', () => {
+                let vVitalCardNumber = vVitalCardInput.value;
+                vVitalCardNumber = vVitalCardNumber.replace(/\D/g, "");
+
+                if (!vVitalCardNumber.startsWith('1') && !vVitalCardNumber.startsWith('2')) {
+                    vVitalCardInput.value = "Nombre invalide ";
+                    return;
+                }
+
+                let vCreatingNumberVC = '';
+                if (vVitalCardNumber.length > 0) {
+                    vCreatingNumberVC += vVitalCardNumber.slice(0, 1) + ' ';
+                }
+                if (vVitalCardNumber.length > 1) {
+                    vCreatingNumberVC += vVitalCardNumber.slice(1, 3) + ' ';
+                }
+                if (vVitalCardNumber.length > 3) {
+                    vCreatingNumberVC += vVitalCardNumber.slice(3, 5) + ' ';
+                }
+                if (vVitalCardNumber.length > 5) {
+                    vCreatingNumberVC += vVitalCardNumber.slice(5, 7) + ' ';
+                }
+                if (vVitalCardNumber.length > 7) {
+                    vCreatingNumberVC += vVitalCardNumber.slice(7, 10) + ' ';
+                }
+                if (vVitalCardNumber.length > 10) {
+                    vCreatingNumberVC += vVitalCardNumber.slice(10, 13) + ' ';
+                }
+                if (vVitalCardNumber.length > 13) {
+                    vCreatingNumberVC += vVitalCardNumber.slice(13, 15);
+                }
+                vVitalCardInput.value = vCreatingNumberVC.trim();
+            });
+
+            vPostalCodeInput.addEventListener('keyup', () => {
+                let vPostalCodeNumber = vPostalCodeInput.value;
+                vPostalCodeNumber = vPostalCodeNumber.replace(/\D/g, "");
+
+                if (vPostalCodeNumber.length > 5) {
+                    vPostalCodeInput.value = vPostalCodeNumber.slice(0, 5);
+                } else {
+                    vPostalCodeInput.value = vPostalCodeNumber;
+                }
+            });
+
+            form.addEventListener('submit', function (e) {
+                let vPhoneNumber = vPhoneNumInput.value;
+                vPhoneNumber = vPhoneNumber.replace(/\D/g, ""); // Enlever tous les caractères qui ne sont pas des chiffres
+                if (vPhoneNumber.startsWith('0')) {
+                    vPhoneNumber = '33' + vPhoneNumber.slice(1);
+                }
+                vPhoneNumInput.value = vPhoneNumber;
+            });
+        });
+    </script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: auto;
+        }
+
+        .Container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .Form {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            width: 300px;
+            text-align: left;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .Form h2 {
+            color: #333333;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .FormElement {
+            margin-bottom: 15px;
+        }
+
+        .FormElement label {
+            margin-bottom: 5px;
+            color: #333333;
+            display: block;
+        }
+
+        .FormElement input {
+            width: calc(100% - 20px);
+            padding: 10px;
+            border: 1px solid #cccccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        #SignUpButton {
+            background-color: #28a745;
+            color: #ffffff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            text-align: center;
+        }
+
+        #SignUpButton:hover {
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+<br><br>
+<div class="Container">
+    <div class="Form">
+        <h2>Inscription</h2>
+        <form action="inscription.php" method="post">
+            <div class="FormElement">
+                <label for="nom">Nom:</label>
+                <input type="text" id="nom" name="nom" placeholder=" Bon" required>
+            </div>
+            <div class="FormElement">
+                <label for="prenom">Prénom :</label>
+                <input type="text" id="prenom" name="prenom" placeholder="Jean " required>
+            </div>
+            <div class="FormElement">
+                <label for="adresse1">Adresse ligne 1 :</label>
+                <input type="text" id="adresse1" name="adresse1" placeholder="10 rue " required>
+            </div>
+            <div class="FormElement">
+                <label for="adresse2">Adresse ligne 2 :</label>
+                <input type="text" id="adresse2" name="adresse2" placeholder="de la Mouette">
+            </div>
+            <div class="FormElement">
+                <label for="ville">Ville :</label>
+                <input type="text" id="ville" name="ville" required placeholder="Paris">
+            </div>
+            <div class="FormElement">
+                <label for="codePostal">Code Postal :</label>
+                <input type="number" id="codePostal" name="codePostal" placeholder="01234" required>
+            </div>
+            <div class="FormElement">
+                <label for="pays">Pays :</label>
+                <input type="text" id="pays" name="pays" placeholder="France" required>
+            </div>
+            <div class="FormElement">
+                <label for="telephone">Numéro de téléphone :</label>
+                <input type="int" id="telephone" name="telephone" placeholder="0123456789" required>
+            </div>
+            <div class="FormElement">
+                <label for="email">Courriel:</label>
+                <input type="email" id="email" name="email" placeholder="lemedecin@omnessante.fr" required>
+            </div>
+            <div class="FormElement">
+                <label for="carteVitale">Carte Vitale :</label>
+                <input type="text" id="carteVitale" name="carteVitale" placeholder="1 60 04 25 311 114 26" required>
+            </div>
+            <div class="FormElement">
+                <label for="password">Mot de passe :</label>
+                <input type="password" id="password" name="password" placeholder="MonMotDePasse" required>
+            </div>
+            <div class="FormElement">
+                <button type="submit" id="SignUpButton">S'inscrire</button>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

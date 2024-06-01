@@ -1,3 +1,9 @@
+<?php
+session_start();
+include '../MonCompte/VerifConnection.php';
+checkUserLoggedIn(); // Vérifie si l'utilisateur est connecté
+checkPermission(2);
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -6,18 +12,18 @@
     <title>Réservation de créneau - Medicare</title>
     <link rel="stylesheet" href="../HeaderFooter.css">
     <link rel="stylesheet" href="PrendreRDV.css">
-    <link rel="icon" href="../Acceuil/imageAcceuil/LogoMedicare.ico">
+    <link rel="icon" href="../Acceuil/imageAccueil/LogoMedicare.ico">
 </head>
 <body>
 <header>
     <div class="logo">
-        <a href="../Acceuil/Acceuil.html"><img src="../Acceuil/imageAcceuil/LogoMedicare.png" alt="Medicare Logo"></a>
+        <a href="../Acceuil/Accueil.php"><img src="../Acceuil/imageAccueil/LogoMedicare.png" alt="Medicare Logo"></a>
     </div>
     <nav>
         <ul>
-            <li><a href="../Acceuil/Acceuil.html">Accueil</a></li>
+            <li><a href="../Acceuil/Accueil.php">Accueil</a></li>
             <li class="SousMenu1">
-                <a href="ToutParcourir.html">Tout Parcourir</a>
+                <a href="ToutParcourir.php">Tout Parcourir</a>
                 <ul class="SousMenu5">
                     <li><a href="Generaliste.php">Médecin généraliste</a></li>
                     <li><a href="Specialiste.php">Médecin spécialistes</a></li>
@@ -29,7 +35,7 @@
         </ul>
     </nav>
     <div class="CompteLogo">
-        <a href="#"><img src="../Acceuil/imageAcceuil/MonCompte.png" alt="Compte Logo"></a>
+        <a href="#"><img src="../Acceuil/imageAccueil/MonCompte.png" alt="Compte Logo"></a>
     </div>
 </header>
 <section class="rdv">
@@ -88,7 +94,7 @@
     if (isset($_GET['Nom_Service'])) {
         $nomService = ($_GET['Nom_Service']);
     }
-    $patient = 3;
+    $patient = $_SESSION['user_id'];
     $db_handle = mysqli_connect('localhost', 'root', '');
     $db_found = mysqli_select_db($db_handle, 'medicare');
     $decalage = 0;
@@ -129,9 +135,9 @@
         <div class="menu-footer2">
             <nav2>
                 <ul>
-                    <li><a href="../Acceuil/Acceuil.html" class="active">Accueil</a></li>
+                    <li><a href="../Acceuil/Accueil.php" class="active">Accueil</a></li>
                     <li class="SousMenu3">
-                        <a href="ToutParcourir.html">Tout Parcourir</a>
+                        <a href="ToutParcourir.php">Tout Parcourir</a>
                         <ul class="SousMenu4">
                             <li><a href="Generaliste.php">Médecin généraliste</a></li>
                             <li><a href="Specialiste.php">Médecin spécialistes</a></li>
@@ -150,10 +156,10 @@
         </div>
         <div class="copyright3">
             <div class="insta">
-                <a href="#"><img src="../Acceuil/imageAcceuil/insta.png"></a>
+                <a href="#"><img src="../Acceuil/imageAccueil/insta.png"></a>
             </div>
             <div class="x">
-                <a href="#"><img src="../Acceuil/imageAcceuil/twitter.png"></a>
+                <a href="#"><img src="../Acceuil/imageAccueil/twitter.png"></a>
             </div>
         </div>
     </div>

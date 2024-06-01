@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .Container {
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .Form {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            width: 300px;
+            text-align: left;
+        }
+        .Form h2 {
+            color: #333333;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .FormElement {
+            margin-bottom: 15px;
+        }
+
+        .FormElement label {
+            margin-bottom: 5px;
+            color: #333333;
+        }
+
+        .FormElement input {
+            width: calc(100% - 20px); /*https://developer.mozilla.org/en-US/docs/Web/CSS/calc*/
+            /*S'assure que les élements se placent correctement par rapport au conteneur et ne dépasse pas ou ne se chevauche pas*/
+            padding: 10px;
+            border: 1px solid #cccccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        #SignUpButton {
+            background-color: #28a745;
+            color: #ffffff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            text-align: center;
+        }
+
+        #SignUpButton:hover {
+            opacity: 0.9;
+        }
+
+
+    </style>
+</head>
+<body>
+<div class="Container">
+    <div class="Form">
+        <h2>Se connecter</h2>
+        <form action="connection.php" method="post">
+            <div class="FormElement">
+                <label for="email">Courriel:</label>
+                <input type="email" id="email" name="email" placeholder="monemail@wanadoo.fr" required>
+            </div>
+            <div class="FormElement">
+                <label for="password">Mot de Passe:</label>
+                <input type="password" id="password" name="password" placeholder="Password" required>
+            </div>
+            <div class="FormElement">
+                <button type="submit" id="SignUpButton">Se connecter</button>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

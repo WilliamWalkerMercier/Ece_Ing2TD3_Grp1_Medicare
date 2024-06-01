@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AccueilMedecin</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: auto;
+        }
+
+        .container {
+            background: chartreuse;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-top: auto;
+        }
+
+        .UserInfo {
+            text-align: center;
+            margin-bottom: 20px; /* Space between user info and buttons */
+        }
+
+        .buttons {
+            padding: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px; /* Espace entre les boutons */
+            max-width: 400px; /* Limite de largeur pour le conteneur */
+        }
+
+        .button {
+            flex: 1 1 45%; /* Chaque bouton prendra environ 45% de la largeur disponible */
+            /*
+            *Premier chiffre: proportion pour s'agrandir
+            *Deuxième chiffre: proportion pour se rétrécir
+            *Troisième chiffre: taille initiale des cases
+            *Source: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_flexible_box_layout/Basic_concepts_of_flexbox
+            */
+            padding: 10px 20px; /* Haut-bas puis gauche-droite */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            text-align: center; /* Centrer le texte dans les boutons */
+        }
+
+        #DoctorInfo {
+            background-color: #1e8ffd;
+            color: #ffffff;
+        }
+
+        #ChatRoom {
+            background-color: #32cc32;
+            color: #ffffff;
+        }
+
+        #RDVList {
+            background-color: #fda400;
+            color: #ffffff;
+        }
+        .button:hover {
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+<div class="container"><!-- Contient tout l'affichage -->
+    <div class="UserInfo"><!-- Affiche les informations de l'utilisateur -->
+        <p id="DoctorName">Nom: Bon</p>
+        <p id="DoctorSurname">Prenom: Jean</p>
+        <p id="DoctorMail">Courriel: jeanbon@wanadoo.fr</p>
+    </div>
+    <div class="buttons"><!-- Bloc des boutons -->
+        <button onclick="location.href='DoctorInfo.php?doctor_id=25'" class="button" id="DoctorInfo">Mes informations</button><!-- Bouton Liste des médecins -->
+        <!--A changer l'id du docteur en fonction de celui qui est connecté -->
+        <button class="button" id="ChatRoom">ChatRoom</button><!-- Bouton Info Laboratoire -->
+        <button class="button" id="RDVList">Gestion des rendez-vous</button><!-- Bouton Gestion des rendez-vous -->
+    </div>
+</div>
+</body>
+</html>
