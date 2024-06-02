@@ -1,3 +1,4 @@
+<!-- Meme fichier que pour addictologie  -->
 <?php
 session_start();
 // Connexion à la base de données

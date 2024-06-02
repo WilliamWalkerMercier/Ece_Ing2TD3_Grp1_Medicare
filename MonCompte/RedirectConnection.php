@@ -2,6 +2,7 @@
 session_start();
 include 'VerifConnection.php';
 checkUserLoggedIn();
+//Redirige vers le bon tableau de bord en fonction du type de l'utilisateur
 if ($_SESSION['user_type'] == 0) {
         header("Location: Admin/AdminMenu.php");
         exit;

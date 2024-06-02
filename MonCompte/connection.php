@@ -19,7 +19,10 @@ if ($conn->connect_error) {
 $email = $_POST['email'];
 $pwd = $_POST['password'];
 
-// Échapper les données pour éviter les injections SQL
+// Eviter les injections SQL
+//Sources:
+//https://www.vaadata.com/blog/fr/injections-sql-principes-impacts-exploitations-bonnes-pratiques-securite/
+//https://www.w3schools.com/php/func_mysqli_real_escape_string.asp
 $email = $conn->real_escape_string($email);
 
 // Requête SQL pour récupérer le mot de passe haché et les informations de l'utilisateur

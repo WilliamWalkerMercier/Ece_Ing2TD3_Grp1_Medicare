@@ -67,6 +67,10 @@ if ($conn->connect_error) {
 }
 
 // Préparer et exécuter la requête pour vérifier si l'utilisateur existe déjà
+/*
+ * https://www.php.net/manual/fr/mysqli.quickstart.prepared-statements.php
+ * https://www.pierre-giraud.com/php-mysql-apprendre-coder-cours/requete-preparee/#:~:text=Pr%C3%A9parer%20ses%20requ%C3%AAtes%20comporte%20des,donn%C3%A9es%20envoy%C3%A9es%20par%20les%20utilisateurs.
+ * */
 $sql = "SELECT * FROM Utilisateur WHERE Mail=?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("s", $email);
@@ -78,6 +82,7 @@ if ($result->num_rows > 0) {
     echo '<br><a href="inscription.html">Retourner à la page d\'inscription</a>';
 } else {
     // Hacher le mot de passe
+    //https://www.primfx.com/securiser-mot-de-passe-php-password-hash-verify/
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
     // Convertir le numéro de téléphone en entier

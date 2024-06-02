@@ -9,18 +9,28 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="icon" href="../Acceuil/imageAccueil/LogoMedicare.ico">
     <style>
-        main{
-            display: flex;
-            justify-content: center;
-        }
-
-        .Container {
+        main {
             display: flex;
             justify-content: center;
             align-items: center;
+            position: relative;
+            height: 100vh;
+            z-index: 10;
+            margin-top: 80px;
         }
+
+        .Container {
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            background: transparent;
+            backdrop-filter: blur(20px);
+
+        }
+
         .Form {
-            background-color: #ffffff;
+            background-color: transparent;
             padding: 20px;
             border-radius: 8px;
             width: 300px;
@@ -65,7 +75,37 @@
             opacity: 0.9;
         }
 
+        .ScrollingAcceuil {
+            display: flex;
+            height: 100vh;
+            position: absolute;
+            width: 100%;
+            top: 0;
+            left: 0;
+            padding: 0;
+            overflow: hidden;
+            z-index: 1; /* Background images should be behind the main content */
+        }
+         input{
+             background: transparent;
+         }
 
+        .ScrollingAcceuil img {
+            pointer-events: none;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .ScrollingAcceuil .titre {
+            color: #183E0C;
+            position: absolute;
+            transform: translate(-50%, -50%);
+            top: 25%;
+            left: 50%;
+            font-size: 60px;
+            text-shadow: 0px 0px 3px rgba(0, 0, 0, 0.25);
+        }
     </style>
 </head>
 <body>
@@ -112,5 +152,14 @@
         </div>
     </div>
 </main>
+<section class="ScrollingAcceuil">
+    <img src="../Acceuil/imageAccueil/fond1.png" class="fond1">
+    <img src="../Acceuil/imageAccueil/fond2.png" class="fond2">
+    <img src="../Acceuil/imageAccueil/fond3.png" class="fond3">
+    <h1 class="titre">Medicare</h1>
+    <img src="../Acceuil/imageAccueil/fond4.png" class="fond4">
+    <img src="../Acceuil/imageAccueil/fond5.png" class="fond5">
+    <img src="../Acceuil/imageAccueil/fond6.png" class="fond6">
+</section>
 </body>
 </html>

@@ -1,4 +1,4 @@
-<?php
+<?php //php redirigeant l'utilisateur sur la bonne page de consultation de ses rendez vous en fonction de son type
 session_start();
 include '../MonCompte/VerifConnection.php';
 checkUserLoggedIn(); // Vérifie si l'utilisateur est connecté

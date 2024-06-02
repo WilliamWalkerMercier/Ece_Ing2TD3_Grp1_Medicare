@@ -9,23 +9,25 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="icon" href="../Acceuil/imageAccueil/LogoMedicare.ico">
     <style>
-        main{
-            display: flex;
-            justify-content: center;
-        }
 
-        .Container {
+        main {
             display: flex;
             justify-content: center;
             align-items: center;
+            position: relative;
+            height: 100vh;
+            z-index: 10;
+            margin-top: 80px;
         }
 
-        .Message {
-            background-color: #ffffff;
+        .Container {
             padding: 20px;
-            border-radius: 8px;
+            border-radius: 10px;
             text-align: center;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            background: transparent;
+            backdrop-filter: blur(20px);
+
         }
 
         .Message h2 {
@@ -53,17 +55,46 @@
         }
 
         #LogInButton {
-            background-color: #007bff;
+            background-color: #144b1f;
             color: #ffffff;
         }
 
         #SignUpButton {
-            background-color: #28a745;
+            background-color: #469359;
             color: #ffffff;
         }
 
         .Button:hover {
             opacity: 0.9;
+        }
+
+        .ScrollingAcceuil {
+            display: flex;
+            height: 100vh;
+            position: absolute;
+            width: 100%;
+            top: 0;
+            left: 0;
+            padding: 0;
+            overflow: hidden;
+            z-index: 1; /* Background images should be behind the main content */
+        }
+
+        .ScrollingAcceuil img {
+            pointer-events: none;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .ScrollingAcceuil .titre {
+            color: #183E0C;
+            position: absolute;
+            transform: translate(-50%, -50%);
+            top: 25%;
+            left: 50%;
+            font-size: 60px;
+            text-shadow: 0px 0px 3px rgba(0, 0, 0, 0.25);
         }
     </style>
 </head>
@@ -96,11 +127,21 @@
             <h2>Aucun compte détecté</h2>
             <p>Pour prendre un rdv, veuillez vous connecter ou vous inscrire</p>
             <div class="Buttons">
+                <!-- https://www.developpez.net/forums/d945546/javascript/general-javascript/utilisation-onclick-location-href/-->
                 <button class="Button" id="LogInButton" onclick="window.location.href='connection.html'">Se connecter</button>
                 <button class="Button" id="SignUpButton" onclick="window.location.href='inscription.html'">S'inscrire</button>
             </div>
         </div>
     </div>
 </main>
+<section class="ScrollingAcceuil">
+    <img src="../Acceuil/imageAccueil/fond1.png" class="fond1">
+    <img src="../Acceuil/imageAccueil/fond2.png" class="fond2">
+    <img src="../Acceuil/imageAccueil/fond3.png" class="fond3">
+    <h1 class="titre">Medicare</h1>
+    <img src="../Acceuil/imageAccueil/fond4.png" class="fond4">
+    <img src="../Acceuil/imageAccueil/fond5.png" class="fond5">
+    <img src="../Acceuil/imageAccueil/fond6.png" class="fond6">
+</section>
 </body>
 </html>

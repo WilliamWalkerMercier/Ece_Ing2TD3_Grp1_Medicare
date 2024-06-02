@@ -105,6 +105,7 @@
 <main>
     <div class="cv-container">
         <?php
+        //Permet de récupérer la photo et le cv nécessaire
         if ($_SERVER["REQUEST_METHOD"] == "GET") {
             if (isset($_GET['medecin_id'])) {
                 $medecin_id = intval($_GET['medecin_id']);

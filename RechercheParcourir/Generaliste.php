@@ -126,13 +126,16 @@ function AfficherDetails($idMedecin)
                                 <?php AfficherDetails($row['Id_Medecin']); ?>
                             </div>
                             <div class="doctor-actions">
+                                <!-- Bouton prendre RDV  -->
                                 <form action="PrendreRDV.php" method="get">
                                     <input type="hidden" name="id_Medecin" value="<?php echo htmlspecialchars($row['Id_Medecin']); ?>">
                                     <button type="submit" class="appointment-button">Prendre un RDV</button>
                                 </form>
+                                <!-- Bouton  -->
                                 <a href="Communication.php">
                                     <button class="contact-button">Communiquer</button>
                                 </a>
+                                <!-- Bouton CV  -->
                                 <button class="cv-button">Voir le CV</button>
                             </div>
                         </div>

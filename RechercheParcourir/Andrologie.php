@@ -1,3 +1,4 @@
+<!-- Meme fichier que pour addictologie  -->
 <?php
 session_start();
 // Connexion à la base de données
@@ -185,12 +186,14 @@ function AfficherDetails($idMedecin)
                                 if (isset($_SESSION['LogedIn']) && $_SESSION['LogedIn'] === true) {
                                     // Le formulaire est affiché seulement si $_SESSION['Log'] est vrai
                                     ?>
+                                    <!-- bouton prendre Rdv -->
                                     <form action="PrendreRDV.php" method="get">
                                         <input type="hidden" name="id_Medecin" value="<?php echo $row['Id_Medecin'] ?>">
                                         <button type="submit" class="appointment-button">Prendre un RDV</button>
                                     </form>
                                     <?php
                                 } else {?>
+                                    <!-- bouton prendre Rdv -->
                                     <form action="../RDV/RendezVous.php" method="get">
                                         <input type="hidden" name="id_Medecin" value="<?php echo $row['Id_Medecin'] ?>">
                                         <button type="submit" class="appointment-button">Prendre un RDV</button>

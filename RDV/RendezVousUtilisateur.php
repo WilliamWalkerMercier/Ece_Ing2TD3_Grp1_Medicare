@@ -1,5 +1,5 @@
 <?php
-session_start()
+session_start() //Page affichant tous les rdv d'un utilisateur client de type 2
 ?>
 
 <!DOCTYPE html>
@@ -90,6 +90,7 @@ session_start()
 </header>
 <main>
     <?php
+    //Fonction affichant toues les infos du client
     function afficherUtilisateur($db_handle, $idUtilisateur)
     {
         $infoClient = mysqli_fetch_assoc(mysqli_query($db_handle, "SELECT * FROM Utilisateur u left JOIN Client c ON u.Id_User = c.Id_Client WHERE u.Id_User =" . $idUtilisateur));
@@ -114,7 +115,7 @@ session_start()
             <button type='submit' name='modifier'>Modifier les informations</button>
             </form>";
     }
-
+    //affichage des rendez-vous
     function afficherRDV($db_handle, $idUtilisateur)
     {
         $rdvs = mysqli_query($db_handle,

@@ -13,7 +13,7 @@ if ($conn->connect_error) {
 }
 
 $specialite = "Addictologie";
-
+// Requete sql pour selction tous les addictologue
 $sql = "SELECT medecin.*, utilisateur.Nom, utilisateur.Prenom, utilisateur.Mail, utilisateur.Telephone FROM medecin 
         JOIN utilisateur ON medecin.Id_Medecin = utilisateur.Id_User
         WHERE Specialite = ?";
@@ -24,6 +24,7 @@ $result = $stmt->get_result();
 $stmt->close();
 $conn->close();
 
+// fonction qui Affiches les détails
 function AfficherDetails($idMedecin)
 {
     $db_handle = mysqli_connect('localhost', 'root', '');
@@ -96,6 +97,7 @@ function AfficherDetails($idMedecin)
         <a href="../MonCompte/RedirectConnection.php"><img src="../Acceuil/imageAccueil/MonCompte.png" alt="Compte Logo"></a>
     </div>
 </header>
+<!-- Sous Menu -->
 <section class="SpecialisteResultats">
     <nav3 class="Bar">
         <div class="LogoMenu">
@@ -183,12 +185,14 @@ function AfficherDetails($idMedecin)
                                 if (isset($_SESSION['LogedIn']) && $_SESSION['LogedIn'] === true) {
                                     // Le formulaire est affiché seulement si $_SESSION['Log'] est vrai
                                     ?>
+                                    <!-- bouton prendre Rdv -->
                                     <form action="PrendreRDV.php" method="get">
                                         <input type="hidden" name="id_Medecin" value="<?php echo $row['Id_Medecin'] ?>">
                                         <button type="submit" class="appointment-button">Prendre un RDV</button>
                                     </form>
                                     <?php
                                 } else {?>
+                                    <!-- bouton prendre Rdv -->
                                     <form action="../RDV/RendezVous.php" method="get">
                                         <input type="hidden" name="id_Medecin" value="<?php echo $row['Id_Medecin'] ?>">
                                         <button type="submit" class="appointment-button">Prendre un RDV</button>
@@ -196,9 +200,11 @@ function AfficherDetails($idMedecin)
                                     <?php
                                 }
                                 ?>
+                                <!-- bouton communiquer -->
                                 <a href="Communication.php">
                                     <button class="contact-button">Communiquer</button>
                                 </a>
+                                <!-- bouton AfficheCV -->
                                 <form action="AfficheCv.php" method="get">
                                     <input type="hidden" name="medecin_id" value="<?php echo $row['Id_Medecin']; ?>">
                                     <button type="submit" class="appointment-button">Voir le CV</button>

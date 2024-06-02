@@ -2,7 +2,7 @@
 session_start();
 ?>
 
-<!DOCTYPE html>
+<!DOCTYPE html> <!--HTML et css fichier qui affiche les RDV médecins avec son css -->
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
@@ -69,7 +69,7 @@ session_start();
         }
     </style>
 </head>
-<body>
+<body><!-- Organisation de la page -->
 <header>
     <div class="logo">
         <a href="../Acceuil/Accueil.php"><img src="../Acceuil/imageAccueil/LogoMedicare.png" alt="Medicare Logo"></a>
@@ -95,7 +95,7 @@ session_start();
 </header>
 <main>
     <?php
-function afficherRDV($db_handle, $idMedecin)
+function afficherRDV($db_handle, $idMedecin) //Fonction qui affiche les RDV du médecin
 {
     $rdvs = mysqli_query($db_handle, "SELECT *, DATE_FORMAT(Date_Heure, '%Y-%m-%d %H:%i:%s') AS DateFormatee FROM RDV INNER JOIN Utilisateur ON RDV.Id_Client = Utilisateur.Id_User WHERE Id_Medecin ='" . $idMedecin . "'");
     $idRDV = -1;
@@ -145,7 +145,7 @@ function afficherRDV($db_handle, $idMedecin)
 
     mysqli_close($db_handle);
     ?>
-</main>
+</main><!--Footer-->
 <footer>
     <div class="menu-footer">
         <div class="menu-footer2">

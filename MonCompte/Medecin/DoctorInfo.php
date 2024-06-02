@@ -247,6 +247,7 @@ $conn->close();
             <div class="FormElement">
                 <label for="Picture1">Photo1:</label>
                 <?php
+                //permet de récupérer uniquement le nom
                 $vCheminOrigine = $doctor['Photo'];
                 $vCheminDur = '../images';
                 $vNomFichier = basename($vCheminOrigine);

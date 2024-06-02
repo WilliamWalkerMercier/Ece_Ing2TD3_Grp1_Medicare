@@ -2,7 +2,7 @@
 session_start()
 ?>
 
-<!DOCTYPE html>
+<!DOCTYPE html><!--HTML et css fichier qui affiche les RDV et les infos d'un utilisateur -->
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
@@ -82,7 +82,7 @@ session_start()
         }
     </style>
 </head>
-<body>
+<body><!--Affichage de la page partie html -->
 <header>
     <div class="logo">
         <a href="../Acceuil/Accueil.php"><img src="../Acceuil/imageAccueil/LogoMedicare.png" alt="Medicare Logo"></a>
@@ -108,7 +108,7 @@ session_start()
 </header>
 <main>
     <?php
-    function afficherUtilisateur($db_handle, $idUtilisateur)
+    function afficherUtilisateur($db_handle, $idUtilisateur) //fonction affichant toutes les données de l'utilisateur
     {
         $infoClient = mysqli_fetch_assoc(mysqli_query($db_handle, "SELECT * FROM Utilisateur u left JOIN Client c ON u.Id_User = c.Id_Client WHERE u.Id_User =" . $idUtilisateur));
         echo "<form method='post'> 
@@ -133,7 +133,7 @@ session_start()
             </form>";
     }
 
-    function afficherRDV($db_handle, $idUtilisateur)
+    function afficherRDV($db_handle, $idUtilisateur) //fonction qui affiche ses rendez-vous
     {
         $rdvs = mysqli_query($db_handle,
             "SELECT *, DATE_FORMAT(Date_Heure, '%Y-%m-%d %H:%i:%s') AS DateFormatee FROM RDV 
@@ -174,7 +174,7 @@ session_start()
     }
 
     ?>
-    <?php
+    <?php //Récupération des données de la session
     $idUtilisateur = $_SESSION['user_id'];
 
     $db_handle = mysqli_connect('localhost', 'root', '');
@@ -259,7 +259,7 @@ session_start()
     mysqli_close($db_handle);
     ?>
 </main>
-<footer>
+<footer> <!-- Footer -->
     <div class="menu-footer">
         <div class="menu-footer2">
             <nav2>
