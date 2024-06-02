@@ -56,6 +56,12 @@ session_start()
         button:hover {
             background-color: #144b1f;
         }
+        .Rendez-vous-passés {
+            color: indianred;
+        }
+        .Rendez-vous-à-venir {
+            color: green;
+        }
     </style>
 </head>
 <body>
@@ -112,7 +118,7 @@ session_start()
     function afficherRDV($db_handle, $idUtilisateur)
     {
         $rdvs = mysqli_query($db_handle,
-            "SELECT * FROM RDV 
+            "SELECT *, DATE_FORMAT(Date_Heure, '%Y-%m-%d %H:%i:%s') AS DateFormatee FROM RDV 
          LEFT JOIN Medecin ON RDV.Id_Medecin = Medecin.Id_Medecin 
          LEFT JOIN Utilisateur ON Medecin.Id_Medecin = Utilisateur.Id_User 
          LEFT JOIN Laboratoire ON RDV.Id_Lab = Laboratoire.Id_Lab
@@ -122,17 +128,23 @@ session_start()
         $listeCommandes = [];
         echo "<form method='post'><table>";
 
+        $dateActuelle = date('Y-m-d H:i:s'); // Obtenir la date actuelle
+
         if (mysqli_num_rows($rdvs) > 0) {
             while ($rdv = mysqli_fetch_assoc($rdvs)) {
                 $idRDV++;
+                // Comparaison de la date du rendez-vous avec la date actuelle
+                $classeRendezVous = (strtotime($rdv['DateFormatee']) < strtotime($dateActuelle)) ? "Rendez-vous-passés" : "Rendez-vous-à-venir";
+
+                echo "<tr class=' . $classeRendezVous '><td>";
                 if ($rdv["Id_Lab"] == 0) { // Gestion des rendez-vous avec médecins
-                    echo "<tr><td> Rendez-vous avec " . $rdv['Prenom'] . " " . $rdv['Nom'];
+                    echo " Rendez-vous avec " . $rdv['Prenom'] . " " . $rdv['Nom'];
                     echo ($rdv['Specialite'] != NULL && $rdv['Specialite'] != "Generaliste") ? " (" . $rdv['Specialite'] . ")" : " (Généraliste)";
                     echo " le " . $rdv['Date_Heure'] . " en " . $rdv["Bureau"] . "</td>";
-                    echo "<td><button type='submit' name='annuler' value='$idRDV'>Annuler</button></td></tr>";
-                    $listeCommandes[$idRDV] = "DELETE FROM RDV WHERE Id_Client='$idUtilisateur' AND Id_Medecin='" . $rdv['Id_Medecin'] . "' AND Date_Heure='" . $rdv['Date_Heure'] . "'";
                 } else { // Gestion des rendez-vous avec laboratoires
-                    echo "<tr><td> Rendez-vous au laboratoire Médical au " . $rdv["Adresse"] . ", dans la salle " . $rdv["Salle"] . " et le service " . $rdv["Nom_Service"] . "</td>";
+                    echo " Rendez-vous au laboratoire Médical au " . $rdv["Adresse"] . ", dans la salle " . $rdv["Salle"] . " et le service " . $rdv["Nom_Service"] . "</td>";
+                }
+                if($classeRendezVous!="Rendez-vous-passés"){
                     echo "<td><button type='submit' name='annuler' value='$idRDV'>Annuler</button></td></tr>";
                     $listeCommandes[$idRDV] = "DELETE FROM RDV WHERE Id_Client='$idUtilisateur' AND Date_Heure='" . $rdv['Date_Heure'] . "' AND Nom_Service='" . $rdv["Nom_Service"] . "' AND Id_Lab='" . $rdv["Id_Lab"] . "'";
                 }

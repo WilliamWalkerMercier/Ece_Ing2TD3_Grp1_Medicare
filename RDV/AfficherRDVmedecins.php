@@ -61,6 +61,12 @@ session_start();
         button:hover {
             background-color: #144b1f;
         }
+        .Rendez-vous-passés {
+            color: grey;
+        }
+        .Rendez-vous-à-venir {
+            color: green;
+        }
     </style>
 </head>
 <body>

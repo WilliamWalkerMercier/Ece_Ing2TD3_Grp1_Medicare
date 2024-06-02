@@ -130,12 +130,18 @@ checkPermission(2);
         }
         if (isset($_POST['date'])) {
             $dateHeure = $_POST['date'];
-            $insertionReussie = mysqli_query($db_handle, "INSERT INTO RDV (Id_Client, Id_Medecin, Id_lab, Nom_Service, Date_Heure) VALUES ('$patient', '$medecin', '0', '0', '$dateHeure')");
-            if ($insertionReussie) {
-                echo "Vous avez réservé le créneau : " . $dateHeure;
-            } else {
-                echo "Erreur lors de la réservation du créneau : " . mysqli_error($db_handle);
+            $dateActuelle = date('Y-m-d H:i:s'); // Obtenir la date actuelle
+            $classeRendezVous = (strtotime($dateHeure) < strtotime($dateActuelle)) ? "Rendez-vous-passés" : "Rendez-vous-à-venir";
+
+            if($classeRendezVous!="Rendez-vous-passés"){
+                $insertionReussie = mysqli_query($db_handle, "INSERT INTO RDV (Id_Client, Id_Medecin, Id_lab, Nom_Service, Date_Heure) VALUES ('$patient', '$medecin', '0', '0', '$dateHeure')");
+                if ($insertionReussie) {
+                    echo "Vous avez réservé le créneau : " . $dateHeure;
+                } else {
+                    echo "Erreur lors de la réservation du créneau : " . mysqli_error($db_handle);
+                }
             }
+
         }
     }
 
