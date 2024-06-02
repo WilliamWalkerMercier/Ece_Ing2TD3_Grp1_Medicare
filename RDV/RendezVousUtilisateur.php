@@ -13,13 +13,50 @@ session_start()
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="icon" href="../Acceuil/imageAccueil/LogoMedicare.ico">
     <style>
-        main{
-            margin-top: 80px;
+        main {
+            margin: 80px auto;
+            padding: 20px;
+            max-width: 1000px;
+            background: #ffffff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
         }
-        form{
+        form {
             display: flex;
-            justify-content: center;
-            align-items: center;
+            flex-direction: column;
+            gap: 15px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+        th {
+            background-color: #35424a;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        input[type=text], button {
+            padding: 10px;
+            margin-top: 5px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #35424a;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
         }
     </style>
 </head>
@@ -52,26 +89,25 @@ session_start()
     function afficherUtilisateur($db_handle, $idUtilisateur)
     {
         $infoClient = mysqli_fetch_assoc(mysqli_query($db_handle, "SELECT * FROM Utilisateur u left JOIN Client c ON u.Id_User = c.Id_Client WHERE u.Id_User =" . $idUtilisateur));
-        /*Pour tester avec des uti_lisateurs qui sont des médecins, mettre left join à la place de Innr join*/
-        echo /*tableau qui contient les informations et des boutons permettant de le modiier*/
-            "<form method='post'> <table>
-            <tr><td>Nom</td><td>" . $infoClient["Nom"] . "</td><td>Nouvelle valeur: </td><td><input type='text' name='nom'></td></tr>
-            <tr><td>Prénom</td><td>" . $infoClient["Prenom"] . "</td><td>Nouvelle valeur: </td><td><input type='text' name='prenom'></td></tr>
-            <tr><td>Mail</td><td>" . $infoClient["Mail"] . "</td><td>Nouvelle valeur: </td><td><input type='text' name='mail'></td></tr>
-            <tr><td>Téléphone</td><td>" . $infoClient["Telephone"] . "</td><td>Nouvelle valeur: </td><td><input type='text' name='telephone'></td></tr>
-            <tr><td>Pays</td><td>" . $infoClient["Pays"] . "</td><td>Nouvelle valeur: </td><td><input type='text' name='pays'></td></tr>
-            <tr><td>Code Postal</td><td>" . $infoClient["Code_Postal"] . "</td><td>Nouvelle valeur: </td><td><input type='text' name='code_postal'></td></tr>
-            <tr><td>Ville</td><td>" . $infoClient["Ville"] . "</td><td>Nouvelle valeur: </td><td><input type='text' name='ville'></td></tr>
-            <tr><td>Ligne d'adresse 1</td><td>" . $infoClient["Adresse1"] . "</td><td>Nouvelle valeur: </td><td><input type='text' name='adresse1'></td></tr>
-            <tr><td>Ligne d'adresse 2</td><td>" . $infoClient["Adresse2"] . "</td><td>Nouvelle valeur: </td><td><input type='text' name='adresse2'></td></tr>
-            <tr><td>Numéro de carte</td><td>" . $infoClient["Num_Cb"] . "</td><td>Nouvelle valeur: </td><td><input type='text' name='num_cb'></td></tr>
-            <tr><td>Type de Carte</td><td>" . $infoClient["Type_Carte"] . "</td><td>Nouvelle valeur: </td><td><input type='text' name='type_carte'></td></tr>
-            <tr><td>Date d'expiration</td><td>" . $infoClient["Date_Expiration"] . "</td><td>Nouvelle valeur: </td><td><input type='text' name='date_expiration'></td></tr>
-            <tr><td>Code de Sécurité</td><td>" . $infoClient["Code_Securite"] . "</td><td>Nouvelle valeur: </td><td><input type='text' name='code_securite'></td></tr>
-            <tr><td>Solde</td><td>" . $infoClient["Solde"] . "</td><td>Nouvelle valeur: </td><td><button>Si seulement...</button></td></tr>
+        echo "<form method='post'><table>
+            <tr><th>Champ</th><th>Valeur actuelle</th><th>Nouvelle valeur</th></tr>
+            <tr><td>Nom</td><td>" . $infoClient["Nom"] . "</td><td><input type='text' name='nom'></td></tr>
+            <tr><td>Prénom</td><td>" . $infoClient["Prenom"] . "</td><td><input type='text' name='prenom'></td></tr>
+            <tr><td>Mail</td><td>" . $infoClient["Mail"] . "</td><td><input type='text' name='mail'></td></tr>
+            <tr><td>Téléphone</td><td>" . $infoClient["Telephone"] . "</td><td><input type='text' name='telephone'></td></tr>
+            <tr><td>Pays</td><td>" . $infoClient["Pays"] . "</td><td><input type='text' name='pays'></td></tr>
+            <tr><td>Code Postal</td><td>" . $infoClient["Code_Postal"] . "</td><td><input type='text' name='code_postal'></td></tr>
+            <tr><td>Ville</td><td>" . $infoClient["Ville"] . "</td><td><input type='text' name='ville'></td></tr>
+            <tr><td>Ligne d'adresse 1</td><td>" . $infoClient["Adresse1"] . "</td><td><input type='text' name='adresse1'></td></tr>
+            <tr><td>Ligne d'adresse 2</td><td>" . $infoClient["Adresse2"] . "</td><td><input type='text' name='adresse2'></td></tr>
+            <tr><td>Numéro de carte</td><td>" . $infoClient["Num_Cb"] . "</td><td><input type='text' name='num_cb'></td></tr>
+            <tr><td>Type de Carte</td><td>" . $infoClient["Type_Carte"] . "</td><td><input type='text' name='type_carte'></td></tr>
+            <tr><td>Date d'expiration</td><td>" . $infoClient["Date_Expiration"] . "</td><td><input type='text' name='date_expiration'></td></tr>
+            <tr><td>Code de Sécurité</td><td>" . $infoClient["Code_Securite"] . "</td><td><input type='text' name='code_securite'></td></tr>
+            <tr><td>Solde</td><td>" . $infoClient["Solde"] . "</td><td><button>Si seulement...</button></td></tr>
             </table>
             <input type='hidden' name='idUtilisateur' value='" . $idUtilisateur . "'>
-            <input type='submit' name='modifier' value='Modifier les informations'>
+            <button type='submit' name='modifier'>Modifier les informations</button>
             </form>";
     }
 
@@ -103,8 +139,6 @@ session_start()
                     $listeCommandes[$idRDV] = "DELETE FROM RDV WHERE Id_Client='$idUtilisateur' AND Date_Heure='" . $rdv['Date_Heure'] . "' AND Nom_Service='" . $rdv["Nom_Service"] . "' AND Id_Lab='" . $rdv["Id_Lab"] . "'";
                 }
             }
-        } else {
-            echo "<tr><td>Aucun rendez-vous trouvé.</td></tr>"; // Message si aucun rendez-vous n'est trouvé
         }
 
         echo "</table></form>";
@@ -115,7 +149,6 @@ session_start()
     <?php
     $idUtilisateur = $_SESSION['user_id'];
 
-
     $db_handle = mysqli_connect('localhost', 'root', '');
     $db_found = mysqli_select_db($db_handle, 'medicare');
 
@@ -123,7 +156,6 @@ session_start()
     if (empty($listeCommandes)) {
         echo "Aucun rendez-vous à afficher.";
     }
-
 
     if (isset($_POST["modifier"])) {
         $idUtilisateur = $_POST['idUtilisateur'];
@@ -194,13 +226,44 @@ session_start()
     }
     if (isset($_POST["annuler"]) && isset($listeCommandes[$_POST["annuler"]])) {
         mysqli_query($db_handle, $listeCommandes[$_POST["annuler"]]);
-    } else {
-        echo "Aucune action valide sélectionnée ou aucun rendez-vous à annuler.";
     }
-
 
     mysqli_close($db_handle);
     ?>
 </main>
+<footer>
+    <div class="menu-footer">
+        <div class="menu-footer2">
+            <nav2>
+                <ul>
+                    <li><a href="../Acceuil/Accueil.php" class="active">Accueil</a></li>
+                    <li class="SousMenu3">
+                        <a href="../RechercheParcourir/ToutParcourir.php">Tout Parcourir</a>
+                        <ul class="SousMenu4">
+                            <li><a href="../RechercheParcourir/Generaliste.php">Médecin généraliste</a></li>
+                            <li><a href="../RechercheParcourir/Specialiste.php">Médecin spécialistes</a></li>
+                            <li><a href="../RechercheParcourir/Laboratoire.php">Laboratoire de biologie médicale</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="../RechercheParcourir/Recherche.php">Recherche</a></li>
+                    <li><a href="../RDV/RendezVous.php">Rendez-vous</a></li>
+                </ul>
+            </nav2>
+        </div>
+    </div>
+    <div class="copyright">
+        <div class="copyright2">
+            <p>Medicare &copy; 2024 Tous droits réservés.</p>
+        </div>
+        <div class="copyright3">
+            <div class="insta">
+                <a href="#"><img src="../Acceuil/imageAccueil/insta.png"></a>
+            </div>
+            <div class="x">
+                <a href="#"><img src="../Acceuil/imageAccueil/twitter.png"></a>
+            </div>
+        </div>
+    </div>
+</footer>
 </body>
 </html>

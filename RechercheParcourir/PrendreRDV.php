@@ -12,8 +12,8 @@ checkPermission(2);
     <title>Réservation de créneau - Medicare</title>
     <link rel="stylesheet" href="../HeaderFooter.css">
     <link rel="stylesheet" href="PrendreRDV.css">
+    <link rel="stylesheet" href="Specialiste.css">
     <link rel="icon" href="../Acceuil/imageAccueil/LogoMedicare.ico">
-    <link rel="stylesheet" href="PrendreRDV.css"> <!-- Votre fichier CSS personnalisé -->
     <link rel="icon" href="../Acceuil/imageAccueil/LogoMedicare.ico">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -28,7 +28,7 @@ checkPermission(2);
             <li><a href="../Acceuil/Accueil.php">Accueil</a></li>
             <li class="SousMenu1">
                 <a href="ToutParcourir.php">Tout Parcourir</a>
-                <ul class="SousMenu5">
+                <ul class="SousMenu2">
                     <li><a href="Generaliste.php">Médecin généraliste</a></li>
                     <li><a href="Specialiste.php">Médecin spécialistes</a></li>
                     <li><a href="Laboratoire.php">Laboratoire de biologie médicale</a></li>
@@ -42,8 +42,10 @@ checkPermission(2);
         <a href="../MonCompte/RedirectConnection.php"><img src="../Acceuil/imageAccueil/MonCompte.png" alt="Compte Logo"></a>
     </div>
 </header>
-<section class="rdv">
+<section class="Specialiste">
     <h1>Réservation de créneau</h1>
+</section>
+<section class="rdv">
     <?php
     function datesSemaine($decalage) {
         $aujourdhui = new DateTime();
@@ -71,19 +73,19 @@ checkPermission(2);
 
                 echo("Disponibilités de " . $resultat['Prenom'] . " " . $resultat['Nom'] . "<br>");
                 echo("<form method='post'><table>");
-                echo("<tr>");
+                echo("<thead><tr>");
                 foreach ($jours as $index => $jour) {
-                    echo("<td>" . $jour . " " . $datesSemaine[$index] . "</td>");
+                    echo("<th>" . $jour . " " . $datesSemaine[$index] . "</th>");
                 }
-                echo("</tr>");
+                echo("</tr></thead>");
+                echo("<tbody>");
 
                 foreach ($heuresJour as $indexHeure => $heures) {
                     foreach ($heures as $heure) {
                         echo("<tr>");
                         foreach ($jours as $indexJour => $jour) {
                             $date = $datesSemaine[$indexJour];
-                            // Calcule l'index correct pour chaque demi-journée
-                            $heureIndex = $indexJour * 2 + ($indexHeure > 0 ? 1 : 0); // Matin = 0, Après-midi = 1
+                            $heureIndex = $indexJour * 2 + ($indexHeure > 0 ? 1 : 0);
                             $isAvailable = $Dispo[$heureIndex] == '1';
 
                             $reservationDuMoment = mysqli_query($db_handle, "SELECT * FROM RDV WHERE Date_Heure ='" . $date . " " . $heure . ":00' AND Id_Medecin='" . $idMedecin . "'");
@@ -91,12 +93,13 @@ checkPermission(2);
                             if (mysqli_num_rows($reservationDuMoment) == 0 && $isAvailable) {
                                 echo("<td><button type='submit' name='date' value='" . $date . " " . $heure . ":00'>$heure</button></td>");
                             } else {
-                                echo("<td>Indisponible</td>");
+                                echo("<td class='indisponible'>Indisponible</td>");
                             }
                         }
                         echo("</tr>");
                     }
                 }
+                echo("</tbody>");
                 echo("</table><input type='hidden' name='decalage' value='$decalage'></form>");
             } else {
                 echo "Aucune information trouvée pour l'ID médecin $idMedecin.";
@@ -142,8 +145,8 @@ checkPermission(2);
     <br>
     <form method="post">
         <input type="hidden" name="decalage" value="<?php echo $decalage; ?>">
-        <input type="submit" name="decrementer" value="<-- Semaine précédente">
-        <input type="submit" name="incrementer" value="Semaine suivante -->">
+        <input type="submit" name="decrementer" value="Semaine précédente">
+        <input type="submit" name="incrementer" value="Semaine suivante">
     </form>
 </section>
 <footer>

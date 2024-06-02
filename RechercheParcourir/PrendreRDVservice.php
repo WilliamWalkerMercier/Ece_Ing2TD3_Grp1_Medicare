@@ -10,6 +10,7 @@ checkPermission(2);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Réservation de créneau - Medicare</title>
     <link rel="stylesheet" href="../HeaderFooter.css">
+    <link rel="stylesheet" href="Specialiste.css">
     <link rel="stylesheet" href="PrendreRDV.css">
     <link rel="icon" href="../Acceuil/imageAccueil/LogoMedicare.ico">
 </head>
@@ -38,8 +39,10 @@ checkPermission(2);
     </div>
 </header>
 <main>
-    <section class="rdv">
+    <section class="Specialiste">
         <h1>Réservation de créneau</h1>
+    </section>
+    <section class="rdv">
         <?php
         function datesSemaine($decalage) {
             $aujourdhui = new DateTime();
