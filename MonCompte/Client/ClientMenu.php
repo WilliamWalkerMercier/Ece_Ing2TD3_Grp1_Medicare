@@ -18,7 +18,7 @@ if ($conn->connect_error) {
 $clientId = $_SESSION['user_id'];
 
 // Requête SQL pour obtenir toutes les informations liées à l'utilisateur
-$sql = "SELECT U.Id_User,U.Nom, U.Prenom, U.Mail,U.Carte_Vitale FROM Utilisateur U WHERE Id_User = $clientId";
+$sql = "SELECT U.Id_User, U.Nom, U.Prenom, U.Mail, U.Carte_Vitale FROM Utilisateur U WHERE Id_User = $clientId";
 $result = $conn->query($sql);
 $row = $result->fetch_assoc();
 ?>
@@ -28,70 +28,62 @@ $row = $result->fetch_assoc();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AccueilMedecin</title>
+    <title>Accueil Médecin</title>
     <link rel="stylesheet" href="../../HeaderFooter.css">
     <link rel="stylesheet" href="../../RechercheParcourir/Recherche.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="icon" href="../../Acceuil/imageAccueil/LogoMedicare.ico">
     <style>
-
-        .container {
+        main {
+            margin-top: 100px;
+            padding: 20px;
             display: flex;
-            flex-direction: column;
-            padding: 80px;
+            justify-content: center;
             align-items: center;
-            color: black;
-            overflow: hidden;
-            width: auto;
-            position: relative;
-            height: auto;
+            height: calc(100vh - 200px);
         }
 
-        .UserInfo {
+        .container {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             text-align: center;
-            margin-bottom: 20px; /* Space between user info and buttons */
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .UserInfo h2 {
+            margin-bottom: 20px;
+        }
+
+        .UserInfo p {
+            margin: 10px 0;
         }
 
         .buttons {
-            padding: 20px;
             display: flex;
-            flex-wrap: wrap;
             justify-content: center;
-            gap: 10px; /* Espace entre les boutons */
-            max-width: 400px; /* Limite de largeur pour le conteneur */
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 20px;
         }
 
         .button {
-            flex: 1 1 45%; /* Chaque bouton prendra environ 45% de la largeur disponible */
-            /*
-            *Premier chiffre: proportion pour s'agrandir
-            *Deuxième chiffre: proportion pour se rétrécir
-            *Troisième chiffre: taille initiale des cases
-            *Source: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_flexible_box_layout/Basic_concepts_of_flexbox
-            */
-            padding: 10px 20px; /* Haut-bas puis gauche-droite */
+            padding: 10px 20px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
             font-size: 16px;
-            text-align: center; /* Centrer le texte dans les boutons */
+            text-align: center;
+            flex: 1 1 calc(33.333% - 30px);
+            width: auto;
+            height: auto;
+            color: #fff;
+            background-color: #144b1f;
+            transition: background-color 0.3s ease;
         }
 
-        #Info {
-            background-color: #1e8ffd;
-            color: #ffffff;
-        }
-
-        #ChatRoom {
-            background-color: #32cc32;
-            color: #ffffff;
-        }
-
-
-        #Deconnection {
-            background-color: #7f007f;
-            color: #ffffff;
-        }
         .button:hover {
             opacity: 0.9;
         }
@@ -137,7 +129,7 @@ $row = $result->fetch_assoc();
             </a>
             <button class="button" id="ChatRoom">Chatbox</button>
             <a href="../deconnexion.php">
-                <button class="button" id="Deconnection">Se déconnecter</button><!-- Bouton Gérer les utilisateurs -->
+                <button class="button" id="Deconnection">Se déconnecter</button>
             </a>
         </div>
     </div>
@@ -147,17 +139,16 @@ $row = $result->fetch_assoc();
         <div class="menu-footer2">
             <nav2>
                 <ul>
-                    <li><a href="../../Acceuil/Accueil.php">Accueil</a></li>
+                    <li><a href="../../Acceuil/Accueil.php" class="active">Accueil</a></li>
                     <li class="SousMenu3">
                         <a href="../../RechercheParcourir/ToutParcourir.php">Tout Parcourir</a>
                         <ul class="SousMenu4">
                             <li><a href="../../RechercheParcourir/Generaliste.php">Médecin généraliste</a></li>
                             <li><a href="../../RechercheParcourir/Specialiste.php">Médecin spécialistes</a></li>
-                            <li><a href="../../RechercheParcourir/Laboratoire.php">Laboratoire de biologie médicale</a>
-                            </li>
+                            <li><a href="../../RechercheParcourir/Laboratoire.php">Laboratoire de biologie médicale</a></li>
                         </ul>
                     </li>
-                    <li><a href="../../RechercheParcourir/RechercheHTML.php">Recherche</a></li>
+                    <li><a href="../../RechercheParcourir/Recherche.php">Recherche</a></li>
                     <li><a href="../../RDV/RendezVous.php">Rendez-vous</a></li>
                 </ul>
             </nav2>
@@ -166,12 +157,6 @@ $row = $result->fetch_assoc();
     <div class="copyright">
         <div class="copyright2">
             <p>Medicare &copy; 2024 Tous droits réservés.</p>
-        </div>
-        <div class="copyright3">
-            <p>Medicare@medecine.fr</p>
-        </div>
-        <div class="copyright3">
-            <p>06 25 78 98 67</p>
         </div>
         <div class="copyright3">
             <div class="insta">

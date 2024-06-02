@@ -46,46 +46,57 @@ $conn->close();
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="icon" href="../../Acceuil/imageAccueil/LogoMedicare.ico">
     <style>
+        main {
+            margin-top: 100px;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: calc(100vh - 200px);
+        }
 
         .container {
-            display: flex;
-            flex-direction: column;
-            padding: 80px;
-            align-items: center;
-            color: black;
-            overflow: hidden;
-            width: auto;
-            position: relative;
-            height: auto;
-        }
-        .userInfo {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             text-align: center;
-            margin-bottom: 20px; /* Espace entre les infos utilisateur et les boutons */
+            width: 100%;
+            max-width: 600px;
         }
-        .userInfo p {
+
+        .UserInfo h2 {
+            margin-bottom: 20px;
+        }
+
+        .UserInfo p {
             margin: 10px 0;
-            font-size: 16px;
-            color: #333;
         }
+
         .buttons {
             display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
             justify-content: center;
-            width: 100%;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 20px;
         }
+
         .button {
             padding: 10px 20px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
             font-size: 16px;
-            color: #fff;
-            background-color: #1e8ffd;
-            text-decoration: none; /* Supprimer le soulignement des liens */
-            display: inline-block;
             text-align: center;
+            flex: 1 1 calc(33.333% - 30px);
+            width: auto;
+            height: auto;
+            text-decoration: none;
+            color: #fff;
+            background-color: #144b1f;
+            transition: background-color 0.3s ease;
         }
+
         .button:hover {
             opacity: 0.8;
         }

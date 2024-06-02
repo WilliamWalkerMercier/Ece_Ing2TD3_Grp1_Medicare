@@ -126,7 +126,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         h1 {
             text-align: center;
-            background-color: #007bff;
+            background-color: #1f7230;
             color: white;
             padding: 20px;
         }
@@ -170,15 +170,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             margin: 8px 0;
         }
 
-        button {
-            padding: 10px 15px;
-            border: none;
-            border-radius: 4px;
-            background-color: #007bff;
-            color: white;
-            font-size: 1em;
-            cursor: pointer;
-        }
+
 
         button:hover {
             opacity: 0.8;
@@ -219,7 +211,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
 
         .UpdateButton {
-            background-color: #a21588;
+            background-color: #1fb601;
             color: white;
             cursor: pointer;
         }

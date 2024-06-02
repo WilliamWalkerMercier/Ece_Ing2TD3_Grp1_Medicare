@@ -54,67 +54,58 @@ $row = $result->fetch_assoc();
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="icon" href="../../Acceuil/imageAccueil/LogoMedicare.ico">
     <style>
-
-        .container {
+        main {
+            margin-top: 100px;
+            padding: 20px;
             display: flex;
-            flex-direction: column;
-            padding: 80px;
+            justify-content: center;
             align-items: center;
-            color: black;
-            overflow: hidden;
-            width: auto;
-            position: relative;
-            height: auto;
+            height: calc(100vh - 200px);
         }
 
-        .UserInfo {
+        .container {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             text-align: center;
-            margin-bottom: 20px; /* Space between user info and buttons */
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .UserInfo h2 {
+            margin-bottom: 20px;
+        }
+
+        .UserInfo p {
+            margin: 10px 0;
         }
 
         .buttons {
-            padding: 20px;
             display: flex;
-            flex-wrap: wrap;
             justify-content: center;
-            gap: 10px; /* Espace entre les boutons */
-            max-width: 400px; /* Limite de largeur pour le conteneur */
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 20px;
         }
 
         .button {
-            flex: 1 1 45%; /* Chaque bouton prendra environ 45% de la largeur disponible */
-            /*
-            *Premier chiffre: proportion pour s'agrandir
-            *Deuxième chiffre: proportion pour se rétrécir
-            *Troisième chiffre: taille initiale des cases
-            *Source: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_flexible_box_layout/Basic_concepts_of_flexbox
-            */
-            padding: 10px 20px; /* Haut-bas puis gauche-droite */
+            padding: 10px 20px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
             font-size: 16px;
-            text-align: center; /* Centrer le texte dans les boutons */
-        }
-
-        #DoctorList {
-            background-color: #1e8ffd;
-            color: #ffffff;
-        }
-
-        #LaboInfo {
-            background-color: #32cc32;
-            color: #ffffff;
-        }
-
-
-        #Deconnection {
-            background-color: #7f007f;
-            color: #ffffff;
+            text-align: center;
+            flex: 1 1 calc(33.333% - 30px);
+            width: auto;
+            height: auto;
+            color: #fff;
+            background-color: #144b1f;
+            transition: background-color 0.3s ease;
         }
 
         .button:hover {
-            opacity: 0.9;
+            opacity: 0.8;
         }
     </style>
 </head>

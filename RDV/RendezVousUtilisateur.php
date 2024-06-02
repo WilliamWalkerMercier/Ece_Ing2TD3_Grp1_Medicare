@@ -39,9 +39,7 @@ session_start()
             background-color: #35424a;
             color: white;
         }
-        tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
+
         input[type=text], button {
             padding: 10px;
             margin-top: 5px;
@@ -56,7 +54,7 @@ session_start()
             cursor: pointer;
         }
         button:hover {
-            background-color: #45a049;
+            background-color: #144b1f;
         }
     </style>
 </head>
