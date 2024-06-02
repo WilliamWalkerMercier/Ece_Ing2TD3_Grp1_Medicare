@@ -198,7 +198,9 @@ function AfficherDetails($idMedecin)
                                     <?php
                                 }
                                 ?>
-                                <button class="contact-button">Communiquer</button>
+                                <a href="Communication.php">
+                                    <button class="contact-button">Communiquer</button>
+                                </a>
                                 <form action="AfficheCv.php" method="get">
                                     <input type="hidden" name="medecin_id" value="<?php echo $row['Id_Medecin']; ?>">
                                     <button type="submit" class="appointment-button">Voir le CV</button>

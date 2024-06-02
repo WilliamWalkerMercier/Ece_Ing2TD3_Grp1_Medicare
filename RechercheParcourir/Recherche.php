@@ -114,11 +114,11 @@ function AfficherDetails($idMedecin)
                 </ul>
             </li>
             <li><a href="RechercheHTML.php" class="active">Recherche</a></li>
-            <li><a href="#">Rendez-vous</a></li>
+            <li><a href="../RDV/RendezVous.php">Rendez-vous</a></li>
         </ul>
     </nav>
     <div class="CompteLogo">
-        <a href="#"><img src="../Acceuil/imageAccueil/MonCompte.png" alt="Compte Logo"></a>
+        <a href="../MonCompte/RedirectConnection.php"><img src="../Acceuil/imageAccueil/MonCompte.png" alt="Compte Logo"></a>
     </div>
 </header>
 <main>
@@ -173,7 +173,7 @@ function AfficherDetails($idMedecin)
                                             }
                                             ?>
                                             <a href="Communication.php">
-                                            <button class="contact-button">Communiquer</button>
+                                                <button class="contact-button">Communiquer</button>
                                             </a>
                                             <form action="AfficheCv.php" method="get">
                                                 <input type="hidden" name="medecin_id"
@@ -228,7 +228,7 @@ function AfficherDetails($idMedecin)
                                                     <form action="checkoutForm.html" method="get">
                                                         <input type="hidden" name="Nom_Service"
                                                                value="<?php
-                                                               $_SESSION['NomServiceBesoin'] =$vNomService;
+                                                               $_SESSION['NomServiceBesoin'] = $vNomService;
                                                                echo $vNomService ?>">
                                                         <button type="submit" class="appointment-button">Payer le
                                                             service
@@ -310,7 +310,7 @@ function AfficherDetails($idMedecin)
                         </ul>
                     </li>
                     <li><a href="RechercheHTML.php">Recherche</a></li>
-                    <li><a href="#">Rendez-vous</a></li>
+                    <li><a href="../RDV/RendezVous.php">Rendez-vous</a></li>
                 </ul>
             </nav2>
         </div>

@@ -1,25 +1,15 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f9f9f9;
-}
 
-header {
-    text-align: center;
-    background-color: #007bff;
-    color: white;
-    padding: 20px;
-}
 
 
 /* Conteneur de la grille pour les éléments de docteurs */
 .DoctorContainer {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);/*Permet d'avoir uniquement 3 élements sur la page
-    *Source : https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-columns
-    */
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
     gap: 20px;
-    padding: 20px;
+    padding: 80px;
     justify-items: center;
+    justify-content: center;
 }
 
 /* Éléments individuels des docteurs */
@@ -34,8 +24,9 @@ header {
 
 .DoctorPicture {
     border-radius: 8px;
-    width: 100%;
-    height: auto;
+    width: 150px;
+    height: 150px;
+    align-items: start;
     margin-bottom: 20px;
 }
 

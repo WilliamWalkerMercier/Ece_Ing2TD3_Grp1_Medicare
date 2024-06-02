@@ -116,7 +116,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         exec($command, $output, $return_var);
 
 
-        header("Refresh: 5;URL=PrendreRDVservice.php");
+        header("Refresh: 0.5;URL=PrendreRDVservice.php");
     } else {
         // Rediriger vers la page d'inscription
         echo '<script type="text/javascript">alert("Utilisateur non trouvé. Vous allez être redirigé vers la page de payement.");</script>';

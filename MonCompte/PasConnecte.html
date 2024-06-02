@@ -4,15 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Connexion requise</title>
+    <link rel="stylesheet" href="../HeaderFooter.css">
+    <link rel="stylesheet" href="../RechercheParcourir/Recherche.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="icon" href="../Acceuil/imageAccueil/LogoMedicare.ico">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+        main{
             display: flex;
             justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
         }
 
         .Container {
@@ -69,15 +68,39 @@
     </style>
 </head>
 <body>
-<div class="Container">
-    <div class="Message">
-        <h2>Aucun compte détecté</h2>
-        <p>Pour prendre un rdv, veuillez vous connecter ou vous inscrire</p>
-        <div class="Buttons">
-            <button class="Button" id="LogInButton" onclick="window.location.href='connection.html'">Se connecter</button>
-            <button class="Button" id="SignUpButton" onclick="window.location.href='inscription.html'">S'inscrire</button>
+<header>
+    <div class="logo">
+        <a href="../Acceuil/Accueil.php"><img src="../Acceuil/imageAccueil/LogoMedicare.png" alt="Medicare Logo"></a>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="../Acceuil/Accueil.php">Accueil</a></li>
+            <li class="SousMenu1">
+                <a href="../RechercheParcourir/ToutParcourir.php">Tout Parcourir</a>
+                <ul class="SousMenu5">
+                    <li><a href="../RechercheParcourir/Generaliste.php">Médecin généraliste</a></li>
+                    <li><a href="../RechercheParcourir/Specialiste.php">Médecin spécialistes</a></li>
+                    <li><a href="../RechercheParcourir/Laboratoire.php">Laboratoire de biologie médicale</a></li>
+                </ul>
+            </li>
+            <li><a href="../RechercheParcourir/RechercheHTML.php">Recherche</a></li>
+        </ul>
+    </nav>
+    <div class="CompteLogo">
+        <a href="RedirectConnection.php"><img src="../Acceuil/imageAccueil/MonCompte.png" alt="Compte Logo"></a>
+    </div>
+</header>
+<main>
+    <div class="Container">
+        <div class="Message">
+            <h2>Aucun compte détecté</h2>
+            <p>Pour prendre un rdv, veuillez vous connecter ou vous inscrire</p>
+            <div class="Buttons">
+                <button class="Button" id="LogInButton" onclick="window.location.href='connection.html'">Se connecter</button>
+                <button class="Button" id="SignUpButton" onclick="window.location.href='inscription.html'">S'inscrire</button>
+            </div>
         </div>
     </div>
-</div>
+</main>
 </body>
 </html>

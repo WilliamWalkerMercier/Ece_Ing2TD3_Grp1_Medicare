@@ -130,7 +130,9 @@ function AfficherDetails($idMedecin)
                                     <input type="hidden" name="id_Medecin" value="<?php echo htmlspecialchars($row['Id_Medecin']); ?>">
                                     <button type="submit" class="appointment-button">Prendre un RDV</button>
                                 </form>
-                                <button class="contact-button">Communiquer</button>
+                                <a href="Communication.php">
+                                    <button class="contact-button">Communiquer</button>
+                                </a>
                                 <button class="cv-button">Voir le CV</button>
                             </div>
                         </div>

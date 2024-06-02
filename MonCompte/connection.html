@@ -4,16 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registration Form</title>
+    <link rel="stylesheet" href="../HeaderFooter.css">
+    <link rel="stylesheet" href="../RechercheParcourir/Recherche.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="icon" href="../Acceuil/imageAccueil/LogoMedicare.ico">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+        main{
             display: flex;
             justify-content: center;
-            align-items: center;
         }
-        .Container {
 
+        .Container {
             display: flex;
             justify-content: center;
             align-items: center;
@@ -68,23 +69,48 @@
     </style>
 </head>
 <body>
-<div class="Container">
-    <div class="Form">
-        <h2>Se connecter</h2>
-        <form action="connection.php" method="post">
-            <div class="FormElement">
-                <label for="email">Courriel:</label>
-                <input type="email" id="email" name="email" placeholder="monemail@wanadoo.fr" required>
-            </div>
-            <div class="FormElement">
-                <label for="password">Mot de Passe:</label>
-                <input type="password" id="password" name="password" placeholder="Password" required>
-            </div>
-            <div class="FormElement">
-                <button type="submit" id="SignUpButton">Se connecter</button>
-            </div>
-        </form>
+<header>
+    <div class="logo">
+        <a href="../Acceuil/Accueil.php"><img src="../Acceuil/imageAccueil/LogoMedicare.png" alt="Medicare Logo"></a>
     </div>
-</div>
+    <nav>
+        <ul>
+            <li><a href="../Acceuil/Accueil.php">Accueil</a></li>
+            <li class="SousMenu1">
+                <a href="../RechercheParcourir/ToutParcourir.php">Tout Parcourir</a>
+                <ul class="SousMenu5">
+                    <li><a href="../RechercheParcourir/Generaliste.php">Médecin généraliste</a></li>
+                    <li><a href="../RechercheParcourir/Specialiste.php">Médecin spécialistes</a></li>
+                    <li><a href="../RechercheParcourir/Laboratoire.php">Laboratoire de biologie médicale</a></li>
+                </ul>
+            </li>
+            <li><a href="../RechercheParcourir/RechercheHTML.php">Recherche</a></li>
+            <li><a href="../RDV/RendezVous.php">Rendez-vous</a></li>
+        </ul>
+    </nav>
+    <div class="CompteLogo">
+        <a href="RedirectConnection.php"><img src="../Acceuil/imageAccueil/MonCompte.png" alt="Compte Logo"></a>
+    </div>
+</header>
+<main>
+    <div class="Container">
+        <div class="Form">
+            <h2>Se connecter</h2>
+            <form action="connection.php" method="post">
+                <div class="FormElement">
+                    <label for="email">Courriel:</label>
+                    <input type="email" id="email" name="email" placeholder="monemail@wanadoo.fr" required>
+                </div>
+                <div class="FormElement">
+                    <label for="password">Mot de Passe:</label>
+                    <input type="password" id="password" name="password" placeholder="Password" required>
+                </div>
+                <div class="FormElement">
+                    <button type="submit" id="SignUpButton">Se connecter</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</main>
 </body>
 </html>

@@ -58,7 +58,7 @@ session_start();
                 <ul>
                     <li><a href="../Acceuil/Accueil.php" class="active">Accueil</a></li>
                     <li class="SousMenu3">
-                        <a href="ToutParcourir.html">Tout Parcourir</a>
+                        <a href="ToutParcourir.php">Tout Parcourir</a>
                         <ul class="SousMenu4">
                             <li><a href="Generaliste.php">Médecin généraliste</a></li>
                             <li><a href="Specialiste.php">Médecin spécialistes</a></li>
@@ -66,7 +66,7 @@ session_start();
                         </ul>
                     </li>
                     <li><a href="RechercheHTML.php">Recherche</a></li>
-                    <li><a href="../">Rendez-vous</a></li>
+                    <li><a href="../RDV/RendezVous.php">Rendez-vous</a></li>
                 </ul>
             </nav2>
         </div>

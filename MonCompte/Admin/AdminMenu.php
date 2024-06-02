@@ -58,11 +58,10 @@ $row = $result->fetch_assoc();
         .container {
             display: flex;
             flex-direction: column;
-            padding: 30px;
+            padding: 80px;
             align-items: center;
             color: black;
             overflow: hidden;
-            top: 70px;
             width: auto;
             position: relative;
             height: auto;
@@ -135,33 +134,75 @@ $row = $result->fetch_assoc();
                     <li><a href="../../RechercheParcourir/Laboratoire.php">Laboratoire de biologie médicale</a></li>
                 </ul>
             </li>
-            <li><a href="RechercheHTML.php" class="active">Recherche</a></li>
+            <li><a href="../../RechercheParcourir/RechercheHTML.php">Recherche</a></li>
             <li><a href="../../RDV/RendezVous.php">Rendez-vous</a></li>
         </ul>
     </nav>
     <div class="CompteLogo">
-        <a href="#"><img src="../../Acceuil/imageAccueil/MonCompte.png" alt="Compte Logo"></a>
+        <a href="../RedirectConnection.php"><img src="../../Acceuil/imageAccueil/MonCompte.png" alt="Compte Logo"></a>
     </div>
 </header>
-<div class="container"><!-- Contient tout l'affichage -->
-    <div class="UserInfo"><!-- Affiche les informations de l'utilisateur -->
-        <?php echo "<h2>{$row['Prenom']} {$row['Nom']}</h2>";
-        echo "<p><strong>ID:</strong> {$row['Id_User']}</p>";
-        echo "<p><strong>Courriel :</strong> {$row['Mail']}</p>";
-        ?>
+<main>
+    <div class="container"><!-- Contient tout l'affichage -->
+        <div class="UserInfo"><!-- Affiche les informations de l'utilisateur -->
+            <?php echo "<h2>{$row['Prenom']} {$row['Nom']}</h2>";
+            echo "<p><strong>ID:</strong> {$row['Id_User']}</p>";
+            echo "<p><strong>Courriel :</strong> {$row['Mail']}</p>";
+            ?>
+        </div>
+        <div class="buttons"><!-- Bloc des boutons -->
+            <a href="administrateur.php">
+                <button class="button" id="DoctorList">Liste des médecins</button><!-- Bouton Liste des médecins -->
+            </a>
+            <a href="laboratoire.php">
+                <button class="button" id="LaboInfo">Info Laboratoire</button><!-- Bouton Info Laboratoire -->
+            </a>
+            <a href="../deconnexion.php">
+                <button class="button" id="Deconnection">Se déconnecter</button><!-- Bouton Gérer les utilisateurs -->
+            </a>
+        </div>
     </div>
-    <div class="buttons"><!-- Bloc des boutons -->
-        <a href="administrateur.php">
-            <button class="button" id="DoctorList">Liste des médecins</button><!-- Bouton Liste des médecins -->
-        </a>
-        <a href="laboratoire.php">
-            <button class="button" id="LaboInfo">Info Laboratoire</button><!-- Bouton Info Laboratoire -->
-        </a>
-        <a href="../deconnexion.php">
-            <button class="button" id="Deconnection">Se déconnecter</button><!-- Bouton Gérer les utilisateurs -->
-        </a>
+</main>
+<footer>
+    <div class="menu-footer">
+        <div class="menu-footer2">
+            <nav2>
+                <ul>
+                    <li><a href="../../Acceuil/Accueil.php">Accueil</a></li>
+                    <li class="SousMenu3">
+                        <a href="../../RechercheParcourir/ToutParcourir.php">Tout Parcourir</a>
+                        <ul class="SousMenu4">
+                            <li><a href="../../RechercheParcourir/Generaliste.php">Médecin généraliste</a></li>
+                            <li><a href="../../RechercheParcourir/Specialiste.php">Médecin spécialistes</a></li>
+                            <li><a href="../../RechercheParcourir/Laboratoire.php">Laboratoire de biologie médicale</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><a href="../../RechercheParcourir/RechercheHTML.php">Recherche</a></li>
+                    <li><a href="../../RDV/RendezVous.php">Rendez-vous</a></li>
+                </ul>
+            </nav2>
+        </div>
     </div>
-</div>
-
+    <div class="copyright">
+        <div class="copyright2">
+            <p>Medicare &copy; 2024 Tous droits réservés.</p>
+        </div>
+        <div class="copyright3">
+            <p>Medicare@medecine.fr</p>
+        </div>
+        <div class="copyright3">
+            <p>06 25 78 98 67</p>
+        </div>
+        <div class="copyright3">
+            <div class="insta">
+                <a href="#"><img src="../../Acceuil/imageAccueil/insta.png"></a>
+            </div>
+            <div class="x">
+                <a href="#"><img src="../../Acceuil/imageAccueil/twitter.png"></a>
+            </div>
+        </div>
+    </div>
+</footer>
 </body>
 </html>

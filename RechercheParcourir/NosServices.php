@@ -27,12 +27,16 @@ $conn->close();
     <title>Laboratoire</title>
     <link rel="stylesheet" href="../HeaderFooter.css">
     <link rel="stylesheet" href="ToutParcourir.css">
+    <link rel="stylesheet" href="Specialiste.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="icon" href="../Acceuil/imageAccueil/LogoMedicare.ico">
     <link rel="stylesheet" href="CarteMed.css">
 </head>
 <body>
-<section class="ToutParcourirResultats">
+<section class="Specialiste">
+    <h1>Nos Services</h1>
+</section>
+<section class="SpecialisteResultatsResultats">
     <div>
         <div class="cartes">
             <?php if ($result->num_rows > 0): ?>
@@ -42,12 +46,36 @@ $conn->close();
                              class="laboratoire-photo">
                         <div class="service-info">
                             <h2><?php echo htmlspecialchars($row['Nom_Service']); ?></h2>
-                            <p><strong>Description :</strong> <?php echo htmlspecialchars($row['Description_Service']); ?></p>
-                            <div class="laboratoire-actions">
-                                <form action="PrendreRDVservice.php" method="get">
-                                    <input type="hidden" name="Nom_Service" value="<?php echo $row['Nom_Service'] ?>">
-                                    <button type="submit" class="appointment-button">Prendre un RDV</button>
-                                </form>
+                            <p><strong>Description
+                                    :</strong> <?php echo htmlspecialchars($row['Description_Service']); ?></p>
+                            <div class="Service-actions">
+                                <?php
+                                $payant = $row['Payant'];
+                                $NomService = $row['Nom_Service'];
+                                if ($payant == 1) {
+                                    ?>
+                                    <p><strong>Payant
+                                            :</strong> 6 €</p>
+                                    <form action="checkoutForm.html" method="get">
+                                        <input type="hidden" name="Nom_Service"
+                                               value="<?php $_SESSION['NomServiceBesoin'] = $NomService;
+                                               echo $NomService ?>">
+                                        <button type="submit" class="appointment-button">Payer le service
+                                        </button>
+                                    </form>
+                                    <?php
+                                } else { ?>
+                                    <p><strong>Payant
+                                            :</strong>Non</p>
+                                    <form action="PrendreRDVservice.php" method="get">
+                                        <input type="hidden" name="Nom_Service"
+                                               value="<?php echo $NomService ?>">
+                                        <button type="submit" class="appointment-button">Prendre un RDV
+                                        </button>
+                                    </form>
+                                    <?php
+                                }
+                                ?>
                             </div>
                         </div>
                     </section>
@@ -67,18 +95,19 @@ $conn->close();
             <li><a href="../Acceuil/Accueil.php">Accueil</a></li>
             <li class="SousMenu1">
                 <a href="ToutParcourir.php" class="active">Tout Parcourir</a>
-                <ul class="SousMenu5">
+                <ul class="SousMenu2">
                     <li><a href="Generaliste.php">Médecin généraliste</a></li>
                     <li><a href="Specialiste.php">Médecin spécialistes</a></li>
                     <li><a href="Laboratoire.php">Laboratoire de biologie médicale</a></li>
                 </ul>
             </li>
             <li><a href="RechercheHTML.php">Recherche</a></li>
-            <li><a href="#">Rendez-vous</a></li>
+            <li><a href="../RDV/RendezVous.php">Rendez-vous</a></li>
         </ul>
     </nav>
     <div class="CompteLogo">
-        <a href="#"><img src="../Acceuil/imageAccueil/MonCompte.png" alt="Compte Logo"></a>
+        <a href="../MonCompte/RedirectConnection.php"><img src="../Acceuil/imageAccueil/MonCompte.png"
+                                                           alt="Compte Logo"></a>
     </div>
 </header>
 <footer>
@@ -96,7 +125,7 @@ $conn->close();
                         </ul>
                     </li>
                     <li><a href="RechercheHTML.php">Recherche</a></li>
-                    <li><a href="#">Rendez-vous</a></li>
+                    <li><a href="../RDV/RendezVous.php">Rendez-vous</a></li>
                 </ul>
             </nav2>
         </div>

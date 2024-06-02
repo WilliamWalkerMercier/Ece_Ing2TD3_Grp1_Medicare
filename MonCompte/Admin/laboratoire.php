@@ -118,11 +118,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <head>
     <meta charset="UTF-8">
     <title>Modifier les données</title>
+    <link rel="stylesheet" href="../../HeaderFooter.css">
+    <link rel="stylesheet" href="../../RechercheParcourir/Recherche.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="icon" href="../../Acceuil/imageAccueil/LogoMedicare.ico">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f9f9f9;
-        }
 
         h1 {
             text-align: center;
@@ -133,11 +133,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         /* Conteneur de la grille pour les éléments */
         .DoctorContainer {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
             gap: 20px;
             padding: 20px;
             justify-items: center;
+            justify-content: center;
         }
 
         /* Éléments individuels */
@@ -151,6 +153,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             width: 100%;
             max-width: 300px;
             text-align: center;
+        }
+
+        main{
+            margin-top: 80px;
         }
 
         .DoctorElement img {
@@ -183,7 +189,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
 
         table {
-            width: 100%;
+            display: flex;
+            width: auto;
+            justify-content: center;
             border-collapse: collapse;
             margin: 20px ;
         }
@@ -228,31 +236,55 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </style>
 </head>
 <body>
-<?php
-// Afficher les informations des laboratoires
-afficherLaboratoires($result);
-
-// Afficher les informations des services de laboratoire
-afficherServices($result_services);
-?>
-
-<h1>Modifier les données du Laboratoire</h1>
-<table>
-    <tr>
-        <th>Id</th>
-        <th>Salle</th>
-        <th>Telephone</th>
-        <th>Email</th>
-        <th>Nom</th>
-        <th>Adresse</th>
-        <th>Actions</th>
-    </tr>
+<header>
+    <div class="logo">
+        <a href="../../Acceuil/Accueil.php"><img src="../../Acceuil/imageAccueil/LogoMedicare.png" alt="Medicare Logo"></a>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="../../Acceuil/Accueil.php">Accueil</a></li>
+            <li class="SousMenu1">
+                <a href="../../RechercheParcourir/ToutParcourir.php">Tout Parcourir</a>
+                <ul class="SousMenu5">
+                    <li><a href="../../RechercheParcourir/Generaliste.php">Médecin généraliste</a></li>
+                    <li><a href="../../RechercheParcourir/Specialiste.php">Médecin spécialistes</a></li>
+                    <li><a href="../../RechercheParcourir/Laboratoire.php">Laboratoire de biologie médicale</a></li>
+                </ul>
+            </li>
+            <li><a href="../../RechercheParcourir/RechercheHTML.php">Recherche</a></li>
+            <li><a href="../../RDV/RendezVous.php">Rendez-vous</a></li>
+        </ul>
+    </nav>
+    <div class="CompteLogo">
+        <a href="../RedirectConnection.php"><img src="../../Acceuil/imageAccueil/MonCompte.png" alt="Compte Logo"></a>
+    </div>
+</header>
+<main>
     <?php
-    // Requête SQL pour récupérer les informations des laboratoires pour les formulaires de modification
-    $labQuery = $conn->query("SELECT * FROM Laboratoire");
-    while($lab = $labQuery->fetch_assoc()): ?>
+    // Afficher les informations des laboratoires
+    afficherLaboratoires($result);
+
+    // Afficher les informations des services de laboratoire
+    afficherServices($result_services);
+    ?>
+
+    <h1>Modifier les données du Laboratoire</h1>
+    <table>
         <tr>
-            <?php echo '<form method="POST" action="">
+            <th>Id</th>
+            <th>Salle</th>
+            <th>Telephone</th>
+            <th>Email</th>
+            <th>Nom</th>
+            <th>Adresse</th>
+            <th>Actions</th>
+        </tr>
+        <?php
+        // Requête SQL pour récupérer les informations des laboratoires pour les formulaires de modification
+        $labQuery = $conn->query("SELECT * FROM Laboratoire");
+        while($lab = $labQuery->fetch_assoc()): ?>
+            <tr>
+                <?php echo '<form method="POST" action="">
                 <td><input type="text" name="id_lab" value="' . $lab['Id_Lab'] . '" readonly></td>
                 <td><input type="text" name="salle" value="' . $lab['Salle'] . '"></td>
                 <td><input type="text" name="telephone" value="' . $lab['Telephone'] . '"></td>
@@ -264,23 +296,23 @@ afficherServices($result_services);
                     <input type="submit" value="Mettre à jour">
                 </td>
             </form>'; ?>
-        </tr>
-    <?php endwhile; ?>
-</table>
+            </tr>
+        <?php endwhile; ?>
+    </table>
 
-<h1>Modifier les données du Service</h1>
-<table>
-    <tr>
-        <th>Nom Service</th>
-        <th>Description</th>
-        <th>Actions</th>
-    </tr>
-    <?php
-    // Requête SQL pour récupérer les informations des services pour les formulaires de modification
-    $serviceQuery = $conn->query("SELECT * FROM ServiceLab");
-    while($service = $serviceQuery->fetch_assoc()): ?>
+    <h1>Modifier les données du Service</h1>
+    <table>
         <tr>
-            <?php echo '<form method="POST" action="">
+            <th>Nom Service</th>
+            <th>Description</th>
+            <th>Actions</th>
+        </tr>
+        <?php
+        // Requête SQL pour récupérer les informations des services pour les formulaires de modification
+        $serviceQuery = $conn->query("SELECT * FROM ServiceLab");
+        while($service = $serviceQuery->fetch_assoc()): ?>
+            <tr>
+                <?php echo '<form method="POST" action="">
                 <td><input type="text" name="ServiceName" value="' . $service['Nom_Service'] . '"></td>
                 <td><input type="text" name="ServiceDescription" value="' . $service['Description_Service'] . '"></td>
                 <td>
@@ -288,33 +320,75 @@ afficherServices($result_services);
                     <input class="UpdateButton" type="submit" value="Mettre à jour">
                 </td>
             </form>'; ?>
-        </tr>
-    <?php endwhile; ?>
-</table>
-
-<h1>Ajouter un nouveau service</h1>
-<form method="POST" action="">
-    <table>
-        <tr>
-            <!--<td>Nom du service:</td>-->
-            <td>
-                <label for="NewServiceName">Nouveau Service:
-                    <input type="text" name="NewServiceName" required>
-                </label></td>
-        </tr>
-        <tr>
-            <td><label for="NewServiceDescription">Description:
-                    <input type="text" name="NewServiceDescription" required>
-                </label></td>
-        </tr>
-        <tr>
-            <td colspan="2">
-                <input type="hidden" name="add_service" value="1">
-                <input class="AddButton" type="submit" value="Ajouter">
-            </td>
-        </tr>
+            </tr>
+        <?php endwhile; ?>
     </table>
-</form>
+
+    <h1>Ajouter un nouveau service</h1>
+    <form method="POST" action="">
+        <table>
+            <tr>
+                <!--<td>Nom du service:</td>-->
+                <td>
+                    <label for="NewServiceName">Nouveau Service:
+                        <input type="text" name="NewServiceName" required>
+                    </label></td>
+            </tr>
+            <tr>
+                <td><label for="NewServiceDescription">Description:
+                        <input type="text" name="NewServiceDescription" required>
+                    </label></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="hidden" name="add_service" value="1">
+                    <input class="AddButton" type="submit" value="Ajouter">
+                </td>
+            </tr>
+        </table>
+    </form>
+</main>
+<footer>
+    <div class="menu-footer">
+        <div class="menu-footer2">
+            <nav2>
+                <ul>
+                    <li><a href="../../Acceuil/Accueil.php">Accueil</a></li>
+                    <li class="SousMenu3">
+                        <a href="../../RechercheParcourir/ToutParcourir.php">Tout Parcourir</a>
+                        <ul class="SousMenu4">
+                            <li><a href="../../RechercheParcourir/Generaliste.php">Médecin généraliste</a></li>
+                            <li><a href="../../RechercheParcourir/Specialiste.php">Médecin spécialistes</a></li>
+                            <li><a href="../../RechercheParcourir/Laboratoire.php">Laboratoire de biologie médicale</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><a href="../../RechercheParcourir/RechercheHTML.php">Recherche</a></li>
+                    <li><a href="../../RDV/RendezVous.php">Rendez-vous</a></li>
+                </ul>
+            </nav2>
+        </div>
+    </div>
+    <div class="copyright">
+        <div class="copyright2">
+            <p>Medicare &copy; 2024 Tous droits réservés.</p>
+        </div>
+        <div class="copyright3">
+            <p>Medicare@medecine.fr</p>
+        </div>
+        <div class="copyright3">
+            <p>06 25 78 98 67</p>
+        </div>
+        <div class="copyright3">
+            <div class="insta">
+                <a href="#"><img src="../../Acceuil/imageAccueil/insta.png"></a>
+            </div>
+            <div class="x">
+                <a href="#"><img src="../../Acceuil/imageAccueil/twitter.png"></a>
+            </div>
+        </div>
+    </div>
+</footer>
 </body>
 </html>
 

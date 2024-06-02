@@ -41,24 +41,22 @@ $conn->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Accueil Médecin</title>
+    <link rel="stylesheet" href="../../HeaderFooter.css">
+    <link rel="stylesheet" href="../../RechercheParcourir/Recherche.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="icon" href="../../Acceuil/imageAccueil/LogoMedicare.ico">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: auto;
-        }
+
         .container {
-            background: chartreuse;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            padding: 80px;
             align-items: center;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            color: black;
+            overflow: hidden;
+            width: auto;
+            position: relative;
+            height: auto;
         }
         .userInfo {
             text-align: center;
@@ -94,21 +92,87 @@ $conn->close();
     </style>
 </head>
 <body>
-<div class="container">
-    <div class="userInfo">
-        <h2>Informations du Médecin</h2>
-        <p>ID: <?php echo $doctor['Id_User']; ?></p>
-        <p>Nom: <?php echo $doctor['Nom']; ?></p>
-        <p>Prénom: <?php echo $doctor['Prenom']; ?></p>
-        <p>Spécialité: <?php echo $doctor['Specialite']; ?></p>
-        <p>Ville: <?php echo $doctor['Ville']; ?></p>
+<header>
+    <div class="logo">
+        <a href="../../Acceuil/Accueil.php"><img src="../../Acceuil/imageAccueil/LogoMedicare.png" alt="Medicare Logo"></a>
     </div>
-    <div class="buttons">
-        <a href="DoctorInfo.php?doctor_id=<?php echo $vDoctorId; ?>" class="button">Mes informations</a>
-        <a href="../../ChatRoom/Chat.php" class="button">ChatRoom</a>
-        <a href="../../RDV/AfficherRDVmedecins.php" class="button">Gestion des rendez-vous</a>
-        <a href="../deconnexion.php" class="button">Se déconnecter</a>
+    <nav>
+        <ul>
+            <li><a href="../../Acceuil/Accueil.php">Accueil</a></li>
+            <li class="SousMenu1">
+                <a href="../../RechercheParcourir/ToutParcourir.php">Tout Parcourir</a>
+                <ul class="SousMenu5">
+                    <li><a href="../../RechercheParcourir/Generaliste.php">Médecin généraliste</a></li>
+                    <li><a href="../../RechercheParcourir/Specialiste.php">Médecin spécialistes</a></li>
+                    <li><a href="../../RechercheParcourir/Laboratoire.php">Laboratoire de biologie médicale</a></li>
+                </ul>
+            </li>
+            <li><a href="../../RechercheParcourir/RechercheHTML.php">Recherche</a></li>
+            <li><a href="../../RDV/RendezVous.php">Rendez-vous</a></li>
+        </ul>
+    </nav>
+    <div class="CompteLogo">
+        <a href="../RedirectConnection.php"><img src="../../Acceuil/imageAccueil/MonCompte.png" alt="Compte Logo"></a>
     </div>
-</div>
+</header>
+<main>
+    <div class="container">
+        <div class="userInfo">
+            <h2>Informations du Médecin</h2>
+            <p>ID: <?php echo $doctor['Id_User']; ?></p>
+            <p>Nom: <?php echo $doctor['Nom']; ?></p>
+            <p>Prénom: <?php echo $doctor['Prenom']; ?></p>
+            <p>Spécialité: <?php echo $doctor['Specialite']; ?></p>
+            <p>Ville: <?php echo $doctor['Ville']; ?></p>
+        </div>
+        <div class="buttons">
+            <a href="DoctorInfo.php?doctor_id=<?php echo $vDoctorId; ?>" class="button">Mes informations</a>
+            <a href="../../ChatRoom/Chat.php" class="button">ChatRoom</a>
+            <a href="../../RDV/AfficherRDVmedecins.php" class="button">Gestion des rendez-vous</a>
+            <a href="../deconnexion.php" class="button">Se déconnecter</a>
+        </div>
+    </div>
+</main>
+<footer>
+    <div class="menu-footer">
+        <div class="menu-footer2">
+            <nav2>
+                <ul>
+                    <li><a href="../../Acceuil/Accueil.php">Accueil</a></li>
+                    <li class="SousMenu3">
+                        <a href="../../RechercheParcourir/ToutParcourir.php">Tout Parcourir</a>
+                        <ul class="SousMenu4">
+                            <li><a href="../../RechercheParcourir/Generaliste.php">Médecin généraliste</a></li>
+                            <li><a href="../../RechercheParcourir/Specialiste.php">Médecin spécialistes</a></li>
+                            <li><a href="../../RechercheParcourir/Laboratoire.php">Laboratoire de biologie médicale</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><a href="../../RechercheParcourir/RechercheHTML.php">Recherche</a></li>
+                    <li><a href="../../RDV/RendezVous.php">Rendez-vous</a></li>
+                </ul>
+            </nav2>
+        </div>
+    </div>
+    <div class="copyright">
+        <div class="copyright2">
+            <p>Medicare &copy; 2024 Tous droits réservés.</p>
+        </div>
+        <div class="copyright3">
+            <p>Medicare@medecine.fr</p>
+        </div>
+        <div class="copyright3">
+            <p>06 25 78 98 67</p>
+        </div>
+        <div class="copyright3">
+            <div class="insta">
+                <a href="#"><img src="../../Acceuil/imageAccueil/insta.png"></a>
+            </div>
+            <div class="x">
+                <a href="#"><img src="../../Acceuil/imageAccueil/twitter.png"></a>
+            </div>
+        </div>
+    </div>
+</footer>
 </body>
 </html>

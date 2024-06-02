@@ -35,6 +35,10 @@ $conn->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modifier un Médecin</title>
+    <link rel="stylesheet" href="../../HeaderFooter.css">
+    <link rel="stylesheet" href="../../RechercheParcourir/Recherche.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="icon" href="../../Acceuil/imageAccueil/LogoMedicare.ico">
     <script type="text/javascript">
 
         /*
@@ -75,22 +79,15 @@ $conn->close();
         }
     </script>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: auto;
-        }
 
         .Container {
             display: flex;
             flex-direction: column;
             align-items: center;
+            position: relative;
+            padding: 80px;
             gap: 20px;
-            width: 100%;
-            max-width: 800px;
+            width: auto;
         }
 
         .FormRow {
@@ -191,107 +188,175 @@ $conn->close();
     </style>
 </head>
 <body>
-<form action="UpdateDoctorBDD.php" method="POST" enctype="multipart/form-data">
-    <div class="Container">
-        <div class="FormRow">
-            <div class="Form">
-                <h2>Informations du Médecin</h2>
-                <div class="FormElement">
-                    <label for="ID">ID</label>
-                    <input type="text" id="ID" name="ID" value="<?php echo $doctor['Id_User']; ?>" required readonly><!--On ne veut pas modifier l'ID-->
+<header>
+    <div class="logo">
+        <a href="../../Acceuil/Accueil.php"><img src="../../Acceuil/imageAccueil/LogoMedicare.png" alt="Medicare Logo"></a>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="../../Acceuil/Accueil.php">Accueil</a></li>
+            <li class="SousMenu1">
+                <a href="../../RechercheParcourir/ToutParcourir.php">Tout Parcourir</a>
+                <ul class="SousMenu5">
+                    <li><a href="../../RechercheParcourir/Generaliste.php">Médecin généraliste</a></li>
+                    <li><a href="../../RechercheParcourir/Specialiste.php">Médecin spécialistes</a></li>
+                    <li><a href="../../RechercheParcourir/Laboratoire.php">Laboratoire de biologie médicale</a></li>
+                </ul>
+            </li>
+            <li><a href="../../RechercheParcourir/RechercheHTML.php">Recherche</a></li>
+            <li><a href="../../RDV/RendezVous.php">Rendez-vous</a></li>
+        </ul>
+    </nav>
+    <div class="CompteLogo">
+        <a href="../RedirectConnection.php"><img src="../../Acceuil/imageAccueil/MonCompte.png" alt="Compte Logo"></a>
+    </div>
+</header>
+<main>
+    <form action="UpdateDoctorBDD.php" method="POST" enctype="multipart/form-data">
+        <div class="Container">
+            <div class="FormRow">
+                <div class="Form">
+                    <h2>Informations du Médecin</h2>
+                    <div class="FormElement">
+                        <label for="ID">ID</label>
+                        <input type="text" id="ID" name="ID" value="<?php echo $doctor['Id_User']; ?>" required
+                               readonly><!--On ne veut pas modifier l'ID-->
+                    </div>
+                    <div class="FormElement">
+                        <label for="Name">Nom:</label>
+                        <input type="text" id="Name" name="Name" value="<?php echo $doctor['Nom']; ?>" required>
+                    </div>
+                    <div class="FormElement">
+                        <label for="Prenom">Prénom:</label>
+                        <input type="text" id="Prenom" name="Prenom" value="<?php echo $doctor['Prenom']; ?>" required>
+                    </div>
+                    <div class="FormElement">
+                        <label for="Field">Spécialité</label>
+                        <input type="text" id="Field" name="Field" value="<?php echo $doctor['Specialite']; ?>"
+                               required>
+                    </div>
+                    <div class="FormElement">
+                        <label for="City">Ville:</label>
+                        <input type="text" id="City" name="City" value="<?php echo $doctor['Ville']; ?>" required>
+                    </div>
                 </div>
-                <div class="FormElement">
-                    <label for="Name">Nom:</label>
-                    <input type="text" id="Name" name="Name" value="<?php echo $doctor['Nom']; ?>" required>
-                </div>
-                <div class="FormElement">
-                    <label for="Prenom">Prénom:</label>
-                    <input type="text" id="Prenom" name="Prenom" value="<?php echo $doctor['Prenom']; ?>" required>
-                </div>
-                <div class="FormElement">
-                    <label for="Field">Spécialité</label>
-                    <input type="text" id="Field" name="Field" value="<?php echo $doctor['Specialite']; ?>" required>
-                </div>
-                <div class="FormElement">
-                    <label for="City">Ville:</label>
-                    <input type="text" id="City" name="City" value="<?php echo $doctor['Ville']; ?>" required>
+
+                <div class="Form">
+                    <h2>Disponibilités</h2>
+                    <div class="FormElement">
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>Jour</th>
+                                <th>Matin</th>
+                                <th>Après-midi</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <?php /* Meme système que l'affichage*/
+                            $days = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'];
+                            for ($i = 0; $i < count($days); $i++) {
+                                $morning_index = $i * 2;
+                                $afternoon_index = $i * 2 + 1;
+                                echo "<tr>";
+                                echo "<td>$days[$i]</td>";
+                                echo "<td><input type='checkbox' name='availability[$morning_index]' " . ($disponibilite[$morning_index] == '1' ? "checked" : "") . "></td>";
+                                echo "<td><input type='checkbox' name='availability[$afternoon_index]' " . ($disponibilite[$afternoon_index] == '1' ? "checked" : "") . "></td>";
+                                echo "</tr>";
+                            }
+                            ?>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
 
-            <div class="Form">
-                <h2>Disponibilités</h2>
-                <div class="FormElement">
-                    <table>
-                        <thead>
-                        <tr>
-                            <th>Jour</th>
-                            <th>Matin</th>
-                            <th>Après-midi</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <?php /* Meme système que l'affichage*/
-                        $days = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'];
-                        for ($i = 0; $i < count($days); $i++) {
-                            $morning_index = $i * 2;
-                            $afternoon_index = $i * 2 + 1;
-                            echo "<tr>";
-                            echo "<td>$days[$i]</td>";
-                            echo "<td><input type='checkbox' name='availability[$morning_index]' " . ($disponibilite[$morning_index] == '1' ? "checked" : "") . "></td>";
-                            echo "<td><input type='checkbox' name='availability[$afternoon_index]' " . ($disponibilite[$afternoon_index] == '1' ? "checked" : "") . "></td>";
-                            echo "</tr>";
-                        }
-                        ?>
-                        </tbody>
-                    </table>
+            <div class="FormRow">
+                <div class="Form">
+                    <h2>Informations supplémentaires</h2>
+                    <div class="FormElement">
+                        <label for="Picture1">Photo1:</label>
+                        <input type="file" id="Picture1" name="Picture1" onchange="previewImage(event, 'preview1')">
+                        <img class="PreviewImg" id="preview1" src="<?php echo $doctor['Photo']; ?>" alt="Image Preview"
+                             style="display:block;">
+                    </div>
+                    <div class="FormElement">
+                        <label for="Picture2">Photo2:</label>
+                        <input type="file" id="Picture2" name="Picture2" onchange="previewImage(event, 'preview2')">
+                        <img class="PreviewImg" id="preview2" src="<?php echo $doctor['Photo2']; ?>" alt="Image Preview"
+                             style="display:block;">
+                    </div>
+                    <div class="FormElement">
+                        <label for="Picture3">Photo3:</label>
+                        <input type="file" id="Picture3" name="Picture3"
+                               onchange="previewImage(event, 'preview3')">
+                        <img class="PreviewImg" id="preview3" src="<?php echo $doctor['Photo3']; ?>" alt="Image Preview"
+                             style="display:block;">
+                    </div>
+                    <div class="FormElement">
+                        <label for="Video">Vidéo YouTube:</label>
+                        <input type="url" id="Video" name="Video" value="<?php echo $doctor['video']; ?>"
+                               placeholder="https://www.youtube.com/watch?v=example" required
+                               oninput="previewYouTubeVideo(event, 'youtubePreview')">
+                    </div>
+                    <div class="FormElement">
+                        <iframe class="PreviewVideo" id="youtubePreview"
+                                src="https://www.youtube.com/embed/<?php echo $doctor['video']; ?>" allowfullscreen
+                                style="display:block; width: 560px; height: 315px;"></iframe>
+                    </div>
+                    <div class="FormElement">
+                        <label for="CV">CV</label>
+                        <input type="file" id="CV" name="CV" accept=".xml,application/xml">
+                    </div>
+                    <div class="FormElement">
+                        <button type="submit" id="AddDoctorButton">Mettre à jour le médecin</button>
+                    </div>
                 </div>
             </div>
         </div>
-
-        <div class="FormRow">
-            <div class="Form">
-                <h2>Informations supplémentaires</h2>
-                <div class="FormElement">
-                    <label for="Picture1">Photo1:</label>
-                    <input type="file" id="Picture1" name="Picture1" onchange="previewImage(event, 'preview1')">
-                    <img class="PreviewImg" id="preview1" src="<?php echo $doctor['Photo']; ?>" alt="Image Preview"
-                         style="display:block;">
-                </div>
-                <div class="FormElement">
-                    <label for="Picture2">Photo2:</label>
-                    <input type="file" id="Picture2" name="Picture2" onchange="previewImage(event, 'preview2')">
-                    <img class="PreviewImg" id="preview2" src="<?php echo $doctor['Photo2']; ?>" alt="Image Preview"
-                         style="display:block;">
-                </div>
-                <div class="FormElement">
-                    <label for="Picture3">Photo3:</label>
-                    <input type="file" id="Picture3" name="Picture3"
-                           onchange="previewImage(event, 'preview3')">
-                    <img class="PreviewImg" id="preview3" src="<?php echo $doctor['Photo3']; ?>" alt="Image Preview"
-                         style="display:block;">
-                </div>
-                <div class="FormElement">
-                    <label for="Video">Vidéo YouTube:</label>
-                    <input type="url" id="Video" name="Video" value="<?php echo $doctor['video']; ?>"
-                           placeholder="https://www.youtube.com/watch?v=example" required
-                           oninput="previewYouTubeVideo(event, 'youtubePreview')">
-                </div>
-                <div class="FormElement">
-                    <iframe class="PreviewVideo" id="youtubePreview"
-                            src="https://www.youtube.com/embed/<?php echo $doctor['video']; ?>" allowfullscreen
-                            style="display:block; width: 560px; height: 315px;"></iframe>
-                </div>
-                <div class="FormElement">
-                    <label for="CV">CV</label>
-                    <input type="file" id="CV" name="CV" accept=".xml,application/xml">
-                </div>
-                <div class="FormElement">
-                    <button type="submit" id="AddDoctorButton">Mettre à jour le médecin</button>
-                </div>
+    </form>
+</main>
+<footer>
+    <div class="menu-footer">
+        <div class="menu-footer2">
+            <nav2>
+                <ul>
+                    <li><a href="../../Acceuil/Accueil.php">Accueil</a></li>
+                    <li class="SousMenu3">
+                        <a href="../../RechercheParcourir/ToutParcourir.php">Tout Parcourir</a>
+                        <ul class="SousMenu4">
+                            <li><a href="../../RechercheParcourir/Generaliste.php">Médecin généraliste</a></li>
+                            <li><a href="../../RechercheParcourir/Specialiste.php">Médecin spécialistes</a></li>
+                            <li><a href="../../RechercheParcourir/Laboratoire.php">Laboratoire de biologie médicale</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><a href="../../RechercheParcourir/RechercheHTML.php">Recherche</a></li>
+                    <li><a href="../../RDV/RendezVous.php">Rendez-vous</a></li>
+                </ul>
+            </nav2>
+        </div>
+    </div>
+    <div class="copyright">
+        <div class="copyright2">
+            <p>Medicare &copy; 2024 Tous droits réservés.</p>
+        </div>
+        <div class="copyright3">
+            <p>Medicare@medecine.fr</p>
+        </div>
+        <div class="copyright3">
+            <p>06 25 78 98 67</p>
+        </div>
+        <div class="copyright3">
+            <div class="insta">
+                <a href="#"><img src="../../Acceuil/imageAccueil/insta.png"></a>
+            </div>
+            <div class="x">
+                <a href="#"><img src="../../Acceuil/imageAccueil/twitter.png"></a>
             </div>
         </div>
     </div>
-</form>
+</footer>
 </body>
 </html>
 

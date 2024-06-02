@@ -4,7 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulaire d'inscription</title>
-
+    <link rel="stylesheet" href="../HeaderFooter.css">
+    <link rel="stylesheet" href="../RechercheParcourir/Recherche.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="icon" href="../Acceuil/imageAccueil/LogoMedicare.ico">
     <script type="text/javascript">
         document.addEventListener('DOMContentLoaded', function () {
             let vPhoneNumInput = document.querySelector('#telephone');
@@ -73,21 +76,17 @@
             });
         });
     </script>
-
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: auto;
-        }
 
         .Container {
             display: flex;
             justify-content: center;
             align-items: center;
+            flex-direction: column;
+            position: relative;
+            padding: 80px;
+            gap: 20px;
+            width: auto;
         }
 
         .Form {
@@ -141,60 +140,85 @@
     </style>
 </head>
 <body>
-<br><br>
-<div class="Container">
-    <div class="Form">
-        <h2>Inscription</h2>
-        <form action="inscription.php" method="post">
-            <div class="FormElement">
-                <label for="nom">Nom:</label>
-                <input type="text" id="nom" name="nom" placeholder=" Bon" required>
-            </div>
-            <div class="FormElement">
-                <label for="prenom">Prénom :</label>
-                <input type="text" id="prenom" name="prenom" placeholder="Jean " required>
-            </div>
-            <div class="FormElement">
-                <label for="adresse1">Adresse ligne 1 :</label>
-                <input type="text" id="adresse1" name="adresse1" placeholder="10 rue " required>
-            </div>
-            <div class="FormElement">
-                <label for="adresse2">Adresse ligne 2 :</label>
-                <input type="text" id="adresse2" name="adresse2" placeholder="de la Mouette">
-            </div>
-            <div class="FormElement">
-                <label for="ville">Ville :</label>
-                <input type="text" id="ville" name="ville" required placeholder="Paris">
-            </div>
-            <div class="FormElement">
-                <label for="codePostal">Code Postal :</label>
-                <input type="number" id="codePostal" name="codePostal" placeholder="01234" required>
-            </div>
-            <div class="FormElement">
-                <label for="pays">Pays :</label>
-                <input type="text" id="pays" name="pays" placeholder="France" required>
-            </div>
-            <div class="FormElement">
-                <label for="telephone">Numéro de téléphone :</label>
-                <input type="int" id="telephone" name="telephone" placeholder="0123456789" required>
-            </div>
-            <div class="FormElement">
-                <label for="email">Courriel:</label>
-                <input type="email" id="email" name="email" placeholder="lemedecin@omnessante.fr" required>
-            </div>
-            <div class="FormElement">
-                <label for="carteVitale">Carte Vitale :</label>
-                <input type="text" id="carteVitale" name="carteVitale" placeholder="1 60 04 25 311 114 26" required>
-            </div>
-            <div class="FormElement">
-                <label for="password">Mot de passe :</label>
-                <input type="password" id="password" name="password" placeholder="MonMotDePasse" required>
-            </div>
-            <div class="FormElement">
-                <button type="submit" id="SignUpButton">S'inscrire</button>
-            </div>
-        </form>
+<header>
+    <div class="logo">
+        <a href="../Acceuil/Accueil.php"><img src="../Acceuil/imageAccueil/LogoMedicare.png" alt="Medicare Logo"></a>
     </div>
-</div>
+    <nav>
+        <ul>
+            <li><a href="../Acceuil/Accueil.php">Accueil</a></li>
+            <li class="SousMenu1">
+                <a href="../RechercheParcourir/ToutParcourir.php">Tout Parcourir</a>
+                <ul class="SousMenu5">
+                    <li><a href="../RechercheParcourir/Generaliste.php">Médecin généraliste</a></li>
+                    <li><a href="../RechercheParcourir/Specialiste.php">Médecin spécialistes</a></li>
+                    <li><a href="../RechercheParcourir/Laboratoire.php">Laboratoire de biologie médicale</a></li>
+                </ul>
+            </li>
+            <li><a href="../RechercheParcourir/RechercheHTML.php">Recherche</a></li>
+            <li><a href="../RDV/RendezVous.php">Rendez-vous</a></li>
+        </ul>
+    </nav>
+    <div class="CompteLogo">
+        <a href="RedirectConnection.php"><img src="../Acceuil/imageAccueil/MonCompte.png" alt="Compte Logo"></a>
+    </div>
+</header>
+<main>
+    <br><br>
+    <div class="Container">
+        <div class="Form">
+            <h2>Inscription</h2>
+            <form action="inscription.php" method="post">
+                <div class="FormElement">
+                    <label for="nom">Nom:</label>
+                    <input type="text" id="nom" name="nom" placeholder=" Bon" required>
+                </div>
+                <div class="FormElement">
+                    <label for="prenom">Prénom :</label>
+                    <input type="text" id="prenom" name="prenom" placeholder="Jean " required>
+                </div>
+                <div class="FormElement">
+                    <label for="adresse1">Adresse ligne 1 :</label>
+                    <input type="text" id="adresse1" name="adresse1" placeholder="10 rue " required>
+                </div>
+                <div class="FormElement">
+                    <label for="adresse2">Adresse ligne 2 :</label>
+                    <input type="text" id="adresse2" name="adresse2" placeholder="de la Mouette">
+                </div>
+                <div class="FormElement">
+                    <label for="ville">Ville :</label>
+                    <input type="text" id="ville" name="ville" required placeholder="Paris">
+                </div>
+                <div class="FormElement">
+                    <label for="codePostal">Code Postal :</label>
+                    <input type="number" id="codePostal" name="codePostal" placeholder="01234" required>
+                </div>
+                <div class="FormElement">
+                    <label for="pays">Pays :</label>
+                    <input type="text" id="pays" name="pays" placeholder="France" required>
+                </div>
+                <div class="FormElement">
+                    <label for="telephone">Numéro de téléphone :</label>
+                    <input type="int" id="telephone" name="telephone" placeholder="0123456789" required>
+                </div>
+                <div class="FormElement">
+                    <label for="email">Courriel:</label>
+                    <input type="email" id="email" name="email" placeholder="lemedecin@omnessante.fr" required>
+                </div>
+                <div class="FormElement">
+                    <label for="carteVitale">Carte Vitale :</label>
+                    <input type="text" id="carteVitale" name="carteVitale" placeholder="1 60 04 25 311 114 26" required>
+                </div>
+                <div class="FormElement">
+                    <label for="password">Mot de passe :</label>
+                    <input type="password" id="password" name="password" placeholder="MonMotDePasse" required>
+                </div>
+                <div class="FormElement">
+                    <button type="submit" id="SignUpButton">S'inscrire</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</main>
 </body>
 </html>

@@ -8,8 +8,47 @@ session_start()
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Détails du Client - Medicare</title>
-    <link rel="stylesheet" href="style.css"> <!-- Lien vers le fichier CSS -->
-
+    <link rel="stylesheet" href="../HeaderFooter.css">
+    <link rel="stylesheet" href="../RechercheParcourir/Recherche.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="icon" href="../Acceuil/imageAccueil/LogoMedicare.ico">
+    <style>
+        main{
+            margin-top: 80px;
+        }
+        form{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="logo">
+        <a href="../Acceuil/Accueil.php"><img src="../Acceuil/imageAccueil/LogoMedicare.png" alt="Medicare Logo"></a>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="../Acceuil/Accueil.php">Accueil</a></li>
+            <li class="SousMenu1">
+                <a href="../RechercheParcourir/ToutParcourir.php">Tout Parcourir</a>
+                <ul class="SousMenu5">
+                    <li><a href="../RechercheParcourir/Generaliste.php">Médecin généraliste</a></li>
+                    <li><a href="../RechercheParcourir/Specialiste.php">Médecin spécialistes</a></li>
+                    <li><a href="../RechercheParcourir/Laboratoire.php">Laboratoire de biologie médicale</a></li>
+                </ul>
+            </li>
+            <li><a href="../RechercheParcourir/RechercheHTML.php">Recherche</a></li>
+            <li><a href="../RDV/RendezVous.php">Rendez-vous</a></li>
+        </ul>
+    </nav>
+    <div class="CompteLogo">
+        <a href="../MonCompte/RedirectConnection.php"><img src="../Acceuil/imageAccueil/MonCompte.png"
+                                                           alt="Compte Logo"></a>
+    </div>
+</header>
+<main>
     <?php
     function afficherUtilisateur($db_handle, $idUtilisateur)
     {
@@ -74,98 +113,97 @@ session_start()
     }
 
     ?>
-</head>
-<body>
-<?php
-$idUtilisateur = $_SESSION['user_id'];
+    <?php
+    $idUtilisateur = $_SESSION['user_id'];
 
 
-$db_handle = mysqli_connect('localhost', 'root', '');
-$db_found = mysqli_select_db($db_handle, 'medicare');
+    $db_handle = mysqli_connect('localhost', 'root', '');
+    $db_found = mysqli_select_db($db_handle, 'medicare');
 
-// Affichage des informations de l'utilisateur avec l'ID spécifié
-afficherUtilisateur($db_handle, $idUtilisateur);
-$listeCommandes = afficherRDV($db_handle, $idUtilisateur);
-if (empty($listeCommandes)) {
-    echo "Aucun rendez-vous à afficher.";
-}
-
-
-if (isset($_POST["modifier"])) {
-    $idUtilisateur = $_POST['idUtilisateur'];
-    $updatesUtilisateur = [];
-    $updatesClient = [];
-
-    if (!empty($_POST['nom'])) {//on regarde siles champs sont remplis. SI c'est le cas, on ajoute une modification à apporter à la base.
-        $updatesUtilisateur[] = "Nom='" . mysqli_real_escape_string($db_handle, $_POST['nom']) . "'";
-    }
-    if (!empty($_POST['prenom'])) {
-        $updatesUtilisateur[] = "Prenom='" . mysqli_real_escape_string($db_handle, $_POST['prenom']) . "'";
-    }
-    if (!empty($_POST['mail'])) {
-        $updatesUtilisateur[] = "Mail='" . mysqli_real_escape_string($db_handle, $_POST['mail']) . "'";
-    }
-    if (!empty($_POST['telephone'])) {
-        $updatesUtilisateur[] = "Telephone='" . mysqli_real_escape_string($db_handle, $_POST['telephone']) . "'";
-    }
-    if (!empty($_POST['pays'])) {
-        $updatesUtilisateur[] = "Pays='" . mysqli_real_escape_string($db_handle, $_POST['pays']) . "'";
-    }
-    if (!empty($_POST['code_postal'])) {
-        $updatesUtilisateur[] = "Code_Postal='" . mysqli_real_escape_string($db_handle, $_POST['code_postal']) . "'";
-    }
-    if (!empty($_POST['ville'])) {
-        $updatesUtilisateur[] = "Ville='" . mysqli_real_escape_string($db_handle, $_POST['ville']) . "'";
-    }
-    if (!empty($_POST['adresse1'])) {
-        $updatesUtilisateur[] = "Adresse1='" . mysqli_real_escape_string($db_handle, $_POST['adresse1']) . "'";
-    }
-    if (!empty($_POST['adresse2'])) {
-        $updatesUtilisateur[] = "Adresse2='" . mysqli_real_escape_string($db_handle, $_POST['adresse2']) . "'";
-    }
-    if (!empty($_POST['num_cb'])) {
-        $updatesClient[] = "Num_Cb='" . mysqli_real_escape_string($db_handle, $_POST['num_cb']) . "'";
-    }
-    if (!empty($_POST['type_carte'])) {
-        $updatesClient[] = "Type_Carte='" . mysqli_real_escape_string($db_handle, $_POST['type_carte']) . "'";
-    }
-    if (!empty($_POST['date_expiration'])) {
-        $updatesClient[] = "Date_Expiration='" . mysqli_real_escape_string($db_handle, $_POST['date_expiration']) . "'";
-    }
-    if (!empty($_POST['code_securite'])) {
-        $updatesClient[] = "Code_Securite='" . mysqli_real_escape_string($db_handle, $_POST['code_securite']) . "'";
-    }
-    if (!empty($_POST['solde'])) {
-        $updatesClient[] = "Solde='" . mysqli_real_escape_string($db_handle, $_POST['solde']) . "'";
+    // Affichage des informations de l'utilisateur avec l'ID spécifié
+    afficherUtilisateur($db_handle, $idUtilisateur);
+    $listeCommandes = afficherRDV($db_handle, $idUtilisateur);
+    if (empty($listeCommandes)) {
+        echo "Aucun rendez-vous à afficher.";
     }
 
-    if (count($updatesUtilisateur) > 0 || count($updatesClient) > 0) {
-        mysqli_begin_transaction($db_handle);
 
-        if (count($updatesUtilisateur) > 0) {
-            $queryUtilisateur = "UPDATE Utilisateur SET " . implode(", ", $updatesUtilisateur) . " WHERE Id_User=" . $idUtilisateur;
-            mysqli_query($db_handle, $queryUtilisateur);
+    if (isset($_POST["modifier"])) {
+        $idUtilisateur = $_POST['idUtilisateur'];
+        $updatesUtilisateur = [];
+        $updatesClient = [];
+
+        if (!empty($_POST['nom'])) {//on regarde siles champs sont remplis. SI c'est le cas, on ajoute une modification à apporter à la base.
+            $updatesUtilisateur[] = "Nom='" . mysqli_real_escape_string($db_handle, $_POST['nom']) . "'";
+        }
+        if (!empty($_POST['prenom'])) {
+            $updatesUtilisateur[] = "Prenom='" . mysqli_real_escape_string($db_handle, $_POST['prenom']) . "'";
+        }
+        if (!empty($_POST['mail'])) {
+            $updatesUtilisateur[] = "Mail='" . mysqli_real_escape_string($db_handle, $_POST['mail']) . "'";
+        }
+        if (!empty($_POST['telephone'])) {
+            $updatesUtilisateur[] = "Telephone='" . mysqli_real_escape_string($db_handle, $_POST['telephone']) . "'";
+        }
+        if (!empty($_POST['pays'])) {
+            $updatesUtilisateur[] = "Pays='" . mysqli_real_escape_string($db_handle, $_POST['pays']) . "'";
+        }
+        if (!empty($_POST['code_postal'])) {
+            $updatesUtilisateur[] = "Code_Postal='" . mysqli_real_escape_string($db_handle, $_POST['code_postal']) . "'";
+        }
+        if (!empty($_POST['ville'])) {
+            $updatesUtilisateur[] = "Ville='" . mysqli_real_escape_string($db_handle, $_POST['ville']) . "'";
+        }
+        if (!empty($_POST['adresse1'])) {
+            $updatesUtilisateur[] = "Adresse1='" . mysqli_real_escape_string($db_handle, $_POST['adresse1']) . "'";
+        }
+        if (!empty($_POST['adresse2'])) {
+            $updatesUtilisateur[] = "Adresse2='" . mysqli_real_escape_string($db_handle, $_POST['adresse2']) . "'";
+        }
+        if (!empty($_POST['num_cb'])) {
+            $updatesClient[] = "Num_Cb='" . mysqli_real_escape_string($db_handle, $_POST['num_cb']) . "'";
+        }
+        if (!empty($_POST['type_carte'])) {
+            $updatesClient[] = "Type_Carte='" . mysqli_real_escape_string($db_handle, $_POST['type_carte']) . "'";
+        }
+        if (!empty($_POST['date_expiration'])) {
+            $updatesClient[] = "Date_Expiration='" . mysqli_real_escape_string($db_handle, $_POST['date_expiration']) . "'";
+        }
+        if (!empty($_POST['code_securite'])) {
+            $updatesClient[] = "Code_Securite='" . mysqli_real_escape_string($db_handle, $_POST['code_securite']) . "'";
+        }
+        if (!empty($_POST['solde'])) {
+            $updatesClient[] = "Solde='" . mysqli_real_escape_string($db_handle, $_POST['solde']) . "'";
         }
 
-        if (count($updatesClient) > 0) {
-            $queryClient = "UPDATE Client SET " . implode(", ", $updatesClient) . " WHERE Id_Client=" . $idUtilisateur;
-            mysqli_query($db_handle, $queryClient);
-        }
+        if (count($updatesUtilisateur) > 0 || count($updatesClient) > 0) {
+            mysqli_begin_transaction($db_handle);
 
-        mysqli_commit($db_handle);
-        echo "Les informations ont été mises à jour avec succès.";
+            if (count($updatesUtilisateur) > 0) {
+                $queryUtilisateur = "UPDATE Utilisateur SET " . implode(", ", $updatesUtilisateur) . " WHERE Id_User=" . $idUtilisateur;
+                mysqli_query($db_handle, $queryUtilisateur);
+            }
+
+            if (count($updatesClient) > 0) {
+                $queryClient = "UPDATE Client SET " . implode(", ", $updatesClient) . " WHERE Id_Client=" . $idUtilisateur;
+                mysqli_query($db_handle, $queryClient);
+            }
+
+            mysqli_commit($db_handle);
+            echo "Les informations ont été mises à jour avec succès.";
+        } else {
+            echo "Aucun champ n'a été rempli.";
+        }
+    }
+    if (isset($_POST["annuler"]) && isset($listeCommandes[$_POST["annuler"]])) {
+        mysqli_query($db_handle, $listeCommandes[$_POST["annuler"]]);
     } else {
-        echo "Aucun champ n'a été rempli.";
+        echo "Aucune action valide sélectionnée ou aucun rendez-vous à annuler.";
     }
-}
-if (isset($_POST["annuler"]) && isset($listeCommandes[$_POST["annuler"]])) {
-    mysqli_query($db_handle, $listeCommandes[$_POST["annuler"]]);
-} else {
-    echo "Aucune action valide sélectionnée ou aucun rendez-vous à annuler.";
-}
 
 
-mysqli_close($db_handle);
-?>
+    mysqli_close($db_handle);
+    ?>
+</main>
 </body>
 </html>

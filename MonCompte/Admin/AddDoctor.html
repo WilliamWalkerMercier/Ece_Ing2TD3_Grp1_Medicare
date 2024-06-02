@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulaire Ajouter un medecin</title>
+    <link rel="stylesheet" href="../../HeaderFooter.css">
+    <link rel="icon" href="../../Acceuil/imageAccueil/LogoMedicare.ico">
+    <link rel="stylesheet" href="../../RechercheParcourir/Recherche.css">
     <script type="text/javascript">
         /*Source : https://stackoverflow.com/questions/12368910/html-display-image-after-selecting-filename*/
 
@@ -44,22 +47,14 @@
         }
     </script>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: auto;
-        }
-
         .Container {
             display: flex;
             flex-direction: column;
             align-items: center;
+            position: relative;
+            padding: 80px;
             gap: 20px;
-            width: 100%;
-            max-width: 800px;
+            width: auto;
         }
 
         .FormRow {
@@ -160,152 +155,221 @@
     </style>
 </head>
 <body>
-<form action="AddDoctorBDD.php" method="POST" enctype="multipart/form-data">
-    <!-- Conteneur -->
-    <div class="Container">
-        <!-- Première ligne de formulaires -->
-        <div class="FormRow">
-            <div class="Form"><!-- Bloc de gauche -->
-                <h2>Informations du Médecin</h2>
-                <div class="FormElement"><!-- Element du formulaire -->
-                    <label for="ID">ID</label>
-                    <input type="text" id="ID" name="ID" placeholder="ID" required>
+<header>
+    <div class="logo">
+        <a href="../../Acceuil/Accueil.php"><img src="../../Acceuil/imageAccueil/LogoMedicare.png" alt="Medicare Logo"></a>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="../../Acceuil/Accueil.php">Accueil</a></li>
+            <li class="SousMenu1">
+                <a href="../../RechercheParcourir/ToutParcourir.php">Tout Parcourir</a>
+                <ul class="SousMenu5">
+                    <li><a href="../../RechercheParcourir/Generaliste.php">Médecin généraliste</a></li>
+                    <li><a href="../../RechercheParcourir/Specialiste.php">Médecin spécialistes</a></li>
+                    <li><a href="../../RechercheParcourir/Laboratoire.php">Laboratoire de biologie médicale</a></li>
+                </ul>
+            </li>
+            <li><a href="../../RechercheParcourir/RechercheHTML.php">Recherche</a></li>
+            <li><a href="../../RDV/RendezVous.php">Rendez-vous</a></li>
+        </ul>
+    </nav>
+    <div class="CompteLogo">
+        <a href="../RedirectConnection.php"><img src="../../Acceuil/imageAccueil/MonCompte.png"
+                                                              alt="Compte Logo"></a>
+    </div>
+</header>
+<main>
+    <form action="AddDoctorBDD.php" method="POST" enctype="multipart/form-data">
+        <!-- Conteneur -->
+        <div class="Container">
+            <!-- Première ligne de formulaires -->
+            <div class="FormRow">
+                <div class="Form"><!-- Bloc de gauche -->
+                    <h2>Informations du Médecin</h2>
+                    <div class="FormElement"><!-- Element du formulaire -->
+                        <label for="ID">ID</label>
+                        <input type="text" id="ID" name="ID" placeholder="ID" required>
+                    </div>
+                    <div class="FormElement">
+                        <label for="Name">Nom:</label>
+                        <input type="text" id="Name" name="Name" placeholder="Seringue" required>
+                    </div>
+                    <div class="FormElement">
+                        <label for="Field">Spécialité</label>
+                        <input type="text" id="Field" name="Field" placeholder="Cardiologie" required>
+                    </div>
+                    <div class="FormElement">
+                        <label for="City">Ville:</label>
+                        <input type="text" id="City" name="City" placeholder="Ville" required>
+                    </div>
                 </div>
-                <div class="FormElement">
-                    <label for="Name">Nom:</label>
-                    <input type="text" id="Name" name="Name" placeholder="Seringue" required>
-                </div>
-                <div class="FormElement">
-                    <label for="Field">Spécialité</label>
-                    <input type="text" id="Field" name="Field" placeholder="Cardiologie" required>
-                </div>
-                <div class="FormElement">
-                    <label for="City">Ville:</label>
-                    <input type="text" id="City" name="City" placeholder="Ville" required>
+
+                <!-- Deuxième bloc formulaire de paiement -->
+                <div class="Form">
+                    <h2>Disponibilités</h2>
+                    <div class="FormElement">
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>Jour</th>
+                                <th>Matin</th>
+                                <th>Après-midi</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>Lundi</td>
+                                <td>
+                                    <label for="MondayMorning"></label>
+                                    <input type="checkbox" id="MondayMorning" name="availability[0]" value="on">
+                                </td>
+                                <td>
+                                    <label for="MondayAfternoon"></label>
+                                    <input type="checkbox" id="MondayAfternoon" name="availability[1]" value="on">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Mardi</td>
+                                <td>
+                                    <label for="TuesdayMorning"></label>
+                                    <input type="checkbox" id="TuesdayMorning" name="availability[2]" value="on">
+                                </td>
+                                <td>
+                                    <label for="TuesdayAfternoon"></label>
+                                    <input type="checkbox" id="TuesdayAfternoon" name="availability[3]" value="on">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Mercredi</td>
+                                <td>
+                                    <label for="WednesdayMorning"></label>
+                                    <input type="checkbox" id="WednesdayMorning" name="availability[4]" value="on">
+                                </td>
+                                <td>
+                                    <label for="WednesdayAfternoon"></label>
+                                    <input type="checkbox" id="WednesdayAfternoon" name="availability[5]" value="on">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Jeudi</td>
+                                <td>
+                                    <label for="ThursdayMorning"></label>
+                                    <input type="checkbox" id="ThursdayMorning" name="availability[6]" value="on">
+                                </td>
+                                <td>
+                                    <label for="ThursdayAfternoon"></label>
+                                    <input type="checkbox" id="ThursdayAfternoon" name="availability[7]" value="on">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Vendredi</td>
+                                <td>
+                                    <label for="FridayMorning"></label>
+                                    <input type="checkbox" id="FridayMorning" name="availability[8]" value="on">
+                                </td>
+                                <td>
+                                    <label for="FridayAfternoon"></label>
+                                    <input type="checkbox" id="FridayAfternoon" name="availability[9]" value="on">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Samedi</td>
+                                <td>
+                                    <label for="SaturdayMorning"></label>
+                                    <input type="checkbox" id="SaturdayMorning" name="availability[10]" value="on">
+                                </td>
+                                <td>
+                                    <label for="SaturdayAfternoon"></label>
+                                    <input type="checkbox" id="SaturdayAfternoon" name="availability[11]" value="on">
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
 
-            <!-- Deuxième bloc formulaire de paiement -->
-            <div class="Form">
-                <h2>Disponibilités</h2>
-                <div class="FormElement">
-                    <table>
-                        <thead>
-                        <tr>
-                            <th>Jour</th>
-                            <th>Matin</th>
-                            <th>Après-midi</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td>Lundi</td>
-                            <td>
-                                <label for="MondayMorning"></label>
-                                <input type="checkbox" id="MondayMorning" name="availability[0]" value="on">
-                            </td>
-                            <td>
-                                <label for="MondayAfternoon"></label>
-                                <input type="checkbox" id="MondayAfternoon" name="availability[1]" value="on">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Mardi</td>
-                            <td>
-                                <label for="TuesdayMorning"></label>
-                                <input type="checkbox" id="TuesdayMorning" name="availability[2]" value="on">
-                            </td>
-                            <td>
-                                <label for="TuesdayAfternoon"></label>
-                                <input type="checkbox" id="TuesdayAfternoon" name="availability[3]" value="on">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Mercredi</td>
-                            <td>
-                                <label for="WednesdayMorning"></label>
-                                <input type="checkbox" id="WednesdayMorning" name="availability[4]" value="on">
-                            </td>
-                            <td>
-                                <label for="WednesdayAfternoon"></label>
-                                <input type="checkbox" id="WednesdayAfternoon" name="availability[5]" value="on">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Jeudi</td>
-                            <td>
-                                <label for="ThursdayMorning"></label>
-                                <input type="checkbox" id="ThursdayMorning" name="availability[6]" value="on">
-                            </td>
-                            <td>
-                                <label for="ThursdayAfternoon"></label>
-                                <input type="checkbox" id="ThursdayAfternoon" name="availability[7]" value="on">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Vendredi</td>
-                            <td>
-                                <label for="FridayMorning"></label>
-                                <input type="checkbox" id="FridayMorning" name="availability[8]" value="on">
-                            </td>
-                            <td>
-                                <label for="FridayAfternoon"></label>
-                                <input type="checkbox" id="FridayAfternoon" name="availability[9]" value="on">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Samedi</td>
-                            <td>
-                                <label for="SaturdayMorning"></label>
-                                <input type="checkbox" id="SaturdayMorning" name="availability[10]" value="on">
-                            </td>
-                            <td>
-                                <label for="SaturdayAfternoon"></label>
-                                <input type="checkbox" id="SaturdayAfternoon" name="availability[11]" value="on">
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
+            <div class="FormRow">
+                <div class="Form"><!-- Bloc du dessous -->
+                    <h2>Informations supplémentaires</h2>
+                    <div class="FormElement"><!-- Element du formulaire -->
+                        <label for="Picture1">Photo1:</label>
+                        <input type="file" id="Picture1" name="Picture1" onchange="previewImage(event, 'preview1')">
+                        <!--Affiche la preview lorsqu'il y a un evenement -->
+                        <img class="PreviewImg" id="preview1" src="" alt="Image Preview">
+                    </div>
+                    <div class="FormElement">
+                        <label for="Picture2">Photo2:</label>
+                        <input type="file" id="Picture2" name="Picture2" onchange="previewImage(event, 'preview2')">
+                        <img class="PreviewImg" id="preview2" src="" alt="Image Preview">
+                    </div>
+                    <div class="FormElement">
+                        <label for="Picture3">Photo3:</label>
+                        <input type="file" id="Picture3" name="Picture3" onchange="previewImage(event, 'preview3')">
+                        <img class="PreviewImg" id="preview3" src="" alt="Image Preview">
+                    </div>
+                    <div class="FormElement">
+                        <label for="Video">Vidéo YouTube:</label>
+                        <input type="url" id="Video" name="Video" placeholder="https://www.youtube.com/watch?v=example"
+                               required oninput="previewYouTubeVideo(event, 'youtubePreview')">
+                    </div>
+                    <div class="FormElement">
+                        <iframe class="PreviewVideo" id="youtubePreview" src="" allowfullscreen
+                                style="display:none; width: 560px; height: 315px;"></iframe>
+                    </div>
+                    <div class="FormElement">
+                        <label for="CV">CV</label>
+                        <input type="file" id="CV" name="CV" accept=".xml,application/xml">
+                    </div>
+                    <div class="FormElement">
+                        <button type="submit" id="AddDoctorButton">Ajouter un medecin</button>
+                    </div>
                 </div>
             </div>
         </div>
-
-        <div class="FormRow">
-            <div class="Form"><!-- Bloc du dessous -->
-                <h2>Informations supplémentaires</h2>
-                <div class="FormElement"><!-- Element du formulaire -->
-                    <label for="Picture1">Photo1:</label>
-                    <input type="file" id="Picture1" name="Picture1" onchange="previewImage(event, 'preview1')">
-                    <!--Affiche la preview lorsqu'il y a un evenement -->
-                    <img class="PreviewImg" id="preview1" src="" alt="Image Preview">
-                </div>
-                <div class="FormElement">
-                    <label for="Picture2">Photo2:</label>
-                    <input type="file" id="Picture2" name="Picture2" onchange="previewImage(event, 'preview2')">
-                    <img class="PreviewImg" id="preview2" src="" alt="Image Preview">
-                </div>
-                <div class="FormElement">
-                    <label for="Picture3">Photo3:</label>
-                    <input type="file" id="Picture3" name="Picture3" onchange="previewImage(event, 'preview3')">
-                    <img class="PreviewImg" id="preview3" src="" alt="Image Preview">
-                </div>
-                <div class="FormElement">
-                    <label for="Video">Vidéo YouTube:</label>
-                    <input type="url" id="Video" name="Video" placeholder="https://www.youtube.com/watch?v=example" required oninput="previewYouTubeVideo(event, 'youtubePreview')">
-                </div>
-                <div class="FormElement">
-                    <iframe class="PreviewVideo" id="youtubePreview" src=""  allowfullscreen style="display:none; width: 560px; height: 315px;"></iframe>
-                </div>
-                <div class="FormElement">
-                    <label for="CV">CV</label>
-                    <input type="file" id="CV" name="CV" accept=".xml,application/xml">
-                </div>
-                <div class="FormElement">
-                    <button type="submit" id="AddDoctorButton">Ajouter un medecin</button>
-                </div>
+    </form>
+</main>
+<footer>
+    <div class="menu-footer">
+        <div class="menu-footer2">
+            <nav2>
+                <ul>
+                    <li><a href="../../Acceuil/Accueil.php">Accueil</a></li>
+                    <li class="SousMenu3">
+                        <a href="../../RechercheParcourir/ToutParcourir.php">Tout Parcourir</a>
+                        <ul class="SousMenu4">
+                            <li><a href="../../RechercheParcourir/Generaliste.php">Médecin généraliste</a></li>
+                            <li><a href="../../RechercheParcourir/Specialiste.php">Médecin spécialistes</a></li>
+                            <li><a href="../../RechercheParcourir/Laboratoire.php">Laboratoire de biologie médicale</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><a href="../../RechercheParcourir/RechercheHTML.php">Recherche</a></li>
+                    <li><a href="../../RDV/RendezVous.php">Rendez-vous</a></li>
+                </ul>
+            </nav2>
+        </div>
+    </div>
+    <div class="copyright">
+        <div class="copyright2">
+            <p>Medicare &copy; 2024 Tous droits réservés.</p>
+        </div>
+        <div class="copyright3">
+            <p>Medicare@medecine.fr</p>
+        </div>
+        <div class="copyright3">
+            <p>06 25 78 98 67</p>
+        </div>
+        <div class="copyright3">
+            <div class="insta">
+                <a href="#"><img src="../../Acceuil/imageAccueil/insta.png"></a>
+            </div>
+            <div class="x">
+                <a href="#"><img src="../../Acceuil/imageAccueil/twitter.png"></a>
             </div>
         </div>
     </div>
-</form>
+</footer>
 </body>
 </html>

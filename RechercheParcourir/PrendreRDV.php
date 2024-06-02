@@ -13,6 +13,10 @@ checkPermission(2);
     <link rel="stylesheet" href="../HeaderFooter.css">
     <link rel="stylesheet" href="PrendreRDV.css">
     <link rel="icon" href="../Acceuil/imageAccueil/LogoMedicare.ico">
+    <link rel="stylesheet" href="PrendreRDV.css"> <!-- Votre fichier CSS personnalisé -->
+    <link rel="icon" href="../Acceuil/imageAccueil/LogoMedicare.ico">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </head>
 <body>
 <header>

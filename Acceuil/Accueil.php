@@ -60,11 +60,15 @@ if (!isset($_SESSION['LogedIn'])) {
         <div>
             <h2 class="titre2">Bienvenue sur Medicare !</h2><br>
             <p>Nous sommes ravis de vous accueillir au sein de notre communauté. Chez Medicare, nous nous engageons à
-                fournir des services de santé de qualité et à répondre à tous vos besoins médicaux. Que vous ayez besoin de
-                consulter un spécialiste, de gérer vos prescriptions ou de trouver des informations sur les soins de santé,
+                fournir des services de santé de qualité et à répondre à tous vos besoins médicaux. Que vous ayez besoin
+                de
+                consulter un spécialiste, de gérer vos prescriptions ou de trouver des informations sur les soins de
+                santé,
                 nous sommes là pour vous aider à chaque étape.
-                Notre mission est de rendre les soins de santé accessibles et faciles à comprendre pour tous. N'hésitez pas
-                à explorer notre site et à découvrir les nombreuses ressources que nous offrons pour vous et votre famille.
+                Notre mission est de rendre les soins de santé accessibles et faciles à comprendre pour tous. N'hésitez
+                pas
+                à explorer notre site et à découvrir les nombreuses ressources que nous offrons pour vous et votre
+                famille.
                 Merci de nous faire confiance pour votre santé et votre bien-être.
                 L'équipe Medicare</p>
         </div>
@@ -78,10 +82,12 @@ if (!isset($_SESSION['LogedIn'])) {
                 <h2 class="titre3">Evenement de la semaine</h2><br>
                 <p> l'introduction et l'adoption généralisée de thérapies ciblées et d'immunothérapies:</p>
                 <br>
-                <p>Ces avancées ont révolutionné le traitement du cancer en ciblant spécifiquement les cellules cancéreuses
+                <p>Ces avancées ont révolutionné le traitement du cancer en ciblant spécifiquement les cellules
+                    cancéreuses
                     tout en minimisant les dommages aux cellules saines.</p>
                 <br>
-                <p>Les thérapies ciblées fonctionnent en bloquant les mécanismes spécifiques de croissance et de propagation
+                <p>Les thérapies ciblées fonctionnent en bloquant les mécanismes spécifiques de croissance et de
+                    propagation
                     des cellules cancéreuses, souvent en ciblant des protéines spécifiques présentes à la surface des
                     cellules tumorales. Cette approche personnalisée permet des traitements plus efficaces avec moins
                     d'effets secondaires.</p>
@@ -92,7 +98,8 @@ if (!isset($_SESSION['LogedIn'])) {
                     nouvelles options là où les traitements traditionnels étaient limités.</p>
                 <br>
                 <p>Ces développements ont apporté de l'espoir à de nombreux patients atteints de cancer, transformant la
-                    manière dont la maladie est traitée et ouvrant la voie à une approche plus précise et personnalisée de
+                    manière dont la maladie est traitée et ouvrant la voie à une approche plus précise et personnalisée
+                    de
                     la lutte contre le cancer.</p>
             </div>
         </div>
@@ -179,6 +186,12 @@ if (!isset($_SESSION['LogedIn'])) {
             <p>Medicare &copy; 2024 Tous droits réservés.</p>
         </div>
         <div class="copyright3">
+            <p>Medicare@medecine.fr</p>
+        </div>
+        <div class="copyright3">
+            <p>06 25 78 98 67</p>
+        </div>
+        <div class="copyright3">
             <div class="insta">
                 <a href="#"><img src="imageAccueil/insta.png"></a>
             </div>
@@ -186,19 +199,18 @@ if (!isset($_SESSION['LogedIn'])) {
                 <a href="#"><img src="imageAccueil/twitter.png"></a>
             </div>
         </div>
-    </div>
-    <div class="Map">
-        <div class="GoogleMap">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31228.433482034532!2d2.6514271858837017!3d48.4001966329627!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e5f500761f24f1%3A0xdf36a3bc130b8970!2sLaboratoire%20de%20biologie%20m%C3%A9dicale!5e0!3m2!1sfr!2sfr!4v1716939694993!5m2!1sfr!2sfr"
-                    width="600"
-                    height="450"
-                    style="border:0;"
-                    allowfullscreen=""
-                    loading="lazy"
-                    referrerpolicy="no-referrer-when-downgrade">
-            </iframe>
+        <div class="Map">
+            <div class="GoogleMap">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31228.433482034532!2d2.6514271858837017!3d48.4001966329627!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e5f500761f24f1%3A0xdf36a3bc130b8970!2sLaboratoire%20de%20biologie%20m%C3%A9dicale!5e0!3m2!1sfr!2sfr!4v1716939694993!5m2!1sfr!2sfr"
+                        width="600"
+                        height="450"
+                        style="border:0;"
+                        allowfullscreen=""
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
         </div>
-    </div>
 </footer>
 <script src="Accueil.js"></script>
 </body>

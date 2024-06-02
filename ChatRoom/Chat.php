@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-if (isset($_GET['logout'])){
+if (isset($_GET['logout'])) {
 
     //Message de sortie simple
     $logout_message = "<div class='msgln'><span class='left-info'>User <b class='user-name-left'>" .
@@ -17,16 +17,16 @@ if (isset($_GET['logout'])){
     header("Location: chat.php"); //Rediriger l'utilisateur
 }
 
-if (isset($_POST['enter'])){
-    if($_POST['name'] != ""){
+if (isset($_POST['enter'])) {
+    if ($_POST['name'] != "") {
         $_SESSION['name'] = stripslashes(htmlspecialchars($_POST['name']));
-    }
-    else{
+    } else {
         echo '<span class="error">Veuillez saisir votre nom</span>';
     }
 }
 
-function loginForm() {
+function loginForm()
+{
     // Connect to the database
     $conn = new mysqli("localhost", "root", "", "medicare");
 
@@ -48,7 +48,6 @@ function loginForm() {
     $stmt->close();
     $conn->close();
 
-    // Output the form with the fetched user name
     echo '<div id="loginform">
             <p>Bienvenue, ' . htmlspecialchars($userName) . '! Vous allez être redirigé vers le chat.</p>
             <form action="Chat.php" method="post">
@@ -57,49 +56,120 @@ function loginForm() {
             </form>
           </div>';
 }
+
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8"/>
     <title>Exemple Chat Texto</title>
-    <link rel="stylesheet" href="Chat.css" />
+    <link rel="stylesheet" href="Chat.css"/>
+    <link rel="stylesheet" href="../HeaderFooter.css">
+    <link rel="icon" href="../Acceuil/imageAccueil/LogoMedicare.ico">
+    <link rel="stylesheet" href="../RechercheParcourir/Recherche.css">
 </head>
 <body>
-<?php
-if (!isset($_SESSION['name'])){
-    loginForm();
-}
-else {
-?>
-<div id="wrapper">
-    <div id="menu">
-        <p class="welcome">Bienvenue, <b><?php echo $_SESSION['name']; ?></b></p>
-        <p class="logout"><a id="exit" href="../RechercheParcourir/RechercheHTML.php">Quitter la conversation</a></p>
+<header>
+    <div class="logo">
+        <a href="../Acceuil/Accueil.php"><img src="../Acceuil/imageAccueil/LogoMedicare.png" alt="Medicare Logo"></a>
     </div>
-
-    <div id="chatbox">
-        <?php
-        if(file_exists("log.html") && filesize("log.html") > 0){
-            $contents = file_get_contents("log.html");
-            echo $contents;
-        }
-        ?>
+    <nav>
+        <ul>
+            <li><a href="../Acceuil/Accueil.php">Accueil</a></li>
+            <li class="SousMenu1">
+                <a href="../RechercheParcourir/ToutParcourir.php">Tout Parcourir</a>
+                <ul class="SousMenu5">
+                    <li><a href="../RechercheParcourir/Generaliste.php">Médecin généraliste</a></li>
+                    <li><a href="../RechercheParcourir/Specialiste.php">Médecin spécialistes</a></li>
+                    <li><a href="../RechercheParcourir/Laboratoire.php">Laboratoire de biologie médicale</a></li>
+                </ul>
+            </li>
+            <li><a href="../RechercheParcourir/RechercheHTML.php">Recherche</a></li>
+            <li><a href="../RDV/RendezVous.php">Rendez-vous</a></li>
+        </ul>
+    </nav>
+    <div class="CompteLogo">
+        <a href="../MonCompte/RedirectConnection.php"><img src="../Acceuil/imageAccueil/MonCompte.png"
+                                                           alt="Compte Logo"></a>
     </div>
+</header>
+<main>
+    <?php
+    if (!isset($_SESSION['name'])){
+        loginForm();
+    }
+    else {
+    ?>
+    <div id="wrapper">
+        <div id="menu">
+            <p class="welcome">Bienvenue, <b><?php echo $_SESSION['name']; ?></b></p>
+            <p class="logout"><a id="exit" href="../RechercheParcourir/RechercheHTML.php">Quitter la conversation</a>
+            </p>
+        </div>
 
-    <form name="message" action="">
-        <input name="usermsg" type="text" id="usermsg" />
-        <input name="submitmsg" type="submit" id="submitmsg" value="Envoyer" />
-    </form>
-</div>
+        <div id="chatbox">
+            <?php
+            if (file_exists("log.html") && filesize("log.html") > 0) {
+                $contents = file_get_contents("log.html");
+                echo $contents;
+            }
+            ?>
+        </div>
+
+        <form name="message" action="">
+            <input name="usermsg" type="text" id="usermsg"/>
+            <input name="submitmsg" type="submit" id="submitmsg" value="Envoyer"/>
+        </form>
+    </div>
+</main>
+<footer>
+    <div class="menu-footer">
+        <div class="menu-footer2">
+            <nav2>
+                <ul>
+                    <li><a href="../Acceuil/Accueil.php">Accueil</a></li>
+                    <li class="SousMenu3">
+                        <a href="../RechercheParcourir/ToutParcourir.php">Tout Parcourir</a>
+                        <ul class="SousMenu4">
+                            <li><a href="../RechercheParcourir/Generaliste.php">Médecin généraliste</a></li>
+                            <li><a href="../RechercheParcourir/Specialiste.php">Médecin spécialistes</a></li>
+                            <li><a href="../RechercheParcourir/Laboratoire.php">Laboratoire de biologie médicale</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><a href="../RechercheParcourir/RechercheHTML.php">Recherche</a></li>
+                    <li><a href="../RDV/RendezVous.php">Rendez-vous</a></li>
+                </ul>
+            </nav2>
+        </div>
+    </div>
+    <div class="copyright">
+        <div class="copyright2">
+            <p>Medicare &copy; 2024 Tous droits réservés.</p>
+        </div>
+        <div class="copyright3">
+            <p>Medicare@medecine.fr</p>
+        </div>
+        <div class="copyright3">
+            <p>06 25 78 98 67</p>
+        </div>
+        <div class="copyright3">
+            <div class="insta">
+                <a href="#"><img src="../Acceuil/imageAccueil/insta.png"></a>
+            </div>
+            <div class="x">
+                <a href="#"><img src="../Acceuil/imageAccueil/twitter.png"></a>
+            </div>
+        </div>
+</footer>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript">
     // jQuery Document
     $(document).ready(function () {
         $("#submitmsg").click(function () {
             var clientmsg = $("#usermsg").val();
-            $.post("post.php", { text: clientmsg });
+            $.post("post.php", {text: clientmsg});
             $("#usermsg").val("");
             return false;
         });
@@ -115,14 +185,14 @@ else {
 
                     //Auto-scroll
                     var newscrollHeight = $("#chatbox")[0].scrollHeight - 20; //Hauteur de défilement apres la requête
-                    if(newscrollHeight > oldscrollHeight){
-                        $("#chatbox").animate({ scrollTop: newscrollHeight }, 'normal'); //Défilement automatique
+                    if (newscrollHeight > oldscrollHeight) {
+                        $("#chatbox").animate({scrollTop: newscrollHeight}, 'normal'); //Défilement automatique
                     }
                 }
             });
         }
 
-        setInterval (loadLog, 2500);
+        setInterval(loadLog, 2500);
 
         $("#exit").click(function () {
             var exit = confirm("Voulez-vous vraiment mettre fin à la session ?");

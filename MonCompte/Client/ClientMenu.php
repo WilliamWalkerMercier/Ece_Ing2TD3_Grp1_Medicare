@@ -23,31 +23,28 @@ $result = $conn->query($sql);
 $row = $result->fetch_assoc();
 ?>
 
-
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AccueilMedecin</title>
+    <link rel="stylesheet" href="../../HeaderFooter.css">
+    <link rel="stylesheet" href="../../RechercheParcourir/Recherche.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="icon" href="../../Acceuil/imageAccueil/LogoMedicare.ico">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: auto;
-        }
 
         .container {
-            background: chartreuse;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            padding: 80px;
             align-items: center;
-            margin-top: auto;
+            color: black;
+            overflow: hidden;
+            width: auto;
+            position: relative;
+            height: auto;
         }
 
         .UserInfo {
@@ -59,6 +56,7 @@ $row = $result->fetch_assoc();
             padding: 20px;
             display: flex;
             flex-wrap: wrap;
+            justify-content: center;
             gap: 10px; /* Espace entre les boutons */
             max-width: 400px; /* Limite de largeur pour le conteneur */
         }
@@ -100,25 +98,91 @@ $row = $result->fetch_assoc();
     </style>
 </head>
 <body>
-<div class="container">
-    <div class="UserInfo">
-        <?php
-        echo "<h2>{$row['Nom']} {$row['Prenom']}</h2>";
-        echo "<p><strong>ID :</strong> {$row['Id_User']}</p>";
-        echo "<p><strong>Courriel :</strong> {$row['Mail']}</p>";
-        echo "<p><strong>Carte Vitale :</strong> {$row['Carte_Vitale']}</p>";
-        ?>
+<header>
+    <div class="logo">
+        <a href="../../Acceuil/Accueil.php"><img src="../../Acceuil/imageAccueil/LogoMedicare.png" alt="Medicare Logo"></a>
     </div>
-    <div class="buttons">
-        <a href="../../RDV/infoUtilisateur.php">
-        <button class="button" id="Info">Voir mes infos</button>
-        </a>
-        <button class="button" id="ChatRoom">Chatbox</button>
-        <a href="../deconnexion.php">
-            <button class="button" id="Deconnection">Se déconnecter</button><!-- Bouton Gérer les utilisateurs -->
-        </a>
+    <nav>
+        <ul>
+            <li><a href="../../Acceuil/Accueil.php">Accueil</a></li>
+            <li class="SousMenu1">
+                <a href="../../RechercheParcourir/ToutParcourir.php">Tout Parcourir</a>
+                <ul class="SousMenu5">
+                    <li><a href="../../RechercheParcourir/Generaliste.php">Médecin généraliste</a></li>
+                    <li><a href="../../RechercheParcourir/Specialiste.php">Médecin spécialistes</a></li>
+                    <li><a href="../../RechercheParcourir/Laboratoire.php">Laboratoire de biologie médicale</a></li>
+                </ul>
+            </li>
+            <li><a href="../../RechercheParcourir/RechercheHTML.php">Recherche</a></li>
+            <li><a href="../../RDV/RendezVous.php">Rendez-vous</a></li>
+        </ul>
+    </nav>
+    <div class="CompteLogo">
+        <a href="../RedirectConnection.php"><img src="../../Acceuil/imageAccueil/MonCompte.png" alt="Compte Logo"></a>
     </div>
-</div>
+</header>
+<main>
+    <div class="container">
+        <div class="UserInfo">
+            <?php
+            echo "<h2>{$row['Nom']} {$row['Prenom']}</h2>";
+            echo "<p><strong>ID :</strong> {$row['Id_User']}</p>";
+            echo "<p><strong>Courriel :</strong> {$row['Mail']}</p>";
+            echo "<p><strong>Carte Vitale :</strong> {$row['Carte_Vitale']}</p>";
+            ?>
+        </div>
+        <div class="buttons">
+            <a href="../../RDV/infoUtilisateur.php">
+                <button class="button" id="Info">Voir mes infos</button>
+            </a>
+            <button class="button" id="ChatRoom">Chatbox</button>
+            <a href="../deconnexion.php">
+                <button class="button" id="Deconnection">Se déconnecter</button><!-- Bouton Gérer les utilisateurs -->
+            </a>
+        </div>
+    </div>
+</main>
+<footer>
+    <div class="menu-footer">
+        <div class="menu-footer2">
+            <nav2>
+                <ul>
+                    <li><a href="../../Acceuil/Accueil.php">Accueil</a></li>
+                    <li class="SousMenu3">
+                        <a href="../../RechercheParcourir/ToutParcourir.php">Tout Parcourir</a>
+                        <ul class="SousMenu4">
+                            <li><a href="../../RechercheParcourir/Generaliste.php">Médecin généraliste</a></li>
+                            <li><a href="../../RechercheParcourir/Specialiste.php">Médecin spécialistes</a></li>
+                            <li><a href="../../RechercheParcourir/Laboratoire.php">Laboratoire de biologie médicale</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><a href="../../RechercheParcourir/RechercheHTML.php">Recherche</a></li>
+                    <li><a href="../../RDV/RendezVous.php">Rendez-vous</a></li>
+                </ul>
+            </nav2>
+        </div>
+    </div>
+    <div class="copyright">
+        <div class="copyright2">
+            <p>Medicare &copy; 2024 Tous droits réservés.</p>
+        </div>
+        <div class="copyright3">
+            <p>Medicare@medecine.fr</p>
+        </div>
+        <div class="copyright3">
+            <p>06 25 78 98 67</p>
+        </div>
+        <div class="copyright3">
+            <div class="insta">
+                <a href="#"><img src="../../Acceuil/imageAccueil/insta.png"></a>
+            </div>
+            <div class="x">
+                <a href="#"><img src="../../Acceuil/imageAccueil/twitter.png"></a>
+            </div>
+        </div>
+    </div>
+</footer>
 </body>
 </html>
 
